@@ -1,0 +1,19 @@
+﻿{
+    "name": "鏋佸湥閿?,
+    "icon": "genius_genesis:divine_metal_ingot",
+    "category": "genius_genesis:item/materials",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "鎯宠鎵撶牬鏃т笘鐣岀殑闄愬埗锛屽氨蹇呴』瑕佸幓寰楀埌鏂扮殑鏉愭枡銆備綘鍐冲畾浠ヤ笅鐣岀殑缁堢偣涓鸿捣鐐癸紝璧颁笂涓€鏉″墠浜烘湭鏇捐蛋杩囩殑閬撹矾銆傜敤绁炲湥鐨勫姏閲忔礂鍘诲湴鐙辩殑浜垫笌鍜岀伀鐒帮紝鍐嶆妸濂ユ湳鐨勬湰婧愮亴娉ㄥ叾涓€?
+        },
+        {
+            "type": "patchouli:text",
+            "text": "recipepage"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "鎴愬姛浜嗭紝瀹冩湁鐫€楂樿吹鏉愭枡搴旀湁鐨勫叏閮ㄥ搧璐ㄣ€傝繖鏍蜂竴绉嶅叏鏂扮殑閲戝睘锛屾墠閰嶅緱涓婅拷闅忎綘鍓嶈繘鐨勬浼愩€?
+        }
+    ]
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "genius_genesis:weathered_sandstone_slab_from_weathered_sandstone_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_weathered_sandstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "genius_genesis:weathered_sandstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_weathered_sandstone",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "genius_genesis:weathered_sandstone_slab_from_weathered_sandstone_stonecutting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

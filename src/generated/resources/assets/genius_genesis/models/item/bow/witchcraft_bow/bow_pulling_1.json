@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/bow_pulling_1",
+  "textures": {
+    "layer0": "genius_genesis:item/bow/witchcraft_bow/bow_pulling_1"
+  }
+}

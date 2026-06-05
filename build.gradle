@@ -19,6 +19,8 @@ base {
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
+configurations.maybeCreate("localRuntime")
+
 legacyForge {
     version = project.minecraft_version + '-' + project.forge_version
 
@@ -32,17 +34,20 @@ legacyForge {
     runs {
         client {
             client()
+            getAdditionalRuntimeClasspathConfiguration().extendsFrom(configurations.localRuntime)
             programArguments.addAll("--username", "Dev")
             systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
         }
 
         server {
             server()
+            getAdditionalRuntimeClasspathConfiguration().extendsFrom(configurations.localRuntime)
             systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
         }
 
         gameTestServer {
             type = "gameTestServer"
+            getAdditionalRuntimeClasspathConfiguration().extendsFrom(configurations.localRuntime)
             systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
         }
 
@@ -60,6 +65,7 @@ legacyForge {
             systemProperty 'mixin.verbose', 'true'
             systemProperty 'mixin.export', 'true'
             systemProperty 'mixin.dumpTargetOnFailure', 'true'
+            jvmArgument '-Dfile.encoding=UTF-8'
             logLevel = org.slf4j.event.Level.DEBUG
         }
     }
@@ -108,7 +114,10 @@ repositories {
 }
 
 configurations {
-    runtimeClasspath.extendsFrom localRuntime
+    localRuntime {
+        exclude group: 'io.github.llamalad7', module: 'mixinextras-common'
+        exclude group: 'io.github.llamalad7', module: 'mixinextras-forge'
+    }
 }
 
 obfuscation {
@@ -166,11 +175,15 @@ tasks.withType(JavaCompile).configureEach {
     ]
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions.freeCompilerArgs += ['-java-parameters']
+    kotlinOptions.jvmTarget = '17'
+}
+
 dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     modImplementation "miku.bai_ze_li:genesis_api:1.0-SNAPSHOT:dev"
-    localRuntime "miku.bai_ze_li:genesis_api:1.0-SNAPSHOT:dev"
 
     if (jarJar.toBoolean()) {
         jarJar(modImplementation("miku.bai_ze_li:genesis_api:1.0-SNAPSHOT:dev"))
@@ -181,42 +194,45 @@ dependencies {
         modImplementation(jarJar("local.libs:l2library:${l2library_version}-slim"))
         modImplementation(jarJar("local.libs:l2serial:1.2.2"))
         modImplementation(jarJar("local.libs:l2tabs:0.3.3"))
+
+        modImplementation(jarJar("io.github.llamalad7:mixinextras-forge:0.5.3"))
     }
 
-    modImplementation(jarJar("io.github.llamalad7:mixinextras-forge:0.5.3"))
-
-    modImplementation "curse.maven:cloth-config-348521:5729105"
-    modImplementation "curse.maven:attributefix-280510:7612291"
-    modImplementation "curse.maven:suixingxiugai-1349188:7147760"
+    modCompileOnly "curse.maven:cloth-config-348521:5729105"
+    localRuntime "curse.maven:cloth-config-348521:5729105"
+    localRuntime "curse.maven:attributefix-280510:7612291"
+    localRuntime "curse.maven:suixingxiugai-1349188:7147760"
 
     modCompileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     modCompileOnly "mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"
-    modImplementation "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
+    localRuntime "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
 
-    modCompileOnly "vazkii.patchouli:Patchouli:1.20.1-84.1-FORGE:api"
-
-    modImplementation "curse.maven:caelus-308989:5281700"
+    modCompileOnly "curse.maven:caelus-308989:5281700"
     modImplementation "curse.maven:geckolib-388172:6333474"
     modImplementation "curse.maven:curios-309927:6418456"
-    modImplementation "curse.maven:irons-spells-n-spellbooks-855414:7907340"
     modImplementation "curse.maven:irons-lib-1492763:8156266"
-    modImplementation "curse.maven:embeddium-908741:5681725"
-    modImplementation "curse.maven:oculus-581495:6020952"
-    modImplementation "curse.maven:better-brightness-slider-685037:4656287"
-    modImplementation "curse.maven:jade-324717:6855440"
-    modImplementation "curse.maven:freecam-by-zergatul-618947:5402097"
     modImplementation "curse.maven:playeranimator-658587:4587214"
-    modImplementation "curse.maven:mmmmmmmmmmmm-225738:6860192"
-    modImplementation "curse.maven:selene-499980:7027387"
+    modImplementation "curse.maven:irons-spells-n-spellbooks-855414:7907340"
+    modCompileOnly "dev.architectury:architectury-forge:${architectury_version}"
+    modCompileOnly "dev.latvian.mods:rhino-forge:${rhino_version}"
+    modCompileOnly "dev.latvian.mods:kubejs-forge:${kubejs_version}"
+    modCompileOnly "io.github.flemmli97:mobbattle:${minecraft_version}-2.5.3-${mod_loader}"
 
-    modImplementation "dev.architectury:architectury-forge:${architectury_version}"
-    modImplementation "dev.latvian.mods:rhino-forge:${rhino_version}"
-    modImplementation "dev.latvian.mods:kubejs-forge:${kubejs_version}"
-    modImplementation "io.github.flemmli97:mobbattle:${minecraft_version}-2.5.3-${mod_loader}"
-
-    modRuntimeOnly "curse.maven:in-game-account-switcher-232676:5457030"
-    modRuntimeOnly "curse.maven:lan-server-properties-387365:4776657"
-    modRuntimeOnly "curse.maven:nbtedit-reborn-678133:5984630"
+    localRuntime "curse.maven:caelus-308989:5281700"
+    localRuntime "curse.maven:embeddium-908741:5681725"
+    localRuntime "curse.maven:oculus-581495:6020952"
+    localRuntime "curse.maven:better-brightness-slider-685037:4656287"
+    localRuntime "curse.maven:jade-324717:6855440"
+    localRuntime "curse.maven:freecam-by-zergatul-618947:5402097"
+    localRuntime "curse.maven:mmmmmmmmmmmm-225738:6860192"
+    localRuntime "curse.maven:selene-499980:7027387"
+    localRuntime "dev.architectury:architectury-forge:${architectury_version}"
+    localRuntime "dev.latvian.mods:rhino-forge:${rhino_version}"
+    localRuntime "dev.latvian.mods:kubejs-forge:${kubejs_version}"
+    localRuntime "io.github.flemmli97:mobbattle:${minecraft_version}-2.5.3-${mod_loader}"
+    localRuntime "curse.maven:in-game-account-switcher-232676:5457030"
+    localRuntime "curse.maven:lan-server-properties-387365:4776657"
+    localRuntime "curse.maven:nbtedit-reborn-678133:5984630"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }

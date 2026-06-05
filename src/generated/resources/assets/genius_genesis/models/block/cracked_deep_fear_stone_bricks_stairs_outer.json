@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "genius_genesis:block/cracked_deep_fear_stone_bricks",
+    "side": "genius_genesis:block/cracked_deep_fear_stone_bricks",
+    "top": "genius_genesis:block/cracked_deep_fear_stone_bricks"
+  }
+}

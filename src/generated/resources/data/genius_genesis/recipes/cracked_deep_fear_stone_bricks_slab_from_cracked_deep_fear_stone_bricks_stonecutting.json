@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "genius_genesis:cracked_deep_fear_stone_bricks"
+  },
+  "result": "genius_genesis:cracked_deep_fear_stone_bricks_slab"
+}

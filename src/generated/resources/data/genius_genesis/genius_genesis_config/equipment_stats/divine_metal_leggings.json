@@ -1,0 +1,30 @@
+{
+  "armor": {
+    "armor": 8.0,
+    "armor_toughness": 5.0,
+    "knockback_resistance": 0.2
+  },
+  "attributes": [
+    {
+      "amount": 150.0,
+      "attribute": "irons_spellbooks:max_mana",
+      "operation": "addition"
+    },
+    {
+      "amount": 0.06,
+      "attribute": "irons_spellbooks:spell_power",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 0.06,
+      "attribute": "irons_spellbooks:holy_spell_power",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 0.07,
+      "attribute": "irons_spellbooks:cast_time_reduction",
+      "operation": "multiply_base"
+    }
+  ],
+  "durability": 1570
+}

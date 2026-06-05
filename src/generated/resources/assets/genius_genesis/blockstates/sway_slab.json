@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "genius_genesis:block/sway_slab"
+    },
+    "type=double": {
+      "model": "genius_genesis:block/sway_planks"
+    },
+    "type=top": {
+      "model": "genius_genesis:block/sway_slab_top"
+    }
+  }
+}

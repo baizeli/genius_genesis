@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "genius_genesis:item/armor/celestial_source_spell_leggings"
+  }
+}

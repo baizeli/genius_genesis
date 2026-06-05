@@ -1,0 +1,10 @@
+﻿{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "genius_genesis:item/scroll_celestial_source"
+  },
+  "loader": "genius_genesis:cosmic",
+  "cosmic": {
+    "mask": "genius_genesis:item/mask/scroll_celestial_source_mask"
+  }
+}

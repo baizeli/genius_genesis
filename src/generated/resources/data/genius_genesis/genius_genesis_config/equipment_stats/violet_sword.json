@@ -1,0 +1,14 @@
+{
+  "attributes": [
+    {
+      "amount": 0.15,
+      "attribute": "irons_spellbooks:cooldown_reduction",
+      "operation": "multiply_total"
+    }
+  ],
+  "durability": 8000,
+  "weapon": {
+    "attack_damage": 20.0,
+    "attack_speed": -2.7
+  }
+}

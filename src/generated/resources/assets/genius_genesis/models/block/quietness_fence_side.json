@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_side",
+  "textures": {
+    "texture": "genius_genesis:block/quietness_planks"
+  }
+}

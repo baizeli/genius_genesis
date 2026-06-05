@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "genius_genesis:block/sway_stone",
+    "side": "genius_genesis:block/sway_stone",
+    "top": "genius_genesis:block/sway_stone"
+  }
+}

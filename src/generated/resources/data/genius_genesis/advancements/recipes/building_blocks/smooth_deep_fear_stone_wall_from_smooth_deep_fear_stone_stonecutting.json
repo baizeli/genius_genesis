@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_smooth_deep_fear_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "genius_genesis:smooth_deep_fear_stone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "genius_genesis:smooth_deep_fear_stone_wall_from_smooth_deep_fear_stone_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_smooth_deep_fear_stone",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "genius_genesis:smooth_deep_fear_stone_wall_from_smooth_deep_fear_stone_stonecutting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

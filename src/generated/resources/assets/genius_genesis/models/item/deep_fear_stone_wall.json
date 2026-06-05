@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "genius_genesis:block/deep_fear_stone"
+  }
+}

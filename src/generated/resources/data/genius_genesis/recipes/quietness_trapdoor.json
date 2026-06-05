@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "X": {
+      "item": "genius_genesis:quietness_planks"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "result": {
+    "count": 2,
+    "item": "genius_genesis:quietness_trapdoor"
+  },
+  "show_notification": true
+}

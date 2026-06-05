@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_side",
+  "textures": {
+    "wall": "genius_genesis:block/deep_fear_stone"
+  }
+}

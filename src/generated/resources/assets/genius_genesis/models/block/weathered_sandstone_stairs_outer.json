@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "genius_genesis:block/weathered_sandstone",
+    "side": "genius_genesis:block/weathered_sandstone",
+    "top": "genius_genesis:block/weathered_sandstone"
+  }
+}

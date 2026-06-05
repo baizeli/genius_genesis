@@ -1,0 +1,18 @@
+{
+  "attributes": [
+    {
+      "amount": 0.15,
+      "attribute": "genius_genesis:chaos_spell_power",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 0.2,
+      "attribute": "irons_spellbooks:cooldown_reduction",
+      "operation": "multiply_base"
+    }
+  ],
+  "weapon": {
+    "attack_damage": 6.0,
+    "attack_speed": -3.0
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "genius_genesis:block/weathered_sandstone",
+    "side": "genius_genesis:block/weathered_sandstone",
+    "top": "genius_genesis:block/weathered_sandstone"
+  }
+}

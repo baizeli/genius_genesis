@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "genius_genesis:block/heart_sculpting",
+    "side": "genius_genesis:block/heart_sculpting",
+    "top": "genius_genesis:block/heart_sculpting"
+  }
+}

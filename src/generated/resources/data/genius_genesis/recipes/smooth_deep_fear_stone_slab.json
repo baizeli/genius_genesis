@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "X": {
+      "item": "genius_genesis:smooth_deep_fear_stone"
+    }
+  },
+  "pattern": [
+    "XXX"
+  ],
+  "result": {
+    "count": 6,
+    "item": "genius_genesis:smooth_deep_fear_stone_slab"
+  },
+  "show_notification": true
+}

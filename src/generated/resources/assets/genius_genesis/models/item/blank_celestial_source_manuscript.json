@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "genius_genesis:item/blank_celestial_source_manuscript"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "genius_genesis:block/sway_planks",
+    "side": "genius_genesis:block/sway_planks",
+    "top": "genius_genesis:block/sway_planks"
+  }
+}

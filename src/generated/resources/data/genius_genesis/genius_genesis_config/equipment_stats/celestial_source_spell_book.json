@@ -1,0 +1,25 @@
+{
+  "attributes": [
+    {
+      "amount": 0.1,
+      "attribute": "irons_spellbooks:spell_power",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 900.0,
+      "attribute": "irons_spellbooks:max_mana",
+      "operation": "addition"
+    },
+    {
+      "amount": 0.3,
+      "attribute": "irons_spellbooks:cooldown_reduction",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 0.1,
+      "attribute": "genius_genesis:celestial_source_spell_power",
+      "operation": "multiply_base"
+    }
+  ],
+  "curio": {}
+}

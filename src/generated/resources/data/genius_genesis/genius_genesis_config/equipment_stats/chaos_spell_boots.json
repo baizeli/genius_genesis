@@ -1,0 +1,50 @@
+{
+  "armor": {
+    "armor": 3.0,
+    "armor_toughness": 4.0,
+    "knockback_resistance": 0.0
+  },
+  "attributes": [
+    {
+      "amount": 0.07,
+      "attribute": "irons_spellbooks:spell_power",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 0.07,
+      "attribute": "genius_genesis:chaos_spell_power",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 500.0,
+      "attribute": "irons_spellbooks:max_mana",
+      "operation": "addition"
+    },
+    {
+      "amount": 0.5,
+      "attribute": "minecraft:generic.max_health",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": -0.03,
+      "attribute": "irons_spellbooks:holy_spell_power",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 0.1,
+      "attribute": "irons_spellbooks:cast_time_reduction",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 0.06,
+      "attribute": "irons_spellbooks:cooldown_reduction",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 0.06,
+      "attribute": "irons_spellbooks:mana_regen",
+      "operation": "multiply_base"
+    }
+  ],
+  "durability": 3200
+}

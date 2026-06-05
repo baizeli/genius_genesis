@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/grass_block",
+  "textures": {
+    "bottom": "genius_genesis:block/genesis_dirt",
+    "overlay": "genius_genesis:block/sway_grass_block",
+    "particle": "genius_genesis:block/genesis_dirt",
+    "side": "genius_genesis:block/sway_grass_block",
+    "top": "genius_genesis:block/sway_grass_block_top"
+  }
+}

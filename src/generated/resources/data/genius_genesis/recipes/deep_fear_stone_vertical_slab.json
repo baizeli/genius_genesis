@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "genius_genesis:deep_fear_stone"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "genius_genesis:deep_fear_stone_vertical_slab"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_heart_sculpting": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "genius_genesis:heart_sculpting"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "genius_genesis:heart_sculpting_wall_from_heart_sculpting_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_heart_sculpting",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "genius_genesis:heart_sculpting_wall_from_heart_sculpting_stonecutting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

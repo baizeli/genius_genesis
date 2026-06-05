@@ -1,0 +1,9 @@
+{
+  "icon": "curios:slot/crown_slot",
+  "order": 41,
+  "replace": false,
+  "size": 1,
+  "validators": [
+    "curios:tag"
+  ]
+}

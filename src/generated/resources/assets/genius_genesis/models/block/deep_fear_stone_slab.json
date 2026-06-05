@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "genius_genesis:block/deep_fear_stone",
+    "side": "genius_genesis:block/deep_fear_stone",
+    "top": "genius_genesis:block/deep_fear_stone"
+  }
+}

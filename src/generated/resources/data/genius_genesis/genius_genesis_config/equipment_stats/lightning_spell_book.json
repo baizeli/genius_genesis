@@ -1,0 +1,25 @@
+{
+  "attributes": [
+    {
+      "amount": 100.0,
+      "attribute": "irons_spellbooks:max_mana",
+      "operation": "addition"
+    },
+    {
+      "amount": 0.1,
+      "attribute": "irons_spellbooks:lightning_spell_power",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 0.08,
+      "attribute": "irons_spellbooks:cooldown_reduction",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 0.08,
+      "attribute": "irons_spellbooks:mana_regen",
+      "operation": "multiply_base"
+    }
+  ],
+  "curio": {}
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "genius_genesis:block/fire_stone_slab"
+    },
+    "type=double": {
+      "model": "genius_genesis:block/fire_stone"
+    },
+    "type=top": {
+      "model": "genius_genesis:block/fire_stone_slab_top"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_deep_fear_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "genius_genesis:deep_fear_stone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "genius_genesis:deep_fear_stone_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_deep_fear_stone",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "genius_genesis:deep_fear_stone_slab"
+    ]
+  },
+  "sends_telemetry_event": false
+}

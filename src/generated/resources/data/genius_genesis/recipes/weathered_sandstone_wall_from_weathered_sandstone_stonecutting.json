@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "genius_genesis:weathered_sandstone"
+  },
+  "result": "genius_genesis:weathered_sandstone_wall"
+}

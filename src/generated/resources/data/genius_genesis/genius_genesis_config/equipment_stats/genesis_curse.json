@@ -1,0 +1,10 @@
+{
+  "attributes": [
+    {
+      "amount": 100000.0,
+      "attribute": "irons_spellbooks:max_mana",
+      "operation": "addition"
+    }
+  ],
+  "curio": {}
+}

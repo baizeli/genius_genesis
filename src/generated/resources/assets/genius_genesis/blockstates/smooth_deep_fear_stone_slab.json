@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "genius_genesis:block/smooth_deep_fear_stone_slab"
+    },
+    "type=double": {
+      "model": "genius_genesis:block/smooth_deep_fear_stone"
+    },
+    "type=top": {
+      "model": "genius_genesis:block/smooth_deep_fear_stone_slab_top"
+    }
+  }
+}

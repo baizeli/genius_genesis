@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "genius_genesis:deep_fear_stone"
+  },
+  "result": "genius_genesis:deep_fear_stone_stairs"
+}

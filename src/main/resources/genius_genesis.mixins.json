@@ -1,12 +1,15 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "miku.united_as_one.mixin",
+  "package": "miku.united_as_one.genesis.mixin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "genius_genesis.refmap.json",
   "mixins": [
+    "minecraft.world.item.ItemStackMixin"
   ],
   "client": [
+    "GameRendererMixin",
+    "ItemRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,0 +1,35 @@
+{
+  "attributes": [
+    {
+      "amount": 0.2,
+      "attribute": "irons_spellbooks:cast_time_reduction",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 200.0,
+      "attribute": "irons_spellbooks:max_mana",
+      "operation": "addition"
+    },
+    {
+      "amount": 0.15,
+      "attribute": "irons_spellbooks:spell_power",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 6.0,
+      "attribute": "minecraft:generic.armor",
+      "operation": "addition"
+    },
+    {
+      "amount": 4.0,
+      "attribute": "minecraft:generic.luck",
+      "operation": "addition"
+    },
+    {
+      "amount": 0.2,
+      "attribute": "irons_spellbooks:cooldown_reduction",
+      "operation": "multiply_base"
+    }
+  ],
+  "curio": {}
+}

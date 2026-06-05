@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "genius_genesis:item/mithril_sword"
+  },
+  "loader": "genius_genesis:cosmic",
+  "cosmic": {
+    "mask": "genius_genesis:item/mithril_sword"
+  }
+}

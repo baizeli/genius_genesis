@@ -1,0 +1,16 @@
+﻿{
+    "name": "绁炲湥閲戝睘濂楄",
+    "icon": "genius_genesis:divine_metal_helmet",
+    "category": "genius_genesis:item/equipment",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "涓€濂楃敱绁炲湥閲戝睘涔嬪姏鎵€閾歌€屾垚鐨勫瑁呫€?
+        },
+        {
+            "type": "patchouli:entity",
+            "name": "绁炲湥閲戝睘濂楄",
+            "entity": "minecraft:armor_stand{ArmorItems:[{id:'genius_genesis:divine_metal_boots',Count:1b},{id:'genius_genesis:divine_metal_leggings',Count:1b},{id:'genius_genesis:divine_metal_chestplate',Count:1b},{id:'genius_genesis:divine_metal_helmet',Count:1b}],NoBasePlate:1b}"
+        }
+    ]
+}

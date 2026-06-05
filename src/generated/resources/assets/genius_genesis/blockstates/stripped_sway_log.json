@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "genius_genesis:block/stripped_sway_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "genius_genesis:block/stripped_sway_log"
+    },
+    "axis=z": {
+      "model": "genius_genesis:block/stripped_sway_log_horizontal",
+      "x": 90
+    }
+  }
+}

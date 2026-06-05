@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "genius_genesis:heart_sculpting"
+  },
+  "result": "genius_genesis:heart_sculpting_wall"
+}

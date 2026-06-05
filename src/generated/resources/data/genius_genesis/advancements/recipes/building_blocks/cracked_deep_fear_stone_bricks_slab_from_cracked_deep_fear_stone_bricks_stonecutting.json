@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cracked_deep_fear_stone_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "genius_genesis:cracked_deep_fear_stone_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "genius_genesis:cracked_deep_fear_stone_bricks_slab_from_cracked_deep_fear_stone_bricks_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_cracked_deep_fear_stone_bricks",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "genius_genesis:cracked_deep_fear_stone_bricks_slab_from_cracked_deep_fear_stone_bricks_stonecutting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

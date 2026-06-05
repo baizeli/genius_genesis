@@ -1,0 +1,15 @@
+{
+  "attributes": [
+    {
+      "amount": 0.1,
+      "attribute": "irons_spellbooks:spell_power",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 0.1,
+      "attribute": "irons_spellbooks:blood_spell_power",
+      "operation": "multiply_base"
+    }
+  ],
+  "curio": {}
+}

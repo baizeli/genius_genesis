@@ -1,0 +1,7 @@
+﻿{
+    "name": "鏉愭枡",
+    "description": "涓€浜涚鍦ｄ害鎴栬€呬旱娓庛€佺柉鐙傜殑鏉愭枡",
+    "icon": "genius_genesis:celestial_source_crystal",
+    "sortnum": 1,
+    "parent": "genius_genesis:item"
+}

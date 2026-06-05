@@ -1,0 +1,9 @@
+{
+  "icon": "curios:slot/magic_guide_slot",
+  "order": 201,
+  "replace": false,
+  "size": 2,
+  "validators": [
+    "curios:tag"
+  ]
+}

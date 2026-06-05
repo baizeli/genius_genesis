@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "genius_genesis:block/smooth_deep_fear_stone"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "values": [
+    "genius_genesis:sway_log",
+    "genius_genesis:stripped_sway_log",
+    "genius_genesis:sway_log_wood",
+    "genius_genesis:stripped_sway_log_wood",
+    "genius_genesis:sway_planks",
+    "genius_genesis:sway_stairs",
+    "genius_genesis:sway_slab",
+    "genius_genesis:sway_vertical_slab",
+    "genius_genesis:sway_trapdoor",
+    "genius_genesis:sway_door",
+    "genius_genesis:sway_fence",
+    "genius_genesis:quietness_log",
+    "genius_genesis:stripped_quietness_log",
+    "genius_genesis:quietness_log_wood",
+    "genius_genesis:stripped_quietness_log_wood",
+    "genius_genesis:quietness_planks",
+    "genius_genesis:quietness_stairs",
+    "genius_genesis:quietness_slab",
+    "genius_genesis:quietness_vertical_slab",
+    "genius_genesis:quietness_trapdoor",
+    "genius_genesis:quietness_door",
+    "genius_genesis:quietness_fence"
+  ]
+}

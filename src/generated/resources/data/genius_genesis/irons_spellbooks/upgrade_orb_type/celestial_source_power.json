@@ -1,0 +1,12 @@
+{
+  "amount": 0.05,
+  "attribute": "genius_genesis:celestial_source_spell_power",
+  "containerItem": {
+    "Count": 1,
+    "id": "genius_genesis:celestial_source_upgrade_orb",
+    "tag": {
+      "irons_spellbooks:upgrade_orb_type": "genius_genesis:celestial_source_power"
+    }
+  },
+  "operation": "MULTIPLY_BASE"
+}

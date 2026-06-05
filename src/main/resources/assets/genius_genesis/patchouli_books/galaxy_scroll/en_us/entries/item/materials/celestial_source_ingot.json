@@ -1,0 +1,16 @@
+﻿{
+    "name": "鏄熸簮閿?,
+    "icon": "genius_genesis:celestial_source_ingot",
+    "category": "genius_genesis:item/materials",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "绱壊鏄皧璐电殑璞″緛锛屾槦杈版槸姘告亽鐨勭編涓斤紝浼熷ぇ鏄畠鍚嶅彿鐨勫師鍥犮€?(br)瀹冧粠涓嶅彲鑳戒箣涓癁鐢燂紝鐒跺悗鍒涢€犳倴璁恒€佺⒕纰庢瀬闄愩€?(br)鐜板疄鐨勯檺鍒朵笉鑳介樆鎸¤嚦鑷荤殑鎯宠薄锛屼粎鑳借瀹冪殑褰綋澶勪簬鏈夊拰鏃犵殑杈归檯銆?(br)浣嗗畠鏉ユ簮浜庝綘锛屽敖绠″畬缇庤€岀粷瀵规棤鐟曪紝浣犺繕鏄兘灏嗗叾濉戦€犲嚭鑷繁鐨勬剰涔夈€?(br)浣犲皢绫嶇敱瀹冿紝瀹ｅ憡浣曚负浼熷ぇ涓庢案鎭掋€?
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "genius_genesis:item/items/celestial_source_ingot"
+        }
+       
+    ]
+}

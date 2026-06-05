@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "genius_genesis:block/weathered_sandstone_slab"
+    },
+    "type=double": {
+      "model": "genius_genesis:block/weathered_sandstone"
+    },
+    "type=top": {
+      "model": "genius_genesis:block/weathered_sandstone_slab_top"
+    }
+  }
+}

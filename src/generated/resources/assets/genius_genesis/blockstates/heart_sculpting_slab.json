@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "genius_genesis:block/heart_sculpting_slab"
+    },
+    "type=double": {
+      "model": "genius_genesis:block/heart_sculpting"
+    },
+    "type=top": {
+      "model": "genius_genesis:block/heart_sculpting_slab_top"
+    }
+  }
+}

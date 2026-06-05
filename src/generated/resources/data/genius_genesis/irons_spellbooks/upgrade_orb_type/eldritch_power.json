@@ -1,0 +1,12 @@
+{
+  "amount": 0.05,
+  "attribute": "irons_spellbooks:eldritch_spell_power",
+  "containerItem": {
+    "Count": 1,
+    "id": "genius_genesis:eldritch_upgrade_orb",
+    "tag": {
+      "irons_spellbooks:upgrade_orb_type": "genius_genesis:eldritch_power"
+    }
+  },
+  "operation": "MULTIPLY_BASE"
+}

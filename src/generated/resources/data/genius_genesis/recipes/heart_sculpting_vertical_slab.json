@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "genius_genesis:heart_sculpting"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "genius_genesis:heart_sculpting_vertical_slab"
+  }
+}

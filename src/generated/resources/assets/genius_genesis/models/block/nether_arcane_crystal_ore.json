@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "genius_genesis:block/nether_arcane_crystal_ore"
+  }
+}
