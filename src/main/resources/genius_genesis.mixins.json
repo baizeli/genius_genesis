@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "genius_genesis.refmap.json",
   "mixins": [
-    "minecraft.world.item.ItemStackMixin"
+    "minecraft.world.item.ItemStackMixin",
+    "ironsspellbooks.gui.arcane_anvil.ArcaneAnvilMenuMixin"
   ],
   "client": [
     "GameRendererMixin",

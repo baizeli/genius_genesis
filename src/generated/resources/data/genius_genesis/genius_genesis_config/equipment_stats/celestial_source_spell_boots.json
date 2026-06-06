@@ -1,40 +1,35 @@
 {
   "armor": {
-    "armor": 6.0,
-    "armor_toughness": 7.0,
+    "armor": 4.0,
+    "armor_toughness": 4.0,
     "knockback_resistance": 0.0
   },
   "attributes": [
     {
-      "amount": 0.1,
-      "attribute": "irons_spellbooks:spell_power",
-      "operation": "multiply_base"
-    },
-    {
-      "amount": 0.1,
-      "attribute": "genius_genesis:celestial_source_spell_power",
-      "operation": "multiply_base"
-    },
-    {
-      "amount": 1000.0,
+      "amount": 200.0,
       "attribute": "irons_spellbooks:max_mana",
       "operation": "addition"
     },
     {
-      "amount": 0.1,
-      "attribute": "irons_spellbooks:cast_time_reduction",
+      "amount": 0.12,
+      "attribute": "genius_genesis:celestial_source_spell_power",
       "operation": "multiply_base"
     },
     {
       "amount": 0.09,
+      "attribute": "irons_spellbooks:spell_power",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 0.06,
       "attribute": "irons_spellbooks:cooldown_reduction",
       "operation": "multiply_base"
     },
     {
-      "amount": 0.09,
-      "attribute": "irons_spellbooks:mana_regen",
+      "amount": 0.05,
+      "attribute": "irons_spellbooks:cast_time_reduction",
       "operation": "multiply_base"
     }
   ],
-  "durability": 0
+  "durability": 1150
 }

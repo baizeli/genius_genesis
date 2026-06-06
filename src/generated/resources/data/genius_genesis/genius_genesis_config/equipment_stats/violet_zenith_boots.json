@@ -1,30 +1,30 @@
 {
   "armor": {
-    "armor": 7.0,
-    "armor_toughness": 8.0,
-    "knockback_resistance": 1.0
+    "armor": 4.0,
+    "armor_toughness": 4.0,
+    "knockback_resistance": 0.0
   },
   "attributes": [
     {
-      "amount": 0.1,
-      "attribute": "minecraft:generic.max_health",
-      "operation": "multiply_base"
-    },
-    {
-      "amount": 130.0,
+      "amount": 250.0,
       "attribute": "irons_spellbooks:max_mana",
       "operation": "addition"
     },
     {
-      "amount": 0.07,
+      "amount": 0.05,
+      "attribute": "irons_spellbooks:cooldown_reduction",
+      "operation": "multiply_base"
+    },
+    {
+      "amount": 0.08,
       "attribute": "irons_spellbooks:spell_power",
       "operation": "multiply_base"
     },
     {
-      "amount": 0.06,
-      "attribute": "irons_spellbooks:cooldown_reduction",
+      "amount": 0.05,
+      "attribute": "irons_spellbooks:cast_time_reduction",
       "operation": "multiply_base"
     }
   ],
-  "durability": 2147483647
+  "durability": 1150
 }

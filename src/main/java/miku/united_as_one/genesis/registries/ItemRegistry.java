@@ -10,9 +10,20 @@ import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import miku.bai_ze_li.genesis.api.item.GenesisGoldTooltipParticleItem;
 import miku.bai_ze_li.genesis.api.item.GenesisPurpleTooltipParticleItem;
 import miku.united_as_one.genesis.Genesis;
+import miku.united_as_one.genesis.item.FireBossDagger;
+import miku.united_as_one.genesis.item.FlyingSwallowThroughWillow;
 import miku.united_as_one.genesis.item.GenesisArmorMaterials;
 import miku.united_as_one.genesis.item.GenesisTiers;
+import miku.united_as_one.genesis.item.InfiniteShrivingStoneItem;
 import miku.united_as_one.genesis.item.armor.GenesisGeoArmorItem;
+import miku.united_as_one.genesis.item.tool.DivineMetalAxe;
+import miku.united_as_one.genesis.item.tool.DivineMetalHoe;
+import miku.united_as_one.genesis.item.tool.DivineMetalPickaxe;
+import miku.united_as_one.genesis.item.tool.DivineMetalShovel;
+import miku.united_as_one.genesis.item.tool.VioletAxe;
+import miku.united_as_one.genesis.item.tool.VioletHoe;
+import miku.united_as_one.genesis.item.tool.VioletPickaxe;
+import miku.united_as_one.genesis.item.tool.VioletShovel;
 import miku.united_as_one.genesis.item.weapon.MithrilSword;
 import miku.united_as_one.genesis.item.spell.CelestialSourceSpellBook;
 import miku.united_as_one.genesis.item.spell.CelestialSourceStaff;
@@ -21,6 +32,10 @@ import miku.united_as_one.genesis.item.spell.ChaosStaff;
 import miku.united_as_one.genesis.item.spell.DiskSpellBook;
 import miku.united_as_one.genesis.item.spell.LightningSpellBook;
 import miku.united_as_one.genesis.spell.UpgradeOrbTypes;
+import miku.united_as_one.genesis.item.weapon.bow.FlameBow;
+import miku.united_as_one.genesis.item.weapon.bow.FrostLongBow;
+import miku.united_as_one.genesis.item.weapon.bow.ThunderLongBow;
+import miku.united_as_one.genesis.item.weapon.bow.WitchcraftBow;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -90,27 +105,26 @@ public final class ItemRegistry {
     public static final ItemEntry<MithrilSword> MITHRIL_SWORD = mithrilSword();
     // 绁炲湥閲戝睘宸ュ叿
     public static final ItemEntry<SwordItem> DIVINE_METAL_SWORD = sword("divine_metal_sword", GenesisTiers.DIVINE_METAL, 3, -2.4F);
-    public static final ItemEntry<AxeItem> DIVINE_METAL_AXE = axe("divine_metal_axe", GenesisTiers.DIVINE_METAL, 5, -3.0F);
-    public static final ItemEntry<PickaxeItem> DIVINE_METAL_PICKAXE = pickaxe("divine_metal_pickaxe", GenesisTiers.DIVINE_METAL, epicProps());
-    public static final ItemEntry<ShovelItem> DIVINE_METAL_SHOVEL = shovel("divine_metal_shovel", GenesisTiers.DIVINE_METAL);
-    public static final ItemEntry<HoeItem> DIVINE_METAL_HOE = hoe("divine_metal_hoe", GenesisTiers.DIVINE_METAL);
+    public static final ItemEntry<DivineMetalAxe> DIVINE_METAL_AXE = axe("divine_metal_axe", properties -> new DivineMetalAxe(GenesisTiers.DIVINE_METAL, 5, -3.0F, properties));
+    public static final ItemEntry<DivineMetalPickaxe> DIVINE_METAL_PICKAXE = pickaxe("divine_metal_pickaxe", properties -> new DivineMetalPickaxe(GenesisTiers.DIVINE_METAL, 1, -2.8F, properties), epicProps());
+    public static final ItemEntry<DivineMetalShovel> DIVINE_METAL_SHOVEL = shovel("divine_metal_shovel", properties -> new DivineMetalShovel(GenesisTiers.DIVINE_METAL, 1.5F, -3.0F, properties));
+    public static final ItemEntry<DivineMetalHoe> DIVINE_METAL_HOE = hoe("divine_metal_hoe", properties -> new DivineMetalHoe(GenesisTiers.DIVINE_METAL, -4, 0.0F, properties));
     public static final ItemEntry<PickaxeItem> MITHRIL_PICKAXE = pickaxe("mithril_pickaxe", GenesisTiers.MITHRIL, rareProps());
     // 绱瀬宸ュ叿
     public static final ItemEntry<SwordItem> VIOLET_SWORD = sword("violet_sword", GenesisTiers.VIOLET, 3, -2.4F);
-    public static final ItemEntry<AxeItem> VIOLET_AXE = axe("violet_axe", GenesisTiers.VIOLET, 5, -3.0F);
-    public static final ItemEntry<PickaxeItem> VIOLET_PICKAXE = pickaxe("violet_pickaxe", GenesisTiers.VIOLET, epicProps());
-    public static final ItemEntry<ShovelItem> VIOLET_SHOVEL = shovel("violet_shovel", GenesisTiers.VIOLET);
-    public static final ItemEntry<HoeItem> VIOLET_HOE = hoe("violet_hoe", GenesisTiers.VIOLET);
+    public static final ItemEntry<VioletAxe> VIOLET_AXE = axe("violet_axe", properties -> new VioletAxe(GenesisTiers.VIOLET, 5, -3.0F, properties));
+    public static final ItemEntry<VioletPickaxe> VIOLET_PICKAXE = pickaxe("violet_pickaxe", properties -> new VioletPickaxe(GenesisTiers.VIOLET, 1, -2.8F, properties), epicProps());
+    public static final ItemEntry<VioletShovel> VIOLET_SHOVEL = shovel("violet_shovel", properties -> new VioletShovel(GenesisTiers.VIOLET, 1.5F, -3.0F, properties));
+    public static final ItemEntry<VioletHoe> VIOLET_HOE = hoe("violet_hoe", properties -> new VioletHoe(GenesisTiers.VIOLET, -4, 0.0F, properties));
     // 鍙楃伀鑰呯殑鍖曢
-    public static final ItemEntry<SwordItem> FIRE_BOSS_DAGGER = sword("fire_boss_dagger", GenesisTiers.DAGGER, 0, -2.4F);
+    public static final ItemEntry<FireBossDagger> FIRE_BOSS_DAGGER = item("fire_boss_dagger", properties -> new FireBossDagger(GenesisTiers.DAGGER, 0, -2.4F, properties), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     // 鍙楄鑰呯殑鍖曢
-    public static final ItemEntry<SwordItem> BLOOD_BOSS_DAGGER = sword("blood_boss_dagger", GenesisTiers.DAGGER, 2, -2.2F);
-    public static final ItemEntry<BowItem> THUNDER_LONGBOW = bow("thunder_longbow");
-    public static final ItemEntry<BowItem> FROST_LONGBOW = bow("frost_longbow");
-    public static final ItemEntry<BowItem> WITCHCRAFT_BOW = bow("witchcraft_bow");
-    public static final ItemEntry<BowItem> FLAME_BOW = bow("flame_bow");
+    public static final ItemEntry<ThunderLongBow> THUNDER_LONGBOW = bow("thunder_longbow", ThunderLongBow::new);
+    public static final ItemEntry<FrostLongBow> FROST_LONGBOW = bow("frost_longbow", FrostLongBow::new);
+    public static final ItemEntry<WitchcraftBow> WITCHCRAFT_BOW = bow("witchcraft_bow", WitchcraftBow::new);
+    public static final ItemEntry<FlameBow> FLAME_BOW = bow("flame_bow", FlameBow::new);
     // 椋炵嚂绌挎煶
-    public static final ItemEntry<SwordItem> FLYING_SWALLOW_THROUGH_WILLOW = sword("flying_swallow_through_willow", GenesisTiers.LEGENDARY, 3, -2.0F);
+    public static final ItemEntry<FlyingSwallowThroughWillow> FLYING_SWALLOW_THROUGH_WILLOW = noModel("flying_swallow_through_willow", properties -> new FlyingSwallowThroughWillow(), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
 
     // 绁炲湥閲戝睘鎶ょ敳
     public static final ItemEntry<GenesisGeoArmorItem> DIVINE_METAL_HELMET = armor("divine_metal_helmet", GenesisArmorMaterials.DIVINE_METAL, ArmorItem.Type.HELMET);
@@ -137,7 +151,7 @@ public final class ItemRegistry {
 
     public static final ItemEntry<Item> LAO_WANG_237 = epic("lao_wang_237", CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     public static final ItemEntry<Item> GENESIS_CURSE = noModel("genesis_curse", Item::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
-    public static final ItemEntry<Item> INFINITE_SHRIVING_STONE = epic("infinite_shriving_stone", CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
+    public static final ItemEntry<InfiniteShrivingStoneItem> INFINITE_SHRIVING_STONE = item("infinite_shriving_stone", properties -> new InfiniteShrivingStoneItem(), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     public static final ItemEntry<Item> ETERNAL_RING = epic("eternal_ring", CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     public static final ItemEntry<Item> LIGHTNING_RUNE_PLUS = epic("lightning_rune_plus", CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     public static final ItemEntry<Item> NATURE_RUNE_PLUS = epic("nature_rune_plus", CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
@@ -217,21 +231,37 @@ public final class ItemRegistry {
         return item(id, properties -> new AxeItem(tier, damage, speed, properties), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     }
 
+    private static <T extends AxeItem> ItemEntry<T> axe(String id, ItemFactory<T> factory) {
+        return item(id, factory, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
+    }
+
     private static ItemEntry<PickaxeItem> pickaxe(String id, GenesisTiers tier, Item.Properties properties) {
         return item(id, itemProperties -> new PickaxeItem(tier, 1, -2.8F, itemProperties), properties, CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
+    }
+
+    private static <T extends PickaxeItem> ItemEntry<T> pickaxe(String id, ItemFactory<T> factory, Item.Properties properties) {
+        return item(id, factory, properties, CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     }
 
     private static ItemEntry<ShovelItem> shovel(String id, GenesisTiers tier) {
         return item(id, properties -> new ShovelItem(tier, 1.5F, -3.0F, properties), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     }
 
+    private static <T extends ShovelItem> ItemEntry<T> shovel(String id, ItemFactory<T> factory) {
+        return item(id, factory, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
+    }
+
     private static ItemEntry<HoeItem> hoe(String id, GenesisTiers tier) {
         return item(id, properties -> new HoeItem(tier, -4, 0.0F, properties), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     }
 
-    private static ItemEntry<BowItem> bow(String id) {
+    private static <T extends HoeItem> ItemEntry<T> hoe(String id, ItemFactory<T> factory) {
+        return item(id, factory, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
+    }
+
+    private static <T extends BowItem> ItemEntry<T> bow(String id, ItemFactory<T> factory) {
         return Genesis.L2_REGISTRATE
-                .item(id, BowItem::new)
+                .item(id, factory::create)
                 .initialProperties(() -> epicProps().stacksTo(1).durability(768))
                 .model(ItemRegistry::createBowModel)
                 .tab(CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT)

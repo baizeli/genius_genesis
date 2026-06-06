@@ -1,4 +1,4 @@
-// 1.20.1	2026-06-05T06:17:52.5016041	Registrate Provider for genius_genesis [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2026-06-06T14:16:14.6266973	Registrate Provider for genius_genesis [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 ca304c268dde3742d7a53e3377a613d9a5adb317 assets/genius_genesis/blockstates/arcane_cauldron.json
 fbc2d27a8e9064b76d921be9a57aca63ea8c18fc assets/genius_genesis/blockstates/arcane_crystal_block.json
 0219caa678cf1abcc971c80d935cb9ddc427439d assets/genius_genesis/blockstates/arcane_crystal_ore.json
@@ -87,8 +87,8 @@ d665f6b94f0a06dff1aeeb0bdfcce0c802164ce7 assets/genius_genesis/blockstates/weath
 32f4e0c3344b43acc653920a7e8550bdff9e9eff assets/genius_genesis/blockstates/weathered_stone_bricks_stairs.json
 1c27077436279d12fc6a8099b953a7f74150b3d2 assets/genius_genesis/blockstates/weathered_stone_bricks_vertical_slab.json
 92932a695220cf1773fe32775224f82cce82b34c assets/genius_genesis/blockstates/weathered_stone_bricks_wall.json
-e08bb11f2424480514678f7d0de3e488085a7167 assets/genius_genesis/lang/en_ud.json
-f7580cb03d03fe86045ea379b9ff2dff93b0935e assets/genius_genesis/lang/en_us.json
+bae530bbfdeced44ee9fc9f892bae30da1250e01 assets/genius_genesis/lang/en_ud.json
+97e38f2cbf05738552577240c32064b495c59de7 assets/genius_genesis/lang/en_us.json
 2f1cfd1dd4956973e28fba51282e650c789f42cf assets/genius_genesis/models/block/arcane_crystal_block.json
 407f68465c8f1152f60c34318759a82f36a391fc assets/genius_genesis/models/block/arcane_crystal_ore.json
 3c887ac13d0399eceedfd08bfc26a2f8d1022eab assets/genius_genesis/models/block/arcane_workbench.json
@@ -266,7 +266,6 @@ fa341e045a0da830e9ed3e04a59804ef38907262 assets/genius_genesis/models/item/arcan
 0a867c79b3534d52c273c03ef690523f3bda3f23 assets/genius_genesis/models/item/arcane_workbench.json
 0edbf684cbc4869764adf1e1e225c971617397bd assets/genius_genesis/models/item/blank_celestial_source_manuscript.json
 aa8f2048b8613ae88a9c28f7daf85a360a2b492b assets/genius_genesis/models/item/blasphemy_key.json
-59cd3b035dfe2b0f829d4f4539f93fffdf48a6e2 assets/genius_genesis/models/item/blood_boss_dagger.json
 b83984eaf605ceca5a188c610a0268d29d2cddac assets/genius_genesis/models/item/blood_crystal.json
 061f60fe4c860aadd1979db5b69faf086b62d7b5 assets/genius_genesis/models/item/blood_orb_pro.json
 f084827f7ee7223b70ccc1ba57012a3eb5f6dd9e assets/genius_genesis/models/item/blood_rune_plus.json
@@ -364,7 +363,6 @@ e0275a5158d0573060cfc68bc539128b99d73f4b assets/genius_genesis/models/item/fire_
 f78f09e9d60a129db27941dddcad4d12f2e88902 assets/genius_genesis/models/item/flame_bow.json
 df20f1dfa719cf9bfe0c20dda80d969c3f37c288 assets/genius_genesis/models/item/flesh_soul_bell.json
 92b1cf7f2029d4fd7e3ed356cd47011ea7f6e278 assets/genius_genesis/models/item/flesh_soul_fragment.json
-7157abaa6fd733127162d1a17aa6388bc3a099df assets/genius_genesis/models/item/flying_swallow_through_willow.json
 a2a6604a23487861e7bb6338e235cdbe52716333 assets/genius_genesis/models/item/frost_longbow.json
 f4506e7a25b2f86c8707b3e78ae4f043fa873ca4 assets/genius_genesis/models/item/genesis_dirt.json
 d01c7c41477133dec09555e96079b6ecad0ce8f0 assets/genius_genesis/models/item/good_cake.json
@@ -386,7 +384,6 @@ af16f00abafeb9d622618e1198ddd076c11d64ba assets/genius_genesis/models/item/laeva
 770b9bf8c15587906d24bff748b66998e5c6dec8 assets/genius_genesis/models/item/lightning_crystal.json
 6b0a43fe7096b66476c5f2e6e72b315778299cae assets/genius_genesis/models/item/lightning_rune_plus.json
 ea45fe69007b63d392f7ee060485c1fa412e8f33 assets/genius_genesis/models/item/mithril_pickaxe.json
-3fa544107e0f972193e263c425608900c186bded assets/genius_genesis/models/item/mithril_sword.json
 eee0ec15391d33fdd0990f8c1c02165b965c7713 assets/genius_genesis/models/item/nature_crystal.json
 4408a3e016a9e777ad7dca30cd53fe2b63ee4604 assets/genius_genesis/models/item/nature_orb_pro.json
 f29a27f7e656037ccbc53c4dc1b72c3e405efd03 assets/genius_genesis/models/item/nature_rune_plus.json

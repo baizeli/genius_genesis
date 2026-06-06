@@ -61,7 +61,6 @@ public final class EquipmentStatsDefaults {
         putWeapon(defaults, "violet_shovel", 8000, 4.0D, -1.0D);
         putWeapon(defaults, "violet_hoe", 8000, 0.0D, 96.0D);
         putWeapon(defaults, "fire_boss_dagger", 8000, 11.0D, -2.4D);
-        putWeapon(defaults, "blood_boss_dagger", 8000, 13.0D, -2.2D);
         putWeapon(defaults, "gungnir", 0, 17.0D, -1.9D);
         putWeapon(defaults, "flying_swallow_through_willow", 1451, 6.0D, -2.4D);
         putWeapon(defaults, "chaos_staff", null, 6.0D, -3.0D, List.of(
@@ -79,29 +78,24 @@ public final class EquipmentStatsDefaults {
         putDurability(defaults, "witchcraft_bow", 2009);
         putDurability(defaults, "flame_bow", 2009);
 
-        putArmorSet(defaults, "divine_metal", 1418, 1608, 1570, 1494, 5, 10, 8, 5, 5.0D, 0.2D, List.of(
-                attr(MAX_MANA, 150.0D, AttributeModifier.Operation.ADDITION),
-                attr(SPELL_POWER, 0.06D, AttributeModifier.Operation.MULTIPLY_BASE),
-                attr(HOLY_SPELL_POWER, 0.06D, AttributeModifier.Operation.MULTIPLY_BASE),
-                attr(CAST_TIME_REDUCTION, 0.07D, AttributeModifier.Operation.MULTIPLY_BASE)
+        putArmorSet(defaults, "divine_metal", 840, 1040, 1000, 920, 3, 8, 6, 3, 3.5D, 0.0D, List.of(
+                attr(MAX_MANA, 125.0D, AttributeModifier.Operation.ADDITION),
+                attr(HOLY_SPELL_POWER, 0.10D, AttributeModifier.Operation.MULTIPLY_BASE),
+                attr(SPELL_POWER, 0.05D, AttributeModifier.Operation.MULTIPLY_BASE),
+                attr(COOLDOWN_REDUCTION, 0.03D, AttributeModifier.Operation.MULTIPLY_BASE)
         ));
-        putArmorSet(defaults, "celestial_source_spell", 0, 0, 0, 0, 7, 12, 9, 6, 7.0D, 0.0D, List.of(
-                attr(SPELL_POWER, 0.10D, AttributeModifier.Operation.MULTIPLY_BASE),
-                attr(CELESTIAL_SOURCE_SPELL_POWER, 0.10D, AttributeModifier.Operation.MULTIPLY_BASE),
-                attr(MAX_MANA, 1000.0D, AttributeModifier.Operation.ADDITION),
-                attr(CAST_TIME_REDUCTION, 0.10D, AttributeModifier.Operation.MULTIPLY_BASE),
-                attr(COOLDOWN_REDUCTION, 0.09D, AttributeModifier.Operation.MULTIPLY_BASE),
-                attr(MANA_REGEN, 0.09D, AttributeModifier.Operation.MULTIPLY_BASE)
-        ));
-        putArmorSet(defaults, "chaos_spell", 3200, 3200, 3200, 3200, 6, 8, 6, 3, 4.0D, 0.0D, List.of(
-                attr(SPELL_POWER, 0.07D, AttributeModifier.Operation.MULTIPLY_BASE),
-                attr(CHAOS_SPELL_POWER, 0.07D, AttributeModifier.Operation.MULTIPLY_BASE),
-                attr(MAX_MANA, 500.0D, AttributeModifier.Operation.ADDITION),
-                attr(MAX_HEALTH, 0.50D, AttributeModifier.Operation.MULTIPLY_BASE),
-                attr(HOLY_SPELL_POWER, -0.03D, AttributeModifier.Operation.MULTIPLY_BASE),
-                attr(CAST_TIME_REDUCTION, 0.10D, AttributeModifier.Operation.MULTIPLY_BASE),
+        putArmorSet(defaults, "celestial_source_spell", 1200, 1300, 1250, 1150, 5, 10, 8, 4, 4.0D, 0.0D, List.of(
+                attr(MAX_MANA, 200.0D, AttributeModifier.Operation.ADDITION),
+                attr(CELESTIAL_SOURCE_SPELL_POWER, 0.12D, AttributeModifier.Operation.MULTIPLY_BASE),
+                attr(SPELL_POWER, 0.09D, AttributeModifier.Operation.MULTIPLY_BASE),
                 attr(COOLDOWN_REDUCTION, 0.06D, AttributeModifier.Operation.MULTIPLY_BASE),
-                attr(MANA_REGEN, 0.06D, AttributeModifier.Operation.MULTIPLY_BASE)
+                attr(CAST_TIME_REDUCTION, 0.05D, AttributeModifier.Operation.MULTIPLY_BASE)
+        ));
+        putArmorSet(defaults, "chaos_spell", 840, 1040, 1000, 920, 3, 8, 6, 3, 3.5D, 0.0D, List.of(
+                attr(MAX_MANA, 175.0D, AttributeModifier.Operation.ADDITION),
+                attr(CHAOS_SPELL_POWER, 0.10D, AttributeModifier.Operation.MULTIPLY_BASE),
+                attr(SPELL_POWER, 0.05D, AttributeModifier.Operation.MULTIPLY_BASE),
+                attr(COOLDOWN_REDUCTION, 0.05D, AttributeModifier.Operation.MULTIPLY_BASE)
         ));
         putArmorSet(defaults, "arcane_crystal", 800, 800, 800, 800, 4, 9, 7, 4, 3.0D, 0.0D, List.of(
                 attr(COOLDOWN_REDUCTION, 0.05D, AttributeModifier.Operation.MULTIPLY_TOTAL),
@@ -109,11 +103,11 @@ public final class EquipmentStatsDefaults {
                 attr(SPELL_POWER, 0.07D, AttributeModifier.Operation.MULTIPLY_BASE),
                 attr(SPELL_RESIST, 0.05D, AttributeModifier.Operation.MULTIPLY_TOTAL)
         ));
-        putArmorSet(defaults, "violet_zenith", Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, 8, 13, 10, 7, 8.0D, 1.0D, List.of(
-                attr(MAX_HEALTH, 0.10D, AttributeModifier.Operation.MULTIPLY_BASE),
-                attr(MAX_MANA, 130.0D, AttributeModifier.Operation.ADDITION),
-                attr(SPELL_POWER, 0.07D, AttributeModifier.Operation.MULTIPLY_BASE),
-                attr(COOLDOWN_REDUCTION, 0.06D, AttributeModifier.Operation.MULTIPLY_BASE)
+        putArmorSet(defaults, "violet_zenith", 1200, 1300, 1250, 1150, 5, 10, 8, 4, 4.0D, 0.0D, List.of(
+                attr(MAX_MANA, 250.0D, AttributeModifier.Operation.ADDITION),
+                attr(COOLDOWN_REDUCTION, 0.05D, AttributeModifier.Operation.MULTIPLY_BASE),
+                attr(SPELL_POWER, 0.08D, AttributeModifier.Operation.MULTIPLY_BASE),
+                attr(CAST_TIME_REDUCTION, 0.05D, AttributeModifier.Operation.MULTIPLY_BASE)
         ));
 
         putCurio(defaults, "eternal_ring", List.of(
