@@ -12,6 +12,8 @@ import net.minecraft.world.item.Tier;
 
 @SuppressWarnings("removal")
 public class MithrilSword extends MagicSwordItem {
+    private static final int SLASH_COLOR = 0xFF4AA6FF;
+
     public MithrilSword(Tier tier, int attackDamage, float attackSpeed, Properties properties) {
         super(tier, (int) -tier.getAttackDamageBonus(), 0.0F,
                 SpellDataRegistryHolder.of(new SpellDataRegistryHolder(SpellRegistry.RAY_OF_FROST_SPELL, 5)),
@@ -21,7 +23,7 @@ public class MithrilSword extends MagicSwordItem {
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (!attacker.level().isClientSide()) {
-            GenesisNetwork.sendToTrackingAndSelf(attacker, new SpawnSlashPacket(attacker.getId(), target.getId()));
+            GenesisNetwork.sendToTrackingAndSelf(attacker, new SpawnSlashPacket(attacker.getId(), target.getId(), SLASH_COLOR));
         }
         return super.hurtEnemy(stack, target, attacker);
     }

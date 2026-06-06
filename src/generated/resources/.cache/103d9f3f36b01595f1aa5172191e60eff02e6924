@@ -1,4 +1,6 @@
-// 1.20.1	2026-06-05T08:05:00.4861824	Registries
+// 1.20.1	2026-06-06T20:11:29.7896282	Registries
+3c5acad2c2e4d5ddf620d114ad4d2873bd526377 data/genius_genesis/damage_type/celestial_source_magic.json
+9ba87010fa2fcd16533030387e2d0a5a4c10cff4 data/genius_genesis/damage_type/chaos_magic.json
 dc0903ceba9a8845b1d529070cadbf8ab10b39bb data/genius_genesis/irons_spellbooks/upgrade_orb_type/blood_spell_penetration.json
 28e4cd84d3133ce56e51372ad73fe36150b7653b data/genius_genesis/irons_spellbooks/upgrade_orb_type/celestial_source_power.json
 62fcad63850943b90072f39b79e15d7b271cdbdd data/genius_genesis/irons_spellbooks/upgrade_orb_type/celestial_source_spell_penetration.json

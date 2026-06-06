@@ -10,6 +10,10 @@ public final class ClientPacketHandlers {
     }
 
     public static void handleSlashPacket(int attackerId, int targetId) {
+        handleSlashPacket(attackerId, targetId, 0xFF4AA6FF);
+    }
+
+    public static void handleSlashPacket(int attackerId, int targetId, int color) {
         Minecraft minecraft = Minecraft.getInstance();
         if (minecraft.level == null) {
             return;
@@ -18,7 +22,7 @@ public final class ClientPacketHandlers {
         Entity attacker = minecraft.level.getEntity(attackerId);
         Entity target = minecraft.level.getEntity(targetId);
         if (attacker instanceof LivingEntity livingAttacker && target != null) {
-            SlashEffectAPI.spawnOnEntity(livingAttacker, target);
+            SlashEffectAPI.spawnOnEntity(livingAttacker, target, color);
         }
     }
 }

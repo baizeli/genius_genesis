@@ -16,6 +16,10 @@ import miku.united_as_one.genesis.item.GenesisArmorMaterials;
 import miku.united_as_one.genesis.item.GenesisTiers;
 import miku.united_as_one.genesis.item.InfiniteShrivingStoneItem;
 import miku.united_as_one.genesis.item.armor.GenesisGeoArmorItem;
+import miku.united_as_one.genesis.item.curios.EternalRing;
+import miku.united_as_one.genesis.item.curios.GenesisCurseItem;
+import miku.united_as_one.genesis.item.curios.LaoWang237Curio;
+import miku.united_as_one.genesis.item.curios.RunePlusItem;
 import miku.united_as_one.genesis.item.tool.DivineMetalAxe;
 import miku.united_as_one.genesis.item.tool.DivineMetalHoe;
 import miku.united_as_one.genesis.item.tool.DivineMetalPickaxe;
@@ -55,16 +59,16 @@ import net.minecraftforge.client.model.generators.ModelFile;
 public final class ItemRegistry {
 
     public static final ItemEntry<GenesisPurpleTooltipParticleItem> VIOLET_GALAXY_INGOT = item("violet_galaxy_ingot", GenesisPurpleTooltipParticleItem::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
-    // 绱瀬纰庣墖
+    // 紫极碎片
     public static final ItemEntry<Item> VIOLET_FRAGMENTS = epic("violet_fragments", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
-    // 鐮寸伃绁炴牸
+    // 破灭神格
     public static final ItemEntry<Item> DESTROY_GODHEAD = epic("destroy_godhead", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<GenesisGoldTooltipParticleItem> DIVINE_METAL_INGOT = item("divine_metal_ingot", GenesisGoldTooltipParticleItem::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
-    // 绁炲湥閲戝睘纰庣墖
+    // 神圣金属碎片
     public static final ItemEntry<Item> DIVINE_METAL_FRAGMENT = epic("divine_metal_fragment", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> TWISTED_CHAOS_INGOT = epic("twisted_chaos_ingot", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> TWISTED_CHAOS = epic("twisted_chaos", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
-    // 鏄熸簮鐝嶇彔
+    // 星源珍珠
     public static final ItemEntry<Item> CELESTIAL_SOURCE_PEARL = epic("celestial_source_pearl", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> CELESTIAL_SOURCE_INGOT = epic("celestial_source_ingot", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> CREATE_STAR = simple("create_star", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
@@ -72,12 +76,12 @@ public final class ItemRegistry {
     public static final ItemEntry<Item> GOOD_CAKE = simple("good_cake", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> CRYSTAL_FRUIT = simple("crystal_fruit", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> PHANTOM_PLUM = simple("phantom_plum", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
-    // 褰╄壊鏋滃疄
+    // 彩色果实
     public static final ItemEntry<Item> COLORFUL_FRUITS = simple("colorful_fruits", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
-    // 楂樼骇娉曠悆
+    // 高级法球
     public static final ItemEntry<Item> UPGRADE_ORB_PRO = epic16("upgrade_orb_pro", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
 
-    // 榄旀硶姘存櫠
+    // 魔法水晶
     public static final ItemEntry<Item> ARCANE_CRYSTAL = epic16("arcane_crystal", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> BLOOD_CRYSTAL = epic16("blood_crystal", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> ELDRITCH_CRYSTAL = epic16("eldritch_crystal", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
@@ -91,47 +95,47 @@ public final class ItemRegistry {
     public static final ItemEntry<Item> CHAOS_CRYSTAL = epic16("chaos_crystal", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> CELESTIAL_SOURCE_CRYSTAL = epic16("celestial_source_crystal", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
 
-    // 琛€鑲夌伒榄傞搩
+    // 血肉灵魂铃
     public static final ItemEntry<Item> FLESH_SOUL_BELL = epic("flesh_soul_bell", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
-    // 娣锋矊鍘熸牳
+    // 混沌原核
     public static final ItemEntry<Item> CHAOS_CORE = epic("chaos_core", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> FLESH_SOUL_FRAGMENT = epic("flesh_soul_fragment", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
-    // 鏄熷皹锛屾棫璇█鏂囦欢鏆傛棤鏉＄洰
+    // 星尘，旧语言文件暂无条目
     public static final ItemEntry<Item> STELLAR_DUST = noModel("stellar_dust", Item::new, new Item.Properties(), CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
 
     public static final ItemEntry<SwordItem> LAEVATAIN = sword("laevatain", GenesisTiers.DIVINE_METAL, 3, -2.4F);
-    // 鍐堟牸灏煎皵
+    // 冈格尼尔
     public static final ItemEntry<SwordItem> GUNGNIR = sword("gungnir", GenesisTiers.LEGENDARY, 2, -1.9F);
     public static final ItemEntry<MithrilSword> MITHRIL_SWORD = mithrilSword();
-    // 绁炲湥閲戝睘宸ュ叿
+    // 神圣金属工具
     public static final ItemEntry<SwordItem> DIVINE_METAL_SWORD = sword("divine_metal_sword", GenesisTiers.DIVINE_METAL, 3, -2.4F);
     public static final ItemEntry<DivineMetalAxe> DIVINE_METAL_AXE = axe("divine_metal_axe", properties -> new DivineMetalAxe(GenesisTiers.DIVINE_METAL, 5, -3.0F, properties));
     public static final ItemEntry<DivineMetalPickaxe> DIVINE_METAL_PICKAXE = pickaxe("divine_metal_pickaxe", properties -> new DivineMetalPickaxe(GenesisTiers.DIVINE_METAL, 1, -2.8F, properties), epicProps());
     public static final ItemEntry<DivineMetalShovel> DIVINE_METAL_SHOVEL = shovel("divine_metal_shovel", properties -> new DivineMetalShovel(GenesisTiers.DIVINE_METAL, 1.5F, -3.0F, properties));
     public static final ItemEntry<DivineMetalHoe> DIVINE_METAL_HOE = hoe("divine_metal_hoe", properties -> new DivineMetalHoe(GenesisTiers.DIVINE_METAL, -4, 0.0F, properties));
     public static final ItemEntry<PickaxeItem> MITHRIL_PICKAXE = pickaxe("mithril_pickaxe", GenesisTiers.MITHRIL, rareProps());
-    // 绱瀬宸ュ叿
+    // 紫极工具
     public static final ItemEntry<SwordItem> VIOLET_SWORD = sword("violet_sword", GenesisTiers.VIOLET, 3, -2.4F);
     public static final ItemEntry<VioletAxe> VIOLET_AXE = axe("violet_axe", properties -> new VioletAxe(GenesisTiers.VIOLET, 5, -3.0F, properties));
     public static final ItemEntry<VioletPickaxe> VIOLET_PICKAXE = pickaxe("violet_pickaxe", properties -> new VioletPickaxe(GenesisTiers.VIOLET, 1, -2.8F, properties), epicProps());
     public static final ItemEntry<VioletShovel> VIOLET_SHOVEL = shovel("violet_shovel", properties -> new VioletShovel(GenesisTiers.VIOLET, 1.5F, -3.0F, properties));
     public static final ItemEntry<VioletHoe> VIOLET_HOE = hoe("violet_hoe", properties -> new VioletHoe(GenesisTiers.VIOLET, -4, 0.0F, properties));
-    // 鍙楃伀鑰呯殑鍖曢
+    // 受火者的匕首
     public static final ItemEntry<FireBossDagger> FIRE_BOSS_DAGGER = item("fire_boss_dagger", properties -> new FireBossDagger(GenesisTiers.DAGGER, 0, -2.4F, properties), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
-    // 鍙楄鑰呯殑鍖曢
+    // 法术长弓
     public static final ItemEntry<ThunderLongBow> THUNDER_LONGBOW = bow("thunder_longbow", ThunderLongBow::new);
     public static final ItemEntry<FrostLongBow> FROST_LONGBOW = bow("frost_longbow", FrostLongBow::new);
     public static final ItemEntry<WitchcraftBow> WITCHCRAFT_BOW = bow("witchcraft_bow", WitchcraftBow::new);
     public static final ItemEntry<FlameBow> FLAME_BOW = bow("flame_bow", FlameBow::new);
-    // 椋炵嚂绌挎煶
+    // 飞燕穿柳
     public static final ItemEntry<FlyingSwallowThroughWillow> FLYING_SWALLOW_THROUGH_WILLOW = noModel("flying_swallow_through_willow", properties -> new FlyingSwallowThroughWillow(), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
 
-    // 绁炲湥閲戝睘鎶ょ敳
+    // 神圣金属护甲
     public static final ItemEntry<GenesisGeoArmorItem> DIVINE_METAL_HELMET = armor("divine_metal_helmet", GenesisArmorMaterials.DIVINE_METAL, ArmorItem.Type.HELMET);
     public static final ItemEntry<GenesisGeoArmorItem> DIVINE_METAL_CHESTPLATE = armor("divine_metal_chestplate", GenesisArmorMaterials.DIVINE_METAL, ArmorItem.Type.CHESTPLATE);
     public static final ItemEntry<GenesisGeoArmorItem> DIVINE_METAL_LEGGINGS = armor("divine_metal_leggings", GenesisArmorMaterials.DIVINE_METAL, ArmorItem.Type.LEGGINGS);
     public static final ItemEntry<GenesisGeoArmorItem> DIVINE_METAL_BOOTS = armor("divine_metal_boots", GenesisArmorMaterials.DIVINE_METAL, ArmorItem.Type.BOOTS);
-    // 娉曟湳鎶ょ敳
+    // 法术护甲
     public static final ItemEntry<GenesisGeoArmorItem> CELESTIAL_SOURCE_SPELL_HELMET = armor("celestial_source_spell_helmet", GenesisArmorMaterials.CELESTIAL_SOURCE_SPELL, ArmorItem.Type.HELMET);
     public static final ItemEntry<GenesisGeoArmorItem> CELESTIAL_SOURCE_SPELL_CHESTPLATE = armor("celestial_source_spell_chestplate", GenesisArmorMaterials.CELESTIAL_SOURCE_SPELL, ArmorItem.Type.CHESTPLATE);
     public static final ItemEntry<GenesisGeoArmorItem> CELESTIAL_SOURCE_SPELL_LEGGINGS = armor("celestial_source_spell_leggings", GenesisArmorMaterials.CELESTIAL_SOURCE_SPELL, ArmorItem.Type.LEGGINGS);
@@ -149,20 +153,20 @@ public final class ItemRegistry {
     public static final ItemEntry<GenesisGeoArmorItem> ARCANE_CRYSTAL_LEGGINGS = armor("arcane_crystal_leggings", GenesisArmorMaterials.ARCANE_CRYSTAL, ArmorItem.Type.LEGGINGS);
     public static final ItemEntry<GenesisGeoArmorItem> ARCANE_CRYSTAL_BOOTS = armor("arcane_crystal_boots", GenesisArmorMaterials.ARCANE_CRYSTAL, ArmorItem.Type.BOOTS);
 
-    public static final ItemEntry<Item> LAO_WANG_237 = epic("lao_wang_237", CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
-    public static final ItemEntry<Item> GENESIS_CURSE = noModel("genesis_curse", Item::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
+    public static final ItemEntry<LaoWang237Curio> LAO_WANG_237 = item("lao_wang_237", LaoWang237Curio::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
+    public static final ItemEntry<GenesisCurseItem> GENESIS_CURSE = noModel("genesis_curse", GenesisCurseItem::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     public static final ItemEntry<InfiniteShrivingStoneItem> INFINITE_SHRIVING_STONE = item("infinite_shriving_stone", properties -> new InfiniteShrivingStoneItem(), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
-    public static final ItemEntry<Item> ETERNAL_RING = epic("eternal_ring", CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
-    public static final ItemEntry<Item> LIGHTNING_RUNE_PLUS = epic("lightning_rune_plus", CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
-    public static final ItemEntry<Item> NATURE_RUNE_PLUS = epic("nature_rune_plus", CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
-    public static final ItemEntry<Item> ENDER_RUNE_PLUS = epic("ender_rune_plus", CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
-    public static final ItemEntry<Item> HOLY_RUNE_PLUS = epic("holy_rune_plus", CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
-    public static final ItemEntry<Item> ICE_RUNE_PLUS = epic("ice_rune_plus", CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
-    public static final ItemEntry<Item> BLOOD_RUNE_PLUS = epic("blood_rune_plus", CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
-    public static final ItemEntry<Item> FIRE_RUNE_PLUS = epic("fire_rune_plus", CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
-    public static final ItemEntry<Item> ELDRITCH_RUNE_PLUS = noModel("eldritch_rune_plus", Item::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
+    public static final ItemEntry<EternalRing> ETERNAL_RING = item("eternal_ring", EternalRing::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
+    public static final ItemEntry<RunePlusItem> LIGHTNING_RUNE_PLUS = runePlus("lightning_rune_plus", RunePlusItem.Type.LIGHTNING);
+    public static final ItemEntry<RunePlusItem> NATURE_RUNE_PLUS = runePlus("nature_rune_plus", RunePlusItem.Type.NATURE);
+    public static final ItemEntry<RunePlusItem> ENDER_RUNE_PLUS = runePlus("ender_rune_plus", RunePlusItem.Type.ENDER);
+    public static final ItemEntry<RunePlusItem> HOLY_RUNE_PLUS = runePlus("holy_rune_plus", RunePlusItem.Type.HOLY);
+    public static final ItemEntry<RunePlusItem> ICE_RUNE_PLUS = runePlus("ice_rune_plus", RunePlusItem.Type.ICE);
+    public static final ItemEntry<RunePlusItem> BLOOD_RUNE_PLUS = runePlus("blood_rune_plus", RunePlusItem.Type.BLOOD);
+    public static final ItemEntry<RunePlusItem> FIRE_RUNE_PLUS = runePlus("fire_rune_plus", RunePlusItem.Type.FIRE);
+    public static final ItemEntry<RunePlusItem> ELDRITCH_RUNE_PLUS = runePlusNoModel("eldritch_rune_plus", RunePlusItem.Type.ELDRITCH);
 
-    // 娉曟湳涔︿笌娉曟潠
+    // 法术书与法杖
     public static final ItemEntry<ChaosSpellBook> CHAOS_SPELL_BOOK = noModel("chaos_spell_book", properties -> new ChaosSpellBook(), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     public static final ItemEntry<CelestialSourceSpellBook> CELESTIAL_SOURCE_SPELL_BOOK = noModel("celestial_source_spell_book", properties -> new CelestialSourceSpellBook(), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     public static final ItemEntry<LightningSpellBook> LIGHTNING_SPELL_BOOK = noModel("lightning_spell_book", properties -> new LightningSpellBook(), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
@@ -170,7 +174,7 @@ public final class ItemRegistry {
     public static final ItemEntry<ChaosStaff> CHAOS_STAFF = noModel("chaos_staff", properties -> new ChaosStaff(), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     public static final ItemEntry<CelestialSourceStaff> CELESTIAL_SOURCE_STAFF = noModel("celestial_source_staff", properties -> new CelestialSourceStaff(), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
 
-    // 绗︽枃銆佹硶鐞冧笌鎵嬬
+    // 符文、法球与手稿
     public static final ItemEntry<Item> CHAOS_RUNE = simple("chaos_rune", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> CELESTIAL_SOURCE_RUNE = simple("celestial_source_rune", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> ELDRITCH_RUNE = simple("eldritch_rune", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
@@ -211,6 +215,14 @@ public final class ItemRegistry {
 
     private static ItemEntry<Item> epic16(String id, ResourceKey<CreativeModeTab> tab) {
         return item(id, Item::new, epicProps().stacksTo(16), tab);
+    }
+
+    private static ItemEntry<RunePlusItem> runePlus(String id, RunePlusItem.Type type) {
+        return item(id, properties -> new RunePlusItem(type, properties), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
+    }
+
+    private static ItemEntry<RunePlusItem> runePlusNoModel(String id, RunePlusItem.Type type) {
+        return noModel(id, properties -> new RunePlusItem(type, properties), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     }
 
     private static ItemEntry<SwordItem> sword(String id, GenesisTiers tier, int damage, float speed) {
@@ -262,7 +274,7 @@ public final class ItemRegistry {
     private static <T extends BowItem> ItemEntry<T> bow(String id, ItemFactory<T> factory) {
         return Genesis.L2_REGISTRATE
                 .item(id, factory::create)
-                .initialProperties(() -> epicProps().stacksTo(1).durability(768))
+                .initialProperties(() -> epicProps().stacksTo(1).durability(2009))
                 .model(ItemRegistry::createBowModel)
                 .tab(CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT)
                 .register();

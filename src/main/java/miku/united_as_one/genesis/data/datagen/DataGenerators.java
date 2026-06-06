@@ -5,6 +5,7 @@ import miku.united_as_one.genesis.data.datagen.provider.ModCuriosDataProvider;
 import miku.united_as_one.genesis.data.datagen.provider.ModCuriosItemTagProvider;
 import miku.united_as_one.genesis.data.datagen.provider.ModDatapackEntriesProvider;
 import miku.united_as_one.genesis.data.datagen.provider.ModEquipmentStatsProvider;
+import miku.united_as_one.genesis.data.datagen.provider.ModGenesisConfigProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -31,6 +32,7 @@ public final class DataGenerators {
         CompletableFuture<HolderLookup.Provider> fullLookupProvider = registryProvider.getRegistryProvider();
 
         generator.addProvider(event.includeServer(), registryProvider);
+        generator.addProvider(event.includeServer(), new ModGenesisConfigProvider(output));
         generator.addProvider(event.includeServer(), new ModCuriosDataProvider(output));
         generator.addProvider(event.includeServer(), new ModCuriosItemTagProvider(output, fullLookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModEquipmentStatsProvider(generator));
