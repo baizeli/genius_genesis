@@ -45,7 +45,6 @@ public class ModCuriosItemTagProvider extends ItemTagsProvider {
                         ItemRegistry.BLOOD_RUNE_PLUS.get(),
                         ItemRegistry.LIGHTNING_RUNE_PLUS.get(),
                         ItemRegistry.NATURE_RUNE_PLUS.get(),
-                        ItemRegistry.ELDRITCH_RUNE_PLUS.get(),
                         ItemRegistry.LAO_WANG_237.get()
                 );
 

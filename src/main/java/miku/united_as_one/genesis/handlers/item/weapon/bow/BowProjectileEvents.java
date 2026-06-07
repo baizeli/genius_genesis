@@ -7,13 +7,17 @@ import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.damage.SpellDamageSource;
+import io.redspace.ironsspellbooks.entity.spells.EchoingStrikeEntity;
 import io.redspace.ironsspellbooks.entity.spells.FireEruptionAoe;
 import io.redspace.ironsspellbooks.entity.spells.fire_arrow.FireArrowProjectile;
 import io.redspace.ironsspellbooks.entity.spells.lightning_lance.LightningLanceProjectile;
+import io.redspace.ironsspellbooks.entity.spells.magic_arrow.MagicArrowProjectile;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import io.redspace.ironsspellbooks.particle.ZapParticleOption;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
 import miku.united_as_one.genesis.Genesis;
+import miku.bai_ze_li.genesis.api.curios.ModCurios;
+import miku.united_as_one.genesis.item.curios.RunePlusItem;
 import miku.united_as_one.genesis.item.weapon.bow.ThunderLongBow;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -67,13 +71,35 @@ public final class BowProjectileEvents {
         if (lanceProjectile.level().isClientSide || !(lanceProjectile.getOwner() instanceof ServerPlayer player)) {
             return;
         }
-        if (!(player.getMainHandItem().getItem() instanceof ThunderLongBow)
-                && !(player.getOffhandItem().getItem() instanceof ThunderLongBow)) {
+
+        Entity target = impactTarget(event, lanceProjectile);
+        if (player.getMainHandItem().getItem() instanceof ThunderLongBow
+                || player.getOffhandItem().getItem() instanceof ThunderLongBow) {
+            summonShockwave(lanceProjectile.level(), 4.0F, lanceProjectile.getDamage(), target, player, lanceProjectile);
+        }
+        if (ModCurios.hasCurios(player, RunePlusItem::isLightning)) {
+            summonShockwave(lanceProjectile.level(), 4.0F, lanceProjectile.getDamage() * 0.75F, target, player, lanceProjectile);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onMagicArrowImpact(ProjectileImpactEvent event) {
+        if (!(event.getProjectile() instanceof MagicArrowProjectile magicArrow)) {
+            return;
+        }
+        if (magicArrow.level().isClientSide || !(magicArrow.getOwner() instanceof ServerPlayer player)) {
+            return;
+        }
+        Entity target = impactTarget(event, magicArrow);
+        if (!(target instanceof LivingEntity) || !ModCurios.hasCurios(player, RunePlusItem::isEnder)) {
             return;
         }
 
-        Entity target = impactTarget(event, lanceProjectile);
-        summonShockwave(lanceProjectile.level(), 4.0F, lanceProjectile.getDamage(), target, player, lanceProjectile);
+        EchoingStrikeEntity echo = new EchoingStrikeEntity(player.level(), player, magicArrow.getDamage(), 2.0F);
+        echo.setTracking(target);
+        echo.setPos(target.getBoundingBox().getCenter().subtract(0.0F, echo.getBbHeight() * 0.5F, 0.0F));
+        echo.tickCount = 10;
+        player.level().addFreshEntity(echo);
     }
 
     private static Entity impactTarget(ProjectileImpactEvent event, Projectile projectile) {
