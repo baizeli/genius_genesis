@@ -40,7 +40,6 @@ import miku.united_as_one.genesis.item.weapon.bow.FlameBow;
 import miku.united_as_one.genesis.item.weapon.bow.FrostLongBow;
 import miku.united_as_one.genesis.item.weapon.bow.ThunderLongBow;
 import miku.united_as_one.genesis.item.weapon.bow.WitchcraftBow;
-import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorItem;
