@@ -1,6 +1,6 @@
 package miku.united_as_one.genesis.client.network;
 
-import miku.bai_ze_li.genesis.api.render.effect.SlashEffectAPI;
+import miku.united_as_one.genesis.client.render.effect.SlashEffectAPI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;

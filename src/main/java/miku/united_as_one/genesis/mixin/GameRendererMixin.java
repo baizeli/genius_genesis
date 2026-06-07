@@ -1,6 +1,7 @@
 package miku.united_as_one.genesis.mixin;
 
 import miku.united_as_one.genesis.client.render.cosmic.CosmicBakedModel;
+import miku.united_as_one.genesis.client.TrailRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.RenderBuffers;
@@ -31,7 +32,10 @@ public abstract class GameRendererMixin {
     )
     private void genesis$flushDeferredCosmicItems(float partialTicks, long finishTimeNano, boolean renderLevel, CallbackInfo ci) {
         if (renderLevel && minecraft.level != null) {
-            CosmicBakedModel.flushDeferredHandItems(renderBuffers.bufferSource());
+            TrailRender.renderTrail(partialTicks, finishTimeNano, true);
+            if (!TrailRender.shouldDeferWorldEffects()) {
+                CosmicBakedModel.flushDeferredHandItems(renderBuffers.bufferSource());
+            }
         } else {
             CosmicBakedModel.clearDeferredHandItems();
         }
