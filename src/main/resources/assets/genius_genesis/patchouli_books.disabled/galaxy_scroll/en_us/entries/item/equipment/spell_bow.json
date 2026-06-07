@@ -1,0 +1,53 @@
+{
+    "name": "娉曟湳娴佹淳寮?,
+    "icon": "genius_genesis:witchcraft_bow",
+    "category": "genius_genesis:item/equipment",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "浠ュ悇娲剧郴姘存櫠涓哄紦鏌勶紝鏈奖榫欑殑鐨负寮撳鸡鎵€鍒朵綔鑰屾垚鐨勫悇娴佹淳寮撱€?(br)杩欎簺寮撲笉闇€瑕佹秷鑰楃鐭紝鍏朵腑鐨勫ゥ鏈姏閲忚冻浠ユ嫙閫犲搴旀淳绯荤殑绠煝骞跺彂灏勫嚭鍘汇€?
+        },
+        {
+            "type": "spotlight",
+            "title": "闆烽渾闀垮紦",
+            "link_recipe": true,
+            "item": "genius_genesis:thunder_longbow",
+            "scale": 1.2,
+            "text": "鍙戝皠涓€鏍归浄绠紝瀵圭害6*6鑼冨洿鍐呯殑鐢熺墿閫犳垚20鐐逛激瀹炽€?
+        },
+        {
+            "type": "spotlight",
+            "title": "鍐伴湝闀垮紦",
+            "link_recipe": true,
+            "item": "genius_genesis:frost_longbow",
+            "scale": 1.2,
+            "text": "鍙戝皠鍐伴湝灏勭嚎锛岃嫢鍛戒腑鐩爣鍒欏湪鐩爣澶翠笂鐢熸垚涓€涓啺鍧楋紝鍐板潡鍧犺惤鍚庨€犳垚鑼冨洿浼ゅ銆?
+        },
+        {
+            "type": "spotlight",
+            "title": "鐏劙寮?,
+            "link_recipe": true,
+            "item": "genius_genesis:flame_bow",
+            "scale": 1.2,
+            "text": "鍙戝皠鐖嗙偢绠紝閫犳垚5鐐逛激瀹筹紝姣忔湁涓€绾у姏閲忛€犳垚鐨勪激瀹冲鍔?0%"
+        },
+        {
+            "type": "spotlight",
+            "title": "宸湳寮?,
+            "link_recipe": true,
+            "item": "genius_genesis:witchcraft_bow",
+            "scale": 1.2,
+            "text": "鍙戝皠闊崇垎鍜屽帆鏈巩鐏皠绾匡紝绌块€忓苟浼ゅ璺緞涓婄殑鎵€鏈夌敓鐗╋紝琚懡涓殑鐩爣灏嗗彈鍒伴煶鐖嗕互鍙婁笁娆″帆鏈巩鐏皠绾跨殑浼ゅ銆?
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "genius_genesis:item/bow/witchcraft_bow",
+            "recipe2": "genius_genesis:item/bow/thunder_longbow"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "genius_genesis:item/bow/flame_bow",
+            "recipe2": "genius_genesis:item/bow/frost_longbow"
+        }
+    ]
+}

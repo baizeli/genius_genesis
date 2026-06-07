@@ -15,6 +15,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModCuriosItemTagProvider extends ItemTagsProvider {
     private static final TagKey<Item> SPELLBOOK = curios("spellbook");
+    private static final TagKey<Item> RING = curios("ring");
     private static final TagKey<Item> MAGIC_GUIDE = curios("magic_guide");
     private static final TagKey<Item> CROWN = curios("crown");
 
@@ -32,9 +33,11 @@ public class ModCuriosItemTagProvider extends ItemTagsProvider {
                         ItemRegistry.DISK_SPELL_BOOK.get()
                 );
 
+        tag(RING)
+                .add(ItemRegistry.ETERNAL_RING.get());
+
         tag(MAGIC_GUIDE)
                 .add(
-                        ItemRegistry.ETERNAL_RING.get(),
                         ItemRegistry.ENDER_RUNE_PLUS.get(),
                         ItemRegistry.FIRE_RUNE_PLUS.get(),
                         ItemRegistry.HOLY_RUNE_PLUS.get(),

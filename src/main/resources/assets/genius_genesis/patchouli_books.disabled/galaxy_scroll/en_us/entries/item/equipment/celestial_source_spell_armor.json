@@ -1,0 +1,24 @@
+{
+    "name": "鏄熸簮娉曟湳濂楄",
+    "icon": "genius_genesis:celestial_source_spell_helmet",
+    "category": "genius_genesis:item/equipment",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "涓€濂楃敱鏄熸簮涔嬪姏鎵€閾歌€屾垚鐨勬硶鏈瑁呫€?
+        },
+        {
+            "type": "patchouli:entity",
+            "name": "鏄熸簮娉曟湳濂楄",
+            "entity": "minecraft:armor_stand{ArmorItems:[{id:'genius_genesis:celestial_source_spell_boots',Count:1b},{id:'genius_genesis:celestial_source_spell_leggings',Count:1b},{id:'genius_genesis:celestial_source_spell_chestplate',Count:1b},{id:'genius_genesis:celestial_source_spell_helmet',Count:1b}],NoBasePlate:1b}"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "缇ゆ槦鐢变綘鐨勬剰蹇楄€岄棯鑰€銆?(br)涓囧崈鐨勫彲鑳芥€т簬寮х嚎涔嬩笂鏁ｅ彂鐫€寰姃銆?(br)姣忎竴鍧楃敳鑳勯兘鏄竴鐗囩伩鐑傜殑澶╃┕銆?(br)鍦ㄦ敾鍑昏惤涓嬪墠锛屾€讳細鏈夊皢鍏舵秷婀垚铏氭棤鐨勫彲鑳姐€?(br2)浣犲皢杩欏婀涜摑鐨勫帆甯堣。琚嶈繛甯︽姭椋庨珮楂樻寕璧凤紝婊℃剰鍦拌浆韬寮€銆?(br)鍗村湪閲戝睘鐨勫弽鍏変箣涓湅鍒颁簡浣犺嚜宸辩殑韬奖銆?(br)鍛藉畾鐨勫垱閫犺€呮湁鐫€楂樿吹鐨勬湰璐ㄣ€?(br)鏃犲敖鐨勯€夋嫨閲岋紝姣忎竴涓綘閮借蛋涓婁簡杩欓€氬線姘告亽鐨勯亾璺€?
+        },
+        {
+            "type": "patchouli:text",
+            "text": "瀹冩湁鐫€姝ょ晫涔嬪鐨勫姏閲忥紝閭ｆ簮浜庝綘鐨勬効鏅€佷綘鐨勬兂璞°€?(br)浣犱滑閮界浉淇＄潃瀹冦€?(br)姝や负濂囪抗涓庡ゥ绉樼殑琛ㄥ緛锛屾槸瓒呭嚒鍏ュ湥鐨勫敮涓€鏂瑰悜銆?(br)鑷劧锛屼篃鏄綘璁ゅ畾鐨勶紝浣犺嚜宸辩殑銆?(br)闀胯矾缁堢珶锛屾函婧愰€嗗懡銆?(br)浣犱滑鐨勬墍鏈夛紝閮芥敞瀹氫簬澶╁閭ｄ笉鍙楁潫缂氱殑鍦扮偣鐩搁€€?
+        }
+    ]
+}

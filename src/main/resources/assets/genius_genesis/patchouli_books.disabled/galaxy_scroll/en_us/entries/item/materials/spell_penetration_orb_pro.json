@@ -1,0 +1,16 @@
+{
+    "name": "娉曟湳绌块€忔硶鐞?,
+    "icon": "genius_genesis:upgrade_orb_pro",
+    "category": "genius_genesis:item/materials",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "娉曟湳绌块€忥紝鍒涗笘绾墍娣诲姞鐨勪竴涓柊鐨勫睘鎬э紱璁＄畻鏂瑰紡涓猴細$(br)瀵瑰簲娉曟湳娲剧郴鎵€閫犳垚鐨勪激瀹硏娉曟湳绌块€忕殑鍊?鏈€缁堜激瀹?(br2)棣栧厛鎴戜滑瑕佹妸钑村惈寮哄ぇ濂ユ湳涔嬪姏鐨勭墿鍝佹弶鍜屽湪涓€璧凤紝灏卞儚杩欐牱锛?
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "genius_genesis:orb/upgrade_orb_pro",
+            "text": "鑰屽悗鍐嶆妸钑村惈寮哄ぇ鍔涢噺鐨勫搴旀淳绯绘按鏅跺拰绗︽枃涓庝箣缁撳悎锛屽氨鍍忚繖鏍凤細"
+        }
+    ]
+}
