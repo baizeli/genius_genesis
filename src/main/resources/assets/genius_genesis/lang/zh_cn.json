@@ -5,13 +5,11 @@
   "curios.modifiers.crown": "作为冠冕佩戴时：",
   "curios.identifier.magic_guide": "魔导",
   "curios.modifiers.magic_guide": "魔导佩戴时：",
-
   "itemGroup.genius_genesis.genius_genesis_tab": "铁之魔法书：创世纪",
   "itemGroup.genius_genesis.block": "iron的法术创世纪：方块",
   "itemGroup.genius_genesis.material": "iron的法术创世纪：材料",
   "itemGroup.genius_genesis.equipment": "iron的法术创世纪：装备",
   "itemGroup.genius_genesis.spell_scroll": "iron的法术创世纪：法术卷轴",
-
   "attribute.genius_genesis.chaos_magic_resist": "混沌法术抗性",
   "attribute.genius_genesis.chaos_spell_power": "混沌法术强度",
   "attribute.genius_genesis.celestial_source_magic_resist": "星源法术抗性",
@@ -28,10 +26,8 @@
   "attribute.genius_genesis.celestial_source_spell_penetration": "星源法术穿透",
   "attribute.genius_genesis.max_mana_percent": "最大法力值百分比",
   "attribute.genius_genesis.spell_damage_percent": "法术伤害百分比",
-
-  "school.genius_genesis.chaos" : "混沌",
+  "school.genius_genesis.chaos": "混沌",
   "school.genius_genesis.celestial_source": "星源",
-
   "spell.genius_genesis.warped_blood_burst": "扭曲之血爆",
   "spell.genius_genesis.warped_barrier": "扭曲之壁垒",
   "spell.genius_genesis.reverse_plague": "逆转瘟疫",
@@ -44,7 +40,6 @@
   "spell.genius_genesis.blood_frenzy": "血之狂乱",
   "spell.genius_genesis.confusion": "迷茫",
   "spell.genius_genesis.gutrender_puncture": "七连地狱飞剑",
-
   "spell.genius_genesis.i_fly": "我要飞",
   "spell.genius_genesis.fate_wedge": "刻命之楔",
   "spell.genius_genesis.perfect_evasion": "完美闪避",
@@ -58,20 +53,14 @@
   "spell.genius_genesis.summon_pig_swarm": "老王现身",
   "spell.genius_genesis.never_miss": "永不落空",
   "spell.genius_genesis.final_whisper": "最后的轻语",
-
   "spell.genius_genesis.blazing_blade_barrage": "七连炽焰飞剑",
   "spell.genius_genesis.summon_keeper": "召唤远古骑士",
-
   "spell.genius_genesis.death_laser": "死亡激光",
-
   "spell.genius_genesis.frost_thrust_array": "冰霜突刺阵",
   "spell.genius_genesis.snow_burial": "雪葬",
-
   "spell.genius_genesis.iron_spell": "铁魔法",
   "spell.genius_genesis.multi_iron_spell": "多重铁魔法",
-
   "spell.genius_genesis.summon_warden": "召唤坚守者",
-
   "spell.genius_genesis.warped_blood_burst.guide": "消耗自身50%的血量，对一定范围内的生物造成伤害并附带禁疗效果。",
   "spell.genius_genesis.warped_barrier.guide": "将90%的生命值转化成伤害吸收。",
   "spell.genius_genesis.reverse_plague.guide": "将目标正面效果与自身负面效果进行交换，短时间禁止目标获得正面效果，阻止自身获得效果并转嫁负面效果。",
@@ -79,10 +68,8 @@
   "spell.genius_genesis.blood_war.guide": "随着生命值的减少加强自身数值。",
   "spell.genius_genesis.blood_frenzy.guide": "持续恢复生命值并减少受到的一半伤害且造成的伤害翻倍，并持续将自身推向最近的实体。",
   "spell.genius_genesis.unparalleled.guide": "加强自身数值并可以进行二段跳且免疫摔落伤害。",
-
   "spell.genius_genesis.warped_blood_burst.low_health": "血量不足以释放扭曲之血爆！",
   "spell.genius_genesis.final_whisper.low_health": "血量不足以释放最后的轻语！",
-
   "effect.genius_genesis.i_fly": "我要飞",
   "effect.genius_genesis.fate_wedge": "刻命之楔",
   "effect.genius_genesis.perfect_evasion": "完美闪避",
@@ -99,24 +86,22 @@
   "effect.genius_genesis.chaos_resistance": "混沌抗性",
   "effect.genius_genesis.mana_overdraft": "魔力透支",
   "effect.genius_genesis.mana_shield": "魔力抗性",
-
   "item.genius_genesis.chaos_staff": "混沌法杖",
   "item.genius_genesis.celestial_source_staff": "星源法杖",
   "item.genius_genesis.laevatain": "暮光破法者",
   "item.genius_genesis.broyouhuashuo": "哎呀，我怎么把锭写成袋子了",
-  "item.genius_genesis.violet_galaxy_ingot1": "汝掌心中者，永恒之力也",    "item.genius_genesis.create_star": "创造之心",
+  "item.genius_genesis.violet_galaxy_ingot1": "汝掌心中者，永恒之力也",
+  "item.genius_genesis.create_star": "创造之心",
   "item.genius_genesis.chaos_rune": "混沌符文",
   "item.genius_genesis.violet_upgrade_smithing_template": "锻造模板",
   "item.genius_genesis.divine_upgrade_smithing_template": "锻造模板",
   "item.genius_genesis.celestial_source_rune": "星源符文",
   "item.genius_genesis.chaos_upgrade_orb": "混沌升级法球",
   "item.genius_genesis.celestial_source_upgrade_orb": "星源升级法球",
-
   "item.genius_genesis.chaos_spell_book": "混沌法术书",
   "item.genius_genesis.celestial_source_spell_book": "星源法术书",
   "item.genius_genesis.lightning_spell_book": "雷霆法术书",
   "item.genius_genesis.disk_spell_book": "法术磁盘",
-
   "item.genius_genesis.twisted_chaos": "扭曲之混沌",
   "item.genius_genesis.twisted_chaos_ingot": "扭曲混沌锭",
   "item.genius_genesis.celestial_source_pearl": "星源珍珠",
@@ -126,25 +111,19 @@
   "item.genius_genesis.infinite_shriving_stone": "无限忏悔石",
   "item.genius_genesis.destroy_godhead": "破灭神格",
   "item.genius_genesis.fire_boss_dagger": "受火者的匕首",
-
   "item.genius_genesis.flying_swallow_through_willow": "飞燕穿柳",
-
   "item.genius_genesis.thunder_longbow": "雷霆长弓",
   "item.genius_genesis.frost_longbow": "冰霜长弓",
   "item.genius_genesis.witchcraft_bow": "巫术弓",
   "item.genius_genesis.flame_bow": "火焰弓",
-
   "item.genius_genesis.mithril_sword": "秘银剑",
   "item.genius_genesis.mithril_pickaxe": "秘银镐",
-
   "item.genius_genesis.divine_metal_sword": "神圣金属剑",
   "item.genius_genesis.divine_metal_axe": "神圣金属斧",
   "item.genius_genesis.divine_metal_pickaxe": "神圣金属镐",
   "item.genius_genesis.divine_metal_shovel": "神圣金属铲",
   "item.genius_genesis.divine_metal_hoe": "神圣金属锄",
-
   "item.genius_genesis.gungnir": "冈格尼尔",
-
   "tooltip.genius_genesis.divine_metal.description_1": "§8殴打凋零骷髅掉落他的头",
   "tooltip.genius_genesis.divine_metal.description_2": "自动帮你烧东西",
   "tooltip.genius_genesis.divine_metal.description_3": "对沙子使用原子操作掉落玻璃",
@@ -171,7 +150,6 @@
   "tooltip.genius_genesis.armor.celestial.set_2": "全套穿戴时显示星源光环",
   "tooltip.genius_genesis.armor.chaos.set_1": "暂无后续再写",
   "tooltip.genius_genesis.armor.arcane.set_1": "保持奥术水晶套原有魔力修补逻辑",
-
   "item.genius_genesis.divine_metal_helmet": "神圣金属头冠",
   "item.genius_genesis.divine_metal_chestplate": "神圣金属胸甲",
   "item.genius_genesis.divine_metal_leggings": "神圣金属护腿",
@@ -182,7 +160,6 @@
   "item.genius_genesis.smithing_template.divine_upgrade.applies_to": "下界合金战法盔甲",
   "item.genius_genesis.smithing_template.divine_upgrade.base_slot_description": "放入下界合金战法盔甲",
   "item.genius_genesis.smithing_template.divine_upgrade.ingredients": "神圣金属锭",
-
   "item.genius_genesis.violet_sword": "紫极剑",
   "item.genius_genesis.violet_axe": "紫极斧",
   "item.genius_genesis.violet_pickaxe": "紫极镐",
@@ -192,8 +169,7 @@
   "tooltip.united_as_one.violet_axe.line1": "连锁木头",
   "tooltip.united_as_one.violet_pickaxe.line1": "连锁矿石",
   "tooltip.united_as_one.violet_shovel.line1": "按住Shift进行5*5挖掘",
-  "tooltip.united_as_one.violet_hoe.line1":"有点幸运",
-
+  "tooltip.united_as_one.violet_hoe.line1": "有点幸运",
   "item.genius_genesis.violet_zenith_helmet": "紫极战斗头盔",
   "item.genius_genesis.violet_zenith_chestplate": "紫极战斗胸甲",
   "item.genius_genesis.violet_zenith_leggings": "紫极战斗护腿",
@@ -204,22 +180,18 @@
   "item.genius_genesis.smithing_template.violet_upgrade.applies_to": "奥术水晶装备",
   "item.genius_genesis.smithing_template.violet_upgrade.base_slot_description": "放入奥术水晶装备",
   "item.genius_genesis.smithing_template.violet_upgrade.ingredients": "§5紫极锭",
-
   "item.genius_genesis.celestial_source_spell_helmet": "星源法术头盔",
   "item.genius_genesis.celestial_source_spell_chestplate": "星源法术胸甲",
   "item.genius_genesis.celestial_source_spell_leggings": "星源法术护腿",
   "item.genius_genesis.celestial_source_spell_boots": "星源法术靴子",
-
   "item.genius_genesis.chaos_spell_helmet": "混沌法术头盔",
   "item.genius_genesis.chaos_spell_chestplate": "混沌法术胸甲",
   "item.genius_genesis.chaos_spell_leggings": "混沌法术护腿",
   "item.genius_genesis.chaos_spell_boots": "混沌法术靴子",
-
   "item.genius_genesis.arcane_crystal_helmet": "奥术水晶头盔",
   "item.genius_genesis.arcane_crystal_chestplate": "奥术水晶胸甲",
   "item.genius_genesis.arcane_crystal_leggings": "奥术水晶护腿",
   "item.genius_genesis.arcane_crystal_boots": "奥术水晶靴子",
-
   "item.genius_genesis.arcane_crystal": "奥术水晶",
   "item.genius_genesis.blood_crystal": "猩红水晶",
   "item.genius_genesis.eldritch_crystal": "邪术水晶",
@@ -246,12 +218,10 @@
   "item.genius_genesis.blasphemy_key": "亵渎之钥",
   "item.genius_genesis.eldritch_rune": "邪术符文",
   "item.genius_genesis.violet_fragments": "紫极碎片",
-
   "item.genius_genesis.chaos_manuscript": "混沌手稿",
   "item.genius_genesis.celestial_source_manuscript": "星源手稿",
   "item.genius_genesis.chaos_manuscript.hover": "（右键学习混沌法术）",
   "item.genius_genesis.celestial_source_manuscript.hover": "（右键学习星源法术）",
-
   "item.genius_genesis.chaos_manuscript_fragment": "混沌1手稿碎片",
   "item.genius_genesis.blank_celestial_source_manuscript": "空白星源手稿",
   "item.genius_genesis.chaos_manuscript_fragment.hover": "（蕴含着混沌法术的学习方法）",
@@ -271,7 +241,6 @@
   "fluid_type.genius_genesis.blood_fluid": "血",
   "block.genius_genesis.blood_fluid": "血",
   "item.genius_genesis.blood_fluid_bucket": "血桶",
-
   "block.genius_genesis.chaos_portal_frame": "混沌传送门框架",
   "block.genius_genesis.celestial_source_block": "星源块",
   "block.genius_genesis.arcane_workbench": "奥术工作台",
@@ -353,23 +322,20 @@
   "block.genius_genesis.genesis_dirt": "起源土",
   "block.genius_genesis.source_dirt": "源流土",
   "block.genius_genesis.source_grass_block": "源流草方块",
-
   "container.genius_genesis.vanilla_workbench": "有序终极合成",
   "container.genius_genesis.arcane_workbench": "奥术合成",
   "jei.genius_genesis.arcane_cauldron.fluid": "需要 %d mB",
   "jei.genius_genesis.arcane_cauldron.essence": "消耗 %d 个奥术源质",
-
   "death.attack.chaos_magic": "%1$s被%2$s的混沌法术撕碎了。",
   "death.attack.celestial_source_magic": "%1$s被%2$s的星源法术彻底湮灭。",
-  "death.attack.genius_genesis.warped_blood_burst" : "%1$s的全身血液因为%2$s爆炸了。",
-  "death.attack.genius_genesis.warped_blood_burst.item" : "%1$s的全身血液因为%2$s的%3$s爆炸了。",
-  "death.attack.genius_genesis.final_whisper" : "%1$s因为%2$s消散了。",
-  "death.attack.genius_genesis.final_whisper.item" : "%1$s的因为%2$s的%3$s消散了。",
-  "death.attack.genius_genesis.blood_boss" : "%1$s自愿成为%2$s泼洒混沌中的一滴",
-  "death.attack.genius_genesis.blood_boss.item" : "%1$s因为%2$s的%3$s自愿成为%2$s泼洒混沌中的一滴",
+  "death.attack.genius_genesis.warped_blood_burst": "%1$s的全身血液因为%2$s爆炸了。",
+  "death.attack.genius_genesis.warped_blood_burst.item": "%1$s的全身血液因为%2$s的%3$s爆炸了。",
+  "death.attack.genius_genesis.final_whisper": "%1$s因为%2$s消散了。",
+  "death.attack.genius_genesis.final_whisper.item": "%1$s的因为%2$s的%3$s消散了。",
+  "death.attack.genius_genesis.blood_boss": "%1$s自愿成为%2$s泼洒混沌中的一滴",
+  "death.attack.genius_genesis.blood_boss.item": "%1$s因为%2$s的%3$s自愿成为%2$s泼洒混沌中的一滴",
   "death.attack.blood_field": "%1$s在猩红场域中化为了血滴。",
   "death.attack.blood_field.item": "%1$s在%3$s召唤的猩红场域中化为了血滴。",
-
   "ui.genius_genesis.research_warning": "按住以学习（需要一张%s）",
   "ui.genius_genesis.percent_force_damage": "百分比强制伤害：%d%%",
   "ui.genius_genesis.force_damage": "强制伤害：%d",
@@ -383,16 +349,12 @@
   "ui.genius_genesis.damage_multiplier": "伤害倍数：%d%%",
   "ui.genius_genesis.health_cost": "血量消耗：%d%%",
   "ui.genius_genesis.number_of_swords": "剑的数量：%d",
-
   "subtitles.genius_genesis.evasion": "完美闪避",
-
   "item.isMain": "§2在主手时：",
   "item.attDamage": " §2攻击伤害",
   "item.attSpeed": " §2攻击速度",
   "AIR": "",
-
   "genius_genesis.summoned_pig_name": "laowang237",
-
   "entity.genius_genesis.dead_star_decree_comet": "死星天裁-陨石",
   "entity.genius_genesis.dead_star_decree_large_comet": "死星天裁-大陨石",
   "entity.genius_genesis.lighting_bolt": "彩色闪电",
@@ -404,7 +366,6 @@
   "entity.genius_genesis.summoned_keeper": "被召唤的远古骑士",
   "entity.genius_genesis.summoned_warden": "被召唤的坚守者",
   "entity.genius_genesis.hammer_mob": "粉碎",
-
   "item.genius_genesis.infinity_eternal_helmet": "Purpleite Galaxy Helmet",
   "damage_type.genius_genesis.celestial_source_magic": "Celestial Source Magic Damage",
   "damage_type.genius_genesis.chaos_magic": "Chaos Magic Damage",
@@ -433,43 +394,11 @@
   "itemGroup.genius_genesis_blocks": "iron Spells: Genesis: Blocks",
   "itemGroup.genius_genesis_materials": "iron Spells: Genesis: Materials",
   "itemGroup.genius_genesis_equipment": "iron Spells: Genesis: Equipment",
-
   "upgrade.genius_genesis.divine_upgrade": "神圣升级",
   "upgrade.genius_genesis.violet_upgrade": "紫极升级",
-
-
-  "genius_genesis.config.server": "§c服务端配置",
-  "genius_genesis.config.client": "§e客户端配置",
-  "genius_genesis.config.github": "§bGitHub 源码库",
-  "genius_genesis.config.subtitle": "§a美味大理石",
-
-  "genius_genesis.category.server.combat_main": "§f战斗设置",
-  "genius_genesis.category.client.visual_main": "§f渲染设置",
-
-  "genius_genesis.config.group.combat": "§e武器设定",
-  "genius_genesis.config.group.red": "§c黑红特效",
-  "genius_genesis.config.group.blue": "§b蓝色特效",
-  "genius_genesis.config.group.rainbow": "§e彩色特效",
-
-  "genius_genesis.config.whisper_damage": "§6武器基础伤害",
-  "genius_genesis.config.whisper_damage.desc": "§f调整武器造成的初始物理伤害数值",
-  "genius_genesis.config.enable_hard_mode": "§c开启困难模式",
-  "genius_genesis.config.enable_hard_mode.desc": "§f启用后敌人将获得更强的战斗属性",
-
-  "genius_genesis.config.enable_red": "§f开启特效",
-  "genius_genesis.config.enable_red.desc": "§f是否允许渲染黑红特效",
-  "genius_genesis.config.enable_blue": "§f开启特效",
-  "genius_genesis.config.enable_blue.desc": "§f是否允许渲染蓝色特效",
-  "genius_genesis.config.enable_rainbow": "§f开启特效",
-  "genius_genesis.config.enable_rainbow.desc": "§f是否允许渲染彩色特效",
-
-  "genius_genesis.config.width": "§f勾边宽度",
-  "genius_genesis.config.width.desc": "§f调整物品周围轮廓线条的粗细",
-
-  "genius_genesis.config.save": "§a保存",
-  "genius_genesis.config.reset_all": "§e重置全部",
-  "genius_genesis.config.reset": "§f重置",
-  "genius_genesis.config.done": "§f完成",
-  "gui.genesis.on": "开启",
-  "gui.genesis.off": "关闭"
+  "spell.genius_genesis.meteor": "陨星",
+  "entity.genius_genesis.chaos_sword": "七连地狱飞剑",
+  "entity.genius_genesis.chaos_sword_aoe": "七连地狱飞剑",
+  "entity.genius_genesis.meteor_projectile": "陨星",
+  "entity.genius_genesis.meteor_star": "陨星"
 }

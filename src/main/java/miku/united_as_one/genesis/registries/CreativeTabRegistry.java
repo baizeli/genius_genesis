@@ -1,11 +1,18 @@
 package miku.united_as_one.genesis.registries;
 
+import io.redspace.ironsspellbooks.api.item.IScroll;
+import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
+import io.redspace.ironsspellbooks.api.spells.ISpellContainer;
+import io.redspace.ironsspellbooks.api.spells.ISpellContainerMutable;
 import miku.united_as_one.genesis.Genesis;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.ItemStack;
+
+import static io.redspace.ironsspellbooks.registries.ItemRegistry.SCROLL;
 
 public final class CreativeTabRegistry {
 
@@ -32,8 +39,27 @@ public final class CreativeTabRegistry {
         Genesis.L2_REGISTRATE.buildModCreativeTab("equipment", "itemGroup." + Genesis.MOD_ID + ".equipment", builder -> builder
                 .icon(() -> ItemRegistry.MITHRIL_SWORD.asStack()));
         Genesis.L2_REGISTRATE.buildModCreativeTab("spell_scroll", "itemGroup." + Genesis.MOD_ID + ".spell_scroll", builder -> builder
-                .icon(() -> ItemRegistry.CHAOS_SPELL_BOOK.asStack()));
+                .icon(() -> createScrollWithSpell(SpellRegistry.METEOR.get(), 1))
+                .displayItems((params, output) -> addScrolls(output, SpellRegistry.METEOR.get(), SpellRegistry.GUTRENDER_PUNCTURE.get())));
 
         Genesis.L2_REGISTRATE.defaultCreativeTab(CreativeModeTabs.SEARCH);
+    }
+
+    private static void addScrolls(CreativeModeTab.Output output, AbstractSpell... spells) {
+        for (AbstractSpell spell : spells) {
+            for (int level = spell.getMinLevel(); level <= spell.getMaxLevel(); level++) {
+                output.accept(createScrollWithSpell(spell, level));
+            }
+        }
+    }
+
+    private static ItemStack createScrollWithSpell(AbstractSpell spell, int level) {
+        ItemStack scrollStack = new ItemStack(SCROLL.get());
+        if (scrollStack.getItem() instanceof IScroll) {
+            ISpellContainerMutable container = ISpellContainer.create(1, false, false).mutableCopy();
+            container.addSpellAtIndex(spell, level, 0, true);
+            ISpellContainer.set(scrollStack, container.toImmutable());
+        }
+        return scrollStack;
     }
 }

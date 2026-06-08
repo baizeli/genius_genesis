@@ -1,0 +1,23 @@
+{
+  "name": "netherite_ingot",
+  "icon": "minecraft:netherite_ingot",
+  "category": "genius_genesis:test",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "test"
+    },
+    {
+      "type": "genius_genesis:arcane_workbench",
+      "recipe": "genius_genesis:arcane_workbench_recipe/test_recipe"
+    },
+    {
+      "type": "spotlight",
+      "title": "test title",
+      "link_recipe": true,
+      "item": "minecraft:netherite_ingot",
+      "scale": 1.2,
+      "text": "test"
+    }
+  ]
+}

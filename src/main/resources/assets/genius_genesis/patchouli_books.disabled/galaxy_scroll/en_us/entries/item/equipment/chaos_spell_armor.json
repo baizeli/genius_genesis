@@ -1,0 +1,20 @@
+{
+    "name": "娣锋矊娉曟湳濂楄",
+    "icon": "genius_genesis:chaos_spell_helmet",
+    "category": "genius_genesis:item/equipment",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "涓€濂楃敱娣锋矊涔嬪姏鎵€閾歌€屾垚鐨勬硶鏈瑁呫€?
+        },
+        {
+            "type": "patchouli:entity",
+            "name": "娣锋矊娉曟湳濂楄",
+            "entity": "minecraft:armor_stand{ArmorItems:[{id:'genius_genesis:chaos_spell_boots',Count:1b},{id:'genius_genesis:chaos_spell_leggings',Count:1b},{id:'genius_genesis:chaos_spell_chestplate',Count:1b},{id:'genius_genesis:chaos_spell_helmet',Count:1b}],NoBasePlate:1b}"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "瀹冧负浜嗕綘鍦ㄨ儗涓婇暱鍑轰簡涓€鍙溂鐪搞€?(br)鍥犺绁炶嚜鏈夊叏鐭ョ殑璇夋眰銆?(br)琚垱閫犲嚭鐨勮传寮变汉褰㈠彧鏈夊悜鍓嶇殑娉ㄧ洰銆?(br)鍞湁杩欎欢琛ｈ鑳藉皢鍏惰ˉ瓒炽€?(br2)$(br)涓嶆煋椴滆鑰屽叾寰勮嚜鐚╃孩锛?(br)钂欐槯鐨勫師缃鏈垜缁芥斁鍏朵腑銆?(br)鐒﹁簛鐨勫姏閲忓拰濂ユ湳鍏卞悓榧撳姩锛?(br)涓栫晫娉ㄥ畾鐨勫厛鍏嗕簬姝ゅ睍闇层€?
+        }
+    ]
+}

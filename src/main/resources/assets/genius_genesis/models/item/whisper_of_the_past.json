@@ -1,4 +1,4 @@
-﻿{
+{
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "genius_genesis:item/bow/whisper_of_the_past/bow"

@@ -5,13 +5,33 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "genius_genesis.refmap.json",
   "mixins": [
-    "ironsspellbooks.gui.arcane_anvil.ArcaneAnvilMenuMixin",
+    "minecraft.world.item.ItemStackMixin",
     "minecraft.ChatFormattingMixin",
-    "minecraft.world.item.ItemStackMixin"
+    "ironsspellbooks.gui.arcane_anvil.ArcaneAnvilMenuMixin",
+    "ironsspellbooks.spells.ender.MixinComet",
+    "ironsspellbooks.spells.ender.MixinStarfallSpell",
+    "ironsspellbooks.spells.fire.MixinFireBomb",
+    "ironsspellbooks.spells.fire.MixinFlamingStrikeSpell",
+    "ironsspellbooks.spells.fire.MixinMagmaBombSpell",
+    "ironsspellbooks.spells.fire.MixinScorchSpell",
+    "ironsspellbooks.spells.holy.MixinHealingCircleSpell",
+    "ironsspellbooks.spells.holy.MixinWispEntity",
+    "ironsspellbooks.spells.holy.MixinWispSpell",
+    "ironsspellbooks.spells.ice.MixinIceBlockProjectile",
+    "ironsspellbooks.spells.ice.MixinIceBlockSpell",
+    "ironsspellbooks.spells.ice.MixinIcicleProjectile",
+    "ironsspellbooks.spells.ice.MixinIcicleSpell",
+    "ironsspellbooks.spells.lightning.MixinThunderstormEffect",
+    "ironsspellbooks.spells.nature.MixinAcidOrbSpell",
+    "ironsspellbooks.spells.nature.MixinPoisonArrow",
+    "ironsspellbooks.spells.nature.MixinPoisonArrowSpell",
+    "ironsspellbooks.spells.nature.MixinPoisonSplash"
   ],
   "client": [
     "GameRendererMixin",
     "ItemRendererMixin",
+    "LevelRendererMixin",
+    "minecraft.client.renderer.ParticleEngineAccessor",
     "minecraft.client.gui.FontMixin"
   ],
   "injectors": {

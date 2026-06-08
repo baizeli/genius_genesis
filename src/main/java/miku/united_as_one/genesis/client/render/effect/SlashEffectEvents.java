@@ -1,8 +1,7 @@
 package miku.united_as_one.genesis.client.render.effect;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import miku.bai_ze_li.genesis.api.render.effect.SlashEffectManager;
-import miku.bai_ze_li.genesis.api.render.shader.GenesisShaderCompat;
+import miku.united_as_one.genesis.client.TrailRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
@@ -23,7 +22,7 @@ public final class SlashEffectEvents {
         if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_PARTICLES) {
             return;
         }
-        if (GenesisShaderCompat.shouldDeferWorldEffects()) {
+        if (TrailRender.shouldDeferWorldEffects()) {
             return;
         }
 
@@ -38,7 +37,7 @@ public final class SlashEffectEvents {
     }
 
     public static void renderDeferred(MultiBufferSource.BufferSource bufferSource, float partialTick) {
-        if (!GenesisShaderCompat.shouldDeferWorldEffects()) {
+        if (!TrailRender.shouldDeferWorldEffects()) {
             return;
         }
 
