@@ -395,5 +395,10 @@
   "itemGroup.genius_genesis_materials": "iron Spells: Genesis: Materials",
   "itemGroup.genius_genesis_equipment": "iron Spells: Genesis: Equipment",
   "upgrade.genius_genesis.divine_upgrade": "神圣升级",
-  "upgrade.genius_genesis.violet_upgrade": "紫极升级"
+  "upgrade.genius_genesis.violet_upgrade": "紫极升级",
+  "spell.genius_genesis.meteor": "陨星",
+  "entity.genius_genesis.chaos_sword": "七连地狱飞剑",
+  "entity.genius_genesis.chaos_sword_aoe": "七连地狱飞剑",
+  "entity.genius_genesis.meteor_projectile": "陨星",
+  "entity.genius_genesis.meteor_star": "陨星"
 }

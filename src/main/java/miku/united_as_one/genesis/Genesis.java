@@ -8,8 +8,13 @@ import miku.united_as_one.genesis.handlers.CommonEventHandler;
 import miku.united_as_one.genesis.network.GenesisNetwork;
 import miku.united_as_one.genesis.registries.BlockRegistry;
 import miku.united_as_one.genesis.registries.CreativeTabRegistry;
+import miku.united_as_one.genesis.registries.EntityRegistry;
+import miku.united_as_one.genesis.registries.GenesisParticles;
 import miku.united_as_one.genesis.registries.ItemRegistry;
+import miku.united_as_one.genesis.registries.SoundRegistry;
 import miku.united_as_one.genesis.registries.SpellAttributesRegistry;
+import miku.united_as_one.genesis.registries.SpellRegistry;
+import miku.united_as_one.genesis.registries.SpellSchoolRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -32,7 +37,12 @@ public class Genesis {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModEquipmentStatsConfigs.init();
+        SoundRegistry.register(modBus);
         SpellAttributesRegistry.register(modBus);
+        SpellSchoolRegistry.register(modBus);
+        SpellRegistry.register(modBus);
+        EntityRegistry.register(modBus);
+        GenesisParticles.register(modBus);
         BlockRegistry.register();
         ItemRegistry.register();
         CreativeTabRegistry.register();

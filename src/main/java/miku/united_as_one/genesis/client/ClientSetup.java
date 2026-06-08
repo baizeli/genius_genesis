@@ -1,15 +1,32 @@
 package miku.united_as_one.genesis.client;
 
+import miku.bai_ze_li.genesis.api.render.particle.GlowCubeParticle;
+import miku.bai_ze_li.genesis.api.render.shader.GenesisItemShaderEffect;
+import miku.bai_ze_li.genesis.api.render.shader.GenesisItemShaderRegistry;
+import io.redspace.ironsspellbooks.api.spells.ISpellContainer;
+import io.redspace.ironsspellbooks.api.spells.SchoolType;
+import io.redspace.ironsspellbooks.item.Scroll;
 import miku.united_as_one.genesis.client.render.cosmic.CosmicModelLoader;
+import miku.united_as_one.genesis.client.render.entity.ChaosSwordRenderer;
+import miku.united_as_one.genesis.client.render.entity.MeteorProjectileRenderer;
+import miku.united_as_one.genesis.client.render.entity.MeteorStarRenderer;
+import miku.united_as_one.genesis.client.render.entity.NoopRenderer;
 import miku.united_as_one.genesis.client.render.effect.SlashEffectEvents;
+import miku.united_as_one.genesis.registries.EntityRegistry;
+import miku.united_as_one.genesis.registries.GenesisParticles;
 import miku.united_as_one.genesis.registries.ItemRegistry;
+import miku.united_as_one.genesis.registries.SpellSchoolRegistry;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelEvent;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import org.joml.Vector4f;
 
 import java.util.stream.Stream;
 
@@ -21,6 +38,8 @@ public final class ClientSetup {
     public static void register(IEventBus modBus) {
         modBus.addListener(ClientSetup::clientSetup);
         modBus.addListener(ClientSetup::registerGeometryLoaders);
+        modBus.addListener(ClientSetup::registerEntityRenderers);
+        modBus.addListener(ClientSetup::registerParticleProviders);
         MinecraftForge.EVENT_BUS.addListener(SlashEffectEvents::onClientTick);
         MinecraftForge.EVENT_BUS.addListener(SlashEffectEvents::onRenderLevelStage);
         MinecraftForge.EVENT_BUS.addListener(SlashEffectEvents::onLevelUnload);
@@ -33,6 +52,20 @@ public final class ClientSetup {
                 ItemRegistry.WITCHCRAFT_BOW.get(),
                 ItemRegistry.FLAME_BOW.get()
         ).forEach(ClientSetup::registerBowProperties));
+        event.enqueueWork(ClientSetup::registerScrollShaderResolvers);
+    }
+
+    private static void registerScrollShaderResolvers() {
+        GenesisItemShaderRegistry.registerResolver(stack -> {
+            if (!(stack.getItem() instanceof Scroll)) {
+                return null;
+            }
+            SchoolType schoolType = ISpellContainer.getOrCreate(stack).getSpellAtIndex(0).getSpell().getSchoolType();
+            if (schoolType.equals(SpellSchoolRegistry.CELESTIAL_SOURCE.get())) {
+                return new GenesisItemShaderEffect(15, 0.6F, new Vector4f(0.1F, 0.1F, 0.1F, 1.0F));
+            }
+            return null;
+        });
     }
 
     private static void registerBowProperties(Item bow) {
@@ -49,5 +82,16 @@ public final class ClientSetup {
 
     private static void registerGeometryLoaders(ModelEvent.RegisterGeometryLoaders event) {
         event.register("cosmic", CosmicModelLoader.INSTANCE);
+    }
+
+    private static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(EntityRegistry.METEOR_PROJECTILE.get(), MeteorProjectileRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.METEOR_STAR.get(), MeteorStarRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD.get(), ChaosSwordRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD_AOE.get(), context -> new NoopRenderer<>(context));
+    }
+
+    private static void registerParticleProviders(RegisterParticleProvidersEvent event) {
+        Minecraft.getInstance().particleEngine.register(GenesisParticles.GLOW_CUBE.get(), GlowCubeParticle.Provider::new);
     }
 }

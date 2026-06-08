@@ -236,6 +236,14 @@
   "tooltip.genius_genesis.armor.celestial.set_1": "Single incoming hits cannot exceed 70% of max health",
   "tooltip.genius_genesis.armor.celestial.set_2": "Shows the celestial source halo while the full set is worn",
   "tooltip.genius_genesis.armor.chaos.set_1": "More effects will be added later",
-  "tooltip.genius_genesis.armor.arcane.set_1": "Keeps the original Arcane Crystal mana repair behavior"
+  "tooltip.genius_genesis.armor.arcane.set_1": "Keeps the original Arcane Crystal mana repair behavior",
+  "school.genius_genesis.chaos": "Chaos",
+  "school.genius_genesis.celestial_source": "Celestial Source",
+  "spell.genius_genesis.gutrender_puncture": "Gutrender Puncture",
+  "spell.genius_genesis.meteor": "Meteor",
+  "entity.genius_genesis.chaos_sword": "Gutrender Puncture",
+  "entity.genius_genesis.chaos_sword_aoe": "Gutrender Puncture",
+  "entity.genius_genesis.meteor_projectile": "Meteor",
+  "entity.genius_genesis.meteor_star": "Meteor"
 }
 

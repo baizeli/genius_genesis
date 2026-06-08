@@ -26,6 +26,7 @@ public class ModGenesisConfigProvider implements DataProvider {
 
         shader("violet_galaxy_ingot", 0, 0.6F, 0.0F, 0.02F, 0.03F, 1.0F, output, futures);
         shader("laevatain", 15, 0.6F, 0.1F, 0.1F, 0.1F, 1.0F, output, futures);
+        shader("scroll_celestial_source", 15, 0.6F, 0.1F, 0.1F, 0.1F, 1.0F, output, futures);
 
         outline("twisted_chaos_ingot", "black_red", output, futures);
         outline("mithril_sword", "blue_white", output, futures);

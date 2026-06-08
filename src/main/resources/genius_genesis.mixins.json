@@ -29,7 +29,8 @@
   "client": [
     "GameRendererMixin",
     "ItemRendererMixin",
-    "LevelRendererMixin"
+    "LevelRendererMixin",
+    "minecraft.client.renderer.ParticleEngineAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
