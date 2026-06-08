@@ -5,12 +5,14 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "genius_genesis.refmap.json",
   "mixins": [
-    "minecraft.world.item.ItemStackMixin",
-    "ironsspellbooks.gui.arcane_anvil.ArcaneAnvilMenuMixin"
+    "ironsspellbooks.gui.arcane_anvil.ArcaneAnvilMenuMixin",
+    "minecraft.ChatFormattingMixin",
+    "minecraft.world.item.ItemStackMixin"
   ],
   "client": [
     "GameRendererMixin",
-    "ItemRendererMixin"
+    "ItemRendererMixin",
+    "minecraft.client.gui.FontMixin"
   ],
   "injectors": {
     "defaultRequire": 1
