@@ -16,9 +16,6 @@ import miku.united_as_one.genesis.client.render.entity.MeteorStarRenderer;
 import miku.united_as_one.genesis.entity.spell.MeteorProjectileEntity;
 import miku.united_as_one.genesis.entity.spell.MeteorStarEntity;
 import miku.united_as_one.genesis.mixin.minecraft.client.renderer.ParticleEngineAccessor;
-import net.irisshaders.iris.Iris;
-import net.irisshaders.iris.api.v0.IrisApi;
-import net.irisshaders.iris.config.IrisConfig;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
@@ -30,12 +27,20 @@ import net.minecraftforge.fml.ModList;
 import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL11;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
 import java.util.Map;
 import java.util.Queue;
 
 public class TrailRender {
     public static boolean IRIS_Setup = ModList.get().isLoaded("oculus");
     private static RenderContext lastContext;
+
+    private static MethodHandle GET_CONFIG;
+    private static MethodHandle ARE_SHADERS_ENABLED;
+    private static MethodHandle GET_API_INSTANCE;
+    private static MethodHandle IS_SHADER_PACK_IN_USE;
+    private static boolean wasInit;
 
     public static void captureLevelRenderContext(PoseStack poseStack, float partialTick, Camera camera, Matrix4f projectionMatrix) {
         if (!shouldDeferWorldEffects()) {
@@ -59,11 +64,24 @@ public class TrailRender {
         }
 
         try {
-            IrisConfig irisConfig = Iris.getIrisConfig();
-            if (!irisConfig.areShadersEnabled()) {
+            if (!wasInit) { // TODO: 可能有bug，记得验证边界情况
+                wasInit = true;
+                Class<?> irisConfigClass = Class.forName("net.irisshaders.iris.config.IrisConfig");
+                Class<?> irisClass = Class.forName("net.irisshaders.iris.Iris");
+                Class<?> irisApiClass = Class.forName("net.irisshaders.iris.api.v0.IrisApi");
+
+                MethodHandles.Lookup lookup = MethodHandles.publicLookup();
+
+                GET_CONFIG = lookup.unreflect(irisClass.getMethod("getIrisConfig"));
+                ARE_SHADERS_ENABLED = lookup.unreflect(irisConfigClass.getMethod("areShadersEnabled"));
+                GET_API_INSTANCE = lookup.unreflect(irisApiClass.getMethod("getInstance"));
+                IS_SHADER_PACK_IN_USE = lookup.unreflect(irisApiClass.getMethod("isShaderPackInUse"));
+            }
+
+            if (!(boolean)ARE_SHADERS_ENABLED.invoke(GET_CONFIG.invoke())) {
                 return false;
             }
-            return IrisApi.getInstance().isShaderPackInUse() || irisConfig.areShadersEnabled();
+            return (boolean) IS_SHADER_PACK_IN_USE.invoke(GET_API_INSTANCE.invoke());
         } catch (Throwable ignored) {
             return false;
         }
@@ -130,6 +148,8 @@ public class TrailRender {
 
     private static void renderDeferredEntityTrails(Minecraft minecraft, Camera camera, MultiBufferSource bufferSource, float partialTicks) {
         Vec3 cameraPos = camera.getPosition();
+        if (minecraft.level == null)
+            return;
         for (Entity entity : minecraft.level.entitiesForRendering()) {
             if (entity == null) {
                 continue;
