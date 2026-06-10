@@ -49,7 +49,7 @@ public abstract class FontMixin {
 
                 if (shadow) {
                     FontUtil.renderText(charSeq, currentX[0] + xOffset, y + yOffset, 0, true, matrix, buffer, mode, overlay, light, index, 1);
-                    pose.translate(Font.SHADOW_OFFSET);
+                    pose.translate(FontAccessor.genesis$getShadowOffset());
                 }
                 currentX[0] = FontUtil.renderText(charSeq, currentX[0] + xOffset, y + yOffset, 0, false, pose, buffer, mode, overlay, light, index, 1);
             } else if (genesis$isCelestialWave(style)) {
@@ -57,15 +57,15 @@ public abstract class FontMixin {
 
                 if (shadow) {
                     FontUtil.renderText(charSeq, currentX[0], y + yOffset, 0, true, matrix, buffer, mode, overlay, light, index, 2);
-                    pose.translate(Font.SHADOW_OFFSET);
+                    pose.translate(FontAccessor.genesis$getShadowOffset());
                 }
                 currentX[0] = FontUtil.renderText(charSeq, currentX[0], y + yOffset, 0, false, pose, buffer, mode, overlay, light, index, 2);
             } else {
-                int finalColor = Font.adjustColor(color);
+                int finalColor = FontAccessor.genesis$adjustColor(color);
 
                 if (shadow) {
                     this.renderText(charSeq, currentX[0], y, finalColor, true, matrix, buffer, mode, overlay, light);
-                    pose.translate(Font.SHADOW_OFFSET);
+                    pose.translate(FontAccessor.genesis$getShadowOffset());
                 }
                 currentX[0] = this.renderText(charSeq, currentX[0], y, finalColor, false, pose, buffer, mode, overlay, light);
             }
@@ -80,7 +80,7 @@ public abstract class FontMixin {
         if (style.getColor() == null) {
             return false;
         }
-        return Objects.equals(style.getColor().name, Formatting.BLOOD_WAVE.getName());
+        return Objects.equals(((TextColorAccessor) (Object) style.getColor()).genesis$name(), Formatting.BLOOD_WAVE.getName());
     }
 
     @Unique
@@ -88,6 +88,6 @@ public abstract class FontMixin {
         if (style.getColor() == null) {
             return false;
         }
-        return Objects.equals(style.getColor().name, Formatting.CELESTIAL_WAVE.getName());
+        return Objects.equals(((TextColorAccessor) (Object) style.getColor()).genesis$name(), Formatting.CELESTIAL_WAVE.getName());
     }
 }

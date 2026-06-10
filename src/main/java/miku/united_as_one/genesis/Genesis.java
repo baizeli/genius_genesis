@@ -15,6 +15,7 @@ import miku.united_as_one.genesis.registries.SoundRegistry;
 import miku.united_as_one.genesis.registries.SpellAttributesRegistry;
 import miku.united_as_one.genesis.registries.SpellRegistry;
 import miku.united_as_one.genesis.registries.SpellSchoolRegistry;
+import miku.united_as_one.genesis.fluid.FluidRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -45,6 +46,7 @@ public class Genesis {
         GenesisParticles.register(modBus);
         BlockRegistry.register();
         ItemRegistry.register();
+        FluidRegistry.register();
         CreativeTabRegistry.register();
         GenesisNetwork.register();
 

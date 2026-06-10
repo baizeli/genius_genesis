@@ -1,0 +1,10 @@
+{
+  "values": [
+    "genius_genesis:flowing_source_fluid",
+    "genius_genesis:source_fluid",
+    "genius_genesis:flowing_blackwater_fluid",
+    "genius_genesis:blackwater_fluid",
+    "genius_genesis:flowing_blood_fluid",
+    "genius_genesis:blood_fluid"
+  ]
+}

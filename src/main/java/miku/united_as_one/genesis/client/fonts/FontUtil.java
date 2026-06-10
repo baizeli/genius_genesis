@@ -18,6 +18,8 @@ import net.minecraft.util.StringDecomposer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix4f;
+import miku.united_as_one.genesis.mixin.minecraft.client.gui.BakedGlyphAccessor;
+import miku.united_as_one.genesis.mixin.minecraft.client.gui.FontAccessor;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -26,11 +28,11 @@ public class FontUtil {
     private static final Font font = Minecraft.getInstance().font;
 
     public static int drawInternal(FormattedCharSequence text, float x, float y, int color, boolean dropShadow, Matrix4f matrix, MultiBufferSource buffer, Font.DisplayMode displayMode, int backgroundColor, int packedLightCoords, int index, int type) {
-        color = Font.adjustColor(color);
+        color = FontAccessor.genesis$adjustColor(color);
         Matrix4f matrix4f = new Matrix4f(matrix);
         if (dropShadow) {
             renderText(text, x, y, color, true, matrix, buffer, displayMode, backgroundColor, packedLightCoords, index, type);
-            matrix4f.translate(Font.SHADOW_OFFSET);
+            matrix4f.translate(FontAccessor.genesis$getShadowOffset());
         }
 
         x = renderText(text, x, y, color, false, matrix4f, buffer, displayMode, backgroundColor, packedLightCoords, index, type);
@@ -99,8 +101,9 @@ public class FontUtil {
 
         @Override
         public boolean accept(int pos, Style style, int codePoint) {
-            FontSet fontSet = font.getFontSet(style.getFont());
-            GlyphInfo glyphInfo = fontSet.getGlyphInfo(codePoint, font.filterFishyGlyphs);
+            FontAccessor fontAccessor = (FontAccessor) font;
+            FontSet fontSet = fontAccessor.genesis$getFontSet(style.getFont());
+            GlyphInfo glyphInfo = fontSet.getGlyphInfo(codePoint, fontAccessor.genesis$filterFishyGlyphs());
             BakedGlyph baked = style.isObfuscated() && codePoint != ' '
                     ? fontSet.getRandomGlyph(glyphInfo)
                     : fontSet.getGlyph(codePoint);
@@ -144,34 +147,35 @@ public class FontUtil {
         private void renderMultiSegment(BakedGlyph glyph, boolean italic, float x, float y,
                                         Matrix4f matrix, VertexConsumer buffer, int[] colors,
                                         int packedLight) {
-            float left = x + glyph.left;
-            float right = x + glyph.right;
-            float top = y + glyph.up - 3.0F;
-            float bottom = y + glyph.down - 3.0F;
+            BakedGlyphAccessor accessor = (BakedGlyphAccessor) glyph;
+            float left = x + accessor.genesis$left();
+            float right = x + accessor.genesis$right();
+            float top = y + accessor.genesis$up() - 3.0F;
+            float bottom = y + accessor.genesis$down() - 3.0F;
 
             // 斜体偏移
-            float italicTop = italic ? 1.0F - 0.25F * glyph.up : 0.0F;
-            float italicBottom = italic ? 1.0F - 0.25F * glyph.down : 0.0F;
+            float italicTop = italic ? 1.0F - 0.25F * accessor.genesis$up() : 0.0F;
+            float italicBottom = italic ? 1.0F - 0.25F * accessor.genesis$down() : 0.0F;
 
             // 每段的宽度和UV跨度
             float segmentWidth = (right - left) / SEGMENTS;
-            float segmentU = (glyph.u1 - glyph.u0) / SEGMENTS;
+            float segmentU = (accessor.genesis$u1() - accessor.genesis$u0()) / SEGMENTS;
 
             // 为每段生成四边形
             for (int i = 0; i < SEGMENTS; i++) {
                 float x0 = left + i * segmentWidth;
                 float x1 = left + (i + 1) * segmentWidth;
-                float u0 = glyph.u0 + i * segmentU;
-                float u1 = glyph.u0 + (i + 1) * segmentU;
+                float u0 = accessor.genesis$u0() + i * segmentU;
+                float u1 = accessor.genesis$u0() + (i + 1) * segmentU;
 
                 float[] colLeft = unpack(colors[i]);
                 float[] colRight = unpack(colors[i + 1]);
 
                 // 四个顶点
-                buffer.vertex(matrix, x0 + italicTop, top, 0.0F).color(colLeft[0], colLeft[1], colLeft[2], colLeft[3]).uv(u0, glyph.v0).uv2(packedLight).endVertex();
-                buffer.vertex(matrix, x0 + italicBottom, bottom, 0.0F).color(colLeft[0], colLeft[1], colLeft[2], colLeft[3]).uv(u0, glyph.v1).uv2(packedLight).endVertex();
-                buffer.vertex(matrix, x1 + italicBottom, bottom, 0.0F).color(colRight[0], colRight[1], colRight[2], colRight[3]).uv(u1, glyph.v1).uv2(packedLight).endVertex();
-                buffer.vertex(matrix, x1 + italicTop, top, 0.0F).color(colRight[0], colRight[1], colRight[2], colRight[3]).uv(u1, glyph.v0).uv2(packedLight).endVertex();
+                buffer.vertex(matrix, x0 + italicTop, top, 0.0F).color(colLeft[0], colLeft[1], colLeft[2], colLeft[3]).uv(u0, accessor.genesis$v0()).uv2(packedLight).endVertex();
+                buffer.vertex(matrix, x0 + italicBottom, bottom, 0.0F).color(colLeft[0], colLeft[1], colLeft[2], colLeft[3]).uv(u0, accessor.genesis$v1()).uv2(packedLight).endVertex();
+                buffer.vertex(matrix, x1 + italicBottom, bottom, 0.0F).color(colRight[0], colRight[1], colRight[2], colRight[3]).uv(u1, accessor.genesis$v1()).uv2(packedLight).endVertex();
+                buffer.vertex(matrix, x1 + italicTop, top, 0.0F).color(colRight[0], colRight[1], colRight[2], colRight[3]).uv(u1, accessor.genesis$v0()).uv2(packedLight).endVertex();
             }
         }
 
@@ -194,7 +198,7 @@ public class FontUtil {
             }
 
             if (this.effects != null) {
-                BakedGlyph bakedglyph = font.getFontSet(Style.DEFAULT_FONT).whiteGlyph();
+                BakedGlyph bakedglyph = ((FontAccessor) font).genesis$getFontSet(Style.DEFAULT_FONT).whiteGlyph();
                 VertexConsumer vertexconsumer = this.bufferSource.getBuffer(bakedglyph.renderType(this.mode));
 
                 for(BakedGlyph.Effect bakedglyph$effect : this.effects) {

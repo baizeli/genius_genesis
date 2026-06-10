@@ -32,7 +32,10 @@
     "ItemRendererMixin",
     "LevelRendererMixin",
     "minecraft.client.renderer.ParticleEngineAccessor",
-    "minecraft.client.gui.FontMixin"
+    "minecraft.client.gui.BakedGlyphAccessor",
+    "minecraft.client.gui.FontAccessor",
+    "minecraft.client.gui.FontMixin",
+    "minecraft.client.gui.TextColorAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

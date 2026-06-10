@@ -77,7 +77,7 @@ public final class ItemRegistry {
     public static final ItemEntry<Item> GOOD_CAKE = simple("good_cake", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> CRYSTAL_FRUIT = simple("crystal_fruit", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> PHANTOM_PLUM = simple("phantom_plum", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
-    // 彩色果实
+    //
     public static final ItemEntry<Item> COLORFUL_FRUITS = simple("colorful_fruits", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     // 高级法球
     public static final ItemEntry<Item> UPGRADE_ORB_PRO = epic16("upgrade_orb_pro", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
