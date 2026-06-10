@@ -1,4 +1,5 @@
-// 1.20.1	2026-06-05T08:05:00.4901716	Tags for minecraft:item mod id genius_genesis
+// 1.20.1	2026-06-08T20:17:13.3656766	Tags for minecraft:item mod id genius_genesis
 97bdbd8726508b4096d7bdf817378e24c98922af data/curios/tags/items/crown.json
-aead263c6231cf91d63b5c92400d360404ce846b data/curios/tags/items/magic_guide.json
+a082fcec255c4bb87c62dace3f1676c317b73009 data/curios/tags/items/magic_guide.json
+d6e1370dffb4126aaf00137821f59cb1a0db5664 data/curios/tags/items/ring.json
 6a8b3815ea625cc6470b26e43f04912e219465e4 data/curios/tags/items/spellbook.json

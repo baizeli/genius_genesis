@@ -1,6 +1,5 @@
 package miku.united_as_one.genesis.client.render.cosmic;
 
-import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -261,7 +260,7 @@ public final class CosmicBakedModel implements BakedModel {
                             entry.getValue(),
                             sprite,
                             entry.getKey(),
-                            new PerspectiveModelState(ImmutableMap.of()),
+                            new PerspectiveModelState(Map.of()),
                             element.rotation,
                             element.shade,
                             ResourceLocation.fromNamespaceAndPath(Genesis.MOD_ID, "dynamic")

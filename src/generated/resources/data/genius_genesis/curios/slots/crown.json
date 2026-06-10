@@ -1,9 +1,11 @@
 {
+  "add_cosmetic": false,
+  "conditions": [],
   "icon": "curios:slot/crown_slot",
+  "operation": "SET",
   "order": 41,
+  "render_toggle": true,
   "replace": false,
   "size": 1,
-  "validators": [
-    "curios:tag"
-  ]
+  "use_native_gui": true
 }

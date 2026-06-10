@@ -1,6 +1,7 @@
 {
+  "conditions": [],
   "entities": [
-    "player"
+    "minecraft:player"
   ],
   "slots": [
     "spellbook",

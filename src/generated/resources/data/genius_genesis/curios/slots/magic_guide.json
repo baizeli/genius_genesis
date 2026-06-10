@@ -1,9 +1,11 @@
 {
+  "add_cosmetic": false,
+  "conditions": [],
   "icon": "curios:slot/magic_guide_slot",
+  "operation": "SET",
   "order": 201,
+  "render_toggle": true,
   "replace": false,
   "size": 2,
-  "validators": [
-    "curios:tag"
-  ]
+  "use_native_gui": true
 }

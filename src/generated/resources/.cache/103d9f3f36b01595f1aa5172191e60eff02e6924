@@ -1,4 +1,4 @@
-// 1.20.1	2026-06-06T20:11:29.7896282	Registries
+// 1.20.1	2026-06-08T23:09:04.1100272	Registries
 3c5acad2c2e4d5ddf620d114ad4d2873bd526377 data/genius_genesis/damage_type/celestial_source_magic.json
 9ba87010fa2fcd16533030387e2d0a5a4c10cff4 data/genius_genesis/damage_type/chaos_magic.json
 dc0903ceba9a8845b1d529070cadbf8ab10b39bb data/genius_genesis/irons_spellbooks/upgrade_orb_type/blood_spell_penetration.json
@@ -14,3 +14,6 @@ b96f7074a2433f06d42782e6afb3e0867b550322 data/genius_genesis/irons_spellbooks/up
 8f40de08b3f61f505fb8566938fc6acf1745f513 data/genius_genesis/irons_spellbooks/upgrade_orb_type/ice_spell_penetration.json
 219ffb5b842d491fd0283d0447acf36f39d3b364 data/genius_genesis/irons_spellbooks/upgrade_orb_type/nature_spell_penetration.json
 8f58f9e003466d8ac66eb1971c963fb3a77714f1 data/genius_genesis/irons_spellbooks/upgrade_orb_type/thunder_spell_penetration.json
+e0b2a0aa62fbc858891665bba8d9213d64cc5aa9 data/genius_genesis/worldgen/structure/desert_tower.json
+a1f8b381ccf92fb240c58b9f8af0f0def59cf806 data/genius_genesis/worldgen/structure_set/desert_tower.json
+67c5150c537a97125a1dc6f0129ad588d6149fd4 data/genius_genesis/worldgen/template_pool/desert_tower.json
