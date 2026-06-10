@@ -21,6 +21,17 @@
     "genius_genesis:quietness_vertical_slab",
     "genius_genesis:quietness_trapdoor",
     "genius_genesis:quietness_door",
-    "genius_genesis:quietness_fence"
+    "genius_genesis:quietness_fence",
+    "genius_genesis:source_log",
+    "genius_genesis:stripped_source_log",
+    "genius_genesis:source_log_wood",
+    "genius_genesis:stripped_source_log_wood",
+    "genius_genesis:source_planks",
+    "genius_genesis:source_stairs",
+    "genius_genesis:source_slab",
+    "genius_genesis:source_vertical_slab",
+    "genius_genesis:source_trapdoor",
+    "genius_genesis:source_door",
+    "genius_genesis:source_fence"
   ]
 }

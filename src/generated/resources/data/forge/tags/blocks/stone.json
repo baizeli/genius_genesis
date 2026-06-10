@@ -11,6 +11,8 @@
     "genius_genesis:smooth_deep_fear_stone",
     "genius_genesis:deep_fear_stone_bricks",
     "genius_genesis:cracked_deep_fear_stone_bricks",
-    "genius_genesis:sway_stone"
+    "genius_genesis:sway_stone",
+    "genius_genesis:source_stone",
+    "genius_genesis:source_bricks"
   ]
 }

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "genius_genesis:source_stone"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "genius_genesis:source_stone_vertical_slab"
+  }
+}

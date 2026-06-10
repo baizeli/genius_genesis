@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraftforge.common.Tags;
 
 public final class BlockRegistry {
 
@@ -41,6 +42,20 @@ public final class BlockRegistry {
     // 自然方块
     public static final SimpleBlockSet<Block> GENESIS_DIRT = SimpleBlockSet.buildDirt("genesis", Blocks.DIRT).addGrassVariant("sway").addGrassVariant("quietness");
     public static final SimpleBlockSet<Block> SOURCE_DIRT = SimpleBlockSet.buildDirt("source", Blocks.DIRT).addGrass();
+    public static final SimpleBlockSet<Block> SOURCE_SAND = SimpleBlockSet.buildSimple("source_sand", Blocks.SAND, BlockTags.SAND, Tags.Items.SAND, BlockTags.MINEABLE_WITH_SHOVEL);
+    public static final SimpleBlockSet<Block> SOURCE_STONE = SimpleBlockSet.buildStone("source_stone", Blocks.STONE).simpleStone();
+    public static final SimpleBlockSet<Block> SOURCE_BRICKS = SimpleBlockSet.buildStone("source_bricks", Blocks.STONE_BRICKS).simpleStone();
+    public static final SimpleBlockSet<RotatedPillarBlock> SOURCE_LOG = SimpleBlockSet.buildLog("source_log", Blocks.OAK_LOG).addStrippedLog().addWood().addStrippedWood();
+    public static final SimpleBlockSet<Block> SOURCE_PLANKS = SimpleBlockSet.buildPlanks("source", Blocks.OAK_PLANKS).simplePlank(BlockSetType.OAK);
+    public static final BlockEntry<Block> SOURCE_CRYSTAL_BLOCK = Genesis.L2_REGISTRATE
+            .block("source_crystal_block", Block::new)
+            .initialProperties(() -> Blocks.AMETHYST_BLOCK)
+            .properties(properties -> properties.lightLevel(state -> 9).strength(5.0F, 6.0F).requiresCorrectToolForDrops())
+            .tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL)
+            .item()
+            .tab(CreativeTabRegistry.GENIUS_GENESIS_BLOCK)
+            .build()
+            .register();
 
     // 奥术水晶矿石
     public static final BlockEntry<DropExperienceBlock> ARCANE_CRYSTAL_ORE =

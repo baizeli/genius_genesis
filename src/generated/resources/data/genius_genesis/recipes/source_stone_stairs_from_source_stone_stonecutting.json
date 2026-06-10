@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "genius_genesis:source_stone"
+  },
+  "result": "genius_genesis:source_stone_stairs"
+}

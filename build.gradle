@@ -210,7 +210,6 @@ dependencies {
     modImplementation "curse.maven:curios-309927:6418456"
     modImplementation "curse.maven:irons-spells-n-spellbooks-855414:7907340"
     modImplementation "curse.maven:irons-lib-1492763:8156266"
-
     modImplementation "curse.maven:embeddium-908741:5681725"
     modImplementation "curse.maven:oculus-581495:6020952"
     modImplementation "curse.maven:better-brightness-slider-685037:4656287"

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "genius_genesis:block/source_bricks_slab"
+    },
+    "type=double": {
+      "model": "genius_genesis:block/source_bricks"
+    },
+    "type=top": {
+      "model": "genius_genesis:block/source_bricks_slab_top"
+    }
+  }
+}

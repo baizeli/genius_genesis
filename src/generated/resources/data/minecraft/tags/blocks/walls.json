@@ -8,6 +8,8 @@
     "genius_genesis:smooth_deep_fear_stone_wall",
     "genius_genesis:deep_fear_stone_bricks_wall",
     "genius_genesis:cracked_deep_fear_stone_bricks_wall",
-    "genius_genesis:sway_stone_wall"
+    "genius_genesis:sway_stone_wall",
+    "genius_genesis:source_stone_wall",
+    "genius_genesis:source_bricks_wall"
   ]
 }
