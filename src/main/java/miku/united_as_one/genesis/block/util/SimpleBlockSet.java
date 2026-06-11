@@ -18,7 +18,9 @@ import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @SuppressWarnings("UnusedReturnValue")
@@ -40,6 +42,7 @@ public class SimpleBlockSet<T extends Block> {
     @Nullable private BlockEntry<RotatedPillarBlock> wood;
     @Nullable private BlockEntry<RotatedPillarBlock> strippedWood;
     private final List<BlockEntry<GrassBlock>> grassVariants = new ArrayList<>();
+    private final Map<String, BlockEntry<GrassBlock>> grassVariantsByName = new LinkedHashMap<>();
 
     @Nullable private BlockEntry<DoorBlock> door;
 
@@ -325,6 +328,7 @@ public class SimpleBlockSet<T extends Block> {
                 .build()
                 .register();
         grassVariants.add(variant);
+        grassVariantsByName.put(variantName, variant);
         return this;
     }
 
@@ -342,4 +346,5 @@ public class SimpleBlockSet<T extends Block> {
     public Optional<BlockEntry<LeavesBlock>> getLeaves() { return Optional.ofNullable(leaves); }
     public Optional<BlockEntry<GrassBlock>> getGrass() { return Optional.ofNullable(grass); }
     public List<BlockEntry<GrassBlock>> getGrassVariants() { return grassVariants; }
+    public Optional<BlockEntry<GrassBlock>> getGrassVariant(String variantName) { return Optional.ofNullable(grassVariantsByName.get(variantName)); }
 }

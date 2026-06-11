@@ -1,2 +1,9 @@
-// 1.20.1	2026-06-08T23:09:04.1130189	Tags for minecraft:worldgen/biome mod id genius_genesis
+// 1.20.1	2026-06-11T21:38:23.7609987	Tags for minecraft:worldgen/biome mod id genius_genesis
 f3ef2895c49e29111297e950661e5bc71a79989e data/genius_genesis/tags/worldgen/biome/has_structure/desert_tower.json
+3783c2e2086fdce08b237fb0588f3dd83df0854b data/minecraft/tags/worldgen/biome/has_structure/bastion_remnant.json
+3783c2e2086fdce08b237fb0588f3dd83df0854b data/minecraft/tags/worldgen/biome/has_structure/nether_fortress.json
+3783c2e2086fdce08b237fb0588f3dd83df0854b data/minecraft/tags/worldgen/biome/has_structure/ruined_portal_nether.json
+a99708a5b005f5122ea0505f0e036b8b0ec2480b data/minecraft/tags/worldgen/biome/is_forest.json
+3783c2e2086fdce08b237fb0588f3dd83df0854b data/minecraft/tags/worldgen/biome/is_nether.json
+2828ecad4a0308f985a60ddd3cb5040e7505e386 data/minecraft/tags/worldgen/biome/is_overworld.json
+2828ecad4a0308f985a60ddd3cb5040e7505e386 data/minecraft/tags/worldgen/biome/without_patrol_spawns.json

@@ -1,0 +1,12 @@
+{
+  "feature": "genius_genesis:quietness_horror_tree",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 3
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

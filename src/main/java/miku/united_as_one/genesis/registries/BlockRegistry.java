@@ -3,12 +3,17 @@ package miku.united_as_one.genesis.registries;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.block.util.SimpleBlockSet;
+import miku.united_as_one.genesis.worldgen.SourceTreeGrower;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.GrassBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraftforge.common.Tags;
@@ -41,12 +46,27 @@ public final class BlockRegistry {
 
     // 自然方块
     public static final SimpleBlockSet<Block> GENESIS_DIRT = SimpleBlockSet.buildDirt("genesis", Blocks.DIRT).addGrassVariant("sway").addGrassVariant("quietness");
+    public static final BlockEntry<GrassBlock> QUIETNESS_GRASS = GENESIS_DIRT.getGrassVariant("quietness").orElseThrow();
     public static final SimpleBlockSet<Block> SOURCE_DIRT = SimpleBlockSet.buildDirt("source", Blocks.DIRT).addGrass();
     public static final SimpleBlockSet<Block> SOURCE_SAND = SimpleBlockSet.buildSimple("source_sand", Blocks.SAND, BlockTags.SAND, Tags.Items.SAND, BlockTags.MINEABLE_WITH_SHOVEL);
     public static final SimpleBlockSet<Block> SOURCE_STONE = SimpleBlockSet.buildStone("source_stone", Blocks.STONE).simpleStone();
     public static final SimpleBlockSet<Block> SOURCE_BRICKS = SimpleBlockSet.buildStone("source_bricks", Blocks.STONE_BRICKS).simpleStone();
     public static final SimpleBlockSet<RotatedPillarBlock> SOURCE_LOG = SimpleBlockSet.buildLog("source_log", Blocks.OAK_LOG).addStrippedLog().addWood().addStrippedWood();
     public static final SimpleBlockSet<Block> SOURCE_PLANKS = SimpleBlockSet.buildPlanks("source", Blocks.OAK_PLANKS).simplePlank(BlockSetType.OAK);
+    public static final BlockEntry<SaplingBlock> SOURCE_SAPLING = Genesis.L2_REGISTRATE
+            .block("source_sapling", properties -> new SaplingBlock(new SourceTreeGrower(), properties))
+            .initialProperties(() -> Blocks.OAK_SAPLING)
+            .addLayer(() -> RenderType::cutout)
+            .blockstate((ctx, pvd) -> pvd.simpleBlock(
+                    ctx.get(),
+                    pvd.models().cross(ctx.getName(), pvd.mcLoc("block/oak_sapling")).renderType("cutout")
+            ))
+            .tag(BlockTags.SAPLINGS)
+            .item()
+            .tab(CreativeTabRegistry.GENIUS_GENESIS_BLOCK)
+            .tag(ItemTags.SAPLINGS)
+            .build()
+            .register();
     public static final BlockEntry<Block> SOURCE_CRYSTAL_BLOCK = Genesis.L2_REGISTRATE
             .block("source_crystal_block", Block::new)
             .initialProperties(() -> Blocks.AMETHYST_BLOCK)

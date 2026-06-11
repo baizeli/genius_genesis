@@ -3,6 +3,7 @@ package miku.united_as_one.genesis.data.datagen.provider;
 import io.redspace.ironsspellbooks.registries.UpgradeOrbTypeRegistry;
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.data.damage.DamageTypes;
+import miku.united_as_one.genesis.worldgen.ModBiomes;
 import miku.united_as_one.genesis.worldgen.ModWorldgen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -17,6 +18,9 @@ public class ModDatapackEntriesProvider extends DatapackBuiltinEntriesProvider {
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.DAMAGE_TYPE, DamageTypes::bootstrap)
             .add(UpgradeOrbTypeRegistry.UPGRADE_ORB_REGISTRY_KEY, ModUpgradeOrbTypeProvider::bootstrap)
+            .add(Registries.CONFIGURED_FEATURE, ModWorldgen::bootstrapConfiguredFeatures)
+            .add(Registries.PLACED_FEATURE, ModWorldgen::bootstrapPlacedFeatures)
+            .add(Registries.BIOME, ModBiomes::bootstrap)
             .add(Registries.TEMPLATE_POOL, ModWorldgen::bootstrapTemplatePools)
             .add(Registries.STRUCTURE, ModWorldgen::bootstrapStructures)
             .add(Registries.STRUCTURE_SET, ModWorldgen::bootstrapStructureSets);

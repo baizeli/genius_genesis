@@ -2,13 +2,42 @@ package miku.united_as_one.genesis.worldgen;
 
 import com.mojang.datafixers.util.Pair;
 import miku.united_as_one.genesis.Genesis;
+import miku.united_as_one.genesis.fluid.FluidRegistry;
+import miku.united_as_one.genesis.registries.BlockRegistry;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.Pools;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.LakeFeature;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.treedecorators.AttachedToLeavesDecorator;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
+import net.minecraft.world.level.levelgen.placement.CountPlacement;
+import net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -22,9 +51,11 @@ import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.valueproviders.ConstantInt;
 
 import java.util.List;
 import java.util.Map;
+import java.util.OptionalInt;
 
 public final class ModWorldgen {
     private static final int DESERT_TOWER_POOL_WEIGHT = 1;
@@ -36,9 +67,140 @@ public final class ModWorldgen {
     public static final ResourceKey<StructureTemplatePool> DESERT_TOWER_POOL = templatePool("desert_tower");
     public static final ResourceKey<Structure> DESERT_TOWER_STRUCTURE = structure("desert_tower");
     public static final ResourceKey<StructureSet> DESERT_TOWER_STRUCTURE_SET = structureSet("desert_tower");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SOURCE_TREE = configuredFeature("source_tree");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SOURCE_BIG_TREE = configuredFeature("source_big_tree");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SOURCE_TALL_TREE = configuredFeature("source_tall_tree");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SOURCE_FOREST_ROCK = configuredFeature("source_forest_rock");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SOURCE_POOL = configuredFeature("source_pool");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SOURCE_FOREST_TERRAIN = configuredFeature("source_forest_terrain");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> QUIETNESS_HORROR_TREE = configuredFeature("quietness_horror_tree");
+    public static final ResourceKey<PlacedFeature> SOURCE_TREE_PLACED = placedFeature("source_tree");
+    public static final ResourceKey<PlacedFeature> SOURCE_BIG_TREE_PLACED = placedFeature("source_big_tree");
+    public static final ResourceKey<PlacedFeature> SOURCE_TALL_TREE_PLACED = placedFeature("source_tall_tree");
+    public static final ResourceKey<PlacedFeature> SOURCE_FOREST_ROCK_PLACED = placedFeature("source_forest_rock");
+    public static final ResourceKey<PlacedFeature> SOURCE_POOL_PLACED = placedFeature("source_pool");
+    public static final ResourceKey<PlacedFeature> SOURCE_FOREST_TERRAIN_PLACED = placedFeature("source_forest_terrain");
+    public static final ResourceKey<PlacedFeature> QUIETNESS_HORROR_TREE_PLACED = placedFeature("quietness_horror_tree");
     public static final TagKey<Biome> HAS_DESERT_TOWER = TagKey.create(Registries.BIOME, Genesis.id("has_structure/desert_tower"));
 
     private ModWorldgen() {
+    }
+
+    public static void bootstrapConfiguredFeatures(BootstapContext<ConfiguredFeature<?, ?>> context) {
+        BlockState sourceFluid = FluidRegistry.SOURCE_FLUID.getSource().defaultFluidState().createLegacyBlock();
+
+        context.register(SOURCE_FOREST_TERRAIN, new ConfiguredFeature<>(
+                ModFeatures.SOURCE_FOREST_TERRAIN.get(),
+                NoneFeatureConfiguration.INSTANCE
+        ));
+        context.register(SOURCE_TREE, new ConfiguredFeature<>(
+                ModFeatures.SOURCE_SKYRIS_TREE.get(),
+                NoneFeatureConfiguration.INSTANCE
+        ));
+        context.register(SOURCE_BIG_TREE, new ConfiguredFeature<>(
+                ModFeatures.SOURCE_SKYRIS_TREE.get(),
+                NoneFeatureConfiguration.INSTANCE
+        ));
+        context.register(SOURCE_TALL_TREE, new ConfiguredFeature<>(
+                ModFeatures.SOURCE_SKYRIS_TREE.get(),
+                NoneFeatureConfiguration.INSTANCE
+        ));
+        context.register(SOURCE_FOREST_ROCK, new ConfiguredFeature<>(
+                Feature.FOREST_ROCK,
+                new BlockStateConfiguration(BlockRegistry.SOURCE_STONE.getBase().get().defaultBlockState())
+        ));
+        context.register(SOURCE_POOL, new ConfiguredFeature<>(
+                Feature.LAKE,
+                new LakeFeature.Configuration(
+                        BlockStateProvider.simple(sourceFluid),
+                        BlockStateProvider.simple(BlockRegistry.SOURCE_STONE.getBase().get())
+                )
+        ));
+        context.register(QUIETNESS_HORROR_TREE, new ConfiguredFeature<>(
+                ModFeatures.QUIETNESS_HORROR_TREE.get(),
+                NoneFeatureConfiguration.INSTANCE
+        ));
+    }
+
+    public static void bootstrapPlacedFeatures(BootstapContext<PlacedFeature> context) {
+        HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
+        BlockPredicateFilter sourceForestGround = BlockPredicateFilter.forPredicate(sourceForestTreeGround());
+
+        context.register(SOURCE_FOREST_TERRAIN_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(SOURCE_FOREST_TERRAIN),
+                List.of()
+        ));
+        context.register(SOURCE_TREE_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(SOURCE_TREE),
+                List.of(
+                        CountPlacement.of(1),
+                        InSquarePlacement.spread(),
+                        SurfaceWaterDepthFilter.forMaxDepth(0),
+                        PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,
+                        sourceForestGround,
+                        BiomeFilter.biome()
+                )
+        ));
+        context.register(SOURCE_BIG_TREE_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(SOURCE_BIG_TREE),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(8),
+                        InSquarePlacement.spread(),
+                        SurfaceWaterDepthFilter.forMaxDepth(0),
+                        PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,
+                        sourceForestGround,
+                        BiomeFilter.biome()
+                )
+        ));
+        context.register(SOURCE_TALL_TREE_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(SOURCE_TALL_TREE),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(5),
+                        InSquarePlacement.spread(),
+                        SurfaceWaterDepthFilter.forMaxDepth(0),
+                        PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,
+                        sourceForestGround,
+                        BiomeFilter.biome()
+                )
+        ));
+        context.register(SOURCE_FOREST_ROCK_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(SOURCE_FOREST_ROCK),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(4),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome()
+                )
+        ));
+        context.register(SOURCE_POOL_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(SOURCE_POOL),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(8),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome()
+                )
+        ));
+        context.register(QUIETNESS_HORROR_TREE_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(QUIETNESS_HORROR_TREE),
+                List.of(
+                        CountOnEveryLayerPlacement.of(3),
+                        BiomeFilter.biome()
+                )
+        ));
+    }
+
+    private static BlockPredicate sourceForestTreeGround() {
+        return BlockPredicate.matchesBlocks(
+                Direction.DOWN.getNormal(),
+                Blocks.GRASS_BLOCK,
+                Blocks.DIRT,
+                Blocks.COARSE_DIRT,
+                Blocks.PODZOL,
+                Blocks.ROOTED_DIRT,
+                BlockRegistry.SOURCE_DIRT.getGrass().orElseThrow().get(),
+                BlockRegistry.SOURCE_DIRT.getBase().get()
+        );
     }
 
     public static void bootstrapTemplatePools(BootstapContext<StructureTemplatePool> context) {
@@ -87,6 +249,14 @@ public final class ModWorldgen {
 
     private static ResourceKey<StructureTemplatePool> templatePool(String name) {
         return ResourceKey.create(Registries.TEMPLATE_POOL, Genesis.id(name));
+    }
+
+    private static ResourceKey<ConfiguredFeature<?, ?>> configuredFeature(String name) {
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, Genesis.id(name));
+    }
+
+    private static ResourceKey<PlacedFeature> placedFeature(String name) {
+        return ResourceKey.create(Registries.PLACED_FEATURE, Genesis.id(name));
     }
 
     private static ResourceKey<Structure> structure(String name) {

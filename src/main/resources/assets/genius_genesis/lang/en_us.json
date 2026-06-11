@@ -62,6 +62,7 @@
   "block.genius_genesis.source_dirt": "Source Dirt",
   "block.genius_genesis.source_fluid": "Source Fluid",
   "block.genius_genesis.source_grass_block": "Source Grass Block",
+  "block.genius_genesis.source_sapling": "Source Sapling",
   "block.genius_genesis.stripped_quietness_log": "Stripped Quietness Log",
   "block.genius_genesis.stripped_quietness_log_wood": "Stripped Quietness Log Wood",
   "block.genius_genesis.stripped_sway_log": "Stripped Sway Log",
@@ -244,6 +245,8 @@
   "entity.genius_genesis.chaos_sword": "Gutrender Puncture",
   "entity.genius_genesis.chaos_sword_aoe": "Gutrender Puncture",
   "entity.genius_genesis.meteor_projectile": "Meteor",
-  "entity.genius_genesis.meteor_star": "Meteor"
+  "entity.genius_genesis.meteor_star": "Meteor",
+  "biome.genius_genesis.source_forest": "Source Forest",
+  "biome.genius_genesis.horror_forest": "Horror Forest"
 }
 

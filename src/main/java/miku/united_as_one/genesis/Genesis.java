@@ -3,6 +3,7 @@ package miku.united_as_one.genesis;
 import com.mojang.logging.LogUtils;
 import dev.xkmc.l2library.base.L2Registrate;
 import miku.united_as_one.genesis.client.ClientSetup;
+import miku.united_as_one.genesis.compat.terrablender.GenesisTerraBlender;
 import miku.united_as_one.genesis.data.equipment.ModEquipmentStatsConfigs;
 import miku.united_as_one.genesis.handlers.CommonEventHandler;
 import miku.united_as_one.genesis.network.GenesisNetwork;
@@ -16,6 +17,7 @@ import miku.united_as_one.genesis.registries.SpellAttributesRegistry;
 import miku.united_as_one.genesis.registries.SpellRegistry;
 import miku.united_as_one.genesis.registries.SpellSchoolRegistry;
 import miku.united_as_one.genesis.fluid.FluidRegistry;
+import miku.united_as_one.genesis.worldgen.ModFeatures;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -44,6 +46,7 @@ public class Genesis {
         SpellRegistry.register(modBus);
         EntityRegistry.register(modBus);
         GenesisParticles.register(modBus);
+        ModFeatures.register(modBus);
         BlockRegistry.register();
         ItemRegistry.register();
         FluidRegistry.register();
@@ -66,5 +69,6 @@ public class Genesis {
 
     private static void commonSetup(FMLCommonSetupEvent event) {
         LOGGER.info("Loading Genius' Genesis");
+        event.enqueueWork(GenesisTerraBlender::registerBiomes);
     }
 }
