@@ -33,14 +33,22 @@ public final class CreativeTabRegistry {
 
     public static void register() {
         Genesis.L2_REGISTRATE.buildModCreativeTab("block", "itemGroup." + Genesis.MOD_ID + ".block", builder -> builder
-                .icon(() -> BlockRegistry.CELESTIAL_SOURCE_BLOCK.asStack()));
+                .icon(BlockRegistry.CELESTIAL_SOURCE_BLOCK::asStack));
         Genesis.L2_REGISTRATE.buildModCreativeTab("material", "itemGroup." + Genesis.MOD_ID + ".material", builder -> builder
-                .icon(() -> ItemRegistry.CREATE_STAR.asStack()));
+                .icon(ItemRegistry.CREATE_STAR::asStack));
         Genesis.L2_REGISTRATE.buildModCreativeTab("equipment", "itemGroup." + Genesis.MOD_ID + ".equipment", builder -> builder
-                .icon(() -> ItemRegistry.MITHRIL_SWORD.asStack()));
+                .icon(ItemRegistry.MITHRIL_SWORD::asStack));
         Genesis.L2_REGISTRATE.buildModCreativeTab("spell_scroll", "itemGroup." + Genesis.MOD_ID + ".spell_scroll", builder -> builder
                 .icon(() -> createScrollWithSpell(SpellRegistry.METEOR.get(), 1))
-                .displayItems((params, output) -> addScrolls(output, SpellRegistry.METEOR.get(), SpellRegistry.GUTRENDER_PUNCTURE.get())));
+                .displayItems((params, output) -> addScrolls(output,
+                        SpellRegistry.METEOR.get(),
+                        SpellRegistry.AMENOFUWARI_SPELL.get(),
+                        SpellRegistry.BLOOD_CONTROL_SPELL.get(),
+                        SpellRegistry.BLOOD_FRENZY_SPELL.get(),
+                        SpellRegistry.BLOOD_RITUAL_SPELL.get(),
+                        SpellRegistry.BLOOD_WAR_SPELL.get(),
+                        SpellRegistry.GUTRENDER_PUNCTURE.get()
+                )));
 
         Genesis.L2_REGISTRATE.defaultCreativeTab(CreativeModeTabs.SEARCH);
     }

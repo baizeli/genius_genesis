@@ -1,11 +1,7 @@
 package miku.united_as_one.genesis.data.datagen;
 
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.data.datagen.provider.ModCuriosDataProvider;
-import miku.united_as_one.genesis.data.datagen.provider.ModCuriosItemTagProvider;
-import miku.united_as_one.genesis.data.datagen.provider.ModDatapackEntriesProvider;
-import miku.united_as_one.genesis.data.datagen.provider.ModEquipmentStatsProvider;
-import miku.united_as_one.genesis.data.datagen.provider.ModGenesisConfigProvider;
+import miku.united_as_one.genesis.data.datagen.provider.*;
 import miku.united_as_one.genesis.worldgen.ModWorldgenBiomeTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -36,11 +32,12 @@ public final class DataGenerators {
         CompletableFuture<HolderLookup.Provider> fullLookupProvider = registryProvider.getRegistryProvider();
 
         generator.addProvider(event.includeServer(), registryProvider);
-        generator.addProvider(event.includeServer(), new ModGenesisConfigProvider(generator));
-        generator.addProvider(event.includeServer(), new ModWorldgenBiomeTagsProvider(output, fullLookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModCuriosDataProvider(generator));
         generator.addProvider(event.includeServer(), new ModCuriosItemTagProvider(output, fullLookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModEquipmentStatsProvider(generator));
+        generator.addProvider(event.includeServer(), new ModGenesisConfigProvider(generator));
+        generator.addProvider(event.includeServer(), new ModMobEffectTagProvider(output, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new ModWorldgenBiomeTagsProvider(output, fullLookupProvider, existingFileHelper));
     }
 
     private static void startDatagenExitGuard(GatherDataEvent event) {
