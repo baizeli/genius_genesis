@@ -8,7 +8,6 @@ import miku.united_as_one.genesis.data.equipment.ModEquipmentStatsConfigs;
 import miku.united_as_one.genesis.handlers.CommonEventHandler;
 import miku.united_as_one.genesis.network.GenesisNetwork;
 import miku.united_as_one.genesis.registries.*;
-import miku.united_as_one.genesis.fluid.FluidRegistry;
 import miku.united_as_one.genesis.worldgen.ModFeatures;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -46,7 +45,7 @@ public class Genesis {
         ModFeatures.register(modBus);
         BlockRegistry.register();
         ItemRegistry.register();
-        FluidRegistry.register(); // FIXME: 赶紧修好这个会在服务端加载客户端渲染类的bug
+        //FluidRegistry.register();
         CreativeTabRegistry.register();
         GenesisNetwork.register();
 
