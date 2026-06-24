@@ -5,8 +5,6 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "genius_genesis.refmap.json",
   "mixins": [
-    "minecraft.world.item.ItemStackMixin",
-    "minecraft.ChatFormattingMixin",
     "ironsspellbooks.gui.arcane_anvil.ArcaneAnvilMenuMixin",
     "ironsspellbooks.spells.ender.MixinComet",
     "ironsspellbooks.spells.ender.MixinStarfallSpell",
@@ -25,17 +23,23 @@
     "ironsspellbooks.spells.nature.MixinAcidOrbSpell",
     "ironsspellbooks.spells.nature.MixinPoisonArrow",
     "ironsspellbooks.spells.nature.MixinPoisonArrowSpell",
-    "ironsspellbooks.spells.nature.MixinPoisonSplash"
+    "ironsspellbooks.spells.nature.MixinPoisonSplash",
+    "minecraft.ChatFormattingMixin",
+    "minecraft.world.entity.LivingEntityMixin",
+    "minecraft.world.item.ItemStackMixin"
   ],
   "client": [
     "GameRendererMixin",
     "ItemRendererMixin",
     "LevelRendererMixin",
-    "minecraft.client.renderer.ParticleEngineAccessor",
     "minecraft.client.gui.BakedGlyphAccessor",
     "minecraft.client.gui.FontAccessor",
     "minecraft.client.gui.FontMixin",
-    "minecraft.client.gui.TextColorAccessor"
+    "minecraft.client.gui.TextColorAccessor",
+    "minecraft.client.renderer.ParticleEngineAccessor"
+  ],
+  "server": [
+    "minecraft.world.effect.MobEffectMixin"
   ],
   "injectors": {
     "defaultRequire": 1

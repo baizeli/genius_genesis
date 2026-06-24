@@ -46,7 +46,7 @@ public class Genesis {
         ModFeatures.register(modBus);
         BlockRegistry.register();
         ItemRegistry.register();
-        FluidRegistry.register();
+        FluidRegistry.register(); // FIXME: 赶紧修好这个会在服务端加载客户端渲染类的bug
         CreativeTabRegistry.register();
         GenesisNetwork.register();
 
