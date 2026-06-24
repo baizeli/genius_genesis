@@ -1,4 +1,4 @@
-package miku.united_as_one.genesis.effect.chaos;
+package miku.united_as_one.genesis.effect.spell.chaos;
 
 import miku.united_as_one.genesis.Genesis;
 import net.minecraft.world.effect.MobEffect;

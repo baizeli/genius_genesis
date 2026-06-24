@@ -22,7 +22,9 @@ public final class SpellRegistry {
     public static final RegistryObject<AbstractSpell> BLOOD_FRENZY_SPELL = register(new BloodFrenzySpell());
     public static final RegistryObject<AbstractSpell> BLOOD_RITUAL_SPELL = register(new BloodRitualSpell());
     public static final RegistryObject<AbstractSpell> BLOOD_WAR_SPELL = register(new BloodWarSpell());
+    public static final RegistryObject<AbstractSpell> CONFUSION_SPELL = register(new ConfusionSpell());
     public static final RegistryObject<AbstractSpell> GUTRENDER_PUNCTURE = register(new GutrenderPunctureSpell());
+    public static final RegistryObject<AbstractSpell> REVERSE_PLAGUE_SPELL = register(new ReversePlagueSpell());
 
     private SpellRegistry() {
     }
