@@ -1,0 +1,18 @@
+{
+  "type": "genius_genesis:arcane_cauldron",
+  "essence": 1,
+  "fluids": [
+    {
+      "Amount": 250,
+      "FluidName": "minecraft:water"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
+  "result": {
+    "item": "minecraft:emerald"
+  }
+}

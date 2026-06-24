@@ -3,6 +3,8 @@ package miku.united_as_one.genesis.registries;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.block.util.SimpleBlockSet;
+import miku.united_as_one.genesis.workbench.arcane.ArcaneWorkbenchBlock;
+import miku.united_as_one.genesis.workbench.arcane_cauldron.ArcaneCauldronBlock;
 import miku.united_as_one.genesis.worldgen.SourceTreeGrower;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.tags.BlockTags;
@@ -96,15 +98,22 @@ public final class BlockRegistry {
             .register();
 
     // 工作台和特殊方块
-    public static final BlockEntry<Block> ARCANE_WORKBENCH = Genesis.L2_REGISTRATE
-            .block("arcane_workbench", Block::new)
+    public static final BlockEntry<ArcaneWorkbenchBlock> ARCANE_WORKBENCH = Genesis.L2_REGISTRATE
+            .block("arcane_workbench", ArcaneWorkbenchBlock::new)
             .properties(properties -> properties.lightLevel(state -> 9).strength(3.0F, 9.0F).requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .blockstate((ctx, pvd) -> pvd.simpleBlock(ctx.get(), pvd.models().cubeBottomTop(
+                    ctx.getName(),
+                    pvd.modLoc("block/arcane_workbench_side"),
+                    pvd.modLoc("block/arcane_workbench_bottom"),
+                    pvd.modLoc("block/arcane_workbench_top")
+            )))
             .item()
+            .model((ctx, pvd) -> pvd.withExistingParent(ctx.getName(), pvd.modLoc("block/arcane_workbench")))
             .tab(CreativeTabRegistry.GENIUS_GENESIS_BLOCK)
             .build()
             .register();
-    public static final BlockEntry<Block> ARCANE_CAULDRON = Genesis.L2_REGISTRATE
-            .block("arcane_cauldron", Block::new)
+    public static final BlockEntry<ArcaneCauldronBlock> ARCANE_CAULDRON = Genesis.L2_REGISTRATE
+            .block("arcane_cauldron", ArcaneCauldronBlock::new)
             .initialProperties(() -> Blocks.CAULDRON)
             .properties(properties -> properties.lightLevel(state -> 3).noOcclusion())
             .blockstate((ctx, pvd) -> pvd.simpleBlock(ctx.get(), pvd.models().getExistingFile(pvd.modLoc("block/arcane_cauldron"))))

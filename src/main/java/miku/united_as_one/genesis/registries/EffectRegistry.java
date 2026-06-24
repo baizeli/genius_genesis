@@ -4,6 +4,7 @@ import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.effect.chaos.BloodFrenzyEffect;
 import miku.united_as_one.genesis.effect.chaos.BloodWarEffect;
+import miku.united_as_one.genesis.effect.celestial_source.IFlyEffect;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -22,6 +23,9 @@ public final class EffectRegistry {
 
     public static final RegistryObject<MobEffect> BLOOD_WAR =
             MOB_EFFECTS.register("blood_war", BloodWarEffect::new);
+
+    public static final RegistryObject<MobEffect> I_FLY =
+            MOB_EFFECTS.register("i_fly", IFlyEffect::new);
 
     public static final RegistryObject<MobEffect> CHAOS_RESISTANCE =
             MOB_EFFECTS.register("chaos_resistance", () -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x8A2BE2) {});

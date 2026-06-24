@@ -32,6 +32,7 @@ public final class DataGenerators {
         CompletableFuture<HolderLookup.Provider> fullLookupProvider = registryProvider.getRegistryProvider();
 
         generator.addProvider(event.includeServer(), registryProvider);
+        generator.addProvider(event.includeServer(), new ModArcaneCauldronRecipeProvider(output));
         generator.addProvider(event.includeServer(), new ModCuriosDataProvider(generator));
         generator.addProvider(event.includeServer(), new ModCuriosItemTagProvider(output, fullLookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModEquipmentStatsProvider(generator));

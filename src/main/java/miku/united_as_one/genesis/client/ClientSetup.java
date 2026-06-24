@@ -7,6 +7,7 @@ import io.redspace.ironsspellbooks.api.spells.ISpellContainer;
 import io.redspace.ironsspellbooks.api.spells.SchoolType;
 import io.redspace.ironsspellbooks.item.Scroll;
 import miku.united_as_one.genesis.client.render.cosmic.CosmicModelLoader;
+import miku.united_as_one.genesis.client.render.block.ArcaneCauldronRenderer;
 import miku.united_as_one.genesis.client.render.entity.ChaosSwordRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorProjectileRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorStarRenderer;
@@ -15,8 +16,12 @@ import miku.united_as_one.genesis.client.render.effect.SlashEffectEvents;
 import miku.united_as_one.genesis.registries.EntityRegistry;
 import miku.united_as_one.genesis.registries.GenesisParticles;
 import miku.united_as_one.genesis.registries.ItemRegistry;
+import miku.united_as_one.genesis.registries.BlockEntityRegistry;
+import miku.united_as_one.genesis.registries.MenuTypeRegistry;
 import miku.united_as_one.genesis.registries.SpellSchoolRegistry;
+import miku.united_as_one.genesis.workbench.arcane.ArcaneWorkbenchScreen;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -52,6 +57,7 @@ public final class ClientSetup {
                 ItemRegistry.WITCHCRAFT_BOW.get(),
                 ItemRegistry.FLAME_BOW.get()
         ).forEach(ClientSetup::registerBowProperties));
+        event.enqueueWork(() -> MenuScreens.register(MenuTypeRegistry.ARCANE_WORKBENCH.get(), ArcaneWorkbenchScreen::new));
         event.enqueueWork(ClientSetup::registerScrollShaderResolvers);
     }
 
@@ -89,6 +95,7 @@ public final class ClientSetup {
         event.registerEntityRenderer(EntityRegistry.METEOR_STAR.get(), MeteorStarRenderer::new);
         event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD.get(), ChaosSwordRenderer::new);
         event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD_AOE.get(), context -> new NoopRenderer<>(context));
+        event.registerBlockEntityRenderer(BlockEntityRegistry.ARCANE_CAULDRON.get(), ArcaneCauldronRenderer::new);
     }
 
     private static void registerParticleProviders(RegisterParticleProvidersEvent event) {

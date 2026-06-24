@@ -42,6 +42,7 @@ public final class CreativeTabRegistry {
                 .icon(() -> createScrollWithSpell(SpellRegistry.METEOR.get(), 1))
                 .displayItems((params, output) -> addScrolls(output,
                         SpellRegistry.METEOR.get(),
+                        SpellRegistry.I_FLY.get(),
                         SpellRegistry.AMENOFUWARI_SPELL.get(),
                         SpellRegistry.BLOOD_CONTROL_SPELL.get(),
                         SpellRegistry.BLOOD_FRENZY_SPELL.get(),

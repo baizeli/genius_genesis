@@ -1,4 +1,4 @@
-// 1.20.1	2026-06-11T11:15:58.9727928	Registrate Provider for genius_genesis [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2026-06-24T02:16:30.8575313	Registrate Provider for genius_genesis [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 ca304c268dde3742d7a53e3377a613d9a5adb317 assets/genius_genesis/blockstates/arcane_cauldron.json
 fbc2d27a8e9064b76d921be9a57aca63ea8c18fc assets/genius_genesis/blockstates/arcane_crystal_block.json
 0219caa678cf1abcc971c80d935cb9ddc427439d assets/genius_genesis/blockstates/arcane_crystal_ore.json
@@ -119,7 +119,7 @@ d665f6b94f0a06dff1aeeb0bdfcce0c802164ce7 assets/genius_genesis/blockstates/weath
 aba5d2895697d830691a5344156188f86d9a2af9 assets/genius_genesis/lang/en_us.json
 2f1cfd1dd4956973e28fba51282e650c789f42cf assets/genius_genesis/models/block/arcane_crystal_block.json
 407f68465c8f1152f60c34318759a82f36a391fc assets/genius_genesis/models/block/arcane_crystal_ore.json
-3c887ac13d0399eceedfd08bfc26a2f8d1022eab assets/genius_genesis/models/block/arcane_workbench.json
+4de19d23661c72b78dc744bc9e05b8876b338bc3 assets/genius_genesis/models/block/arcane_workbench.json
 2b3fffb6ddf4209962e5b2dbf7232c2c30a4143f assets/genius_genesis/models/block/blackwater_fluid.json
 9e8595ef88435b6e99b28aa38bd84a9e5684844d assets/genius_genesis/models/block/blood_fluid.json
 efa106dfc40349a88563e55391e70199e7627534 assets/genius_genesis/models/block/blood_sand.json

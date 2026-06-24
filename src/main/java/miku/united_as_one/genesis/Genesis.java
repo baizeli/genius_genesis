@@ -37,8 +37,12 @@ public class Genesis {
         SpellSchoolRegistry.register(modBus);
         SpellRegistry.register(modBus);
         EntityRegistry.register(modBus);
+        BlockEntityRegistry.register(modBus);
+        MenuTypeRegistry.register(modBus);
         EffectRegistry.register(modBus);
         GenesisParticles.register(modBus);
+        RecipeTypeRegistry.register(modBus);
+        RecipeSerializerRegistry.register(modBus);
         ModFeatures.register(modBus);
         BlockRegistry.register();
         ItemRegistry.register();

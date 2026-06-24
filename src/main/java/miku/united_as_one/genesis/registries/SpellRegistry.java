@@ -3,6 +3,7 @@ package miku.united_as_one.genesis.registries;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.spell.chaos.*;
+import miku.united_as_one.genesis.spell.celestial_source.IFlySpell;
 import miku.united_as_one.genesis.spell.MeteorSpell;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -15,6 +16,7 @@ public final class SpellRegistry {
             DeferredRegister.create(SPELL_REGISTRY_KEY, Genesis.MOD_ID);
 
     public static final RegistryObject<AbstractSpell> METEOR = register(new MeteorSpell());
+    public static final RegistryObject<AbstractSpell> I_FLY = register(new IFlySpell());
     public static final RegistryObject<AbstractSpell> AMENOFUWARI_SPELL= register(new AmenofuwariSpell());
     public static final RegistryObject<AbstractSpell> BLOOD_CONTROL_SPELL = register(new BloodControlSpell());
     public static final RegistryObject<AbstractSpell> BLOOD_FRENZY_SPELL = register(new BloodFrenzySpell());

@@ -18,7 +18,9 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 public class SourceForestTerrainFeature extends Feature<NoneFeatureConfiguration> {
     private static final int SET_BLOCK_FLAGS = 2;
     private static final int SOIL_DEPTH = 3;
-    private static final int SHALLOW_SOURCE_STONE_DEPTH = 18;
+    private static final int SHALLOW_SOURCE_STONE_DEPTH = 8;
+    private static final int MAX_SURFACE_DROP_FROM_NEIGHBORS = 10;
+    private static final int NEIGHBOR_SURFACE_CHECK_RADIUS = 2;
 
     private enum SurfaceKind {
         LAND,
@@ -55,6 +57,9 @@ public class SourceForestTerrainFeature extends Feature<NoneFeatureConfiguration
                 if (groundY < minY) {
                     continue;
                 }
+                if (dropsIntoOpenCave(level, pos, x, z, groundY)) {
+                    continue;
+                }
 
                 SurfaceKind surfaceKind = surfaceKind(level, pos, x, z, groundY, seaLevel);
                 changed |= replaceColumn(level, pos, x, z, groundY, minY, surfaceKind);
@@ -76,6 +81,41 @@ public class SourceForestTerrainFeature extends Feature<NoneFeatureConfiguration
             }
         }
         return minY - 1;
+    }
+
+    private static boolean dropsIntoOpenCave(
+            WorldGenLevel level,
+            BlockPos.MutableBlockPos pos,
+            int x,
+            int z,
+            int groundY
+    ) {
+        if (groundY < 0) {
+            return true;
+        }
+        if (groundY < level.getSeaLevel() - MAX_SURFACE_DROP_FROM_NEIGHBORS) {
+            pos.set(x, groundY + 1, z);
+            if (level.getFluidState(pos).isEmpty()) {
+                return true;
+            }
+        }
+
+        for (int dx = -NEIGHBOR_SURFACE_CHECK_RADIUS; dx <= NEIGHBOR_SURFACE_CHECK_RADIUS; dx++) {
+            for (int dz = -NEIGHBOR_SURFACE_CHECK_RADIUS; dz <= NEIGHBOR_SURFACE_CHECK_RADIUS; dz++) {
+                if (dx == 0 && dz == 0) {
+                    continue;
+                }
+                if (Math.abs(dx) + Math.abs(dz) > NEIGHBOR_SURFACE_CHECK_RADIUS) {
+                    continue;
+                }
+
+                int neighborY = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, x + dx, z + dz) - 1;
+                if (neighborY - groundY > MAX_SURFACE_DROP_FROM_NEIGHBORS) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private static SurfaceKind surfaceKind(
@@ -132,12 +172,7 @@ public class SourceForestTerrainFeature extends Feature<NoneFeatureConfiguration
             pos.set(x, y, z);
             BlockState current = level.getBlockState(pos);
             int depth = groundY - y;
-            if ((current.isAir() || !current.getFluidState().isEmpty()) && depth > SOIL_DEPTH) {
-                level.setBlock(pos, sourceStone, SET_BLOCK_FLAGS);
-                changed = true;
-                continue;
-            }
-            if (!isNaturalTerrain(current)) {
+            if (isDeepslateTerrain(current) || !isNaturalTerrain(current)) {
                 continue;
             }
 
@@ -163,6 +198,10 @@ public class SourceForestTerrainFeature extends Feature<NoneFeatureConfiguration
         return changed;
     }
 
+    private static boolean isDeepslateTerrain(BlockState state) {
+        return state.is(Blocks.DEEPSLATE) || state.is(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+    }
+
     private static boolean isNaturalTerrain(BlockState state) {
         if (state.isAir() || !state.getFluidState().isEmpty()) {
             return false;
@@ -171,7 +210,6 @@ public class SourceForestTerrainFeature extends Feature<NoneFeatureConfiguration
         Block block = state.getBlock();
         return state.is(BlockTags.BASE_STONE_OVERWORLD)
                 || state.is(BlockTags.STONE_ORE_REPLACEABLES)
-                || state.is(BlockTags.DEEPSLATE_ORE_REPLACEABLES)
                 || state.is(BlockTags.DIRT)
                 || state.is(BlockTags.SAND)
                 || block == Blocks.GRAVEL
