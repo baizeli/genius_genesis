@@ -21,11 +21,11 @@ public final class FluidClientEvents {
         if (!event.player.level().isClientSide || !event.player.isAlive()) {
             return;
         }
-        if (event.player.isEyeInFluidType(FluidRegistry.SOURCE_FLUID.get().getFluidType())) {
+        if (event.player.isEyeInFluidType(FluidRegistry.SOURCE_FLUID.getSource().getFluidType())) {
             spawnFluidParticle(event, ParticleTypes.BUBBLE);
-        } else if (event.player.isEyeInFluidType(FluidRegistry.BLACKWATER_FLUID.get().getFluidType())) {
+        } else if (event.player.isEyeInFluidType(FluidRegistry.BLACKWATER_FLUID.getSource().getFluidType())) {
             spawnFluidParticle(event, ParticleTypes.SQUID_INK);
-        } else if (event.player.isEyeInFluidType(FluidRegistry.BLOOD_FLUID.get().getFluidType())) {
+        } else if (event.player.isEyeInFluidType(FluidRegistry.BLOOD_FLUID.getSource().getFluidType())) {
             spawnFluidParticle(event, ParticleTypes.DAMAGE_INDICATOR);
         }
     }
