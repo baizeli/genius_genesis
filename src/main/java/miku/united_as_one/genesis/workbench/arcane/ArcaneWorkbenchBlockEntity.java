@@ -2,9 +2,9 @@ package miku.united_as_one.genesis.workbench.arcane;
 
 import io.redspace.ironsspellbooks.registries.ItemRegistry;
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.registries.BlockEntityRegistry;
-import miku.united_as_one.genesis.registries.MenuTypeRegistry;
-import miku.united_as_one.genesis.registries.RecipeTypeRegistry;
+import miku.united_as_one.genesis.workbench.registry.BlockEntityRegistry;
+import miku.united_as_one.genesis.workbench.registry.MenuTypeRegistry;
+import miku.united_as_one.genesis.workbench.registry.RecipeTypeRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;

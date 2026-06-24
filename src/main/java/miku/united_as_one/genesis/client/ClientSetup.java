@@ -8,6 +8,7 @@ import io.redspace.ironsspellbooks.api.spells.SchoolType;
 import io.redspace.ironsspellbooks.item.Scroll;
 import miku.united_as_one.genesis.client.render.cosmic.CosmicModelLoader;
 import miku.united_as_one.genesis.client.render.block.ArcaneCauldronRenderer;
+import miku.united_as_one.genesis.client.render.WingLayer;
 import miku.united_as_one.genesis.client.render.entity.ChaosSwordRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorProjectileRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorStarRenderer;
@@ -16,14 +17,17 @@ import miku.united_as_one.genesis.client.render.effect.SlashEffectEvents;
 import miku.united_as_one.genesis.registries.EntityRegistry;
 import miku.united_as_one.genesis.registries.GenesisParticles;
 import miku.united_as_one.genesis.registries.ItemRegistry;
-import miku.united_as_one.genesis.registries.BlockEntityRegistry;
-import miku.united_as_one.genesis.registries.MenuTypeRegistry;
+import miku.united_as_one.genesis.workbench.registry.BlockEntityRegistry;
+import miku.united_as_one.genesis.workbench.registry.MenuTypeRegistry;
 import miku.united_as_one.genesis.registries.SpellSchoolRegistry;
 import miku.united_as_one.genesis.workbench.arcane.ArcaneWorkbenchScreen;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
@@ -44,6 +48,7 @@ public final class ClientSetup {
         modBus.addListener(ClientSetup::clientSetup);
         modBus.addListener(ClientSetup::registerGeometryLoaders);
         modBus.addListener(ClientSetup::registerEntityRenderers);
+        modBus.addListener(ClientSetup::addPlayerLayers);
         modBus.addListener(ClientSetup::registerParticleProviders);
         MinecraftForge.EVENT_BUS.addListener(SlashEffectEvents::onClientTick);
         MinecraftForge.EVENT_BUS.addListener(SlashEffectEvents::onRenderLevelStage);
@@ -96,6 +101,18 @@ public final class ClientSetup {
         event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD.get(), ChaosSwordRenderer::new);
         event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD_AOE.get(), context -> new NoopRenderer<>(context));
         event.registerBlockEntityRenderer(BlockEntityRegistry.ARCANE_CAULDRON.get(), ArcaneCauldronRenderer::new);
+    }
+
+    private static void addPlayerLayers(EntityRenderersEvent.AddLayers event) {
+        addWingLayer(event, "default");
+        addWingLayer(event, "slim");
+    }
+
+    private static void addWingLayer(EntityRenderersEvent.AddLayers event, String skinName) {
+        LivingEntityRenderer<Player, PlayerModel<Player>> renderer = event.getSkin(skinName);
+        if (renderer != null) {
+            renderer.addLayer(new WingLayer(renderer));
+        }
     }
 
     private static void registerParticleProviders(RegisterParticleProvidersEvent event) {

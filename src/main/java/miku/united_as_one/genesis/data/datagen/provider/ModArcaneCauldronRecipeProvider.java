@@ -3,7 +3,7 @@ package miku.united_as_one.genesis.data.datagen.provider;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.registries.RecipeSerializerRegistry;
+import miku.united_as_one.genesis.workbench.registry.RecipeSerializerRegistry;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;

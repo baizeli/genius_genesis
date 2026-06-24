@@ -8,13 +8,13 @@ import io.redspace.ironsspellbooks.item.UpgradeOrbItem;
 import io.redspace.ironsspellbooks.item.armor.UpgradeOrbType;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import miku.bai_ze_li.genesis.api.item.GenesisGoldTooltipParticleItem;
-import miku.bai_ze_li.genesis.api.item.GenesisPurpleTooltipParticleItem;
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.item.FireBossDagger;
 import miku.united_as_one.genesis.item.FlyingSwallowThroughWillow;
 import miku.united_as_one.genesis.item.GenesisArmorMaterials;
 import miku.united_as_one.genesis.item.GenesisTiers;
 import miku.united_as_one.genesis.item.InfiniteShrivingStoneItem;
+import miku.united_as_one.genesis.item.VioletGalaxyIngotItem;
 import miku.united_as_one.genesis.item.armor.GenesisGeoArmorItem;
 import miku.united_as_one.genesis.item.curios.EternalRing;
 import miku.united_as_one.genesis.item.curios.GenesisCurseItem;
@@ -59,7 +59,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 
 public final class ItemRegistry {
 
-    public static final ItemEntry<GenesisPurpleTooltipParticleItem> VIOLET_GALAXY_INGOT = item("violet_galaxy_ingot", GenesisPurpleTooltipParticleItem::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
+    public static final ItemEntry<VioletGalaxyIngotItem> VIOLET_GALAXY_INGOT = item("violet_galaxy_ingot", VioletGalaxyIngotItem::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     // 紫极碎片
     public static final ItemEntry<Item> VIOLET_FRAGMENTS = epic("violet_fragments", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     // 破灭神格

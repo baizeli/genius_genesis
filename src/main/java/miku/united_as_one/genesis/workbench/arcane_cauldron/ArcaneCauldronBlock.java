@@ -1,6 +1,6 @@
 package miku.united_as_one.genesis.workbench.arcane_cauldron;
 
-import miku.united_as_one.genesis.registries.BlockEntityRegistry;
+import miku.united_as_one.genesis.workbench.registry.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;

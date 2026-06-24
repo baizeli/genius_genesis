@@ -7,9 +7,9 @@ import io.redspace.ironsspellbooks.recipe_types.alchemist_cauldron.FillAlchemist
 import io.redspace.ironsspellbooks.registries.RecipeRegistry;
 import io.redspace.ironsspellbooks.util.ModTags;
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.registries.BlockEntityRegistry;
+import miku.united_as_one.genesis.workbench.registry.BlockEntityRegistry;
 import miku.united_as_one.genesis.registries.GenesisParticles;
-import miku.united_as_one.genesis.registries.RecipeTypeRegistry;
+import miku.united_as_one.genesis.workbench.registry.RecipeTypeRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;

@@ -1,6 +1,7 @@
-package miku.united_as_one.genesis.registries;
+package miku.united_as_one.genesis.workbench.registry;
 
 import miku.united_as_one.genesis.Genesis;
+import miku.united_as_one.genesis.registries.BlockRegistry;
 import miku.united_as_one.genesis.workbench.arcane.ArcaneWorkbenchBlockEntity;
 import miku.united_as_one.genesis.workbench.arcane_cauldron.ArcaneCauldronBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;

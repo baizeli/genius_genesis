@@ -1,8 +1,8 @@
 package miku.united_as_one.genesis.workbench.arcane;
 
 import io.redspace.ironsspellbooks.registries.ItemRegistry;
-import miku.united_as_one.genesis.registries.MenuTypeRegistry;
-import miku.united_as_one.genesis.registries.RecipeTypeRegistry;
+import miku.united_as_one.genesis.workbench.registry.MenuTypeRegistry;
+import miku.united_as_one.genesis.workbench.registry.RecipeTypeRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.Container;
@@ -20,14 +20,14 @@ public class ArcaneWorkbenchMenu extends AbstractContainerMenu {
     public static final int X_SHIFT = 31;
     public static final int Y_SHIFT = 27;
 
-    private static final int RESULT_SLOT = 0;
-    private static final int ESSENCE_MENU_SLOT = 1;
-    private static final int GRID_START = 2;
-    private static final int GRID_END_EXCLUSIVE = GRID_START + ArcaneWorkbenchBlockEntity.GRID_SIZE;
-    private static final int INVENTORY_START = GRID_END_EXCLUSIVE;
-    private static final int INVENTORY_END_EXCLUSIVE = INVENTORY_START + 27;
-    private static final int HOTBAR_START = INVENTORY_END_EXCLUSIVE;
-    private static final int HOTBAR_END_EXCLUSIVE = HOTBAR_START + 9;
+    public static final int RESULT_SLOT = 0;
+    public static final int ESSENCE_MENU_SLOT = 1;
+    public static final int GRID_START = 2;
+    public static final int GRID_END_EXCLUSIVE = GRID_START + ArcaneWorkbenchBlockEntity.GRID_SIZE;
+    public static final int INVENTORY_START = GRID_END_EXCLUSIVE;
+    public static final int INVENTORY_END_EXCLUSIVE = INVENTORY_START + 27;
+    public static final int HOTBAR_START = INVENTORY_END_EXCLUSIVE;
+    public static final int HOTBAR_END_EXCLUSIVE = HOTBAR_START + 9;
 
     private final ArcaneWorkbenchBlockEntity blockEntity;
     private final ContainerLevelAccess access;

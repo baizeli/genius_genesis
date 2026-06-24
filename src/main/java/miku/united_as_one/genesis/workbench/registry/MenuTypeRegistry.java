@@ -1,4 +1,4 @@
-package miku.united_as_one.genesis.registries;
+package miku.united_as_one.genesis.workbench.registry;
 
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.workbench.arcane.ArcaneWorkbenchBlockEntity;

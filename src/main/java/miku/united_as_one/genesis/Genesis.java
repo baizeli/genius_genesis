@@ -8,6 +8,7 @@ import miku.united_as_one.genesis.data.equipment.ModEquipmentStatsConfigs;
 import miku.united_as_one.genesis.handlers.CommonEventHandler;
 import miku.united_as_one.genesis.network.GenesisNetwork;
 import miku.united_as_one.genesis.registries.*;
+import miku.united_as_one.genesis.workbench.registry.*;
 import miku.united_as_one.genesis.fluid.FluidRegistry;
 import miku.united_as_one.genesis.worldgen.ModFeatures;
 import net.minecraft.resources.ResourceLocation;
