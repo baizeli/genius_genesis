@@ -35,7 +35,7 @@ public class LivingEntityMixin {
         }));
 
         LivingEntity livingEntity = entityMap.get(living);
-        if (livingEntity != null && livingEntity.getPersistentData().getLong(Genesis.MOD_ID + "remaining_time") >= serverLevel.getGameTime()) {
+        if (livingEntity != null && livingEntity.getPersistentData().getLong(Genesis.KEY_REMAINING_TIME) >= serverLevel.getGameTime()) {
             if (effectInstance.effect.getCategory() == MobEffectCategory.HARMFUL) {
                 livingEntity.addEffect(effectInstance);
             }
@@ -44,7 +44,7 @@ public class LivingEntityMixin {
             ReversePlagueSpell.entityMap.remove(living.getUUID());
         }
 
-        if (entityMap.containsValue(living) && living.getPersistentData().getLong(Genesis.MOD_ID + "remaining_time") >= serverLevel.getGameTime() && effectInstance.effect.getCategory() == MobEffectCategory.BENEFICIAL) {
+        if (entityMap.containsValue(living) && living.getPersistentData().getLong(Genesis.KEY_REMAINING_TIME) >= serverLevel.getGameTime() && effectInstance.effect.getCategory() == MobEffectCategory.BENEFICIAL) {
             cir.cancel();
         }
     }

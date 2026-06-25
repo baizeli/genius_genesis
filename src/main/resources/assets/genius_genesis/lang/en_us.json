@@ -42,6 +42,7 @@
   "spell.genius_genesis.blood_frenzy": "Blood Frenzy",
   "spell.genius_genesis.confusion": "Confusion",
   "spell.genius_genesis.gutrender_puncture": "Gutrender Puncture",
+  "spell.genius_genesis.silent_abyssal_realm": "Silent Abyssal Realm",
 
   "spell.genius_genesis.i_fly": "I Fly",
   "spell.genius_genesis.fate_wedge": "Fate Wedge",
@@ -70,6 +71,7 @@
 
   "spell.genius_genesis.summon_warden": "Summon Warden",
 
+  "spell.genius_genesis.silent_abyssal_realm.guide": "召唤一个受火者然后把你杀了。",
   "spell.genius_genesis.warped_blood_burst.guide": "Consume 50% of your own HP to deal damage to all enemies in an area and inflict a healing-negation effect.",
   "spell.genius_genesis.warped_barrier.guide": "Convert 90% of health into Absorption.",
   "spell.genius_genesis.reverse_plague.guide": "Exchange the target's positive effects with your own negative effects, temporarily preventing the target from gaining positive effects, halting your own effect acquisition, and transferring the negative effects.",

@@ -99,7 +99,7 @@ public final class ClientSetup {
         event.registerEntityRenderer(EntityRegistry.METEOR_PROJECTILE.get(), MeteorProjectileRenderer::new);
         event.registerEntityRenderer(EntityRegistry.METEOR_STAR.get(), MeteorStarRenderer::new);
         event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD.get(), ChaosSwordRenderer::new);
-        event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD_AOE.get(), context -> new NoopRenderer<>(context));
+        event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD_AOE.get(), NoopRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.ARCANE_CAULDRON.get(), ArcaneCauldronRenderer::new);
     }
 

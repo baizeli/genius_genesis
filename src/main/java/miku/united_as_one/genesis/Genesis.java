@@ -23,9 +23,10 @@ import org.slf4j.Logger;
 
 @Mod(Genesis.MOD_ID)
 public class Genesis {
-
     public static final String MOD_ID = "genius_genesis";
     public static final String MODID = MOD_ID;
+    public static final String KEY_REMAINING_TIME = Genesis.MOD_ID + ":remaining_time";
+    public static final String KEY_LIFE_TICKS = Genesis.MOD_ID + ":life_ticks";
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final L2Registrate L2_REGISTRATE = new L2Registrate(MOD_ID);
 
@@ -47,7 +48,7 @@ public class Genesis {
         ModFeatures.register(modBus);
         BlockRegistry.register();
         ItemRegistry.register();
-        //FluidRegistry.register();
+        FluidRegistry.register();
         CreativeTabRegistry.register();
         GenesisNetwork.register();
 

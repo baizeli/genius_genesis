@@ -42,6 +42,7 @@
   "spell.genius_genesis.blood_frenzy": "血之狂乱",
   "spell.genius_genesis.confusion": "迷茫",
   "spell.genius_genesis.gutrender_puncture": "七连地狱飞剑",
+  "spell.genius_genesis.silent_abyssal_realm": "寂静暗黑领域",
 
   "spell.genius_genesis.i_fly": "我要飞",
   "spell.genius_genesis.fate_wedge": "刻命之楔",
@@ -70,6 +71,7 @@
 
   "spell.genius_genesis.summon_warden": "召唤坚守者",
 
+  "spell.genius_genesis.silent_abyssal_realm.guide": "召唤一个受火者然后把你杀了。",
   "spell.genius_genesis.warped_blood_burst.guide": "消耗自身50%的血量，对一定范围内的生物造成伤害并附带禁疗效果。",
   "spell.genius_genesis.warped_barrier.guide": "将90%的生命值转化成伤害吸收。",
   "spell.genius_genesis.reverse_plague.guide": "将目标正面效果与自身负面效果进行交换，短时间禁止目标获得正面效果，阻止自身获得效果并转嫁负面效果。",

@@ -5,6 +5,7 @@ import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.spell.chaos.*;
 import miku.united_as_one.genesis.spell.celestial_source.IFlySpell;
 import miku.united_as_one.genesis.spell.MeteorSpell;
+import miku.united_as_one.genesis.spell.eldritch.SilentAbyssalRealmSpell;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -15,8 +16,11 @@ public final class SpellRegistry {
     private static final DeferredRegister<AbstractSpell> SPELLS =
             DeferredRegister.create(SPELL_REGISTRY_KEY, Genesis.MOD_ID);
 
-    public static final RegistryObject<AbstractSpell> METEOR = register(new MeteorSpell());
+    // 星源
     public static final RegistryObject<AbstractSpell> I_FLY = register(new IFlySpell());
+    public static final RegistryObject<AbstractSpell> METEOR = register(new MeteorSpell());
+
+    // 混沌
     public static final RegistryObject<AbstractSpell> AMENOFUWARI_SPELL= register(new AmenofuwariSpell());
     public static final RegistryObject<AbstractSpell> BLOOD_CONTROL_SPELL = register(new BloodControlSpell());
     public static final RegistryObject<AbstractSpell> BLOOD_FRENZY_SPELL = register(new BloodFrenzySpell());
@@ -25,6 +29,9 @@ public final class SpellRegistry {
     public static final RegistryObject<AbstractSpell> CONFUSION_SPELL = register(new ConfusionSpell());
     public static final RegistryObject<AbstractSpell> GUTRENDER_PUNCTURE = register(new GutrenderPunctureSpell());
     public static final RegistryObject<AbstractSpell> REVERSE_PLAGUE_SPELL = register(new ReversePlagueSpell());
+
+    // 邪术
+    public static final RegistryObject<AbstractSpell> SILENT_ABYSSAL_REALM = register(new SilentAbyssalRealmSpell());
 
     private SpellRegistry() {
     }

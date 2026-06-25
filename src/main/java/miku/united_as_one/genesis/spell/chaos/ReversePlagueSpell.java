@@ -90,7 +90,7 @@ public class ReversePlagueSpell extends ChaosBaseSpell {
                     livingEntity.removeEffect(effectInstance.getEffect());
                 }
             }
-            living.getPersistentData().putLong(Genesis.MOD_ID + "remaining_time", serverLevel.getGameTime() + 600);
+            living.getPersistentData().putLong(Genesis.KEY_REMAINING_TIME, serverLevel.getGameTime() + 600);
             entityMap.put(livingEntity.getUUID(), living.getUUID());
         }
         super.onServerCastComplete(serverLevel, spellLevel, livingEntity, playerMagicData, cancelled);
