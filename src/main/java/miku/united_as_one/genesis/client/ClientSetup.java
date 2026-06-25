@@ -1,5 +1,6 @@
 package miku.united_as_one.genesis.client;
 
+import com.tterrag.registrate.util.entry.FluidEntry;
 import miku.bai_ze_li.genesis.api.render.particle.GlowCubeParticle;
 import miku.bai_ze_li.genesis.api.render.shader.GenesisItemShaderEffect;
 import miku.bai_ze_li.genesis.api.render.shader.GenesisItemShaderRegistry;
@@ -14,6 +15,7 @@ import miku.united_as_one.genesis.client.render.entity.MeteorProjectileRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorStarRenderer;
 import miku.united_as_one.genesis.client.render.entity.NoopRenderer;
 import miku.united_as_one.genesis.client.render.effect.SlashEffectEvents;
+import miku.united_as_one.genesis.fluid.FluidRegistry;
 import miku.united_as_one.genesis.registries.EntityRegistry;
 import miku.united_as_one.genesis.registries.GenesisParticles;
 import miku.united_as_one.genesis.registries.ItemRegistry;
@@ -24,6 +26,8 @@ import miku.united_as_one.genesis.workbench.arcane.ArcaneWorkbenchScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -34,6 +38,7 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.joml.Vector4f;
 
@@ -64,6 +69,7 @@ public final class ClientSetup {
         ).forEach(ClientSetup::registerBowProperties));
         event.enqueueWork(() -> MenuScreens.register(MenuTypeRegistry.ARCANE_WORKBENCH.get(), ArcaneWorkbenchScreen::new));
         event.enqueueWork(ClientSetup::registerScrollShaderResolvers);
+        event.enqueueWork(ClientSetup::registerFluidRenderLayers);
     }
 
     private static void registerScrollShaderResolvers() {
@@ -89,6 +95,18 @@ public final class ClientSetup {
 
         ItemProperties.register(bow, new ResourceLocation("pulling"), (stack, level, livingEntity, seed) ->
                 livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack ? 1.0F : 0.0F);
+    }
+
+    private static void registerFluidRenderLayers() {
+        RenderType renderType = RenderType.translucent();
+        registerFluidRenderLayer(FluidRegistry.SOURCE_FLUID, renderType);
+        registerFluidRenderLayer(FluidRegistry.BLACKWATER_FLUID, renderType);
+        registerFluidRenderLayer(FluidRegistry.BLOOD_FLUID, renderType);
+    }
+
+    private static void registerFluidRenderLayer(FluidEntry<? extends ForgeFlowingFluid> fluid, RenderType renderType) {
+        ItemBlockRenderTypes.setRenderLayer(fluid.getSource(), renderType);
+        fluid.getBlock().ifPresent(block -> ItemBlockRenderTypes.setRenderLayer(block, renderType));
     }
 
     private static void registerGeometryLoaders(ModelEvent.RegisterGeometryLoaders event) {

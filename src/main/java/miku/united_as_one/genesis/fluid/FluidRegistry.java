@@ -1,10 +1,8 @@
 package miku.united_as_one.genesis.fluid;
 
 import com.tterrag.registrate.util.entry.FluidEntry;
-import com.mojang.blaze3d.shaders.FogShape;
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.registries.CreativeTabRegistry;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.TagKey;
@@ -16,16 +14,16 @@ public final class FluidRegistry {
     public static final TagKey<Fluid> SOURCE_FLUID_TAG = FluidTags.create(Genesis.id("source_fluid"));
     public static final FluidEntry<ForgeFlowingFluid.Flowing> SOURCE_FLUID = fluid(
             "source_fluid",
-            new GenesisFluidType.Visual(33.0F / 255.0F, 154.0F / 255.0F, 1.0F, -8.0F, 15.0F, FogShape.CYLINDER),
+            new GenesisFluidType.Visual(33.0F / 255.0F, 154.0F / 255.0F, 1.0F, -8.0F, 15.0F, GenesisFluidType.FogShapeType.CYLINDER),
             FluidTags.WATER,
             SOURCE_FLUID_TAG);
     public static final FluidEntry<ForgeFlowingFluid.Flowing> BLACKWATER_FLUID = fluid(
             "blackwater_fluid",
-            new GenesisFluidType.Visual(5.0F / 255.0F, 5.0F / 255.0F, 5.0F / 255.0F, -8.0F, 3.0F, FogShape.SPHERE),
+            new GenesisFluidType.Visual(5.0F / 255.0F, 5.0F / 255.0F, 5.0F / 255.0F, -8.0F, 3.0F, GenesisFluidType.FogShapeType.SPHERE),
             FluidTags.WATER);
     public static final FluidEntry<ForgeFlowingFluid.Flowing> BLOOD_FLUID = fluid(
             "blood_fluid",
-            new GenesisFluidType.Visual(150.0F / 255.0F, 0.0F, 0.0F, -8.0F, 12.0F, FogShape.CYLINDER),
+            new GenesisFluidType.Visual(150.0F / 255.0F, 0.0F, 0.0F, -8.0F, 12.0F, GenesisFluidType.FogShapeType.CYLINDER),
             FluidTags.WATER);
 
     private FluidRegistry() {
@@ -51,7 +49,6 @@ public final class FluidRegistry {
                         .explosionResistance(100.0F))
                 .source(ForgeFlowingFluid.Source::new)
                 .tag(tags)
-                .renderType(RenderType::translucent)
                 .bucket()
                 .tab(CreativeTabRegistry.GENIUS_GENESIS_BLOCK)
                 .build()

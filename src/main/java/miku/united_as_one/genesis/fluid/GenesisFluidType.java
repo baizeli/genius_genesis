@@ -64,11 +64,23 @@ public class GenesisFluidType extends FluidType {
             public void modifyFogRender(Camera camera, FogRenderer.FogMode mode, float renderDistance, float partialTick, float nearDistance, float farDistance, FogShape shape) {
                 RenderSystem.setShaderFogStart(visual.fogStart());
                 RenderSystem.setShaderFogEnd(visual.fogEnd());
-                RenderSystem.setShaderFogShape(visual.fogShape());
+                RenderSystem.setShaderFogShape(visual.fogShape().toVanilla());
             }
         });
     }
 
-    public record Visual(float red, float green, float blue, float fogStart, float fogEnd, FogShape fogShape) {
+    public record Visual(float red, float green, float blue, float fogStart, float fogEnd, FogShapeType fogShape) {
+    }
+
+    public enum FogShapeType {
+        SPHERE,
+        CYLINDER;
+
+        private FogShape toVanilla() {
+            return switch (this) {
+                case SPHERE -> FogShape.SPHERE;
+                case CYLINDER -> FogShape.CYLINDER;
+            };
+        }
     }
 }

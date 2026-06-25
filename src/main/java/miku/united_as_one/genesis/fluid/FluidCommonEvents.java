@@ -68,15 +68,15 @@ public final class FluidCommonEvents {
     }
 
     private static boolean isSource(FluidState state) {
-        return state.getType() == FluidRegistry.SOURCE_FLUID.get() || state.getType() == FluidRegistry.SOURCE_FLUID.getSource();
+        return state.getType() == FluidRegistry.SOURCE_FLUID.getSource();
     }
 
     private static boolean isBlackwater(FluidState state) {
-        return state.getType() == FluidRegistry.BLACKWATER_FLUID.get() || state.getType() == FluidRegistry.BLACKWATER_FLUID.getSource();
+        return state.getType() == FluidRegistry.BLACKWATER_FLUID.getSource();
     }
 
     private static boolean isBlood(FluidState state) {
-        return state.getType() == FluidRegistry.BLOOD_FLUID.get() || state.getType() == FluidRegistry.BLOOD_FLUID.getSource();
+        return state.getType() == FluidRegistry.BLOOD_FLUID.getSource();
     }
 
     private static boolean isCustomBucket(Item item) {
