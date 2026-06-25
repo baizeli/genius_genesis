@@ -1,4 +1,4 @@
-package miku.united_as_one.genesis.util;
+package miku.united_as_one.genesis.utils;
 
 import miku.united_as_one.genesis.item.GenesisArmorMaterials;
 import miku.united_as_one.genesis.item.armor.GenesisGeoArmorItem;

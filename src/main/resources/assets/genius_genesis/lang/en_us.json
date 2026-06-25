@@ -55,7 +55,6 @@
   "spell.genius_genesis.unparalleled": "Unparalleled",
   "spell.genius_genesis.glazed_flower_rain": "Glazed Flower Rain",
   "spell.genius_genesis.summon_pig_swarm": "Summon Pig Swarm",
-  "spell.genius_genesis.never_miss": "Never Miss",
   "spell.genius_genesis.final_whisper": "Final Whisper",
 
   "spell.genius_genesis.blazing_blade_barrage": "Blazing Blade Barrage",
@@ -71,7 +70,7 @@
 
   "spell.genius_genesis.summon_warden": "Summon Warden",
 
-  "spell.genius_genesis.silent_abyssal_realm.guide": "召唤一个受火者然后把你杀了。",
+  "spell.genius_genesis.silent_abyssal_realm.guide": "The Apocalyptic Edict of the Cosmos: Chaos Absolute, Gods Prostrate — The Ultimate, Transcendent, Invincible, World-Devouring, Creation-Annihilating, Unparalleled Grand Summoning Incantation\nThis incantation towers above the laws of all heavens, grinds beneath its heel gods and demons of every age, tears asunder the walls between dimensions, and grinds the long river of space-time into dust. The moment it is chanted, it erupts with a supreme, world-shattering might that dominates all eternity, surges through the nine heavens in a mad rampage, and blasts through the very boundaries of reality with transcendent, soul-searing grandeur!\nA boundless aura of slaughter wreathed in heaven-scorching flames; a brilliant divine light that shatters the starry firmament and its clouded seas. A colossal pressure compels all beings across the myriad worlds to fall to their knees in trembling awe. Spirits shudder, blood boils, hot passion surges from chest to crown, and the heart's tide churns like a galaxy collapsing into oblivion. All vanity, all mortality, all divinity—before this supreme summoning force—are naught but dust and ants.",
   "spell.genius_genesis.warped_blood_burst.guide": "Consume 50% of your own HP to deal damage to all enemies in an area and inflict a healing-negation effect.",
   "spell.genius_genesis.warped_barrier.guide": "Convert 90% of health into Absorption.",
   "spell.genius_genesis.reverse_plague.guide": "Exchange the target's positive effects with your own negative effects, temporarily preventing the target from gaining positive effects, halting your own effect acquisition, and transferring the negative effects.",
@@ -80,8 +79,8 @@
   "spell.genius_genesis.blood_frenzy.guide": "Continuously restore health and reduce damage taken by half while also increasing damage dealt by twice. Also, push yourself towards the nearest entity.",
   "spell.genius_genesis.unparalleled.guide": "Enhance your stats and allow for double jumps while also making you immune to fall damage.",
 
-  "spell.genius_genesis.final_whisper.low_health": "Your health is too weak to unleash the Final Whisper!",
   "spell.genius_genesis.warped_blood_burst.low_health": "Your health is too weak to unleash the Warped Blood Burst!",
+  "spell.genius_genesis.final_whisper.low_health": "Your health is too weak to unleash the Final Whisper!",
 
   "effect.genius_genesis.i_fly": "I Fly",
   "effect.genius_genesis.fate_wedge": "Fate Wedge",
@@ -94,7 +93,6 @@
   "effect.genius_genesis.glazed_flower_rain": "Glazed Flower Rain",
   "effect.genius_genesis.blood_frenzy": "Blood Frenzy",
   "effect.genius_genesis.confusion": "Confusion",
-  "effect.genius_genesis.never_miss": "Never Miss",
   "effect.genius_genesis.warped_barrier": "Warped Barrier",
   "effect.genius_genesis.chaos_resistance": "Chaos Resistance",
   "effect.genius_genesis.mana_overdraft": "Mana Overdraft",
@@ -113,8 +111,11 @@
   "item.genius_genesis.celestial_source_rune": "Celestial Source Rune",
   "item.genius_genesis.chaos_upgrade_orb": "Chaos Upgrade Orb",
   "item.genius_genesis.celestial_source_upgrade_orb": "Celestial Source Upgrade Orb",
+
   "item.genius_genesis.chaos_spell_book": "Chaos Spell Book",
   "item.genius_genesis.celestial_source_spell_book": "Celestial Source Spell Book",
+  "item.genius_genesis.lightning_spell_book": "Lightning Spell Book",
+  "item.genius_genesis.disk_spell_book": "Disk Spell Book",
 
   "item.genius_genesis.twisted_chaos": "Twisted Chaos",
   "item.genius_genesis.twisted_chaos_ingot": "Twisted Chaos Ingot",
@@ -123,26 +124,62 @@
   "item.genius_genesis.lao_wang_237": "Lao Wang 237",
   "item.genius_genesis.genesis_curse": "Genesis Curse",
   "item.genius_genesis.infinite_shriving_stone": "Infinite Shriving Stone",
+  "item.genius_genesis.destroy_godhead": "Destroy Godhead",
   "item.genius_genesis.fire_boss_dagger": "Fire Boss's Dagger",
   "item.genius_genesis.blood_boss_dagger": "Blood Boss's Dagger",
 
   "item.genius_genesis.flying_swallow_through_willow": "Flying Swallow Through Willow",
-  "item.genius_genesis.mithril_sword": "Mithril Sword",
-  "item.genius_genesis.mithril_pickaxe": "Mithril Pickaxe",
+
+
   "item.genius_genesis.thunder_longbow": "Thunder Longbow",
   "item.genius_genesis.frost_longbow": "Frost Longbow",
   "item.genius_genesis.witchcraft_bow": "Witchcraft Bow",
   "item.genius_genesis.flame_bow": "Flame Bow",
+
+  "item.genius_genesis.mithril_sword": "Mithril Sword",
+  "item.genius_genesis.mithril_pickaxe": "Mithril Pickaxe",
+
+  "item.genius_genesis.gungnir": "Gungnir",
+
+  "item.genius_genesis.divine_metal_sword": "Divine Metal Sword",
+  "item.genius_genesis.divine_metal_axe": "Divine Metal Axe",
+  "item.genius_genesis.divine_metal_pickaxe": "Divine Metal Pickaxe",
+  "item.genius_genesis.divine_metal_shovel": "Divine Metal Shovel",
+  "item.genius_genesis.divine_metal_hoe": "Divine Metal Hoe",
 
   "item.genius_genesis.divine_metal_helmet": "Divine Metal crown",
   "item.genius_genesis.divine_metal_chestplate": "Divine Metal Chestplate",
   "item.genius_genesis.divine_metal_leggings": "Divine Metal Leggings",
   "item.genius_genesis.divine_metal_boots": "Divine Metal Boots",
   "item.genius_genesis.divine_metal_ingot": "Divine Metal Ingot",
+  "item.genius_genesis.divine_metal_fragment": "Divine Metal Fragment",
   "item.genius_genesis.smithing_template.divine_upgrade.additions_slot_description": "Add Divine Metal Ingot",
   "item.genius_genesis.smithing_template.divine_upgrade.applies_to": "Netherite Mage Armor",
   "item.genius_genesis.smithing_template.divine_upgrade.base_slot_description": "Add a piece of netherite mage armor",
   "item.genius_genesis.smithing_template.divine_upgrade.ingredients": "Divine Metal Ingot",
+
+  "item.genius_genesis.violet_sword": "Violet Sword",
+  "item.genius_genesis.violet_axe": "Violet Axe",
+  "item.genius_genesis.violet_pickaxe": "Violet Pickaxe",
+  "item.genius_genesis.violet_shovel": "Violet Shovel",
+  "item.genius_genesis.violet_hoe": "Violet Hoe",
+
+  "tooltip.united_as_one.violet_sword.line1": "Blocks 50% of incoming damage",
+  "tooltip.united_as_one.violet_axe.line1": "Chains through logs",
+  "tooltip.united_as_one.violet_pickaxe.line1": "Chains through ores",
+  "tooltip.united_as_one.violet_shovel.line1": "Hold Shift for 5x5 excavation",
+  "tooltip.united_as_one.violet_hoe.line1": "Feeling lucky...",
+
+  "item.genius_genesis.violet_zenith_helmet": "Purple Extreme Battle Helmet",
+  "item.genius_genesis.violet_zenith_chestplate": "Purple Extreme Battle Chestplate",
+  "item.genius_genesis.violet_zenith_leggings": "Purple Extreme Battle Leggings",
+  "item.genius_genesis.violet_zenith_boots": "Purple Extreme Battle Boots",
+  "item.genius_genesis.violet_galaxy_ingot": "§5Purple Extreme Ingot",
+  "item.genius_genesis.violet_galaxy_fragment": "§5Purple Extreme Fragment",
+  "item.genius_genesis.smithing_template.violet_upgrade.additions_slot_description": "Add §5Purple Extreme Ingot",
+  "item.genius_genesis.smithing_template.violet_upgrade.applies_to": "Arcane Crystal Equipment",
+  "item.genius_genesis.smithing_template.violet_upgrade.base_slot_description": "Add arcane crystal armor, weapon, or tool",
+  "item.genius_genesis.smithing_template.violet_upgrade.ingredients": "§5Purple Extreme Ingot",
 
   "item.genius_genesis.celestial_source_spell_helmet": "Celestial Source Spell Helmet",
   "item.genius_genesis.celestial_source_spell_chestplate": "Celestial Source Spell Chestplate",
@@ -154,22 +191,10 @@
   "item.genius_genesis.chaos_spell_leggings": "Chaos Spell Leggings",
   "item.genius_genesis.chaos_spell_boots": "Chaos Spell Boots",
 
-  "item.genius_genesis.gungnir": "Gungnir",
-
-  "item.genius_genesis.violet_zenith_helmet": "Purple Extreme Battle Helmet",
-  "item.genius_genesis.violet_zenith_chestplate": "Purple Extreme Battle Chestplate",
-  "item.genius_genesis.violet_zenith_leggings": "Purple Extreme Battle Leggings",
-  "item.genius_genesis.violet_zenith_boots": "Purple Extreme Battle Boots",
-  "item.genius_genesis.violet_galaxy_ingot": "§5Purple Extreme Ingot",
-  "item.genius_genesis.smithing_template.violet_upgrade.additions_slot_description": "Add §5Purple Extreme Ingot",
-  "item.genius_genesis.smithing_template.violet_upgrade.applies_to": "Arcane Crystal Equipment",
-  "item.genius_genesis.smithing_template.violet_upgrade.base_slot_description": "Add arcane crystal armor, weapon, or tool",
-  "item.genius_genesis.smithing_template.violet_upgrade.ingredients": "§5Purple Extreme Ingot",
-  "tooltip.united_as_one.violet_sword.line1": "Blocks 50% of incoming damage",
-  "tooltip.united_as_one.violet_axe.line1": "Chains through logs",
-  "tooltip.united_as_one.violet_pickaxe.line1": "Chains through ores",
-  "tooltip.united_as_one.violet_shovel.line1": "Hold Shift for 5x5 excavation",
-  "tooltip.united_as_one.violet_hoe.line1": "Feeling lucky...",
+  "item.genius_genesis.arcane_crystal_helmet": "Arcane Crystal Helmet",
+  "item.genius_genesis.arcane_crystal_chestplate": "Arcane Crystal Chestplate",
+  "item.genius_genesis.arcane_crystal_leggings": "Arcane Crystal Leggings",
+  "item.genius_genesis.arcane_crystal_boots": "Arcane Crystal Boots",
 
   "item.genius_genesis.arcane_crystal": "Arcane Crystal",
   "item.genius_genesis.blood_crystal": "Blood Crystal",
@@ -183,6 +208,7 @@
   "item.genius_genesis.nature_crystal": "Nature Crystal",
   "item.genius_genesis.chaos_crystal": "Chaos Crystal",
   "item.genius_genesis.celestial_source_crystal": "Celestial Source Crystal",
+
   "item.genius_genesis.fire_orb_pro": "Fire Orb Pro",
   "item.genius_genesis.ice_orb_pro": "Ice Orb Pro",
   "item.genius_genesis.holy_orb_pro": "Holy Orb Pro",
@@ -194,6 +220,9 @@
   "item.genius_genesis.chaos_orb_pro": "Chaos Orb Pro",
   "item.genius_genesis.celestial_source_orb_pro": "Celestial Source Orb Pro",
   "item.genius_genesis.upgrade_orb_pro": "Upgrade Orb Pro",
+
+  "item.genius_genesis.blasphemy_key": "Blasphemy Key",
+  "item.genius_genesis.eldritch_rune": "Eldritch Rune",
 
   "item.genius_genesis.chaos_manuscript": "Chaos Manuscript",
   "item.genius_genesis.celestial_source_manuscript": "Celestial Source Manuscript",
@@ -254,6 +283,7 @@
   "ui.genius_genesis.damage_multiplier": "Damage Multiplier: %d%%",
   "ui.genius_genesis.health_cost": "Health Cost: %d%%",
   "ui.genius_genesis.number_of_swords": "Number of Sword：%d",
+  "ui.genius_genesis.cast_error_non_scroll": "%s cannot be cast from a scroll.",
 
   "subtitles.genius_genesis.evasion": "Perfect Evasion",
 

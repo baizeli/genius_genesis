@@ -50,8 +50,8 @@ public final class CreativeTabRegistry {
                         SpellRegistry.BLOOD_WAR_SPELL.get(),
                         SpellRegistry.CONFUSION_SPELL.get(),
                         SpellRegistry.GUTRENDER_PUNCTURE.get(),
-                        SpellRegistry.SILENT_ABYSSAL_REALM.get(),
-                        SpellRegistry.REVERSE_PLAGUE_SPELL.get()
+                        SpellRegistry.REVERSE_PLAGUE_SPELL.get(),
+                        SpellRegistry.SILENT_ABYSSAL_REALM.get()
                 )));
 
         Genesis.L2_REGISTRATE.defaultCreativeTab(CreativeModeTabs.SEARCH);

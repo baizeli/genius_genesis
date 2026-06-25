@@ -1,4 +1,4 @@
-package miku.united_as_one.genesis.util;
+package miku.united_as_one.genesis.utils;
 
 import sun.reflect.ReflectionFactory;
 

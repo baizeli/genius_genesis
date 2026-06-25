@@ -7,11 +7,14 @@ import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.entity.mobs.wizards.fire_boss.FireBossEntity;
 import io.redspace.ironsspellbooks.registries.EntityRegistry;
 import miku.united_as_one.genesis.Genesis;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 @AutoSpellConfig
@@ -26,8 +29,11 @@ public class SilentAbyssalRealmSpell extends AbstractSpell {
                 .setMaxLevel(1)
                 .setCooldownSeconds(0.0F)
                 .build();
+        this.manaCostPerLevel = 0;
+        this.baseSpellPower = 0;
+        this.spellPowerPerLevel = 0;
         this.castTime = 200;
-        this.baseManaCost = 10000;
+        this.baseManaCost = 200000;
     }
 
     @Override
@@ -43,6 +49,14 @@ public class SilentAbyssalRealmSpell extends AbstractSpell {
     @Override
     public CastType getCastType() {
         return CastType.LONG;
+    }
+
+    @Override
+    public CastResult canBeCastedBy(int spellLevel, CastSource castSource, MagicData playerMagicData, Player player) {
+        if (castSource != CastSource.SCROLL)
+            return new CastResult(CastResult.Type.FAILURE,
+                    Component.translatable("ui.genius_genesis.cast_error_non_scroll", this.getDisplayName(player)).withStyle(ChatFormatting.RED));
+        return super.canBeCastedBy(spellLevel, castSource, playerMagicData, player);
     }
 
     @Override

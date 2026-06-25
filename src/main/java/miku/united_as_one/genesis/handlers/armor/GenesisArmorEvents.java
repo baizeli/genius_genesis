@@ -15,7 +15,7 @@ import io.redspace.ironsspellbooks.setup.PacketDistributor;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.item.GenesisArmorMaterials;
-import miku.united_as_one.genesis.util.ArmorSetUtil;
+import miku.united_as_one.genesis.utils.ArmorSetUtil;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
