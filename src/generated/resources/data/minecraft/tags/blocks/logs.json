@@ -2,15 +2,15 @@
   "values": [
     "genius_genesis:sway_log",
     "genius_genesis:stripped_sway_log",
-    "genius_genesis:sway_log_wood",
-    "genius_genesis:stripped_sway_log_wood",
+    "genius_genesis:sway_wood",
+    "genius_genesis:stripped_sway_wood",
     "genius_genesis:quietness_log",
     "genius_genesis:stripped_quietness_log",
-    "genius_genesis:quietness_log_wood",
-    "genius_genesis:stripped_quietness_log_wood",
+    "genius_genesis:quietness_wood",
+    "genius_genesis:stripped_quietness_wood",
     "genius_genesis:source_log",
     "genius_genesis:stripped_source_log",
-    "genius_genesis:source_log_wood",
-    "genius_genesis:stripped_source_log_wood"
+    "genius_genesis:source_wood",
+    "genius_genesis:stripped_source_wood"
   ]
 }

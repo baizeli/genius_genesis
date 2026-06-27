@@ -253,7 +253,8 @@ public class SimpleBlockSet<T extends Block> {
     }
 
     public SimpleBlockSet<T> addWood() {
-        wood = Genesis.L2_REGISTRATE.block(name + "_wood", RotatedPillarBlock::new)
+        String baseName = name.endsWith("_log") ? name.substring(0, name.length() - 4) : name;
+        wood = Genesis.L2_REGISTRATE.block(baseName + "_wood", RotatedPillarBlock::new)
                 .initialProperties(base)
                 .blockstate((ctx, pvd) -> pvd.axisBlock(ctx.get(), pvd.modLoc("block/" + name), pvd.modLoc("block/" + name)))
                 .tag(BlockTags.MINEABLE_WITH_AXE, BlockTags.LOGS)
@@ -266,7 +267,8 @@ public class SimpleBlockSet<T extends Block> {
     }
 
     public SimpleBlockSet<T> addStrippedWood() {
-        strippedWood = Genesis.L2_REGISTRATE.block("stripped_" + name + "_wood", RotatedPillarBlock::new)
+        String baseName = name.endsWith("_log") ? name.substring(0, name.length() - 4) : name;
+        strippedWood = Genesis.L2_REGISTRATE.block("stripped_" + baseName + "_wood", RotatedPillarBlock::new)
                 .initialProperties(base)
                 .blockstate((ctx, pvd) -> pvd.axisBlock(ctx.get(), pvd.modLoc("block/stripped_" + name), pvd.modLoc("block/stripped_" + name)))
                 .tag(BlockTags.MINEABLE_WITH_AXE, BlockTags.LOGS)

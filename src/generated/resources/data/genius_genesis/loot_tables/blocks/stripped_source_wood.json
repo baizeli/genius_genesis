@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "genius_genesis:source_log_wood"
+          "name": "genius_genesis:stripped_source_wood"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "genius_genesis:blocks/source_log_wood"
+  "random_sequence": "genius_genesis:blocks/stripped_source_wood"
 }
