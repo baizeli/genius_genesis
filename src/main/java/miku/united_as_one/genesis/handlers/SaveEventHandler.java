@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Arrays;
 
-@Mod.EventBusSubscriber(modid = Genesis.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = Genesis.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class SaveEventHandler {
     @SubscribeEvent
     public static void onServerStopping(ServerStoppingEvent event) {

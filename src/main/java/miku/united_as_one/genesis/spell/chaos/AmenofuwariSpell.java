@@ -79,8 +79,9 @@ public class AmenofuwariSpell extends ChaosBaseSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        if (!level.isClientSide && playerMagicData.getAdditionalCastData() instanceof TargetEntityCastData targetData) {
-            LivingEntity targetEntity = targetData.getTarget((ServerLevel) level);
+        if (level instanceof ServerLevel serverLevel &&
+                playerMagicData.getAdditionalCastData() instanceof TargetEntityCastData targetData) {
+            LivingEntity targetEntity = targetData.getTarget(serverLevel);
 
             if (targetEntity != null && entity.distanceTo(targetEntity) <= getDistance(spellLevel, entity)) {
                 Vec3 casterPos = entity.position();

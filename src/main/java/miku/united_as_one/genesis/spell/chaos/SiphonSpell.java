@@ -2,7 +2,6 @@ package miku.united_as_one.genesis.spell.chaos;
 
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
-import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.spells.AutoSpellConfig;
 import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.api.spells.CastType;
@@ -16,27 +15,26 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
 
 @AutoSpellConfig
-public class ConfusionSpell extends ChaosBaseSpell {
-    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(Genesis.MOD_ID, "confusion");
+public class SiphonSpell extends ChaosBaseSpell {
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(Genesis.MOD_ID, "siphon");
     private final DefaultConfig defaultConfig = new DefaultConfig()
-        .setMinRarity(SpellRarity.LEGENDARY)
+        .setMinRarity(SpellRarity.COMMON)
         .setSchoolResource(SpellSchoolRegistry.CHAOS_RESOURCE)
-        .setMaxLevel(3)
-        .setCooldownSeconds(60)
+        .setMaxLevel(5)
+        .setCooldownSeconds(50)
         .build();
 
-    public ConfusionSpell() {
+    public SiphonSpell() {
         this.manaCostPerLevel = 10;
-        this.baseManaCost = 20;
-        this.castTime = 140;
-        this.baseSpellPower = 1;
-        this.spellPowerPerLevel = 1;
+        this.baseSpellPower = 6;
+        this.spellPowerPerLevel = 6;
+        this.castTime = 20;
+        this.baseManaCost = 100;
     }
 
     @Override
@@ -58,37 +56,34 @@ public class ConfusionSpell extends ChaosBaseSpell {
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
             Component.translatable(
+                "ui." + Genesis.MOD_ID + ".absorption_healing",
+                Utils.stringTruncation(getSpellPower(spellLevel, caster), 1)
+            ),
+            Component.translatable(
                 "ui.irons_spellbooks.duration",
-                Utils.timeFromTicks(getDuration(spellLevel, caster), 1)
+                Utils.timeFromTicks(getDuration(spellLevel), 1)
             )
         );
     }
 
-    private int getDuration(int spellLevel, LivingEntity caster) {
-        int[] baseDurations = {5, 7, 9};
-
-        return (baseDurations[Math.min(spellLevel - 1, baseDurations.length - 1)] + 
-            (int) ((caster != null ? caster.getAttributeValue(AttributeRegistry.SPELL_POWER.get()) : 0.0) / 0.2)) * 20;
+    private int getDuration(int spellLevel) {
+        int[] durations = {25, 30, 35, 40, 45};
+        return durations[Math.min(spellLevel - 1, durations.length - 1)] * 20;
     }
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        if (!level.isClientSide)
-            applyConfusionToNearby(level, spellLevel, entity);
-        super.onCast(level, spellLevel, entity, castSource, playerMagicData);
-    }
-
-    private void applyConfusionToNearby(Level level, int spellLevel, LivingEntity caster) {
-        for (LivingEntity target : level.getEntitiesOfClass(
-                LivingEntity.class, caster.getBoundingBox().inflate(7))) {
-            if (target instanceof Player || caster.distanceTo(target) > 7)
-                continue;
-
-            target.addEffect(new MobEffectInstance(
-                    EffectRegistry.CONFUSION.get(),
-                    getDuration(spellLevel, caster),
-                    0, false, false, false
+        if (!level.isClientSide) {
+            entity.addEffect(new MobEffectInstance(
+                EffectRegistry.SIPHON.get(),
+                getDuration(spellLevel),
+                spellLevel - 1,
+                false,
+                false,
+                true
             ));
         }
+
+        super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 }

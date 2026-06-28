@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.*;
 
 @AutoSpellConfig
-@Mod.EventBusSubscriber(modid = Genesis.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = Genesis.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ReversePlagueSpell extends ChaosBaseSpell {
     private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(Genesis.MOD_ID, "reverse_plague");
     private final DefaultConfig defaultConfig;
@@ -71,18 +71,18 @@ public class ReversePlagueSpell extends ChaosBaseSpell {
         Entity entity = serverLevel.getEntities().get(((TargetEntityCastData) Objects.requireNonNull(playerMagicData.getAdditionalCastData())).getTargetUUID());
         if (entity instanceof LivingEntity living) {
             for (MobEffectInstance effectInstance : living.getActiveEffects().stream().toList()) { // 将目标增益效果转移到施法者
-                if (effectInstance.getEffect().getCategory() == MobEffectCategory.BENEFICIAL) {
-                    effectInstance.duration = Math.min(effectInstance.getDuration(), 2400);
-                    livingEntity.addEffect(effectInstance);
-                    living.removeEffect(effectInstance.getEffect());
-                }
+                if (effectInstance.getEffect().getCategory() != MobEffectCategory.BENEFICIAL)
+                    continue;
+                effectInstance.duration = Math.min(effectInstance.getDuration(), 2400);
+                livingEntity.addEffect(effectInstance);
+                living.removeEffect(effectInstance.getEffect());
             }
 
             for (MobEffectInstance effectInstance : livingEntity.getActiveEffects().stream().toList()) { // 将施法者减益效果转移到目标
-                if (effectInstance.getEffect().getCategory() == MobEffectCategory.HARMFUL) {
-                    living.addEffect(effectInstance);
-                    livingEntity.removeEffect(effectInstance.getEffect());
-                }
+                if (effectInstance.getEffect().getCategory() != MobEffectCategory.HARMFUL)
+                    continue;
+                living.addEffect(effectInstance);
+                livingEntity.removeEffect(effectInstance.getEffect());
             }
 
             // 通过nbt持久化保存持续时间
