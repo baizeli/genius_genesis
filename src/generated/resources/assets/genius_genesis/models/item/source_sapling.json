@@ -1,3 +1,6 @@
 {
-  "parent": "genius_genesis:block/source_sapling"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "genius_genesis:block/source_sapling"
+  }
 }

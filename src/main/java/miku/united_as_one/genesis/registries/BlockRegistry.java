@@ -61,12 +61,14 @@ public final class BlockRegistry {
             .addLayer(() -> RenderType::cutout)
             .blockstate((ctx, pvd) -> pvd.simpleBlock(
                     ctx.get(),
-                    pvd.models().cross(ctx.getName(), pvd.mcLoc("block/oak_sapling")).renderType("cutout")
+                    pvd.models().cross(ctx.getName(), pvd.modLoc("block/source_sapling")).renderType("cutout")
             ))
             .tag(BlockTags.SAPLINGS)
             .item()
             .tab(CreativeTabRegistry.GENIUS_GENESIS_BLOCK)
             .tag(ItemTags.SAPLINGS)
+            .model((ctx, pvd) -> pvd.withExistingParent(ctx.getName(), "item/generated")
+                    .texture("layer0", pvd.modLoc("block/source_sapling")))
             .build()
             .register();
     public static final BlockEntry<Block> SOURCE_CRYSTAL_BLOCK = Genesis.L2_REGISTRATE
