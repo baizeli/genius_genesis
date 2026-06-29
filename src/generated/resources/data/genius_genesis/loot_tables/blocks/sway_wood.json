@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "genius_genesis:stripped_sway_log_wood"
+          "name": "genius_genesis:sway_wood"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "genius_genesis:blocks/stripped_sway_log_wood"
+  "random_sequence": "genius_genesis:blocks/sway_wood"
 }

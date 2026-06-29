@@ -43,6 +43,7 @@ public final class CreativeTabRegistry {
                 .displayItems((params, output) -> addScrolls(output,
                         SpellRegistry.METEOR.get(),
                         SpellRegistry.I_FLY.get(),
+
                         SpellRegistry.AMENOFUWARI_SPELL.get(),
                         SpellRegistry.BLOOD_CONTROL_SPELL.get(),
                         SpellRegistry.BLOOD_FRENZY_SPELL.get(),
@@ -50,7 +51,11 @@ public final class CreativeTabRegistry {
                         SpellRegistry.BLOOD_WAR_SPELL.get(),
                         SpellRegistry.CONFUSION_SPELL.get(),
                         SpellRegistry.GUTRENDER_PUNCTURE.get(),
-                        SpellRegistry.REVERSE_PLAGUE_SPELL.get()
+                        SpellRegistry.REVERSE_PLAGUE_SPELL.get(),
+                        SpellRegistry.SIPHON_SPELL.get(),
+                        SpellRegistry.WARPED_BARRIER_SPELL.get(),
+
+                        SpellRegistry.SILENT_ABYSSAL_REALM.get()
                 )));
 
         Genesis.L2_REGISTRATE.defaultCreativeTab(CreativeModeTabs.SEARCH);

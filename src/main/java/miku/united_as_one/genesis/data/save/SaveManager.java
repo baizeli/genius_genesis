@@ -24,7 +24,7 @@ public class SaveManager {
 
     public static void init(MinecraftServer server) {
         SAVE_PATH = server.getWorldPath(LevelResource.ROOT)
-                .resolve(Genesis.MODID + "_save.json");
+                .resolve(Genesis.MOD_ID + "_save.json");
     }
 
 

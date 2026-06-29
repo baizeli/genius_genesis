@@ -2,10 +2,8 @@ package miku.united_as_one.genesis.registries;
 
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.effect.spell.chaos.BloodFrenzyEffect;
-import miku.united_as_one.genesis.effect.spell.chaos.BloodWarEffect;
+import miku.united_as_one.genesis.effect.spell.chaos.*;
 import miku.united_as_one.genesis.effect.spell.celestial_source.IFlyEffect;
-import miku.united_as_one.genesis.effect.spell.chaos.ConfusionEffect;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -27,6 +25,12 @@ public final class EffectRegistry {
 
     public static final RegistryObject<MobEffect> CONFUSION =
             MOB_EFFECTS.register("confusion", ConfusionEffect::new);
+
+    public static final RegistryObject<MobEffect> SIPHON =
+            MOB_EFFECTS.register("siphon", SiphonEffect::new);
+
+    public static final RegistryObject<MobEffect> WARPED_BARRIER =
+            MOB_EFFECTS.register("warped_barrier", WarpedBarrierEffect::new);
 
     public static final RegistryObject<MobEffect> I_FLY =
             MOB_EFFECTS.register("i_fly", IFlyEffect::new);

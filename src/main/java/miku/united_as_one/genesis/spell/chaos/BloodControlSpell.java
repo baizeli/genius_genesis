@@ -82,15 +82,15 @@ public class BloodControlSpell extends ChaosBaseSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        if (!level.isClientSide && playerMagicData.getAdditionalCastData() instanceof TargetEntityCastData targetData) {
-            LivingEntity targetEntity = targetData.getTarget((ServerLevel) level);
+        if (level instanceof ServerLevel serverLevel &&
+                playerMagicData.getAdditionalCastData() instanceof TargetEntityCastData targetData) {
+            LivingEntity targetEntity = targetData.getTarget(serverLevel);
             if (targetEntity != null) {
                 float healthToConsume = entity.getMaxHealth() * getHealthCostPercentage(spellLevel);
 
                 entity.hurt(entity.damageSources().genericKill(), healthToConsume);
                 DamageSources.applyDamage(
-                    targetEntity, 
-                    healthToConsume * getDamageMultiplier(spellLevel, entity), 
+                    targetEntity, healthToConsume * getDamageMultiplier(spellLevel, entity),
                     this.getDamageSource(entity)
                 );
             }

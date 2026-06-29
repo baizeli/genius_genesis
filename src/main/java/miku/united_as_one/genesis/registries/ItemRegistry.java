@@ -58,10 +58,9 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 
 public final class ItemRegistry {
-
     public static final ItemEntry<VioletGalaxyIngotItem> VIOLET_GALAXY_INGOT = item("violet_galaxy_ingot", VioletGalaxyIngotItem::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     // 紫极碎片
-    public static final ItemEntry<Item> VIOLET_FRAGMENTS = epic("violet_fragments", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
+    public static final ItemEntry<Item> VIOLET_GALAXY_FRAGMENT = epic("violet_galaxy_fragment", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     // 破灭神格
     public static final ItemEntry<Item> DESTROY_GODHEAD = epic("destroy_godhead", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<GenesisGoldTooltipParticleItem> DIVINE_METAL_INGOT = item("divine_metal_ingot", GenesisGoldTooltipParticleItem::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);

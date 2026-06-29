@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "genius_genesis:quietness_log_wood"
+          "name": "genius_genesis:quietness_wood"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "genius_genesis:blocks/quietness_log_wood"
+  "random_sequence": "genius_genesis:blocks/quietness_wood"
 }
