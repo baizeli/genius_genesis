@@ -1,6 +1,8 @@
 package miku.united_as_one.genesis.client;
 
 import com.tterrag.registrate.util.entry.FluidEntry;
+import miku.bai_ze_li.genesis.api.render.liquid.GenesisLiquidReflectionApi;
+import miku.bai_ze_li.genesis.api.render.liquid.GenesisLiquidReflectionStyle;
 import miku.bai_ze_li.genesis.api.render.particle.GlowCubeParticle;
 import miku.bai_ze_li.genesis.api.render.shader.GenesisItemShaderEffect;
 import miku.bai_ze_li.genesis.api.render.shader.GenesisItemShaderRegistry;
@@ -69,7 +71,19 @@ public final class ClientSetup {
         ).forEach(ClientSetup::registerBowProperties));
         event.enqueueWork(() -> MenuScreens.register(MenuTypeRegistry.ARCANE_WORKBENCH.get(), ArcaneWorkbenchScreen::new));
         event.enqueueWork(ClientSetup::registerScrollShaderResolvers);
+        event.enqueueWork(ClientSetup::registerLiquidReflections);
         event.enqueueWork(ClientSetup::registerFluidRenderLayers);
+    }
+
+    private static void registerLiquidReflections() {
+        GenesisLiquidReflectionApi.register(FluidRegistry.SOURCE_FLUID.getSource(), GenesisLiquidReflectionStyle.builder()
+                .tint(0.10F, 0.78F, 1.0F, 0.62F)
+                .reflectionStrength(0.78F)
+                .flowStrength(0.72F)
+                .flowSpeed(1.15F)
+                .scanRadius(24)
+                .verticalRadius(10)
+                .build());
     }
 
     private static void registerScrollShaderResolvers() {
