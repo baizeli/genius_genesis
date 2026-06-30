@@ -11,6 +11,9 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+/**
+ * 处理带有{@code Genesis.KEY_WEAK_TICKS}标签的实体
+ */
 @Mod.EventBusSubscriber(modid = Genesis.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class WeaknessHandler {
     @SubscribeEvent

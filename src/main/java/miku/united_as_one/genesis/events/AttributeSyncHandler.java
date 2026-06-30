@@ -14,6 +14,9 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.UUID;
 
+/**
+ * 根据{@code SpellAttributesRegistry.MAX_MANA_PERCENT}同步实体的{@code AttributeRegistry.MAX_MANA}属性
+ */
 @Mod.EventBusSubscriber(modid = Genesis.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class AttributeSyncHandler {
     private static final UUID MAX_MANA_PERCENT_UUID = Mth.createInsecureUUID(RandomSource.createNewThreadLocalInstance());
