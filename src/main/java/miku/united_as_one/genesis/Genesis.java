@@ -5,7 +5,7 @@ import dev.xkmc.l2library.base.L2Registrate;
 import miku.united_as_one.genesis.client.ClientSetup;
 import miku.united_as_one.genesis.compat.terrablender.GenesisTerraBlender;
 import miku.united_as_one.genesis.data.equipment.ModEquipmentStatsConfigs;
-import miku.united_as_one.genesis.handlers.CommonEventHandler;
+import miku.united_as_one.genesis.events.CommonEventHandler;
 import miku.united_as_one.genesis.network.GenesisNetwork;
 import miku.united_as_one.genesis.registries.*;
 import miku.united_as_one.genesis.workbench.registry.*;
@@ -24,9 +24,12 @@ import org.slf4j.Logger;
 @Mod(Genesis.MOD_ID)
 public class Genesis {
     public static final String MOD_ID = "genius_genesis";
+    @Deprecated(forRemoval = true)
     public static final String MODID = MOD_ID;
     public static final String KEY_REMAINING_TIME = Genesis.MOD_ID + ":remaining_time";
     public static final String KEY_LIFE_TICKS = Genesis.MOD_ID + ":life_ticks";
+    public static final String KEY_WEAK_TICKS = Genesis.MOD_ID + ":weak_ticks";
+
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final L2Registrate L2_REGISTRATE = new L2Registrate(MOD_ID);
 

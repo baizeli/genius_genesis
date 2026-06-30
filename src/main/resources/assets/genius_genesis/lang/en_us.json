@@ -407,7 +407,7 @@
   "death.attack.genius_genesis.warped_blood_burst.item": "The entire bloodstream of %1$s exploded due to %2$s's %3$s",
 
   "ui.genius_genesis.absorption_healing": "Absorption Healing: %d%%",
-  "ui.genius_genesis.cast_error_non_scroll": "%s cannot be cast from a scroll.",
+  "ui.genius_genesis.cast_error_non_scroll": "%s can only be cast from a scroll.",
   "ui.genius_genesis.damage_multiplier": "Damage Multiplier: %d%%",
   "ui.genius_genesis.force_damage": "Force Damage：%d",
   "ui.genius_genesis.health_conversion_efficiency": "Health conversion efficiency：%d%%",

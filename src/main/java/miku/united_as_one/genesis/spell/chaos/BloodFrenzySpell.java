@@ -31,11 +31,11 @@ public class BloodFrenzySpell extends ChaosBaseSpell {
         .build();
 
     public BloodFrenzySpell() {
-        this.manaCostPerLevel = 100;
         this.baseManaCost = 500;
-        this.castTime = 100;
+        this.manaCostPerLevel = 100;
         this.baseSpellPower = 1;
         this.spellPowerPerLevel = 1;
+        this.castTime = 100;
     }
 
     @Override

@@ -36,8 +36,7 @@ public class ModMobEffectTagProvider extends TagsProvider<MobEffect> {
     protected void addTags(@NotNull HolderLookup.Provider provider) {
         tag(CELESTIAL_SOURCE_EFFECT);
         tag(CHAOS_EFFECT).add(
-                EffectRegistry.BLOOD_FRENZY.getKey(),
-                EffectRegistry.BLOOD_WAR.getKey()
+                EffectRegistry.BLOOD_FRENZY.getKey()
         );
     }
 }

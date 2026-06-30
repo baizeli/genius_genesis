@@ -31,11 +31,11 @@ public class BloodControlSpell extends ChaosBaseSpell {
         .build();
 
     public BloodControlSpell() {
+        this.baseManaCost = 10;
         this.manaCostPerLevel = 10;
         this.baseSpellPower = 1;
         this.spellPowerPerLevel = 1;
         this.castTime = 0;
-        this.baseManaCost = 10;
     }
 
     @Override

@@ -20,9 +20,6 @@ public final class EffectRegistry {
     public static final RegistryObject<MobEffect> BLOOD_FRENZY =
             MOB_EFFECTS.register("blood_frenzy", BloodFrenzyEffect::new);
 
-    public static final RegistryObject<MobEffect> BLOOD_WAR =
-            MOB_EFFECTS.register("blood_war", BloodWarEffect::new);
-
     public static final RegistryObject<MobEffect> CONFUSION =
             MOB_EFFECTS.register("confusion", ConfusionEffect::new);
 
