@@ -23,7 +23,7 @@ import org.joml.Matrix4f;
 public class MeteorProjectileRenderer extends EntityRenderer<MeteorProjectileEntity> {
     private static final ResourceLocation TEXTURE = Genesis.id("textures/entity/feg.png");
     private static final ResourceLocation TRAIL_TEXTURE = Genesis.id("textures/images/trail_stellar.png");
-    private static final float SPRITE_SCALE = 1.9F;
+    private static final float SPRITE_SCALE = 1.05F;
     private static final TrailRenderStyle RAINBOW_TRAIL = TrailRenderStyle
             .builder(TRAIL_TEXTURE, MeteorProjectileRenderer::trailColor)
             .width(0.22F)
@@ -66,7 +66,6 @@ public class MeteorProjectileRenderer extends EntityRenderer<MeteorProjectileEnt
 
         poseStack.mulPose(Axis.YP.rotation((float) Math.atan2(direction.x, direction.z)));
         poseStack.mulPose(Axis.XP.rotation((float) -Math.asin(direction.y)));
-        poseStack.mulPose(Axis.ZP.rotationDegrees((entity.tickCount + partialTicks) * 11.0F));
         poseStack.scale(SPRITE_SCALE, SPRITE_SCALE, SPRITE_SCALE);
 
         if (!shaderCompatibleMode) {
@@ -77,12 +76,12 @@ public class MeteorProjectileRenderer extends EntityRenderer<MeteorProjectileEnt
         float age = (float) entity.tickCount + partialTicks;
         float pulse = 0.92F + 0.08F * Mth.sin((entity.tickCount + partialTicks) * 0.35F);
         float[] color = randomEntityColor(entity.getId(), pulse);
-        int red = Mth.clamp((int) (color[0] * 255.0F), 0, 255);
-        int green = Mth.clamp((int) (color[1] * 255.0F), 0, 255);
-        int blue = Mth.clamp((int) (color[2] * 255.0F), 0, 255);
+        int red = Mth.clamp((int) (color[0] * 215.0F), 0, 255);
+        int green = Mth.clamp((int) (color[1] * 215.0F), 0, 255);
+        int blue = Mth.clamp((int) (color[2] * 215.0F), 0, 255);
         float starPulse = 0.92F + 0.10F * Mth.sin(age * 0.62F);
 
-        MeteorStarRenderer.renderAstralStar(consumer, matrix, starPulse, red, green, blue);
+        MeteorStarRenderer.renderAstralStar(consumer, matrix, starPulse, red, green, blue, shaderCompatibleMode);
 
         poseStack.popPose();
     }

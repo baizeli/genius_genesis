@@ -23,7 +23,7 @@ import org.joml.Matrix4f;
 public class MeteorStarRenderer extends EntityRenderer<MeteorStarEntity> {
     private static final ResourceLocation TEXTURE = Genesis.id("textures/entity/feg.png");
     private static final ResourceLocation TRAIL_TEXTURE = Genesis.id("textures/images/trail_stellar.png");
-    private static final float SPRITE_SCALE = 1.25F;
+    private static final float SPRITE_SCALE = 0.7F;
     private static final TrailRenderStyle STAR_TRAIL = TrailRenderStyle
             .builder(TRAIL_TEXTURE, MeteorStarRenderer::trailColor)
             .width(0.18F)
@@ -71,7 +71,6 @@ public class MeteorStarRenderer extends EntityRenderer<MeteorStarEntity> {
 
         poseStack.mulPose(Axis.YP.rotation((float) Math.atan2(direction.x, direction.z)));
         poseStack.mulPose(Axis.XP.rotation((float) -Math.asin(direction.y)));
-        poseStack.mulPose(Axis.ZP.rotationDegrees((entity.tickCount + partialTicks) * -15.0F));
         poseStack.scale(SPRITE_SCALE, SPRITE_SCALE, SPRITE_SCALE);
         if (!shaderCompatibleMode) {
             GenesisShaders.setMeteorStarTime(((float) entity.tickCount + partialTicks) * 0.08F);
@@ -82,20 +81,25 @@ public class MeteorStarRenderer extends EntityRenderer<MeteorStarEntity> {
         float age = (float) entity.tickCount + partialTicks;
         float pulse = 0.9F + 0.1F * Mth.sin((entity.tickCount + partialTicks) * 0.45F);
         float[] color = MeteorProjectileRenderer.randomEntityColor(entity.getId(), pulse);
-        int red = Mth.clamp((int) (color[0] * 255.0F), 0, 255);
-        int green = Mth.clamp((int) (color[1] * 255.0F), 0, 255);
-        int blue = Mth.clamp((int) (color[2] * 255.0F), 0, 255);
+        int red = Mth.clamp((int) (color[0] * 215.0F), 0, 255);
+        int green = Mth.clamp((int) (color[1] * 215.0F), 0, 255);
+        int blue = Mth.clamp((int) (color[2] * 215.0F), 0, 255);
         float starPulse = 0.92F + 0.10F * Mth.sin(age * 0.62F);
 
-        renderAstralStar(consumer, matrix, starPulse, red, green, blue);
+        renderAstralStar(consumer, matrix, starPulse, red, green, blue, shaderCompatibleMode);
 
         poseStack.popPose();
     }
 
-    static void renderAstralStar(VertexConsumer buffer, Matrix4f pose, float pulse, int red, int green, int blue) {
-        renderStar(buffer, pose, 0.78F * pulse, 0.16F * pulse, 84, 182, 255, 72);
-        renderStar(buffer, pose, 0.52F * pulse, 0.095F * pulse, red, green, blue, 238);
-        renderStar(buffer, pose, 0.24F * pulse, 0.055F * pulse, 255, 255, 255, 245);
+    static void renderAstralStar(VertexConsumer buffer, Matrix4f pose, float pulse, int red, int green, int blue, boolean shaderCompatibleMode) {
+        float alphaScale = shaderCompatibleMode ? 0.42F : 0.66F;
+        renderStar(buffer, pose, 0.78F * pulse, 0.16F * pulse, 84, 182, 255, scaledAlpha(52, alphaScale));
+        renderStar(buffer, pose, 0.52F * pulse, 0.095F * pulse, red, green, blue, scaledAlpha(176, alphaScale));
+        renderStar(buffer, pose, 0.24F * pulse, 0.055F * pulse, 255, 255, 255, scaledAlpha(150, alphaScale));
+    }
+
+    private static int scaledAlpha(int alpha, float scale) {
+        return Mth.clamp((int) (alpha * scale), 0, 255);
     }
 
     private static void renderStar(VertexConsumer buffer, Matrix4f pose, float radius, float innerRadius,
