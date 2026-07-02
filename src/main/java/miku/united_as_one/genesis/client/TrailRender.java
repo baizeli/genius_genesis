@@ -164,8 +164,10 @@ public class TrailRender {
 
             if (entity instanceof MeteorProjectileEntity projectile) {
                 MeteorProjectileRenderer.renderTrailOnly(projectile, partialTicks, entityPoseStack, bufferSource);
+                MeteorProjectileRenderer.renderStarOnly(projectile, partialTicks, entityPoseStack, bufferSource, true, cameraPos);
             } else if (entity instanceof MeteorStarEntity star) {
                 MeteorStarRenderer.renderTrailOnly(star, partialTicks, entityPoseStack, bufferSource);
+                MeteorStarRenderer.renderStarOnly(star, partialTicks, entityPoseStack, bufferSource, true, cameraPos);
             }
         }
     }

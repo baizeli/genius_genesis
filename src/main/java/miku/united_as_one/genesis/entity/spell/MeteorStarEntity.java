@@ -108,6 +108,7 @@ public class MeteorStarEntity extends Projectile {
                 18, 0.0D, 0.0D, 0.0D, 0.13D, false);
         MagicManager.spawnParticles(level(), new BlastwaveParticleOptions(IMPACT_COLOR, this.radius * 0.9F),
                 center.x, center.y + 0.05D, center.z, 1, 0.0D, 0.0D, 0.0D, 0.0D, true);
+        level().addFreshEntity(new MeteorShockwaveEntity(level(), center.add(0.0D, 0.05D, 0.0D), this.radius * 0.45F, this.getId()));
 
         if (!(level() instanceof ServerLevel)) {
             return;

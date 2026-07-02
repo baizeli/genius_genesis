@@ -4,6 +4,7 @@ import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.entity.spell.chaos.ChaosSwordAoeEntity;
 import miku.united_as_one.genesis.entity.spell.chaos.ChaosSwordEntity;
 import miku.united_as_one.genesis.entity.spell.MeteorProjectileEntity;
+import miku.united_as_one.genesis.entity.spell.MeteorShockwaveEntity;
 import miku.united_as_one.genesis.entity.spell.MeteorStarEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -22,6 +23,9 @@ public final class EntityRegistry {
 
     public static final RegistryObject<EntityType<MeteorStarEntity>> METEOR_STAR =
             fastMisc("meteor_star", MeteorStarEntity::new, 0.6F, 0.6F, 64);
+
+    public static final RegistryObject<EntityType<MeteorShockwaveEntity>> METEOR_SHOCKWAVE =
+            fastMisc("meteor_shockwave", MeteorShockwaveEntity::new, 0.25F, 0.25F, 64);
 
     public static final RegistryObject<EntityType<ChaosSwordEntity>> CHAOS_SWORD =
             fastMisc("chaos_sword", ChaosSwordEntity::new, 0.5F, 0.5F, 64);

@@ -19,3 +19,5 @@ Thumbs.db
 
 # Runtime
 run/
+.astralrail-cube-inspect/
+docs/glsl

@@ -118,6 +118,7 @@ public class MeteorProjectileEntity extends Projectile {
                 25, 0.0D, 0.0D, 0.0D, 0.18D, false);
         MagicManager.spawnParticles(level(), new BlastwaveParticleOptions(BLASTWAVE_COLOR, 3.6F),
                 impact.x, impact.y + 0.05D, impact.z, 1, 0.0D, 0.0D, 0.0D, 0.0D, true);
+        level().addFreshEntity(new MeteorShockwaveEntity(level(), impact.add(0.0D, 0.05D, 0.0D), Math.max(3.6F, this.starRadius * 1.15F) * 0.5F, this.getId()));
         spawnGlowCubeParticles(impact, 28);
         spawnFallingStars(impact);
     }

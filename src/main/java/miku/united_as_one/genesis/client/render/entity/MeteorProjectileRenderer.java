@@ -7,25 +7,23 @@ import miku.bai_ze_li.genesis.api.render.TrailHelp;
 import miku.bai_ze_li.genesis.api.render.TrailRenderApi;
 import miku.bai_ze_li.genesis.api.render.TrailRenderStyle;
 import miku.bai_ze_li.genesis.api.render.shader.GenesisRenderType;
+import miku.bai_ze_li.genesis.api.render.shader.GenesisShaders;
 import miku.bai_ze_li.genesis.api.text.GenesisColor;
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.client.TrailRender;
 import miku.united_as_one.genesis.entity.spell.MeteorProjectileEntity;
-import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 public class MeteorProjectileRenderer extends EntityRenderer<MeteorProjectileEntity> {
     private static final ResourceLocation TEXTURE = Genesis.id("textures/entity/feg.png");
     private static final ResourceLocation TRAIL_TEXTURE = Genesis.id("textures/images/trail_stellar.png");
-    private static final float SPRITE_SCALE = 3.8F;
+    private static final float SPRITE_SCALE = 1.9F;
     private static final TrailRenderStyle RAINBOW_TRAIL = TrailRenderStyle
             .builder(TRAIL_TEXTURE, MeteorProjectileRenderer::trailColor)
             .width(0.22F)
@@ -44,8 +42,8 @@ public class MeteorProjectileRenderer extends EntityRenderer<MeteorProjectileEnt
                        MultiBufferSource buffer, int packedLight) {
         if (!TrailRender.shouldDeferWorldEffects()) {
             renderTrailOnly(entity, partialTicks, poseStack, buffer);
+            renderStarOnly(entity, partialTicks, poseStack, buffer, false, this.entityRenderDispatcher.camera.getPosition());
         }
-        renderSprite(entity, partialTicks, poseStack, buffer);
     }
 
     public static void renderTrailOnly(MeteorProjectileEntity entity, float partialTicks, PoseStack poseStack,
@@ -54,10 +52,10 @@ public class MeteorProjectileRenderer extends EntityRenderer<MeteorProjectileEnt
                 entity.tickCount + partialTicks, entity.getId());
     }
 
-    private void renderSprite(MeteorProjectileEntity entity, float partialTicks, PoseStack poseStack, MultiBufferSource buffer) {
+    public static void renderStarOnly(MeteorProjectileEntity entity, float partialTicks, PoseStack poseStack,
+                                      MultiBufferSource buffer, boolean shaderCompatibleMode, Vec3 cameraPos) {
         poseStack.pushPose();
 
-        Vec3 cameraPos = this.entityRenderDispatcher.camera.getPosition();
         Vec3 entityPos = entity.position();
         Vec3 direction = cameraPos.subtract(entityPos);
         if (direction.lengthSqr() < 0.0001D) {
@@ -71,17 +69,20 @@ public class MeteorProjectileRenderer extends EntityRenderer<MeteorProjectileEnt
         poseStack.mulPose(Axis.ZP.rotationDegrees((entity.tickCount + partialTicks) * 11.0F));
         poseStack.scale(SPRITE_SCALE, SPRITE_SCALE, SPRITE_SCALE);
 
-        VertexConsumer consumer = buffer.getBuffer(RenderType.entityTranslucentEmissive(TEXTURE));
+        if (!shaderCompatibleMode) {
+            GenesisShaders.setMeteorStarTime(((float) entity.tickCount + partialTicks) * 0.08F);
+        }
+        VertexConsumer consumer = buffer.getBuffer(shaderCompatibleMode ? GenesisRenderType.meteorStarCompatible : GenesisRenderType.meteorStar);
         Matrix4f matrix = poseStack.last().pose();
-        Matrix3f normal = poseStack.last().normal();
-        float size = 0.5F;
+        float age = (float) entity.tickCount + partialTicks;
         float pulse = 0.92F + 0.08F * Mth.sin((entity.tickCount + partialTicks) * 0.35F);
         float[] color = randomEntityColor(entity.getId(), pulse);
+        int red = Mth.clamp((int) (color[0] * 255.0F), 0, 255);
+        int green = Mth.clamp((int) (color[1] * 255.0F), 0, 255);
+        int blue = Mth.clamp((int) (color[2] * 255.0F), 0, 255);
+        float starPulse = 0.92F + 0.10F * Mth.sin(age * 0.62F);
 
-        TrailHelp.addVertexWithColor(consumer, matrix, normal, new Vec3(-size, -size, 0.0D), color, 1.0F, 0.0F, 1.0F, LightTexture.FULL_BRIGHT);
-        TrailHelp.addVertexWithColor(consumer, matrix, normal, new Vec3(size, -size, 0.0D), color, 1.0F, 1.0F, 1.0F, LightTexture.FULL_BRIGHT);
-        TrailHelp.addVertexWithColor(consumer, matrix, normal, new Vec3(size, size, 0.0D), color, 1.0F, 1.0F, 0.0F, LightTexture.FULL_BRIGHT);
-        TrailHelp.addVertexWithColor(consumer, matrix, normal, new Vec3(-size, size, 0.0D), color, 1.0F, 0.0F, 0.0F, LightTexture.FULL_BRIGHT);
+        MeteorStarRenderer.renderAstralStar(consumer, matrix, starPulse, red, green, blue);
 
         poseStack.popPose();
     }

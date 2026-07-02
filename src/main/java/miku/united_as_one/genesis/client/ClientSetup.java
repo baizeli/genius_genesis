@@ -1,8 +1,6 @@
 package miku.united_as_one.genesis.client;
 
 import com.tterrag.registrate.util.entry.FluidEntry;
-import miku.bai_ze_li.genesis.api.render.liquid.GenesisLiquidReflectionApi;
-import miku.bai_ze_li.genesis.api.render.liquid.GenesisLiquidReflectionStyle;
 import miku.bai_ze_li.genesis.api.render.particle.GlowCubeParticle;
 import miku.bai_ze_li.genesis.api.render.shader.GenesisItemShaderEffect;
 import miku.bai_ze_li.genesis.api.render.shader.GenesisItemShaderRegistry;
@@ -14,6 +12,7 @@ import miku.united_as_one.genesis.client.render.block.ArcaneCauldronRenderer;
 import miku.united_as_one.genesis.client.render.WingLayer;
 import miku.united_as_one.genesis.client.render.entity.ChaosSwordRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorProjectileRenderer;
+import miku.united_as_one.genesis.client.render.entity.MeteorShockwaveRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorStarRenderer;
 import miku.united_as_one.genesis.client.render.entity.NoopRenderer;
 import miku.united_as_one.genesis.client.render.effect.SlashEffectEvents;
@@ -71,19 +70,7 @@ public final class ClientSetup {
         ).forEach(ClientSetup::registerBowProperties));
         event.enqueueWork(() -> MenuScreens.register(MenuTypeRegistry.ARCANE_WORKBENCH.get(), ArcaneWorkbenchScreen::new));
         event.enqueueWork(ClientSetup::registerScrollShaderResolvers);
-        event.enqueueWork(ClientSetup::registerLiquidReflections);
         event.enqueueWork(ClientSetup::registerFluidRenderLayers);
-    }
-
-    private static void registerLiquidReflections() {
-        GenesisLiquidReflectionApi.register(FluidRegistry.SOURCE_FLUID.getSource(), GenesisLiquidReflectionStyle.builder()
-                .tint(0.10F, 0.78F, 1.0F, 0.62F)
-                .reflectionStrength(0.78F)
-                .flowStrength(0.72F)
-                .flowSpeed(1.15F)
-                .scanRadius(24)
-                .verticalRadius(10)
-                .build());
     }
 
     private static void registerScrollShaderResolvers() {
@@ -130,6 +117,7 @@ public final class ClientSetup {
     private static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(EntityRegistry.METEOR_PROJECTILE.get(), MeteorProjectileRenderer::new);
         event.registerEntityRenderer(EntityRegistry.METEOR_STAR.get(), MeteorStarRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.METEOR_SHOCKWAVE.get(), MeteorShockwaveRenderer::new);
         event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD.get(), ChaosSwordRenderer::new);
         event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD_AOE.get(), NoopRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.ARCANE_CAULDRON.get(), ArcaneCauldronRenderer::new);
