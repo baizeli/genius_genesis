@@ -15,7 +15,7 @@ import miku.united_as_one.genesis.client.render.entity.MeteorProjectileRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorShockwaveRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorStarRenderer;
 import miku.united_as_one.genesis.client.render.entity.NoopRenderer;
-import miku.united_as_one.genesis.client.render.effect.SlashEffectEvents;
+import miku.united_as_one.genesis.client.render.slash.SlashEffectEvents;
 import miku.united_as_one.genesis.fluid.FluidRegistry;
 import miku.united_as_one.genesis.registries.EntityRegistry;
 import miku.united_as_one.genesis.registries.GenesisParticles;

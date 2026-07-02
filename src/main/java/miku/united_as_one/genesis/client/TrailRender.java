@@ -10,7 +10,7 @@ import miku.bai_ze_li.genesis.mixin.client.GameRendererAccessor;
 import miku.bai_ze_li.genesis.api.render.particle.GlowCubeParticle;
 import miku.bai_ze_li.genesis.api.render.particle.GlowParticleRenderTypes;
 import miku.united_as_one.genesis.client.render.cosmic.CosmicBakedModel;
-import miku.united_as_one.genesis.client.render.effect.SlashEffectManager;
+import miku.united_as_one.genesis.client.render.slash.SlashEffectManager;
 import miku.united_as_one.genesis.client.render.entity.MeteorProjectileRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorStarRenderer;
 import miku.united_as_one.genesis.entity.spell.MeteorProjectileEntity;

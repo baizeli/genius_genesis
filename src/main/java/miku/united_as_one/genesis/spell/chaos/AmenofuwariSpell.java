@@ -31,11 +31,11 @@ public class AmenofuwariSpell extends ChaosBaseSpell {
         .build();
 
     public AmenofuwariSpell() {
+        this.baseManaCost = 50;
         this.manaCostPerLevel = 50;
         this.baseSpellPower = 50;
         this.spellPowerPerLevel = 10;
         this.castTime = 60;
-        this.baseManaCost = 50;
     }
 
     @Override

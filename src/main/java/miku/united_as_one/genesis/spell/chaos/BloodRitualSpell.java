@@ -2,14 +2,15 @@ package miku.united_as_one.genesis.spell.chaos;
 
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
-import io.redspace.ironsspellbooks.api.spells.AutoSpellConfig;
-import io.redspace.ironsspellbooks.api.spells.CastSource;
-import io.redspace.ironsspellbooks.api.spells.CastType;
-import io.redspace.ironsspellbooks.api.spells.SpellRarity;
+import io.redspace.ironsspellbooks.api.spells.*;
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.registries.SpellSchoolRegistry;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 @AutoSpellConfig
@@ -46,14 +47,27 @@ public class BloodRitualSpell extends ChaosBaseSpell {
     }
 
     @Override
-    public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        if (!level.isClientSide) {
-            entity.setHealth(1);
+    public CastResult canBeCastedBy(int spellLevel, CastSource castSource, MagicData playerMagicData, Player player) {
+        if (castSource != CastSource.SCROLL)
+            return new CastResult(CastResult.Type.FAILURE,
+                    Component.translatable("ui.genius_genesis.cast_error_non_scroll", this.getDisplayName(player)).withStyle(ChatFormatting.RED));
+        return super.canBeCastedBy(spellLevel, castSource, playerMagicData, player);
+    }
 
-            // 1混沌/通用法术强度=(+)1点法力值+0.5倍转化
-            playerMagicData.addMana(entity.getHealth() - 1 * 10 + (getSpellPower(spellLevel, entity) - 1) * 0.5f);
-            
-            entity.removeAllEffects();
+    @Override
+    public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
+        if (entity instanceof ServerPlayer serverPlayer) {
+            MagicData casterMagicData = MagicData.getPlayerMagicData(serverPlayer);
+
+            // 回转全部法术
+            casterMagicData.getPlayerCooldowns().clearCooldowns();
+            casterMagicData.getPlayerCooldowns().syncToPlayer(serverPlayer);
+
+            // 回满法力值
+            casterMagicData.setMana(Float.POSITIVE_INFINITY);
+
+            // 设置血量到最大生命值的5%
+            serverPlayer.setHealth((float) (serverPlayer.getMaxHealth() * 0.05));
         }
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);

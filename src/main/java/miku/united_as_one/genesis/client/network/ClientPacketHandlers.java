@@ -1,6 +1,6 @@
 package miku.united_as_one.genesis.client.network;
 
-import miku.united_as_one.genesis.client.render.effect.SlashEffectAPI;
+import miku.united_as_one.genesis.client.render.slash.SlashEffectAPI;
 import miku.united_as_one.genesis.registries.GenesisParticles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.RandomSource;
