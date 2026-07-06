@@ -31,6 +31,8 @@
   "client": [
     "GameRendererMixin",
     "ItemRendererMixin",
+    "client.ItemInHandLayerMixin",
+    "client.PlayerModelMixin",
     "LevelRendererMixin",
     "minecraft.client.gui.BakedGlyphAccessor",
     "minecraft.client.gui.FontAccessor",

@@ -14,6 +14,8 @@ public final class GenesisParticles {
 
     public static final RegistryObject<SimpleParticleType> GLOW_CUBE =
             PARTICLE_TYPES.register("glow_cube", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> OVERLORD_PARTICLE =
+            PARTICLE_TYPES.register("overlord_particle", () -> new SimpleParticleType(false));
 
     private GenesisParticles() {
     }

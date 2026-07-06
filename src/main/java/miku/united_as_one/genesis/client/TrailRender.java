@@ -13,6 +13,10 @@ import miku.united_as_one.genesis.client.render.cosmic.CosmicBakedModel;
 import miku.united_as_one.genesis.client.render.slash.SlashEffectManager;
 import miku.united_as_one.genesis.client.render.entity.MeteorProjectileRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorStarRenderer;
+import miku.united_as_one.genesis.client.render.entity.MeleeProjBaseRenderer;
+import miku.united_as_one.genesis.client.render.entity.MithrilMeleeSlashRenderer;
+import miku.united_as_one.genesis.combat.meleeproj.MeleeProjBase;
+import miku.united_as_one.genesis.entity.effect.MithrilMeleeSlashEntity;
 import miku.united_as_one.genesis.entity.spell.MeteorProjectileEntity;
 import miku.united_as_one.genesis.entity.spell.MeteorStarEntity;
 import miku.united_as_one.genesis.mixin.minecraft.client.renderer.ParticleEngineAccessor;
@@ -43,19 +47,14 @@ public class TrailRender {
     private static boolean wasInit;
 
     public static void captureLevelRenderContext(PoseStack poseStack, float partialTick, Camera camera, Matrix4f projectionMatrix) {
-        if (!shouldDeferWorldEffects()) {
-            lastContext = null;
-            CosmicBakedModel.clearDeferredHandItems();
-            return;
-        }
-
-        CosmicBakedModel.clearDeferredHandItems();
         lastContext = new RenderContext(
                 new Matrix4f(poseStack.last().pose()),
                 new Matrix4f(projectionMatrix),
                 partialTick,
                 camera.getPosition()
         );
+
+        CosmicBakedModel.clearDeferredHandItems();
     }
 
     public static boolean shouldDeferWorldEffects() {
@@ -88,12 +87,19 @@ public class TrailRender {
     }
 
     public static void renderTrail(float partialTicks, long finishTimeNano, boolean renderLevel) {
-        if (!renderLevel || !shouldDeferWorldEffects()) {
+        if (!renderLevel) {
             return;
         }
 
         Minecraft minecraft = Minecraft.getInstance();
         if (minecraft.level == null || minecraft.player == null) {
+            return;
+        }
+
+        boolean shaderDeferred = shouldDeferWorldEffects();
+        boolean hasMeleeProj = hasMeleeProjs(minecraft);
+        if (!shaderDeferred && !hasMeleeProj) {
+            lastContext = null;
             return;
         }
 
@@ -117,17 +123,38 @@ public class TrailRender {
             RenderSystem.enableDepthTest();
             RenderSystem.depthFunc(GL11.GL_LEQUAL);
 
-            renderDeferredEntityTrails(minecraft, camera, bufferSource, context != null ? context.partialTick : partialTicks);
-            SlashEffectManager.renderDeferred(new PoseStack(), bufferSource, context != null ? context.partialTick : partialTicks);
+            float renderPartialTicks = context != null ? context.partialTick : partialTicks;
+            if (shaderDeferred) {
+                renderDeferredEntityTrails(minecraft, camera, bufferSource, renderPartialTicks);
+                SlashEffectManager.renderDeferred(new PoseStack(), bufferSource, renderPartialTicks);
+            } else {
+                renderMeleeProjs(minecraft, camera, bufferSource, renderPartialTicks);
+            }
             bufferSource.endBatch();
-            CosmicBakedModel.flushDeferredHandItems(bufferSource);
-            renderGlowCubes(minecraft, camera, context != null ? context.partialTick : partialTicks);
+            renderMeleeProjWarps(minecraft, camera, bufferSource, renderPartialTicks);
+            bufferSource.endBatch();
+            if (shaderDeferred) {
+                CosmicBakedModel.flushDeferredHandItems(bufferSource);
+                renderGlowCubes(minecraft, camera, renderPartialTicks);
+            }
         } finally {
             modelViewStack.popPose();
             RenderSystem.restoreProjectionMatrix();
             RenderSystem.applyModelViewMatrix();
             lastContext = null;
         }
+    }
+
+    private static boolean hasMeleeProjs(Minecraft minecraft) {
+        if (minecraft.level == null) {
+            return false;
+        }
+        for (Entity entity : minecraft.level.entitiesForRendering()) {
+            if (entity instanceof MeleeProjBase meleeProj && meleeProj.isAlive()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static Matrix4f createProjectionMatrix(Minecraft minecraft, Camera camera, float partialTicks) {
@@ -168,6 +195,34 @@ public class TrailRender {
             } else if (entity instanceof MeteorStarEntity star) {
                 MeteorStarRenderer.renderTrailOnly(star, partialTicks, entityPoseStack, bufferSource);
                 MeteorStarRenderer.renderStarOnly(star, partialTicks, entityPoseStack, bufferSource, true, cameraPos);
+            } else if (entity instanceof MithrilMeleeSlashEntity slash) {
+                MithrilMeleeSlashRenderer.renderSlash(slash, partialTicks, entityPoseStack, bufferSource, true);
+            } else if (entity instanceof MeleeProjBase meleeProj) {
+                MeleeProjBaseRenderer.renderDeferred(meleeProj, partialTicks, new PoseStack(), bufferSource, cameraPos);
+            }
+        }
+    }
+
+    private static void renderMeleeProjs(Minecraft minecraft, Camera camera, MultiBufferSource bufferSource, float partialTicks) {
+        Vec3 cameraPos = camera.getPosition();
+        if (minecraft.level == null) {
+            return;
+        }
+        for (Entity entity : minecraft.level.entitiesForRendering()) {
+            if (entity instanceof MeleeProjBase meleeProj && meleeProj.isAlive()) {
+                MeleeProjBaseRenderer.renderDeferred(meleeProj, partialTicks, new PoseStack(), bufferSource, cameraPos);
+            }
+        }
+    }
+
+    private static void renderMeleeProjWarps(Minecraft minecraft, Camera camera, MultiBufferSource bufferSource, float partialTicks) {
+        Vec3 cameraPos = camera.getPosition();
+        if (minecraft.level == null) {
+            return;
+        }
+        for (Entity entity : minecraft.level.entitiesForRendering()) {
+            if (entity instanceof MeleeProjBase meleeProj && meleeProj.isAlive()) {
+                MeleeProjBaseRenderer.renderWarp(meleeProj, partialTicks, new PoseStack(), bufferSource, cameraPos);
             }
         }
     }

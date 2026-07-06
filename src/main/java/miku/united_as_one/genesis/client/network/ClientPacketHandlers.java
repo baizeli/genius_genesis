@@ -2,6 +2,7 @@ package miku.united_as_one.genesis.client.network;
 
 import miku.united_as_one.genesis.client.render.slash.SlashEffectAPI;
 import miku.united_as_one.genesis.registries.GenesisParticles;
+import miku.united_as_one.genesis.util.SlashColors;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -16,7 +17,7 @@ public final class ClientPacketHandlers {
     }
 
     public static void handleSlashPacket(int attackerId, int targetId) {
-        handleSlashPacket(attackerId, targetId, 0xFF4AA6FF);
+        handleSlashPacket(attackerId, targetId, SlashColors.MITHRIL_LIGHT_BLUE);
     }
 
     public static void handleSlashPacket(int attackerId, int targetId, int color) {

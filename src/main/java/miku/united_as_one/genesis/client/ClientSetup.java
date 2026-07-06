@@ -14,7 +14,12 @@ import miku.united_as_one.genesis.client.render.entity.ChaosSwordRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorProjectileRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorShockwaveRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorStarRenderer;
+import miku.united_as_one.genesis.client.render.entity.MeleeDamageTextRenderer;
+import miku.united_as_one.genesis.client.render.entity.MeleeProjBaseRenderer;
+import miku.united_as_one.genesis.client.render.entity.MithrilImpactRingRenderer;
+import miku.united_as_one.genesis.client.render.entity.MithrilMeleeSlashRenderer;
 import miku.united_as_one.genesis.client.render.entity.NoopRenderer;
+import miku.united_as_one.genesis.client.particle.OverlordParticle;
 import miku.united_as_one.genesis.client.render.slash.SlashEffectEvents;
 import miku.united_as_one.genesis.fluid.FluidRegistry;
 import miku.united_as_one.genesis.registries.EntityRegistry;
@@ -59,6 +64,13 @@ public final class ClientSetup {
         MinecraftForge.EVENT_BUS.addListener(SlashEffectEvents::onClientTick);
         MinecraftForge.EVENT_BUS.addListener(SlashEffectEvents::onRenderLevelStage);
         MinecraftForge.EVENT_BUS.addListener(SlashEffectEvents::onLevelUnload);
+        MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onClientTick);
+        MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onRenderHand);
+        MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onRightClickItem);
+        MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onRightClickBlock);
+        MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onEntityInteract);
+        MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onEntityInteractSpecific);
+        MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onLeftClickBlock);
     }
 
     private static void clientSetup(FMLClientSetupEvent event) {
@@ -120,6 +132,10 @@ public final class ClientSetup {
         event.registerEntityRenderer(EntityRegistry.METEOR_SHOCKWAVE.get(), MeteorShockwaveRenderer::new);
         event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD.get(), ChaosSwordRenderer::new);
         event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD_AOE.get(), NoopRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.MITHRIL_IMPACT_RING.get(), MithrilImpactRingRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.MITHRIL_MELEE_SLASH.get(), MithrilMeleeSlashRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.MELEE_PROJ_BASE.get(), MeleeProjBaseRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.MELEE_DAMAGE_TEXT.get(), MeleeDamageTextRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.ARCANE_CAULDRON.get(), ArcaneCauldronRenderer::new);
     }
 
@@ -137,5 +153,6 @@ public final class ClientSetup {
 
     private static void registerParticleProviders(RegisterParticleProvidersEvent event) {
         Minecraft.getInstance().particleEngine.register(GenesisParticles.GLOW_CUBE.get(), GlowCubeParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(GenesisParticles.OVERLORD_PARTICLE.get(), OverlordParticle.Provider::new);
     }
 }

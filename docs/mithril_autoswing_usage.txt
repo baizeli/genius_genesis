@@ -1,0 +1,44 @@
+秘银剑自动按住连段系统说明
+
+当前接入范围
+- 自动按住连段系统在主项目：miku.united_as_one.genesis.combat.autoswing
+- 自定义攻击动画实体在主项目：miku.united_as_one.genesis.combat.meleeproj.MeleeProjBase
+- 剑气贴图、颜色贴图、melee_trail shader 和 RenderType 在 Genesis Lib。
+- 主项目只引用 Genesis Lib 的 API 和资源，不在主项目资源目录里放这套特效资源。
+
+秘银剑当前效果
+- 按住攻击键会自动循环 Overlord 风格连段。
+- 连段由服务端驱动，客户端只发送按键状态。
+- 秘银剑每段会生成 MeleeProjBase 自定义攻击动画实体。
+- 攻击动画会隐藏玩家手持物，并由 MeleeProjBase 渲染武器模型和剑气轨迹。
+- MeleeProjBase 命中时会调用秘银剑命中逻辑。
+- 第 1 到第 4 次命中只造成伤害并累计命中次数。
+- 第 5 次命中触发脚下环特效和 AOE。
+- 第 5 次才回蓝，回蓝量为这次直接命中伤害加 AOE 实际伤害总和的 150%。
+
+旧版命中剑气状态
+- SpawnSlashPacket、SlashEffectAPI、MithrilMeleeSlashEntity、MithrilMeleeSlashRenderer 仍保留。
+- InvulnerabilityHandler 仍可用 SpawnSlashPacket 给其他逻辑生成旧版命中剑气。
+- 秘银剑已经取消旧版命中剑气触发，改用 MeleeProjBase 自定义攻击动画。
+
+给其他武器接自动连段
+1. 武器类 implements IAutoSwingItem。
+2. 在 getSwingPipeline(ItemStack stack) 返回 SwingPipeline。
+3. 用 SwingPipeline.builder() 配置：
+   - mode(AUTO_HOLD)：按住攻击键自动循环。
+   - advance(SEQUENTIAL)：按顺序出招。
+   - release(RESET)：松开后回到第一段。
+   - end(LOOP)：最后一段后循环。
+   - stage(cooldownTicks, action)：注册每段动作。
+4. 每个 action 会收到 ServerPlayer、ServerLevel、ItemStack、stageIndex，可以在这里生成自己的攻击实体。
+
+资源约定
+- 新增特效贴图、shader、RenderType 都放 Genesis Lib。
+- 主项目保持纯 Java 接入。
+- 更新 Genesis Lib 后，需要重新 build Genesis Lib，并把 genesis_api-1.0-SNAPSHOT.jar 和 genesis_api-1.0-SNAPSHOT-dev.jar 同步到主项目 libs。
+
+当前未完整搬的部分
+- 原模组 MeleeProjBase 的核心连段和自定义攻击动画实体已经接入。
+- 原模组 melee_trail shader 已放入 Genesis Lib，并提供 GenesisRenderType.bladeTrail。
+- 原模组完整的屏幕扭曲 pass、bloom 多纹理绑定、震屏和伤害数字钩子还没有完全接上。
+- 现在主项目可以编译，后续如果继续追求完全一致，需要继续搬原 renderer 的多 pass 流程和对应客户端渲染管线。

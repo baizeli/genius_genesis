@@ -1,8 +1,10 @@
 package miku.united_as_one.genesis.network;
 
 import miku.united_as_one.genesis.Genesis;
+import miku.united_as_one.genesis.network.packet.AutoSwingInputPacket;
 import miku.united_as_one.genesis.network.packet.LearnSpellPacket;
 import miku.united_as_one.genesis.network.packet.MeteorGlowCubePacket;
+import miku.united_as_one.genesis.network.packet.ResetAttackTickerPacket;
 import miku.united_as_one.genesis.network.packet.SpawnSlashPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -43,6 +45,14 @@ public final class GenesisNetwork {
                 MeteorGlowCubePacket::encode,
                 MeteorGlowCubePacket::decode,
                 MeteorGlowCubePacket::handle);
+        CHANNEL.registerMessage(id++, AutoSwingInputPacket.class,
+                AutoSwingInputPacket::encode,
+                AutoSwingInputPacket::decode,
+                AutoSwingInputPacket::handle);
+        CHANNEL.registerMessage(id++, ResetAttackTickerPacket.class,
+                ResetAttackTickerPacket::encode,
+                ResetAttackTickerPacket::decode,
+                ResetAttackTickerPacket::handle);
     }
 
     public static <MSG> void sendToTrackingAndSelf(Entity entity, MSG packet) {

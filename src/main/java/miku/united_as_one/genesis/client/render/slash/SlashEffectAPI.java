@@ -1,5 +1,6 @@
 package miku.united_as_one.genesis.client.render.slash;
 
+import miku.united_as_one.genesis.util.SlashColors;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
@@ -7,7 +8,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class SlashEffectAPI {
-    public static final int DEFAULT_COLOR = 0xFF4AA6FF;
+    public static final int DEFAULT_COLOR = SlashColors.MITHRIL_LIGHT_BLUE;
 
     @OnlyIn(Dist.CLIENT)
     public static void spawnOnEntity(LivingEntity attacker, Entity target) {

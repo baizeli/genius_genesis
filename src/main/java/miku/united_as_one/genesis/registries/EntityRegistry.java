@@ -1,6 +1,10 @@
 package miku.united_as_one.genesis.registries;
 
 import miku.united_as_one.genesis.Genesis;
+import miku.united_as_one.genesis.combat.meleeproj.MeleeProjBase;
+import miku.united_as_one.genesis.entity.effect.MeleeDamageTextEntity;
+import miku.united_as_one.genesis.entity.effect.MithrilImpactRingEntity;
+import miku.united_as_one.genesis.entity.effect.MithrilMeleeSlashEntity;
 import miku.united_as_one.genesis.entity.spell.chaos.ChaosSwordAoeEntity;
 import miku.united_as_one.genesis.entity.spell.chaos.ChaosSwordEntity;
 import miku.united_as_one.genesis.entity.spell.MeteorProjectileEntity;
@@ -32,6 +36,18 @@ public final class EntityRegistry {
 
     public static final RegistryObject<EntityType<ChaosSwordAoeEntity>> CHAOS_SWORD_AOE =
             fastMisc("chaos_sword_aoe", ChaosSwordAoeEntity::new, 4.0F, 0.8F, 64);
+
+    public static final RegistryObject<EntityType<MithrilImpactRingEntity>> MITHRIL_IMPACT_RING =
+            fastMisc("mithril_impact_ring", MithrilImpactRingEntity::new, 0.25F, 0.25F, 64);
+
+    public static final RegistryObject<EntityType<MithrilMeleeSlashEntity>> MITHRIL_MELEE_SLASH =
+            fastMisc("mithril_melee_slash", MithrilMeleeSlashEntity::new, 0.5F, 0.5F, 64);
+
+    public static final RegistryObject<EntityType<MeleeProjBase>> MELEE_PROJ_BASE =
+            fastMisc("melee_proj_base", MeleeProjBase::new, 0.5F, 0.5F, 64);
+
+    public static final RegistryObject<EntityType<MeleeDamageTextEntity>> MELEE_DAMAGE_TEXT =
+            fastMisc("melee_damage_text", MeleeDamageTextEntity::new, 0.1F, 0.1F, 64);
 
     private EntityRegistry() {
     }

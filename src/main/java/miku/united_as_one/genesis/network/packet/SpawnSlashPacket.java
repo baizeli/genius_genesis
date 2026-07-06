@@ -2,6 +2,7 @@ package miku.united_as_one.genesis.network.packet;
 
 import java.util.function.Supplier;
 import miku.united_as_one.genesis.client.network.ClientPacketHandlers;
+import miku.united_as_one.genesis.util.SlashColors;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
@@ -9,7 +10,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 public record SpawnSlashPacket(int attackerId, int targetId, int color) {
     public SpawnSlashPacket(int attackerId, int targetId) {
-        this(attackerId, targetId, 0xFF4AA6FF);
+        this(attackerId, targetId, SlashColors.MITHRIL_LIGHT_BLUE);
     }
 
     public static SpawnSlashPacket decode(FriendlyByteBuf buffer) {
