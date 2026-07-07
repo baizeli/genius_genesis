@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_nether",
+  "features": "genius_genesis:ore_divine_metal",
+  "step": "underground_ores"
+}

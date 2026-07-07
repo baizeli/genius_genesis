@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_end",
+  "features": "genius_genesis:ore_violet_galaxy",
+  "step": "underground_ores"
+}

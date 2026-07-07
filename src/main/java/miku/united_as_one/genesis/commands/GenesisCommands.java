@@ -2,7 +2,9 @@ package miku.united_as_one.genesis.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.datafixers.util.Pair;
+import miku.united_as_one.genesis.registries.BlockRegistry;
 import miku.united_as_one.genesis.worldgen.ModBiomes;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -15,9 +17,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 
+import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -28,6 +32,8 @@ public final class GenesisCommands {
     private static final int BIOME_SEARCH_VERTICAL_STEP = 64;
     private static final int SAFE_SURFACE_SEARCH_RADIUS = 160;
     private static final int SAFE_SURFACE_SEARCH_STEP = 4;
+    private static final int DEFAULT_ORE_SEARCH_RADIUS = 128;
+    private static final int MAX_ORE_SEARCH_RADIUS = 256;
 
     private GenesisCommands() {
     }
@@ -41,7 +47,15 @@ public final class GenesisCommands {
                                 .executes(context -> teleportToSourceForest(
                                         context.getSource(),
                                         IntegerArgumentType.getInteger(context, "radius_chunks")
-                                )))));
+                                ))))
+                .then(Commands.literal("nearest_ore")
+                        .then(oreTarget("arcane", Set.of(
+                                BlockRegistry.ARCANE_CRYSTAL_ORE.get(),
+                                BlockRegistry.ARCANE_CRYSTAL_ORE_DEEPSLATE.get()
+                        ), -64, 16))
+                        .then(oreTarget("divine", Set.of(BlockRegistry.DIVINE_METAL_ORE.get()), 8, 33))
+                        .then(oreTarget("violet", Set.of(BlockRegistry.VIOLET_GALAXY_ORE.get()), 30, 80))
+                        .then(oreTarget("all", allOres(), Integer.MIN_VALUE, Integer.MAX_VALUE))));
 
         dispatcher.register(Commands.literal("source_forest_tp")
                 .requires(source -> source.hasPermission(2))
@@ -51,6 +65,85 @@ public final class GenesisCommands {
                                 context.getSource(),
                                 IntegerArgumentType.getInteger(context, "radius_chunks")
                         ))));
+    }
+
+    private static LiteralArgumentBuilder<CommandSourceStack> oreTarget(String name, Set<Block> targets, int minY, int maxY) {
+        return Commands.literal(name)
+                .executes(context -> findNearestOre(context.getSource(), name, targets, DEFAULT_ORE_SEARCH_RADIUS, minY, maxY))
+                .then(Commands.argument("radius", IntegerArgumentType.integer(1, MAX_ORE_SEARCH_RADIUS))
+                        .executes(context -> findNearestOre(
+                                context.getSource(),
+                                name,
+                                targets,
+                                IntegerArgumentType.getInteger(context, "radius"),
+                                minY,
+                                maxY
+                        )));
+    }
+
+    private static Set<Block> allOres() {
+        Set<Block> ores = new LinkedHashSet<>();
+        ores.add(BlockRegistry.ARCANE_CRYSTAL_ORE.get());
+        ores.add(BlockRegistry.ARCANE_CRYSTAL_ORE_DEEPSLATE.get());
+        ores.add(BlockRegistry.DIVINE_METAL_ORE.get());
+        ores.add(BlockRegistry.VIOLET_GALAXY_ORE.get());
+        return ores;
+    }
+
+    private static int findNearestOre(CommandSourceStack source, String name, Set<Block> targets, int radius, int minY, int maxY) throws CommandSyntaxException {
+        ServerPlayer player = source.getPlayerOrException();
+        ServerLevel level = source.getLevel();
+        BlockPos origin = player.blockPosition();
+        int yStart = Math.max(level.getMinBuildHeight(), minY);
+        int yEnd = Math.min(level.getMaxBuildHeight() - 1, maxY);
+        if (yStart > yEnd) {
+            source.sendFailure(Component.literal("No valid Y range for " + name + " ore in this dimension."));
+            return 0;
+        }
+
+        BlockPos nearest = null;
+        BlockState nearestState = null;
+        double nearestDistance = Double.MAX_VALUE;
+        BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();
+        int minX = origin.getX() - radius;
+        int maxX = origin.getX() + radius;
+        int minZ = origin.getZ() - radius;
+        int maxZ = origin.getZ() + radius;
+
+        for (int x = minX; x <= maxX; x++) {
+            for (int z = minZ; z <= maxZ; z++) {
+                if (!level.hasChunk(x >> 4, z >> 4)) {
+                    continue;
+                }
+                for (int y = yStart; y <= yEnd; y++) {
+                    cursor.set(x, y, z);
+                    BlockState state = level.getBlockState(cursor);
+                    if (!targets.contains(state.getBlock())) {
+                        continue;
+                    }
+                    double distance = cursor.distSqr(origin);
+                    if (distance < nearestDistance) {
+                        nearestDistance = distance;
+                        nearest = cursor.immutable();
+                        nearestState = state;
+                    }
+                }
+            }
+        }
+
+        if (nearest == null || nearestState == null) {
+            source.sendFailure(Component.literal("No loaded " + name + " ore found within " + radius + " blocks."));
+            return 0;
+        }
+
+        BlockPos result = nearest;
+        BlockState resultState = nearestState;
+        double resultDistance = Math.sqrt(nearestDistance);
+        source.sendSuccess(() -> Component.literal("Nearest " + name + " ore is "
+                + resultState.getBlock().builtInRegistryHolder().key().location()
+                + " at " + result.getX() + " " + result.getY() + " " + result.getZ()
+                + " (" + String.format("%.1f", resultDistance) + " blocks)"), true);
+        return 1;
     }
 
     private static int teleportToSourceForest(CommandSourceStack source, int radiusChunks) throws CommandSyntaxException {

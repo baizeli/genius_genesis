@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "genius_genesis:block/end_arcane_crystal_ore"
+    "all": "genius_genesis:block/violet_galaxy_ore"
   }
 }

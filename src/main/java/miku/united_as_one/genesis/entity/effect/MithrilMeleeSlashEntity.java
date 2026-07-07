@@ -150,10 +150,7 @@ public class MithrilMeleeSlashEntity extends Entity {
                 continue;
             }
 
-            float before = damageState(target);
-            if (target.hurt(source, damage)) {
-                MithrilSword.handleMithrilHit(stack, target, owner, Math.max(0.0F, before - damageState(target)));
-            }
+            target.hurt(source, damage);
         }
     }
 
@@ -210,9 +207,5 @@ public class MithrilMeleeSlashEntity extends Entity {
     @Override
     public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    private static float damageState(LivingEntity entity) {
-        return entity.getHealth() + entity.getAbsorptionAmount();
     }
 }

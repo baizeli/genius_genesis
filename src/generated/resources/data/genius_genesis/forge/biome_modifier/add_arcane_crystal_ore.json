@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "genius_genesis:ore_arcane_crystal",
+    "genius_genesis:ore_arcane_crystal_large",
+    "genius_genesis:ore_arcane_crystal_buried"
+  ],
+  "step": "underground_ores"
+}

@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "genius_genesis:deepslate_arcane_crystal_ore"
+              "name": "genius_genesis:divine_metal_ore"
             },
             {
               "type": "minecraft:item",
@@ -38,7 +38,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "genius_genesis:arcane_crystal"
+              "name": "genius_genesis:divine_metal_fragment"
             }
           ]
         }
@@ -46,5 +46,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "genius_genesis:blocks/deepslate_arcane_crystal_ore"
+  "random_sequence": "genius_genesis:blocks/divine_metal_ore"
 }

@@ -20,6 +20,7 @@ import miku.united_as_one.genesis.util.SlashColors;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -35,12 +36,14 @@ import net.minecraft.world.phys.Vec3;
 
 @SuppressWarnings("removal")
 public class MithrilSword extends MagicSwordItem implements IAutoSwingItem, IMeleeProjListener {
-    private static final String HIT_COUNT_TAG = "GenesisMithrilHitCount";
-    private static final int HITS_PER_SPECIAL = 5;
     private static final int SLASH_COLOR = SlashColors.MITHRIL_LIGHT_BLUE;
     private static final int IMPACT_RING_COLOR = 0xB8AEEBFF;
-    private static final float AOE_RADIUS = 3.5F;
-    private static final float MANA_RETURN_MULTIPLIER = 1.5F;
+    private static final float AOE_RADIUS = 1.75F;
+    private static final float MANA_RETURN_MULTIPLIER = 1.0F;
+    private static final int NORMAL_DURABILITY_COST = 1;
+    private static final int FINAL_DURABILITY_COST = 3;
+    private static final float FINAL_PRIMARY_DAMAGE_MULTIPLIER = 1.5F;
+    private static final float FINAL_SECONDARY_DAMAGE_MULTIPLIER = 1.2F;
     private static final SwingPipeline SWING_PIPELINE = SwingPipeline.builder()
             .mode(SwingPipeline.SwingMode.AUTO_HOLD)
             .advance(SwingPipeline.AdvanceMode.SEQUENTIAL)
@@ -62,12 +65,7 @@ public class MithrilSword extends MagicSwordItem implements IAutoSwingItem, IMel
 
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        float targetBeforeDamage = damageState(target);
-        boolean result = super.hurtEnemy(stack, target, attacker);
-        if (!attacker.level().isClientSide()) {
-            handleMithrilHit(stack, target, attacker, Math.max(0.0F, targetBeforeDamage - damageState(target)));
-        }
-        return result;
+        return super.hurtEnemy(stack, target, attacker);
     }
 
     @Override
@@ -87,7 +85,11 @@ public class MithrilSword extends MagicSwordItem implements IAutoSwingItem, IMel
             if (target.hurt(source, damage)) {
                 level.playSound(null, target.getX(), target.getY(), target.getZ(), SoundEvents.PLAYER_ATTACK_STRONG,
                         attacker.getSoundSource(), 2.0F, 1.0F);
-                handleMithrilHit(attacker.getMainHandItem(), target, attacker, Math.max(0.0F, before - damageState(target)));
+                float actualDamage = Math.max(0.0F, before - damageState(target));
+                hurtWeapon(attacker, isFinalComboHit(hitType) ? FINAL_DURABILITY_COST : NORMAL_DURABILITY_COST);
+                if (hitType == 1) {
+                    triggerFinalComboHit(target, attacker, actualDamage);
+                }
             }
         }
         return true;
@@ -112,33 +114,38 @@ public class MithrilSword extends MagicSwordItem implements IAutoSwingItem, IMel
         return SLASH_COLOR;
     }
 
-    public static int hitsPerSpecial() {
-        return HITS_PER_SPECIAL;
+    public static float aoeRadius() {
+        return AOE_RADIUS;
     }
 
-    public static void handleMithrilHit(ItemStack stack, LivingEntity target, LivingEntity attacker, float directDamage) {
-        if (incrementHitCount(stack) >= HITS_PER_SPECIAL) {
-            stack.getOrCreateTag().putInt(HIT_COUNT_TAG, 0);
-            triggerFifthHit(target, attacker, directDamage);
-        }
+    public static float finalPrimaryDamageMultiplier() {
+        return FINAL_PRIMARY_DAMAGE_MULTIPLIER;
+    }
+
+    public static float finalSecondaryDamageMultiplier() {
+        return FINAL_SECONDARY_DAMAGE_MULTIPLIER;
+    }
+
+    public static int finalDurabilityCost() {
+        return FINAL_DURABILITY_COST;
     }
 
     private static void swingA(ServerPlayer player, ServerLevel level, ItemStack stack, int index) {
-        spawn(player, level, stack, 0.0F, 215.0F, 3, 0.0F, 90.0F, 75.0F, 1.0F, 1, 0);
+        spawn(player, level, stack, 0.0F, 215.0F, 3, 0.0F, 90.0F, 75.0F, 1.0F, 1, 0, 0);
     }
 
     private static void swingB(ServerPlayer player, ServerLevel level, ItemStack stack, int index) {
-        spawn(player, level, stack, 90.0F, 300.0F, 3, 0.0F, 90.0F, -40.0F, 1.0F, 1, 0);
+        spawn(player, level, stack, 90.0F, 300.0F, 3, 0.0F, 90.0F, -40.0F, 1.0F, 1, 0, 0);
     }
 
     private static void swingC(ServerPlayer player, ServerLevel level, ItemStack stack, int index) {
-        spawn(player, level, stack, 250.0F, 0.0F, 2, -45.0F, 90.0F, 75.0F, 4.0F, 1, 1);
-        spawn(player, level, stack, 0.0F, 230.0F, 4, -45.0F, 90.0F, 90.0F, 2.0F, 1, 0);
+        spawn(player, level, stack, 250.0F, 0.0F, 2, -45.0F, 90.0F, 75.0F, FINAL_PRIMARY_DAMAGE_MULTIPLIER, 1, 1, 1);
+        spawn(player, level, stack, 0.0F, 230.0F, 4, -45.0F, 90.0F, 90.0F, FINAL_SECONDARY_DAMAGE_MULTIPLIER, 1, 0, 2);
     }
 
     private static void spawn(ServerPlayer player, ServerLevel level, ItemStack stack, float startDeg, float endDeg,
                               int duration, float rx, float ry, float rz, float damagePower, int removeTime,
-                              int useType) {
+                              int useType, int hitType) {
         MeleeProjBase proj = new MeleeProjBase(EntityRegistry.MELEE_PROJ_BASE.get(), level);
         double cx = player.getX();
         double cy = player.getY() + (double) player.getBbHeight() * 0.65D;
@@ -156,7 +163,8 @@ public class MithrilSword extends MagicSwordItem implements IAutoSwingItem, IMel
         proj.setTrailLength(6);
         proj.setRemoveTimer(removeTime);
         proj.setFirstPersonNoDepth(true);
-        proj.setHitType(useType);
+        proj.setUseType(useType);
+        proj.setHitType(hitType);
         proj.setHitParticle(GenesisParticles.OVERLORD_PARTICLE.get());
         proj.setParticleCount(20);
         proj.setParticleSpeed(0.5F);
@@ -188,19 +196,28 @@ public class MithrilSword extends MagicSwordItem implements IAutoSwingItem, IMel
         level.addFreshEntity(proj);
     }
 
-    private static int incrementHitCount(ItemStack stack) {
-        int hitCount = stack.getOrCreateTag().getInt(HIT_COUNT_TAG) + 1;
-        stack.getOrCreateTag().putInt(HIT_COUNT_TAG, hitCount);
-        return hitCount;
+    private static boolean isFinalComboHit(int hitType) {
+        return hitType == 1 || hitType == 2;
     }
 
-    private static void triggerFifthHit(LivingEntity target, LivingEntity attacker, float directDamage) {
+    private static void triggerFinalComboHit(LivingEntity target, LivingEntity attacker, float directDamage) {
         Level level = attacker.level();
         spawnImpactRing(level, target);
         float aoeDamage = directDamage > 0.0F ? dealAoeDamage(level, attacker, target, directDamage) : 0.0F;
         if (attacker instanceof ServerPlayer player) {
             restoreMana(player, (directDamage + aoeDamage) * MANA_RETURN_MULTIPLIER);
         }
+    }
+
+    private static void hurtWeapon(LivingEntity attacker, int amount) {
+        if (amount <= 0) {
+            return;
+        }
+        ItemStack stack = attacker.getMainHandItem();
+        if (stack.isEmpty() || !stack.isDamageableItem()) {
+            return;
+        }
+        stack.hurtAndBreak(amount, attacker, entity -> entity.broadcastBreakEvent(InteractionHand.MAIN_HAND));
     }
 
     private static void spawnImpactRing(Level level, LivingEntity target) {
@@ -244,10 +261,7 @@ public class MithrilSword extends MagicSwordItem implements IAutoSwingItem, IMel
         if (maxMana == null) {
             return;
         }
-        data.addMana(amount);
-        if (data.getMana() > maxMana.getValue()) {
-            data.setMana((float) maxMana.getValue());
-        }
+        data.setMana(Math.min(data.getMana() + amount, (float) maxMana.getValue()));
         PacketDistributor.sendToPlayer(player, new SyncManaPacket(data));
     }
 }

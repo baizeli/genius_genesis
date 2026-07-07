@@ -18,7 +18,10 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.Tags;
+
+import java.util.function.Supplier;
 
 public final class BlockRegistry {
 
@@ -83,13 +86,13 @@ public final class BlockRegistry {
 
     // 奥术水晶矿石
     public static final BlockEntry<DropExperienceBlock> ARCANE_CRYSTAL_ORE =
-            crystalOre("arcane_crystal_ore", Blocks.DIAMOND_ORE, 3.0F, 3.0F, SoundType.STONE);
+            ore("arcane_crystal_ore", Blocks.DIAMOND_ORE, 3.0F, 3.0F, SoundType.STONE, ItemRegistry.ARCANE_CRYSTAL);
     public static final BlockEntry<DropExperienceBlock> ARCANE_CRYSTAL_ORE_DEEPSLATE =
-            crystalOre("deepslate_arcane_crystal_ore", Blocks.DEEPSLATE_DIAMOND_ORE, 4.5F, 3.0F, SoundType.DEEPSLATE);
-    public static final BlockEntry<DropExperienceBlock> NETHER_ARCANE_CRYSTAL_ORE =
-            crystalOre("nether_arcane_crystal_ore", Blocks.NETHER_QUARTZ_ORE, 3.0F, 3.0F, SoundType.NETHER_ORE);
-    public static final BlockEntry<DropExperienceBlock> END_ARCANE_CRYSTAL_ORE =
-            crystalOre("end_arcane_crystal_ore", Blocks.END_STONE, 3.0F, 9.0F, SoundType.STONE);
+            ore("deepslate_arcane_crystal_ore", Blocks.DEEPSLATE_DIAMOND_ORE, 4.5F, 3.0F, SoundType.DEEPSLATE, ItemRegistry.ARCANE_CRYSTAL);
+    public static final BlockEntry<DropExperienceBlock> DIVINE_METAL_ORE =
+            ore("divine_metal_ore", Blocks.NETHER_QUARTZ_ORE, 3.0F, 3.0F, SoundType.NETHER_ORE, ItemRegistry.DIVINE_METAL_FRAGMENT);
+    public static final BlockEntry<DropExperienceBlock> VIOLET_GALAXY_ORE =
+            ore("violet_galaxy_ore", Blocks.END_STONE, 3.0F, 9.0F, SoundType.STONE, ItemRegistry.VIOLET_GALAXY_FRAGMENT);
     public static final BlockEntry<Block> CELESTIAL_SOURCE_BLOCK = Genesis.L2_REGISTRATE
             .block("celestial_source_block", Block::new)
             .properties(properties -> properties.requiresCorrectToolForDrops().strength(20.0F, 9999.0F).sound(SoundType.NETHERITE_BLOCK))
@@ -155,12 +158,13 @@ public final class BlockRegistry {
                 .register();
     }
 
-    private static BlockEntry<DropExperienceBlock> crystalOre(
+    private static BlockEntry<DropExperienceBlock> ore(
             String name,
             Block baseBlock,
             float hardness,
             float resistance,
-            SoundType soundType
+            SoundType soundType,
+            Supplier<? extends Item> drop
     ) {
         return Genesis.L2_REGISTRATE
                 .block(name, properties -> new DropExperienceBlock(properties, UniformInt.of(3, 7)))
@@ -170,6 +174,7 @@ public final class BlockRegistry {
                         .requiresCorrectToolForDrops()
                         .sound(soundType))
                 .tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL)
+                .loot((tables, block) -> tables.add(block, tables.createOreDrop(block, drop.get())))
                 .item()
                 .tab(CreativeTabRegistry.GENIUS_GENESIS_BLOCK)
                 .build()

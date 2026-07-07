@@ -8,11 +8,15 @@ import net.minecraft.gametest.framework.GameTestHelper;
 
 public class MithrilSwordGameTests {
     @GameTest(template = "empty", batch = Genesis.MOD_ID)
-    public static void mithrilSwordFifthHitSettings(GameTestHelper helper) {
+    public static void mithrilSwordFinalComboSettings(GameTestHelper helper) {
         helper.assertTrue(MithrilSword.slashColor() == SlashColors.MITHRIL_LIGHT_BLUE,
                 "Mithril sword effect color must stay light blue.");
-        helper.assertTrue(MithrilSword.hitsPerSpecial() == 5,
-                "Mithril sword special effect must trigger on the fifth hit.");
+        helper.assertTrue(MithrilSword.finalPrimaryDamageMultiplier() == 1.5F,
+                "Mithril sword final primary slash must use 1.5x damage.");
+        helper.assertTrue(MithrilSword.finalSecondaryDamageMultiplier() == 1.2F,
+                "Mithril sword final secondary slash must use 1.2x damage.");
+        helper.assertTrue(MithrilSword.aoeRadius() == 1.75F,
+                "Mithril sword final combo AOE radius must be halved.");
         helper.succeed();
     }
 }

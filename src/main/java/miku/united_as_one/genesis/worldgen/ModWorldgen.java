@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -36,8 +37,10 @@ import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
 import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
+import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -51,7 +54,11 @@ import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import net.minecraft.tags.TagKey;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
 import java.util.List;
 import java.util.Map;
@@ -81,6 +88,16 @@ public final class ModWorldgen {
     public static final ResourceKey<PlacedFeature> SOURCE_POOL_PLACED = placedFeature("source_pool");
     public static final ResourceKey<PlacedFeature> SOURCE_FOREST_TERRAIN_PLACED = placedFeature("source_forest_terrain");
     public static final ResourceKey<PlacedFeature> QUIETNESS_HORROR_TREE_PLACED = placedFeature("quietness_horror_tree");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_ARCANE_CRYSTAL_SMALL = configuredFeature("ore_arcane_crystal_small");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_ARCANE_CRYSTAL_LARGE = configuredFeature("ore_arcane_crystal_large");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_ARCANE_CRYSTAL_BURIED = configuredFeature("ore_arcane_crystal_buried");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_DIVINE_METAL = configuredFeature("ore_divine_metal");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_VIOLET_GALAXY = configuredFeature("ore_violet_galaxy");
+    public static final ResourceKey<PlacedFeature> ORE_ARCANE_CRYSTAL_PLACED = placedFeature("ore_arcane_crystal");
+    public static final ResourceKey<PlacedFeature> ORE_ARCANE_CRYSTAL_LARGE_PLACED = placedFeature("ore_arcane_crystal_large");
+    public static final ResourceKey<PlacedFeature> ORE_ARCANE_CRYSTAL_BURIED_PLACED = placedFeature("ore_arcane_crystal_buried");
+    public static final ResourceKey<PlacedFeature> ORE_DIVINE_METAL_PLACED = placedFeature("ore_divine_metal");
+    public static final ResourceKey<PlacedFeature> ORE_VIOLET_GALAXY_PLACED = placedFeature("ore_violet_galaxy");
     public static final TagKey<Biome> HAS_DESERT_TOWER = TagKey.create(Registries.BIOME, Genesis.id("has_structure/desert_tower"));
 
     private ModWorldgen() {
@@ -88,6 +105,14 @@ public final class ModWorldgen {
 
     public static void bootstrapConfiguredFeatures(BootstapContext<ConfiguredFeature<?, ?>> context) {
         BlockState sourceFluid = FluidRegistry.SOURCE_FLUID.getSource().defaultFluidState().createLegacyBlock();
+        RuleTest stoneOreReplaceables = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
+        RuleTest deepslateOreReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+        RuleTest netherOreReplaceables = new TagMatchTest(BlockTags.BASE_STONE_NETHER);
+        RuleTest endOreReplaceables = new BlockMatchTest(Blocks.END_STONE);
+        List<OreConfiguration.TargetBlockState> arcaneCrystalTargets = List.of(
+                OreConfiguration.target(stoneOreReplaceables, BlockRegistry.ARCANE_CRYSTAL_ORE.get().defaultBlockState()),
+                OreConfiguration.target(deepslateOreReplaceables, BlockRegistry.ARCANE_CRYSTAL_ORE_DEEPSLATE.get().defaultBlockState())
+        );
 
         context.register(SOURCE_FOREST_TERRAIN, new ConfiguredFeature<>(
                 ModFeatures.SOURCE_FOREST_TERRAIN.get(),
@@ -119,6 +144,26 @@ public final class ModWorldgen {
         context.register(QUIETNESS_HORROR_TREE, new ConfiguredFeature<>(
                 ModFeatures.QUIETNESS_HORROR_TREE.get(),
                 NoneFeatureConfiguration.INSTANCE
+        ));
+        context.register(ORE_ARCANE_CRYSTAL_SMALL, new ConfiguredFeature<>(
+                Feature.ORE,
+                new OreConfiguration(arcaneCrystalTargets, 4, 0.5F)
+        ));
+        context.register(ORE_ARCANE_CRYSTAL_LARGE, new ConfiguredFeature<>(
+                Feature.ORE,
+                new OreConfiguration(arcaneCrystalTargets, 12, 0.7F)
+        ));
+        context.register(ORE_ARCANE_CRYSTAL_BURIED, new ConfiguredFeature<>(
+                Feature.ORE,
+                new OreConfiguration(arcaneCrystalTargets, 8, 1.0F)
+        ));
+        context.register(ORE_DIVINE_METAL, new ConfiguredFeature<>(
+                Feature.ORE,
+                new OreConfiguration(netherOreReplaceables, BlockRegistry.DIVINE_METAL_ORE.get().defaultBlockState(), 3, 1.0F)
+        ));
+        context.register(ORE_VIOLET_GALAXY, new ConfiguredFeature<>(
+                Feature.ORE,
+                new OreConfiguration(endOreReplaceables, BlockRegistry.VIOLET_GALAXY_ORE.get().defaultBlockState(), 3, 1.0F)
         ));
     }
 
@@ -188,6 +233,42 @@ public final class ModWorldgen {
                         BiomeFilter.biome()
                 )
         ));
+        context.register(ORE_ARCANE_CRYSTAL_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(ORE_ARCANE_CRYSTAL_SMALL),
+                commonOrePlacement(4, diamondHeight())
+        ));
+        context.register(ORE_ARCANE_CRYSTAL_LARGE_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(ORE_ARCANE_CRYSTAL_LARGE),
+                rareOrePlacement(18, diamondHeight())
+        ));
+        context.register(ORE_ARCANE_CRYSTAL_BURIED_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(ORE_ARCANE_CRYSTAL_BURIED),
+                commonOrePlacement(2, diamondHeight())
+        ));
+        context.register(ORE_DIVINE_METAL_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(ORE_DIVINE_METAL),
+                commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(8), VerticalAnchor.absolute(33)))
+        ));
+        context.register(ORE_VIOLET_GALAXY_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(ORE_VIOLET_GALAXY),
+                commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(30), VerticalAnchor.absolute(80)))
+        ));
+    }
+
+    private static PlacementModifier diamondHeight() {
+        return HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80));
+    }
+
+    private static List<PlacementModifier> commonOrePlacement(int count, PlacementModifier heightRange) {
+        return orePlacement(CountPlacement.of(count), heightRange);
+    }
+
+    private static List<PlacementModifier> rareOrePlacement(int chance, PlacementModifier heightRange) {
+        return orePlacement(RarityFilter.onAverageOnceEvery(chance), heightRange);
+    }
+
+    private static List<PlacementModifier> orePlacement(PlacementModifier count, PlacementModifier heightRange) {
+        return List.of(count, InSquarePlacement.spread(), heightRange, BiomeFilter.biome());
     }
 
     private static BlockPredicate sourceForestTreeGround() {
