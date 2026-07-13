@@ -9,6 +9,7 @@ import miku.bai_ze_li.genesis.api.render.shader.GenesisShaders;
 import miku.united_as_one.genesis.combat.meleeproj.MeleeProjBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -74,7 +75,8 @@ public class MeleeProjBaseRenderer extends EntityRenderer<MeleeProjBase> {
     private static void renderWeaponModel(MeleeProjBase entity, PoseStack poseStack, MultiBufferSource bufferSource,
                                           float partialTicks, Vec3 baseTranslation) {
         ItemStack stack = entity.getDisplayStack();
-        if (stack == null || stack.isEmpty()) {
+        ResourceLocation displayTexture = entity.getDisplayTexture();
+        if (displayTexture == null && (stack == null || stack.isEmpty())) {
             return;
         }
 
@@ -90,8 +92,26 @@ public class MeleeProjBaseRenderer extends EntityRenderer<MeleeProjBase> {
         poseStack.scale(scale, scale, scale);
         poseStack.translate(-1.0F, -1.0F, -0.5F);
 
-        renderBakedItem(stack, poseStack, bufferSource, entity.level(), entity.getId());
+        if (displayTexture != null) {
+            renderTexturedBlade(displayTexture, poseStack, bufferSource);
+        } else {
+            renderBakedItem(stack, poseStack, bufferSource, entity.level(), entity.getId());
+        }
         poseStack.popPose();
+    }
+
+    private static void renderTexturedBlade(ResourceLocation texture, PoseStack poseStack, MultiBufferSource bufferSource) {
+        VertexConsumer consumer = bufferSource.getBuffer(RenderType.entityTranslucent(texture));
+        Matrix4f pose = poseStack.last().pose();
+        Matrix3f normal = poseStack.last().normal();
+        consumer.vertex(pose, -0.5F, -0.5F, 0.0F).color(255, 255, 255, 255).uv(0.0F, 1.0F)
+                .overlayCoords(OverlayTexture.NO_OVERLAY).uv2(0xF000F0).normal(normal, 0.0F, 0.0F, 1.0F).endVertex();
+        consumer.vertex(pose, 1.5F, -0.5F, 0.0F).color(255, 255, 255, 255).uv(1.0F, 1.0F)
+                .overlayCoords(OverlayTexture.NO_OVERLAY).uv2(0xF000F0).normal(normal, 0.0F, 0.0F, 1.0F).endVertex();
+        consumer.vertex(pose, 1.5F, 1.5F, 0.0F).color(255, 255, 255, 255).uv(1.0F, 0.0F)
+                .overlayCoords(OverlayTexture.NO_OVERLAY).uv2(0xF000F0).normal(normal, 0.0F, 0.0F, 1.0F).endVertex();
+        consumer.vertex(pose, -0.5F, 1.5F, 0.0F).color(255, 255, 255, 255).uv(0.0F, 0.0F)
+                .overlayCoords(OverlayTexture.NO_OVERLAY).uv2(0xF000F0).normal(normal, 0.0F, 0.0F, 1.0F).endVertex();
     }
 
     private static void renderBakedItem(ItemStack stack, PoseStack poseStack, MultiBufferSource bufferSource,

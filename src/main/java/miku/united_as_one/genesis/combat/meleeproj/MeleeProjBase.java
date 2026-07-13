@@ -42,6 +42,8 @@
 package miku.united_as_one.genesis.combat.meleeproj;
 
 import miku.united_as_one.genesis.combat.meleeproj.IMeleeProjListener;
+import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
+import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -123,6 +125,8 @@ implements IEntityAdditionalSpawnData {
     private ResourceLocation trailTexture1;
     private ResourceLocation trailTexture2;
     private ResourceLocation trailBloomTexture;
+    private ResourceLocation spellDamageSource;
+    private ResourceLocation displayTexture;
     private ItemStack displayStack = ItemStack.EMPTY;
     public boolean DEBUG_HITBOX = false;
     private boolean faceOwnerDirection = true;
@@ -260,8 +264,16 @@ implements IEntityAdditionalSpawnData {
         return this.displayStack;
     }
 
+    public ResourceLocation getDisplayTexture() {
+        return this.displayTexture;
+    }
+
     public void setDisplayStack(ItemStack stack) {
         this.displayStack = stack == null || stack.isEmpty() ? ItemStack.EMPTY : stack;
+    }
+
+    public void setDisplayTexture(ResourceLocation texture) {
+        this.displayTexture = texture;
     }
 
     public boolean isFaceOwnerDirection() {
@@ -436,6 +448,10 @@ implements IEntityAdditionalSpawnData {
 
     public void setTrailBloomTexture(ResourceLocation v) {
         this.trailBloomTexture = v;
+    }
+
+    public void setSpellDamageSource(ResourceLocation v) {
+        this.spellDamageSource = v;
     }
 
     public void setSwingSound(SoundEvent v) {
@@ -628,7 +644,7 @@ implements IEntityAdditionalSpawnData {
         if (!this.level().isClientSide && (item = this.displayStack.getItem()) instanceof IMeleeProjListener && ((l = (IMeleeProjListener)item).onHitTarget(this, this.level(), this.user, le) || l.onHitTarget(this, this.level(), this.user, le, this.hitType))) {
             return;
         }
-        if (this.user != null && (livingEntity = this.user) instanceof Player) {
+        if (this.spellDamageSource == null && this.user != null && (livingEntity = this.user) instanceof Player) {
             player = (Player)livingEntity;
             le.invulnerableTime = 0;
             le.hurt(player.damageSources().playerAttack(player), this.damage);
@@ -865,9 +881,13 @@ implements IEntityAdditionalSpawnData {
 
     private DamageSource damageSource() {
         LivingEntity owner = this.resolveOwner();
-        if (owner instanceof LivingEntity) {
-            LivingEntity le = owner;
-            return this.level().damageSources().mobAttack(le);
+        if (this.spellDamageSource != null) {
+            AbstractSpell spell = SpellRegistry.getSpell(this.spellDamageSource);
+            Entity attacker = owner == null ? this : owner;
+            return spell.getDamageSource(this, attacker);
+        }
+        if (owner != null) {
+            return this.level().damageSources().mobAttack(owner);
         }
         return this.level().damageSources().generic();
     }
@@ -957,6 +977,16 @@ implements IEntityAdditionalSpawnData {
         this.swingHalfCalled = c.getBoolean("SwHalf");
         this.swingEndCalled = c.getBoolean("SwEnd");
         this.removeTimer = c.getInt("RemoveTimer");
+        if (c.contains("SpellDamageSource")) {
+            this.spellDamageSource = new ResourceLocation(c.getString("SpellDamageSource"));
+        } else {
+            this.spellDamageSource = null;
+        }
+        if (c.contains("DisplayTexture")) {
+            this.displayTexture = new ResourceLocation(c.getString("DisplayTexture"));
+        } else {
+            this.displayTexture = null;
+        }
     }
 
     public void addAdditionalSaveData(CompoundTag c) {
@@ -976,6 +1006,12 @@ implements IEntityAdditionalSpawnData {
         c.putBoolean("SwHalf", this.swingHalfCalled);
         c.putBoolean("SwEnd", this.swingEndCalled);
         c.putInt("RemoveTimer", this.removeTimer);
+        if (this.spellDamageSource != null) {
+            c.putString("SpellDamageSource", this.spellDamageSource.toString());
+        }
+        if (this.displayTexture != null) {
+            c.putString("DisplayTexture", this.displayTexture.toString());
+        }
     }
 
     public void writeSpawnData(FriendlyByteBuf buf) {
@@ -1012,6 +1048,14 @@ implements IEntityAdditionalSpawnData {
         buf.writeResourceLocation(this.trailTexture1);
         buf.writeResourceLocation(this.trailTexture2);
         buf.writeResourceLocation(this.trailBloomTexture);
+        buf.writeBoolean(this.spellDamageSource != null);
+        if (this.spellDamageSource != null) {
+            buf.writeResourceLocation(this.spellDamageSource);
+        }
+        buf.writeBoolean(this.displayTexture != null);
+        if (this.displayTexture != null) {
+            buf.writeResourceLocation(this.displayTexture);
+        }
         buf.writeBoolean(this.firstPersonNoDepth);
         buf.writeItem(this.getDisplayStack());
         buf.writeInt(this.particleCount);
@@ -1060,6 +1104,8 @@ implements IEntityAdditionalSpawnData {
         this.trailTexture1 = buf.readResourceLocation();
         this.trailTexture2 = buf.readResourceLocation();
         this.trailBloomTexture = buf.readResourceLocation();
+        this.spellDamageSource = buf.readBoolean() ? buf.readResourceLocation() : null;
+        this.displayTexture = buf.readBoolean() ? buf.readResourceLocation() : null;
         this.firstPersonNoDepth = buf.readBoolean();
         this.setDisplayStack(buf.readItem());
         this.particleCount = buf.readInt();
