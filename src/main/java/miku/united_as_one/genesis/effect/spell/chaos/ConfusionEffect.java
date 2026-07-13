@@ -1,6 +1,8 @@
 package miku.united_as_one.genesis.effect.spell.chaos;
 
 import miku.united_as_one.genesis.Genesis;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -28,6 +30,19 @@ public class ConfusionEffect extends MobEffect {
                 entity.getDeltaMovement().y, 
                 (random.nextDouble() - 0.5) * 0.5
             );
+            if (entity.level() instanceof ServerLevel serverLevel && random.nextInt(3) == 0) {
+                serverLevel.sendParticles(
+                        ParticleTypes.SCULK_SOUL,
+                        entity.getRandomX(0.6D),
+                        entity.getRandomY(),
+                        entity.getRandomZ(0.6D),
+                        1,
+                        0.08D,
+                        0.12D,
+                        0.08D,
+                        0.01D
+                );
+            }
         }
         
         super.applyEffectTick(entity, amplifier);

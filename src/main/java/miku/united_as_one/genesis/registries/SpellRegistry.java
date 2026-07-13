@@ -29,6 +29,7 @@ public final class SpellRegistry {
     public static final RegistryObject<AbstractSpell> CONFUSION_SPELL = register(new ConfusionSpell());
     public static final RegistryObject<AbstractSpell> GUTRENDER_PUNCTURE = register(new GutrenderPunctureSpell());
     public static final RegistryObject<AbstractSpell> REVERSE_PLAGUE_SPELL = register(new ReversePlagueSpell());
+    public static final RegistryObject<AbstractSpell> SHATTER_FIST = register(new ShatterFistSpell());
     public static final RegistryObject<AbstractSpell> SIPHON_SPELL = register(new SiphonSpell());
     public static final RegistryObject<AbstractSpell> WARPED_BARRIER_SPELL = register(new WarpedBarrierSpell());
 

@@ -1,6 +1,7 @@
 package miku.united_as_one.genesis.client.network;
 
 import miku.united_as_one.genesis.client.render.slash.SlashEffectAPI;
+import miku.united_as_one.genesis.client.render.player.PlayerShadowRenderer;
 import miku.united_as_one.genesis.registries.GenesisParticles;
 import miku.united_as_one.genesis.util.SlashColors;
 import net.minecraft.client.Minecraft;
@@ -50,6 +51,10 @@ public final class ClientPacketHandlers {
                     color[1],
                     color[2]);
         }
+    }
+
+    public static void handlePlayerShadowPacket(int entityId, int durationTicks) {
+        PlayerShadowRenderer.updateClientState(entityId, durationTicks);
     }
 
     private static float[] colorFromInt(int color) {

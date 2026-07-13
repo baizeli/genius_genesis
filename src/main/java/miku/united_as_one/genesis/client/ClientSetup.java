@@ -19,6 +19,7 @@ import miku.united_as_one.genesis.client.render.entity.MeleeProjBaseRenderer;
 import miku.united_as_one.genesis.client.render.entity.MithrilImpactRingRenderer;
 import miku.united_as_one.genesis.client.render.entity.MithrilMeleeSlashRenderer;
 import miku.united_as_one.genesis.client.render.entity.NoopRenderer;
+import miku.united_as_one.genesis.client.render.player.PlayerShadowRenderer;
 import miku.united_as_one.genesis.client.particle.OverlordParticle;
 import miku.united_as_one.genesis.client.render.slash.SlashEffectEvents;
 import miku.united_as_one.genesis.fluid.FluidRegistry;
@@ -71,6 +72,8 @@ public final class ClientSetup {
         MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onEntityInteract);
         MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onEntityInteractSpecific);
         MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onLeftClickBlock);
+        MinecraftForge.EVENT_BUS.addListener(PlayerShadowRenderer::onClientLoggingOut);
+        MinecraftForge.EVENT_BUS.addListener(PlayerShadowRenderer::onPlayerRenderPost);
     }
 
     private static void clientSetup(FMLClientSetupEvent event) {

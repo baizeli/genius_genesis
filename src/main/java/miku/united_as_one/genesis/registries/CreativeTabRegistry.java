@@ -52,6 +52,7 @@ public final class CreativeTabRegistry {
                         SpellRegistry.CONFUSION_SPELL.get(),
                         SpellRegistry.GUTRENDER_PUNCTURE.get(),
                         SpellRegistry.REVERSE_PLAGUE_SPELL.get(),
+                        SpellRegistry.SHATTER_FIST.get(),
                         SpellRegistry.SIPHON_SPELL.get(),
                         SpellRegistry.WARPED_BARRIER_SPELL.get(),
 
