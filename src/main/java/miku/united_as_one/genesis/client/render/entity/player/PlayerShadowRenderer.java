@@ -1,4 +1,4 @@
-package miku.united_as_one.genesis.client.render.player;
+package miku.united_as_one.genesis.client.render.entity.player;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

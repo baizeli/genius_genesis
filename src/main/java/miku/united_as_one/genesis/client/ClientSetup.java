@@ -12,7 +12,7 @@ import miku.united_as_one.genesis.client.render.block.ArcaneCauldronRenderer;
 import miku.united_as_one.genesis.client.render.WingLayer;
 import miku.united_as_one.genesis.client.render.entity.spell.*;
 import miku.united_as_one.genesis.client.render.entity.NoopRenderer;
-import miku.united_as_one.genesis.client.render.player.PlayerShadowRenderer;
+import miku.united_as_one.genesis.client.render.entity.player.PlayerShadowRenderer;
 import miku.united_as_one.genesis.client.particle.OverlordParticle;
 import miku.united_as_one.genesis.fluid.FluidRegistry;
 import miku.united_as_one.genesis.registries.EntityRegistry;
