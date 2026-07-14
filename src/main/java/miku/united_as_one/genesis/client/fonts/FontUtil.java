@@ -18,7 +18,7 @@ import net.minecraft.util.StringDecomposer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix4f;
-import miku.united_as_one.genesis.mixin.minecraft.client.gui.BakedGlyphAccessor;
+import miku.united_as_one.genesis.mixin.minecraft.client.gui.font.BakedGlyphAccessor;
 import miku.united_as_one.genesis.mixin.minecraft.client.gui.FontAccessor;
 
 import javax.annotation.Nullable;

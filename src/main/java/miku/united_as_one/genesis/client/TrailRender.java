@@ -10,16 +10,15 @@ import miku.bai_ze_li.genesis.mixin.client.GameRendererAccessor;
 import miku.bai_ze_li.genesis.api.render.particle.GlowCubeParticle;
 import miku.bai_ze_li.genesis.api.render.particle.GlowParticleRenderTypes;
 import miku.united_as_one.genesis.client.render.cosmic.CosmicBakedModel;
-import miku.united_as_one.genesis.client.render.slash.SlashEffectManager;
-import miku.united_as_one.genesis.client.render.entity.MeteorProjectileRenderer;
-import miku.united_as_one.genesis.client.render.entity.MeteorStarRenderer;
-import miku.united_as_one.genesis.client.render.entity.MeleeProjBaseRenderer;
-import miku.united_as_one.genesis.client.render.entity.MithrilMeleeSlashRenderer;
+import miku.united_as_one.genesis.client.render.entity.spell.MeteorProjectileRenderer;
+import miku.united_as_one.genesis.client.render.entity.spell.MeteorStarRenderer;
+import miku.united_as_one.genesis.client.render.entity.spell.MeleeProjBaseRenderer;
+import miku.united_as_one.genesis.client.render.entity.spell.MithrilMeleeSlashRenderer;
 import miku.united_as_one.genesis.combat.meleeproj.MeleeProjBase;
 import miku.united_as_one.genesis.entity.effect.MithrilMeleeSlashEntity;
-import miku.united_as_one.genesis.entity.spell.MeteorProjectileEntity;
-import miku.united_as_one.genesis.entity.spell.MeteorStarEntity;
-import miku.united_as_one.genesis.mixin.minecraft.client.renderer.ParticleEngineAccessor;
+import miku.united_as_one.genesis.entity.spell.celestial_source.MeteorProjectileEntity;
+import miku.united_as_one.genesis.entity.spell.celestial_source.MeteorStarEntity;
+import miku.united_as_one.genesis.mixin.minecraft.client.particle.ParticleEngineAccessor;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
@@ -126,7 +125,6 @@ public class TrailRender {
             float renderPartialTicks = context != null ? context.partialTick : partialTicks;
             if (shaderDeferred) {
                 renderDeferredEntityTrails(minecraft, camera, bufferSource, renderPartialTicks);
-                SlashEffectManager.renderDeferred(new PoseStack(), bufferSource, renderPartialTicks);
             } else {
                 renderMeleeProjs(minecraft, camera, bufferSource, renderPartialTicks);
             }

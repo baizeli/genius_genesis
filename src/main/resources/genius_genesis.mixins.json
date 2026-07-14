@@ -29,16 +29,16 @@
     "minecraft.world.item.ItemStackMixin"
   ],
   "client": [
-    "GameRendererMixin",
-    "ItemRendererMixin",
+    "minecraft.client.renderer.GameRendererMixin",
+    "minecraft.client.renderer.entity.ItemRendererMixin",
     "client.ItemInHandLayerMixin",
     "client.PlayerModelMixin",
-    "LevelRendererMixin",
-    "minecraft.client.gui.BakedGlyphAccessor",
+    "minecraft.client.renderer.LevelRendererMixin",
+    "minecraft.client.gui.font.BakedGlyphAccessor",
     "minecraft.client.gui.FontAccessor",
     "minecraft.client.gui.FontMixin",
-    "minecraft.client.gui.TextColorAccessor",
-    "minecraft.client.renderer.ParticleEngineAccessor"
+    "minecraft.network.chat.TextColorAccessor",
+    "minecraft.client.particle.ParticleEngineAccessor"
   ],
   "server": [
     "minecraft.world.effect.MobEffectMixin"

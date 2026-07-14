@@ -1,6 +1,7 @@
 package miku.united_as_one.genesis.mixin.minecraft.client.gui;
 
 import miku.united_as_one.genesis.client.fonts.FontUtil;
+import miku.united_as_one.genesis.mixin.minecraft.network.chat.TextColorAccessor;
 import miku.united_as_one.genesis.registries.text.Formatting;
 import net.minecraft.Util;
 import net.minecraft.client.gui.Font;

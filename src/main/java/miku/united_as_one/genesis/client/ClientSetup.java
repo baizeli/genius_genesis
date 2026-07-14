@@ -10,18 +10,10 @@ import io.redspace.ironsspellbooks.item.Scroll;
 import miku.united_as_one.genesis.client.render.cosmic.CosmicModelLoader;
 import miku.united_as_one.genesis.client.render.block.ArcaneCauldronRenderer;
 import miku.united_as_one.genesis.client.render.WingLayer;
-import miku.united_as_one.genesis.client.render.entity.ChaosSwordRenderer;
-import miku.united_as_one.genesis.client.render.entity.MeteorProjectileRenderer;
-import miku.united_as_one.genesis.client.render.entity.MeteorShockwaveRenderer;
-import miku.united_as_one.genesis.client.render.entity.MeteorStarRenderer;
-import miku.united_as_one.genesis.client.render.entity.MeleeDamageTextRenderer;
-import miku.united_as_one.genesis.client.render.entity.MeleeProjBaseRenderer;
-import miku.united_as_one.genesis.client.render.entity.MithrilImpactRingRenderer;
-import miku.united_as_one.genesis.client.render.entity.MithrilMeleeSlashRenderer;
+import miku.united_as_one.genesis.client.render.entity.spell.*;
 import miku.united_as_one.genesis.client.render.entity.NoopRenderer;
 import miku.united_as_one.genesis.client.render.player.PlayerShadowRenderer;
 import miku.united_as_one.genesis.client.particle.OverlordParticle;
-import miku.united_as_one.genesis.client.render.slash.SlashEffectEvents;
 import miku.united_as_one.genesis.fluid.FluidRegistry;
 import miku.united_as_one.genesis.registries.EntityRegistry;
 import miku.united_as_one.genesis.registries.GenesisParticles;
@@ -62,9 +54,6 @@ public final class ClientSetup {
         modBus.addListener(ClientSetup::registerEntityRenderers);
         modBus.addListener(ClientSetup::addPlayerLayers);
         modBus.addListener(ClientSetup::registerParticleProviders);
-        MinecraftForge.EVENT_BUS.addListener(SlashEffectEvents::onClientTick);
-        MinecraftForge.EVENT_BUS.addListener(SlashEffectEvents::onRenderLevelStage);
-        MinecraftForge.EVENT_BUS.addListener(SlashEffectEvents::onLevelUnload);
         MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onClientTick);
         MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onRenderHand);
         MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onRightClickItem);
@@ -130,11 +119,15 @@ public final class ClientSetup {
     }
 
     private static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        // blood boss entities
+        event.registerEntityRenderer(EntityRegistry.BLOOD_DAGGER_PROJECTILE.get(), BloodDaggerRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.BLOOD_FIELD.get(), NoopRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.BLOOD_BOSS_FIRE_ERUPTION_AOE.get(), NoopRenderer::new);
+
         event.registerEntityRenderer(EntityRegistry.METEOR_PROJECTILE.get(), MeteorProjectileRenderer::new);
         event.registerEntityRenderer(EntityRegistry.METEOR_STAR.get(), MeteorStarRenderer::new);
         event.registerEntityRenderer(EntityRegistry.METEOR_SHOCKWAVE.get(), MeteorShockwaveRenderer::new);
-        event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD.get(), ChaosSwordRenderer::new);
-        event.registerEntityRenderer(EntityRegistry.CHAOS_SWORD_AOE.get(), NoopRenderer::new);
+
         event.registerEntityRenderer(EntityRegistry.MITHRIL_IMPACT_RING.get(), MithrilImpactRingRenderer::new);
         event.registerEntityRenderer(EntityRegistry.MITHRIL_MELEE_SLASH.get(), MithrilMeleeSlashRenderer::new);
         event.registerEntityRenderer(EntityRegistry.MELEE_PROJ_BASE.get(), MeleeProjBaseRenderer::new);

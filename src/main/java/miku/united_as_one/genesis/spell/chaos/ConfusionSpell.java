@@ -10,7 +10,7 @@ import io.redspace.ironsspellbooks.api.spells.SpellAnimations;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.entity.spell.MeteorShockwaveEntity;
+import miku.united_as_one.genesis.entity.spell.celestial_source.MeteorShockwaveEntity;
 import miku.united_as_one.genesis.registries.EffectRegistry;
 import miku.united_as_one.genesis.registries.SpellSchoolRegistry;
 import net.minecraft.util.Mth;

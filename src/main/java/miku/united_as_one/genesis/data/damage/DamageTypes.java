@@ -10,6 +10,7 @@ import net.minecraft.world.damagesource.DamageType;
 public final class DamageTypes {
     public static final ResourceKey<DamageType> CHAOS_MAGIC = create("chaos_magic");
     public static final ResourceKey<DamageType> CELESTIAL_SOURCE_MAGIC = create("celestial_source_magic");
+    public static final ResourceKey<DamageType> BLOOD_FIELD = create("blood_field");
 
     private DamageTypes() {
     }
@@ -17,6 +18,7 @@ public final class DamageTypes {
     public static void bootstrap(BootstapContext<DamageType> context) {
         register(context, CHAOS_MAGIC);
         register(context, CELESTIAL_SOURCE_MAGIC);
+        register(context, BLOOD_FIELD);
     }
 
     private static ResourceKey<DamageType> create(String id) {
