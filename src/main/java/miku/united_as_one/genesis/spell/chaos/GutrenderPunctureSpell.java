@@ -10,7 +10,7 @@ import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.entity.spell.chaos.ChaosSwordEntity;
+import miku.united_as_one.genesis.entity.spell.blood_boss.blood_dagger.BloodDaggerEntity;
 import miku.united_as_one.genesis.registries.SpellSchoolRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -90,7 +90,7 @@ public class GutrenderPunctureSpell extends ChaosBaseSpell {
                     .zRot(Mth.lerp(i / (count - 1.0F), 0.0F, -Mth.PI))
                     .yRot(yAngle)
                     .add(0.0D, caster.getEyeHeight(), 0.0D);
-            ChaosSwordEntity sword = new ChaosSwordEntity(level);
+            BloodDaggerEntity sword = new BloodDaggerEntity(level);
             sword.setOwner(caster);
             sword.ownerTrack = offset;
             sword.setTarget(target);

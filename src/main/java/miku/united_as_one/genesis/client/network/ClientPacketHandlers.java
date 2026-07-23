@@ -1,7 +1,7 @@
 package miku.united_as_one.genesis.client.network;
 
-import miku.united_as_one.genesis.client.render.slash.SlashEffectAPI;
-import miku.united_as_one.genesis.client.render.player.PlayerShadowRenderer;
+import miku.bai_ze_li.genesis.api.render.effect.slash.SlashEffectAPI;
+import miku.united_as_one.genesis.client.render.entity.player.PlayerShadowRenderer;
 import miku.united_as_one.genesis.registries.GenesisParticles;
 import miku.united_as_one.genesis.util.SlashColors;
 import io.redspace.ironsspellbooks.render.animation.AnimationHelper;
