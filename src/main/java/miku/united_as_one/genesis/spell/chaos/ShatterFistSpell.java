@@ -15,6 +15,7 @@ import io.redspace.ironsspellbooks.setup.PacketDistributor;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.network.GenesisNetwork;
+import miku.united_as_one.genesis.network.packet.PlayerAnimationPacket;
 import miku.united_as_one.genesis.network.packet.PlayerShadowPacket;
 import miku.united_as_one.genesis.registries.SpellSchoolRegistry;
 import net.minecraft.network.chat.Component;
@@ -44,6 +45,8 @@ import java.util.UUID;
 @Mod.EventBusSubscriber(modid = Genesis.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ShatterFistSpell extends ChaosBaseSpell {
     private static final ResourceLocation ANIMATION = Genesis.id("shatter_fist_attack");
+    private static final ResourceLocation DASH_HOLD_ANIMATION = Genesis.id("shatter_fist_dash_hold");
+    private static final ResourceLocation RECOVER_ANIMATION = Genesis.id("shatter_fist_recover");
     private static final AnimationHolder SHATTER_FIST_ANIMATION = new AnimationHolder(ANIMATION, true, true);
     private static final int CHARGE_TICKS = 28;
     private static final int SHADOW_DURATION_TICKS = 18;
@@ -52,6 +55,7 @@ public class ShatterFistSpell extends ChaosBaseSpell {
     private static final int ACTIVE_DASH_TICKS = 6;
     private static final double COLLISION_INFLATE = 0.45D;
     private static final double IMPACT_RADIUS = 3.0D;
+    private static final List<PendingDash> PENDING_DASHES = new ArrayList<>();
     private static final List<ActiveDash> ACTIVE_DASHES = new ArrayList<>();
 
     private final ResourceLocation spellId = Genesis.id("shatter_fist");
@@ -66,7 +70,7 @@ public class ShatterFistSpell extends ChaosBaseSpell {
         this.manaCostPerLevel = 15;
         this.baseSpellPower = 5;
         this.spellPowerPerLevel = 1;
-        this.castTime = CHARGE_TICKS;
+        this.castTime = 0;
         this.baseManaCost = 30;
     }
 
@@ -87,7 +91,7 @@ public class ShatterFistSpell extends ChaosBaseSpell {
 
     @Override
     public CastType getCastType() {
-        return CastType.LONG;
+        return CastType.INSTANT;
     }
 
     @Override
@@ -103,15 +107,27 @@ public class ShatterFistSpell extends ChaosBaseSpell {
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity caster, CastSource castSource, MagicData playerMagicData) {
         if (level instanceof ServerLevel serverLevel) {
-            beginDash(serverLevel, caster, spellLevel);
+            PENDING_DASHES.add(new PendingDash(serverLevel.dimension().location(), caster.getUUID(), spellLevel, CHARGE_TICKS));
         }
         super.onCast(level, spellLevel, caster, castSource, playerMagicData);
     }
 
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {
-        if (event.phase != TickEvent.Phase.END || ACTIVE_DASHES.isEmpty()) {
+        if (event.phase != TickEvent.Phase.END || (PENDING_DASHES.isEmpty() && ACTIVE_DASHES.isEmpty())) {
             return;
+        }
+
+        Iterator<PendingDash> pendingIterator = PENDING_DASHES.iterator();
+        while (pendingIterator.hasNext()) {
+            PendingDash dash = pendingIterator.next();
+            if (dash.tick()) {
+                pendingIterator.remove();
+                ServerLevel level = event.getServer().getLevel(net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.DIMENSION, dash.level));
+                if (level != null && level.getEntity(dash.caster) instanceof LivingEntity caster && caster.isAlive()) {
+                    beginDash(level, caster, dash.spellLevel);
+                }
+            }
         }
 
         Iterator<ActiveDash> activeIterator = ACTIVE_DASHES.iterator();
@@ -130,14 +146,14 @@ public class ShatterFistSpell extends ChaosBaseSpell {
         caster.setDeltaMovement(forward.scale(DASH_SPEED).add(0.0D, 0.12D, 0.0D));
         caster.hurtMarked = true;
         GenesisNetwork.sendToTrackingAndSelf(caster, new PlayerShadowPacket(caster.getId(), SHADOW_DURATION_TICKS));
+        playPlayerAnimation(caster, DASH_HOLD_ANIMATION);
         ACTIVE_DASHES.add(new ActiveDash(level.dimension().location(), caster.getUUID(), spellLevel,
                 caster.position(), caster.position(), forward, ACTIVE_DASH_TICKS));
     }
 
     private static boolean impact(ServerLevel level, LivingEntity caster, int spellLevel, Vec3 impactCenter) {
         ShatterFistSpell spell = (ShatterFistSpell) miku.united_as_one.genesis.registries.SpellRegistry.SHATTER_FIST.get();
-        caster.setDeltaMovement(Vec3.ZERO);
-        caster.hurtMarked = true;
+        finishDash(caster);
 
         boolean killed = false;
         float damage = spell.getDamage(spellLevel, caster);
@@ -172,6 +188,18 @@ public class ShatterFistSpell extends ChaosBaseSpell {
             refreshCooldown(player, spell);
         }
         return true;
+    }
+
+    private static void finishDash(LivingEntity caster) {
+        caster.setDeltaMovement(Vec3.ZERO);
+        caster.hurtMarked = true;
+        playPlayerAnimation(caster, RECOVER_ANIMATION);
+    }
+
+    private static void playPlayerAnimation(LivingEntity caster, ResourceLocation animation) {
+        if (caster instanceof ServerPlayer) {
+            GenesisNetwork.sendToTrackingAndSelf(caster, new PlayerAnimationPacket(caster.getId(), animation));
+        }
     }
 
     private static Vec3 horizontalForward(LivingEntity caster) {
@@ -214,7 +242,25 @@ public class ShatterFistSpell extends ChaosBaseSpell {
         String weaponDamageText = weaponDamage > 0.0F
                 ? String.format(" (+%s)", Utils.stringTruncation(weaponDamage, 1))
                 : "";
-            return Utils.stringTruncation(getDamage(spellLevel, caster), 1) + weaponDamageText;
+        return Utils.stringTruncation(getDamage(spellLevel, caster), 1) + weaponDamageText;
+    }
+
+    private static final class PendingDash {
+        private final ResourceLocation level;
+        private final UUID caster;
+        private final int spellLevel;
+        private int ticks;
+
+        private PendingDash(ResourceLocation level, UUID caster, int spellLevel, int ticks) {
+            this.level = level;
+            this.caster = caster;
+            this.spellLevel = spellLevel;
+            this.ticks = ticks;
+        }
+
+        private boolean tick() {
+            return --this.ticks <= 0;
+        }
     }
 
     private static final class ActiveDash {
@@ -243,8 +289,7 @@ public class ShatterFistSpell extends ChaosBaseSpell {
             Vec3 currentEye = caster.getEyePosition();
             BlockHitResult blockHit = level.clip(new ClipContext(previousEye, currentEye, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, caster));
             if (blockHit.getType() != net.minecraft.world.phys.HitResult.Type.MISS) {
-                caster.setDeltaMovement(Vec3.ZERO);
-                caster.hurtMarked = true;
+                finishDash(caster);
                 return true;
             }
 
@@ -267,8 +312,7 @@ public class ShatterFistSpell extends ChaosBaseSpell {
             this.lastPos = currentPos;
             boolean expired = --this.ticks <= 0 || currentPos.distanceTo(this.origin) >= DASH_DISTANCE;
             if (expired) {
-                caster.setDeltaMovement(caster.getDeltaMovement().scale(0.2D));
-                caster.hurtMarked = true;
+                finishDash(caster);
             }
             return expired;
         }

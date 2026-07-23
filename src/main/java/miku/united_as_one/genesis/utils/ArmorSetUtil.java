@@ -1,7 +1,7 @@
 package miku.united_as_one.genesis.utils;
 
 import miku.united_as_one.genesis.item.GenesisArmorMaterials;
-import miku.united_as_one.genesis.item.armor.GenesisGeoArmorItem;
+import miku.united_as_one.genesis.item.armor.GenesisArmorPiece;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
@@ -11,11 +11,11 @@ public final class ArmorSetUtil {
     }
 
     public static boolean isGenesisArmor(ItemStack stack) {
-        return stack.getItem() instanceof GenesisGeoArmorItem;
+        return stack.getItem() instanceof GenesisArmorPiece;
     }
 
     public static boolean isGenesisArmorMaterial(ItemStack stack, GenesisArmorMaterials material) {
-        return stack.getItem() instanceof GenesisGeoArmorItem armor && armor.genesisMaterial() == material;
+        return stack.getItem() instanceof GenesisArmorPiece armor && armor.genesisMaterial() == material;
     }
 
     public static boolean hasFullSet(LivingEntity entity, GenesisArmorMaterials material) {

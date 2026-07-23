@@ -10,6 +10,7 @@ import io.redspace.ironsspellbooks.item.Scroll;
 import miku.united_as_one.genesis.client.render.cosmic.CosmicModelLoader;
 import miku.united_as_one.genesis.client.render.block.ArcaneCauldronRenderer;
 import miku.united_as_one.genesis.client.render.WingLayer;
+import miku.united_as_one.genesis.client.render.armor.ChaosSpellArmorGlowLayer;
 import miku.united_as_one.genesis.client.render.entity.ChaosSwordRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorProjectileRenderer;
 import miku.united_as_one.genesis.client.render.entity.MeteorShockwaveRenderer;
@@ -31,6 +32,7 @@ import miku.united_as_one.genesis.workbench.registry.MenuTypeRegistry;
 import miku.united_as_one.genesis.registries.SpellSchoolRegistry;
 import miku.united_as_one.genesis.workbench.arcane.ArcaneWorkbenchScreen;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -38,6 +40,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelEvent;
@@ -145,6 +150,9 @@ public final class ClientSetup {
     private static void addPlayerLayers(EntityRenderersEvent.AddLayers event) {
         addWingLayer(event, "default");
         addWingLayer(event, "slim");
+        addChaosArmorGlowLayer(event, "default");
+        addChaosArmorGlowLayer(event, "slim");
+        addChaosArmorStandGlowLayer(event);
     }
 
     private static void addWingLayer(EntityRenderersEvent.AddLayers event, String skinName) {
@@ -152,6 +160,24 @@ public final class ClientSetup {
         if (renderer != null) {
             renderer.addLayer(new WingLayer(renderer));
         }
+    }
+
+    private static void addChaosArmorGlowLayer(EntityRenderersEvent.AddLayers event, String skinName) {
+        LivingEntityRenderer<Player, PlayerModel<Player>> renderer = event.getSkin(skinName);
+        if (renderer != null) {
+            renderer.addLayer(new ChaosSpellArmorGlowLayer<>(renderer));
+        }
+    }
+
+    private static void addChaosArmorStandGlowLayer(EntityRenderersEvent.AddLayers event) {
+        LivingEntityRenderer<ArmorStand, ? extends EntityModel<ArmorStand>> renderer = event.getRenderer(EntityType.ARMOR_STAND);
+        if (renderer != null) {
+            addChaosArmorGlowLayer(renderer);
+        }
+    }
+
+    private static <T extends LivingEntity, M extends EntityModel<T>> void addChaosArmorGlowLayer(LivingEntityRenderer<T, M> renderer) {
+        renderer.addLayer(new ChaosSpellArmorGlowLayer<>(renderer));
     }
 
     private static void registerParticleProviders(RegisterParticleProvidersEvent event) {

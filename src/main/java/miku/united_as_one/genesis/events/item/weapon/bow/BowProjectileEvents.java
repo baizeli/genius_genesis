@@ -73,8 +73,7 @@ public final class BowProjectileEvents {
         }
 
         Entity target = impactTarget(event, lanceProjectile);
-        if (player.getMainHandItem().getItem() instanceof ThunderLongBow
-                || player.getOffhandItem().getItem() instanceof ThunderLongBow) {
+        if (lanceProjectile.getPersistentData().getBoolean(ThunderLongBow.PROJECTILE_MARKER)) {
             summonShockwave(lanceProjectile.level(), 4.0F, lanceProjectile.getDamage(), target, player, lanceProjectile);
         }
         if (ModCurios.hasCurios(player, RunePlusItem::isLightning)) {

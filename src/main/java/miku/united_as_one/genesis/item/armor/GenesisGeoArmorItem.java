@@ -19,7 +19,7 @@ import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 import java.util.List;
 
-public class GenesisGeoArmorItem extends ExtendedArmorItem {
+public class GenesisGeoArmorItem extends ExtendedArmorItem implements GenesisArmorPiece {
     private final GenesisArmorMaterials genesisMaterial;
 
     public GenesisGeoArmorItem(GenesisArmorMaterials material, Type type, Properties properties) {

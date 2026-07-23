@@ -15,6 +15,7 @@ import miku.united_as_one.genesis.item.GenesisArmorMaterials;
 import miku.united_as_one.genesis.item.GenesisTiers;
 import miku.united_as_one.genesis.item.InfiniteShrivingStoneItem;
 import miku.united_as_one.genesis.item.VioletGalaxyIngotItem;
+import miku.united_as_one.genesis.item.armor.ChaosSpellArmorItem;
 import miku.united_as_one.genesis.item.armor.GenesisGeoArmorItem;
 import miku.united_as_one.genesis.item.curios.EternalRing;
 import miku.united_as_one.genesis.item.curios.GenesisCurseItem;
@@ -140,10 +141,10 @@ public final class ItemRegistry {
     public static final ItemEntry<GenesisGeoArmorItem> CELESTIAL_SOURCE_SPELL_CHESTPLATE = armor("celestial_source_spell_chestplate", GenesisArmorMaterials.CELESTIAL_SOURCE_SPELL, ArmorItem.Type.CHESTPLATE);
     public static final ItemEntry<GenesisGeoArmorItem> CELESTIAL_SOURCE_SPELL_LEGGINGS = armor("celestial_source_spell_leggings", GenesisArmorMaterials.CELESTIAL_SOURCE_SPELL, ArmorItem.Type.LEGGINGS);
     public static final ItemEntry<GenesisGeoArmorItem> CELESTIAL_SOURCE_SPELL_BOOTS = armor("celestial_source_spell_boots", GenesisArmorMaterials.CELESTIAL_SOURCE_SPELL, ArmorItem.Type.BOOTS);
-    public static final ItemEntry<GenesisGeoArmorItem> CHAOS_SPELL_HELMET = armor("chaos_spell_helmet", GenesisArmorMaterials.CHAOS_SPELL, ArmorItem.Type.HELMET);
-    public static final ItemEntry<GenesisGeoArmorItem> CHAOS_SPELL_CHESTPLATE = armor("chaos_spell_chestplate", GenesisArmorMaterials.CHAOS_SPELL, ArmorItem.Type.CHESTPLATE);
-    public static final ItemEntry<GenesisGeoArmorItem> CHAOS_SPELL_LEGGINGS = armor("chaos_spell_leggings", GenesisArmorMaterials.CHAOS_SPELL, ArmorItem.Type.LEGGINGS);
-    public static final ItemEntry<GenesisGeoArmorItem> CHAOS_SPELL_BOOTS = armor("chaos_spell_boots", GenesisArmorMaterials.CHAOS_SPELL, ArmorItem.Type.BOOTS);
+    public static final ItemEntry<ChaosSpellArmorItem> CHAOS_SPELL_HELMET = chaosArmor("chaos_spell_helmet", ArmorItem.Type.HELMET);
+    public static final ItemEntry<ChaosSpellArmorItem> CHAOS_SPELL_CHESTPLATE = chaosArmor("chaos_spell_chestplate", ArmorItem.Type.CHESTPLATE);
+    public static final ItemEntry<ChaosSpellArmorItem> CHAOS_SPELL_LEGGINGS = chaosArmor("chaos_spell_leggings", ArmorItem.Type.LEGGINGS);
+    public static final ItemEntry<ChaosSpellArmorItem> CHAOS_SPELL_BOOTS = chaosArmor("chaos_spell_boots", ArmorItem.Type.BOOTS);
     public static final ItemEntry<GenesisGeoArmorItem> VIOLET_ZENITH_HELMET = armor("violet_zenith_helmet", GenesisArmorMaterials.VIOLET_ZENITH, ArmorItem.Type.HELMET);
     public static final ItemEntry<GenesisGeoArmorItem> VIOLET_ZENITH_CHESTPLATE = armor("violet_zenith_chestplate", GenesisArmorMaterials.VIOLET_ZENITH, ArmorItem.Type.CHESTPLATE);
     public static final ItemEntry<GenesisGeoArmorItem> VIOLET_ZENITH_LEGGINGS = armor("violet_zenith_leggings", GenesisArmorMaterials.VIOLET_ZENITH, ArmorItem.Type.LEGGINGS);
@@ -283,6 +284,15 @@ public final class ItemRegistry {
     private static ItemEntry<GenesisGeoArmorItem> armor(String id, GenesisArmorMaterials material, ArmorItem.Type type) {
         return Genesis.L2_REGISTRATE
                 .item(id, properties -> new GenesisGeoArmorItem(material, type, properties))
+                .initialProperties(ItemRegistry::epicProps)
+                .setData(ProviderType.ITEM_MODEL, ItemRegistry::createArmorModel)
+                .tab(CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT)
+                .register();
+    }
+
+    private static ItemEntry<ChaosSpellArmorItem> chaosArmor(String id, ArmorItem.Type type) {
+        return Genesis.L2_REGISTRATE
+                .item(id, properties -> new ChaosSpellArmorItem(GenesisArmorMaterials.CHAOS_SPELL, type, properties))
                 .initialProperties(ItemRegistry::epicProps)
                 .setData(ProviderType.ITEM_MODEL, ItemRegistry::createArmorModel)
                 .tab(CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT)

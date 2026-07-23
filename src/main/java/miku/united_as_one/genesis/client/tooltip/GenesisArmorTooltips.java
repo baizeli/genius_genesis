@@ -1,7 +1,7 @@
 package miku.united_as_one.genesis.client.tooltip;
 
 import miku.united_as_one.genesis.item.GenesisArmorMaterials;
-import miku.united_as_one.genesis.item.armor.GenesisGeoArmorItem;
+import miku.united_as_one.genesis.item.armor.GenesisArmorPiece;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -19,7 +19,7 @@ public final class GenesisArmorTooltips {
     private GenesisArmorTooltips() {
     }
 
-    public static void append(GenesisGeoArmorItem armor, List<Component> tooltip) {
+    public static void append(GenesisArmorPiece armor, List<Component> tooltip) {
         GenesisArmorMaterials material = armor.genesisMaterial();
         ChatFormatting color = color(material);
 
@@ -43,7 +43,7 @@ public final class GenesisArmorTooltips {
         }
     }
 
-    private static boolean hasPieceEffect(GenesisGeoArmorItem armor) {
+    private static boolean hasPieceEffect(GenesisArmorPiece armor) {
         return armor.getType() == ArmorItem.Type.HELMET
                 && (armor.genesisMaterial() == GenesisArmorMaterials.DIVINE_METAL
                 || armor.genesisMaterial() == GenesisArmorMaterials.VIOLET_ZENITH

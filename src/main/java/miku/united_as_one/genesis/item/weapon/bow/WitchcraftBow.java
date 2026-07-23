@@ -13,45 +13,22 @@ import io.redspace.ironsspellbooks.entity.spells.eldritch_blast.EldritchBlastVis
 import io.redspace.ironsspellbooks.network.SyncManaPacket;
 import io.redspace.ironsspellbooks.setup.PacketDistributor;
 import io.redspace.ironsspellbooks.spells.eldritch.EldritchBlastSpell;
-import java.util.function.Predicate;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArrowItem;
-import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 import org.jetbrains.annotations.NotNull;
 
-public class WitchcraftBow extends BowItem {
+public class WitchcraftBow extends SpellBowItem {
     public WitchcraftBow(Properties properties) {
-        super(properties);
-    }
-
-    @Override
-    public @NotNull Predicate<ItemStack> getAllSupportedProjectiles() {
-        return stack -> stack.getItem() instanceof ArrowItem;
-    }
-
-    @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
-        player.startUsingItem(hand);
-        return InteractionResultHolder.consume(player.getItemInHand(hand));
-    }
-
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        return enchantment == Enchantments.POWER_ARROWS;
+        super(properties, "witchcraft_bow", 4);
     }
 
     @Override
@@ -69,14 +46,14 @@ public class WitchcraftBow extends BowItem {
         Vec3 start = player.getEyePosition();
         Vec3 end = start.add(player.getForward().scale(range));
 
-        for (Entity target : level.getEntities(player, player.getBoundingBox().expandTowards(end.subtract(start)))) {
+        for (Entity target : level.getEntities(player, player.getBoundingBox().expandTowards(end.subtract(start)).inflate(1.0D))) {
             if (Utils.checkEntityIntersecting(target, start, end, 0.4F).getType() != HitResult.Type.MISS) {
                 target.invulnerableTime = 0;
                 DamageSources.applyDamage(target, power * 16, level.damageSources().sonicBoom(player));
 
                 Vec3 targetPos = target.position();
                 Vec3 targetUp = new Vec3(0, 5, 0);
-                Vec3 perpendicularRight = targetPos.subtract(player.position()).normalize().cross(new Vec3(0, 1, 0)).normalize();
+                Vec3 perpendicularRight = horizontalRight(targetPos.subtract(player.position()), player.getLookAngle());
                 Vec3 leftStart = targetPos.add(targetUp).subtract(perpendicularRight.scale(2));
                 Vec3 rightStart = targetPos.add(targetUp).add(perpendicularRight.scale(2));
                 Vec3 down = targetPos.add(0, -5, 0);
@@ -95,7 +72,7 @@ public class WitchcraftBow extends BowItem {
         Vec3 beamEnd = beamStart.add(player.getForward().scale(range));
         level.addFreshEntity(new EldritchBlastVisualEntity(level, beamStart, beamEnd, player));
 
-        for (Entity target : level.getEntities(player, player.getBoundingBox().expandTowards(beamEnd.subtract(beamStart)))) {
+        for (Entity target : level.getEntities(player, player.getBoundingBox().expandTowards(beamEnd.subtract(beamStart)).inflate(1.0D))) {
             if (Utils.checkEntityIntersecting(target, beamStart, beamEnd, 0.4F).getType() != HitResult.Type.MISS) {
                 target.invulnerableTime = 0;
                 DamageSources.applyDamage(target, power * 8, new EldritchBlastSpell().getDamageSource(target, player));
@@ -128,5 +105,16 @@ public class WitchcraftBow extends BowItem {
         visual.setYRot((float) (Math.atan2(direction.z, direction.x) * 180 / Math.PI) - 90);
         visual.setXRot((float) (Math.atan2(direction.y, Math.sqrt(direction.x * direction.x + direction.z * direction.z)) * -160 / Math.PI));
         level.addFreshEntity(visual);
+    }
+
+    private static Vec3 horizontalRight(Vec3 targetVector, Vec3 fallbackLook) {
+        Vec3 right = targetVector.normalize().cross(new Vec3(0, 1, 0));
+        if (right.lengthSqr() < 1.0E-6D) {
+            right = fallbackLook.normalize().cross(new Vec3(0, 1, 0));
+        }
+        if (right.lengthSqr() < 1.0E-6D) {
+            return new Vec3(1, 0, 0);
+        }
+        return right.normalize();
     }
 }

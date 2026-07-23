@@ -4,7 +4,10 @@ import miku.united_as_one.genesis.client.render.slash.SlashEffectAPI;
 import miku.united_as_one.genesis.client.render.player.PlayerShadowRenderer;
 import miku.united_as_one.genesis.registries.GenesisParticles;
 import miku.united_as_one.genesis.util.SlashColors;
+import io.redspace.ironsspellbooks.render.animation.AnimationHelper;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -55,6 +58,18 @@ public final class ClientPacketHandlers {
 
     public static void handlePlayerShadowPacket(int entityId, int durationTicks) {
         PlayerShadowRenderer.updateClientState(entityId, durationTicks);
+    }
+
+    public static void handlePlayerAnimationPacket(int entityId, ResourceLocation animation) {
+        Minecraft minecraft = Minecraft.getInstance();
+        if (minecraft.level == null) {
+            return;
+        }
+
+        Entity entity = minecraft.level.getEntity(entityId);
+        if (entity instanceof AbstractClientPlayer player) {
+            AnimationHelper.animatePlayerStart(player, animation);
+        }
     }
 
     private static float[] colorFromInt(int color) {
