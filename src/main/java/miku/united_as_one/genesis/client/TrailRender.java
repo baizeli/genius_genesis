@@ -6,7 +6,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexSorting;
 import com.mojang.math.Axis;
-import miku.bai_ze_li.genesis.api.render.effect.SlashEffectManager;
+import miku.bai_ze_li.genesis.api.render.effect.slash.SlashEffectManager;
 import miku.bai_ze_li.genesis.mixin.client.GameRendererAccessor;
 import miku.bai_ze_li.genesis.api.render.particle.GlowCubeParticle;
 import miku.bai_ze_li.genesis.api.render.particle.GlowParticleRenderTypes;

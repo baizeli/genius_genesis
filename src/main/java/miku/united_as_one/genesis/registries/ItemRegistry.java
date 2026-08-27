@@ -156,7 +156,7 @@ public final class ItemRegistry {
 
     public static final ItemEntry<LaoWang237Curio> LAO_WANG_237 = item("lao_wang_237", LaoWang237Curio::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     public static final ItemEntry<GenesisCurseItem> GENESIS_CURSE = noModel("genesis_curse", GenesisCurseItem::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
-    public static final ItemEntry<InfiniteShrivingStoneItem> INFINITE_SHRIVING_STONE = item("infinite_shriving_stone", properties -> new InfiniteShrivingStoneItem(), epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
+    public static final ItemEntry<InfiniteShrivingStoneItem> INFINITE_SHRIVING_STONE = item("infinite_shriving_stone", InfiniteShrivingStoneItem::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     public static final ItemEntry<EternalRing> ETERNAL_RING = item("eternal_ring", EternalRing::new, epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     public static final ItemEntry<RunePlusItem> LIGHTNING_RUNE_PLUS = runePlus("lightning_rune_plus", RunePlusItem.Type.LIGHTNING);
     public static final ItemEntry<RunePlusItem> NATURE_RUNE_PLUS = runePlus("nature_rune_plus", RunePlusItem.Type.NATURE);
