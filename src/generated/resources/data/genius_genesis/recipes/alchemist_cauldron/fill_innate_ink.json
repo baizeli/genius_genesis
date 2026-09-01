@@ -1,0 +1,6 @@
+{
+  "type": "irons_spellbooks:alchemist_cauldron_fill",
+  "fluid": { "Amount": 250, "FluidName": "genius_genesis:innate_ink" },
+  "input": { "item": "genius_genesis:innate_ink" },
+  "result": { "count": 1, "item": "minecraft:glass_bottle" }
+}

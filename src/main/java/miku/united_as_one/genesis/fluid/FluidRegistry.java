@@ -8,8 +8,19 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
+import io.redspace.ironsspellbooks.fluids.NoopFluid;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fluids.FluidType;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public final class FluidRegistry {
+    private static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, Genesis.MOD_ID);
+    private static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, Genesis.MOD_ID);
+    public static final RegistryObject<FluidType> INNATE_INK_TYPE = FLUID_TYPES.register("innate_ink", InnateInkFluidType::new);
+    public static final RegistryObject<Fluid> INNATE_INK = registerNoop("innate_ink", INNATE_INK_TYPE);
 
     public static final TagKey<Fluid> SOURCE_FLUID_TAG = FluidTags.create(Genesis.id("source_fluid"));
     public static final FluidEntry<ForgeFlowingFluid.Flowing> SOURCE_FLUID = fluid(
@@ -29,7 +40,16 @@ public final class FluidRegistry {
     private FluidRegistry() {
     }
 
-    public static void register() {
+    public static void register(IEventBus bus) {
+        FLUID_TYPES.register(bus);
+        FLUIDS.register(bus);
+    }
+
+    private static RegistryObject<Fluid> registerNoop(String name, RegistryObject<FluidType> type) {
+        RegistryObject<Fluid> reference = RegistryObject.create(Genesis.id(name), ForgeRegistries.FLUIDS);
+        ForgeFlowingFluid.Properties properties = new ForgeFlowingFluid.Properties(type, reference, reference).bucket(() -> Items.AIR);
+        FLUIDS.register(name, () -> new NoopFluid(properties));
+        return reference;
     }
 
     @SafeVarargs

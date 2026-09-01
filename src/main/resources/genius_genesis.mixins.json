@@ -6,6 +6,9 @@
   "refmap": "genius_genesis.refmap.json",
   "mixins": [
     "ironsspellbooks.gui.arcane_anvil.ArcaneAnvilMenuMixin",
+    "ironsspellbooks.gui.scroll_forge.ScrollForgeMenuInnateMixin",
+    "ironsspellbooks.api.spells.SpellRarityMixin",
+    "ironsspellbooks.item.InkItemMixin",
     "ironsspellbooks.spells.ender.MixinComet",
     "ironsspellbooks.spells.ender.MixinStarfallSpell",
     "ironsspellbooks.spells.fire.MixinFireBomb",

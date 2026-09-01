@@ -1,0 +1,2 @@
+# Disabled: enum extension is installed by SpellRarityMixin for consistent userdev and production behavior.
+# miku.united_as_one.genesis.core.GenesisTransformationService

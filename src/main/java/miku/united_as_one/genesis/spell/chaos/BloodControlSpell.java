@@ -17,6 +17,7 @@ import miku.united_as_one.genesis.registries.EntityRegistry;
 import miku.united_as_one.genesis.registries.GenesisParticles;
 import miku.united_as_one.genesis.registries.ItemRegistry;
 import miku.united_as_one.genesis.registries.SpellSchoolRegistry;
+import miku.united_as_one.genesis.spell.InnateRarity;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -36,7 +37,7 @@ public class BloodControlSpell extends ChaosBaseSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
         .setMinRarity(SpellRarity.COMMON)
         .setSchoolResource(SpellSchoolRegistry.CHAOS_RESOURCE)
-        .setMaxLevel(5)
+        .setMaxLevel(6)
         .setCooldownSeconds(5)
         .build();
 
@@ -61,6 +62,18 @@ public class BloodControlSpell extends ChaosBaseSpell {
     @Override
     public CastType getCastType() {
         return CastType.LONG;
+    }
+
+    @Override
+    public SpellRarity getRarity(int spellLevel) {
+        if (spellLevel >= 6) return InnateRarity.get();
+        if (spellLevel == 5) return SpellRarity.LEGENDARY;
+        return super.getRarity(spellLevel);
+    }
+
+    @Override
+    public int getMinLevelForRarity(SpellRarity rarity) {
+        return InnateRarity.is(rarity) ? 6 : super.getMinLevelForRarity(rarity);
     }
 
     @Override

@@ -1,0 +1,8 @@
+{
+  "type": "irons_spellbooks:alchemist_cauldron_brew",
+  "base_fluid": { "Amount": 1000, "FluidName": "irons_spellbooks:legendary_ink" },
+  "input": { "item": "genius_genesis:celestial_source_crystal" },
+  "results": [
+    { "Amount": 250, "FluidName": "genius_genesis:innate_ink" }
+  ]
+}

@@ -18,7 +18,6 @@ public class ModGenesisConfigProvider extends ConfigDataProvider {
         shader(map, "violet_galaxy_ingot", 0, 0.6F, 0.0F, 0.02F, 0.03F, 1.0F);
         shader(map, "laevatain", 15, 0.6F, 0.1F, 0.1F, 0.1F, 1.0F);
         shader(map, "scroll_celestial_source", 15, 0.6F, 0.1F, 0.1F, 0.1F, 1.0F);
-
         outline(map, "twisted_chaos_ingot", "black_red");
         outline(map, "mithril_sword", "blue_white");
         outline(map, "mithril_pickaxe", "blue_white");

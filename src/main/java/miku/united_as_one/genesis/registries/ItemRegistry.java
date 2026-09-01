@@ -5,6 +5,7 @@ import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import io.redspace.ironsspellbooks.item.UpgradeOrbItem;
+import io.redspace.ironsspellbooks.item.InkItem;
 import io.redspace.ironsspellbooks.item.armor.UpgradeOrbType;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import miku.bai_ze_li.genesis.api.item.GenesisGoldTooltipParticleItem;
@@ -39,6 +40,8 @@ import miku.united_as_one.genesis.item.spell.ChaosStaff;
 import miku.united_as_one.genesis.item.spell.DiskSpellBook;
 import miku.united_as_one.genesis.item.spell.LightningSpellBook;
 import miku.united_as_one.genesis.spell.UpgradeOrbTypes;
+import miku.united_as_one.genesis.spell.InnateRarity;
+import miku.united_as_one.genesis.fluid.FluidRegistry;
 import miku.united_as_one.genesis.item.weapon.bow.FlameBow;
 import miku.united_as_one.genesis.item.weapon.bow.FrostLongBow;
 import miku.united_as_one.genesis.item.weapon.bow.ThunderLongBow;
@@ -73,6 +76,9 @@ public final class ItemRegistry {
     public static final ItemEntry<Item> CELESTIAL_SOURCE_PEARL = epic("celestial_source_pearl", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> CELESTIAL_SOURCE_INGOT = epic("celestial_source_ingot", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> CREATE_STAR = simple("create_star", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
+    public static final ItemEntry<InkItem> INNATE_INK = item("innate_ink",
+            properties -> new InkItem(InnateRarity.get(), FluidRegistry.INNATE_INK::get, properties),
+            epicProps().stacksTo(16), CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     // Good Cake
     public static final ItemEntry<Item> GOOD_CAKE = simple("good_cake", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
     public static final ItemEntry<Item> CRYSTAL_FRUIT = simple("crystal_fruit", CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
@@ -362,4 +368,5 @@ public final class ItemRegistry {
     private interface ItemFactory<T extends Item> {
         T create(Item.Properties properties);
     }
+
 }

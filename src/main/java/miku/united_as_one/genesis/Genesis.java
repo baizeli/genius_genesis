@@ -51,7 +51,7 @@ public class Genesis {
         ModFeatures.register(modBus);
         BlockRegistry.register();
         ItemRegistry.register();
-        FluidRegistry.register();
+        FluidRegistry.register(modBus);
         CreativeTabRegistry.register();
         GenesisNetwork.register();
 
