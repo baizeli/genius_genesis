@@ -45,7 +45,7 @@ public final class EquipmentStatsDefaults {
     private static Map<ResourceLocation, EquipmentStats> createDefaults() {
         Map<ResourceLocation, EquipmentStats> defaults = new LinkedHashMap<>();
 
-        putWeapon(defaults, "laevatain", 250, 6.0D, -2.4D);
+        putWeapon(defaults, "laevatain", 0, 17.0D, -2.4D);
         putWeapon(defaults, "mithril_sword", 4062, 7.0D, -1.7D);
         putWeapon(defaults, "divine_metal_sword", 5000, 15.0D, -2.7D);
         putWeapon(defaults, "divine_metal_axe", 5000, 19.0D, -3.3D);

@@ -1,8 +1,8 @@
 {
   "attributes": [],
-  "durability": 250,
+  "durability": 0,
   "weapon": {
-    "attack_damage": 6.0,
+    "attack_damage": 17.0,
     "attack_speed": -2.4
   }
 }

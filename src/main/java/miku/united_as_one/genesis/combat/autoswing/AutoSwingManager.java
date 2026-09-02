@@ -11,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public final class AutoSwingManager {
+    private static final int USE_HOLD_ACTIVATION_TICKS = 3;
     private static final RandomSource RANDOM = RandomSource.create();
     private static final Map<UUID, State> STATES = new HashMap<>();
 
@@ -41,11 +42,14 @@ public final class AutoSwingManager {
                 if (player.isUsingItem()) {
                     player.stopUsingItem();
                 }
-                if (state.cooldown <= 0) {
+                if (pipeline.inputMode == SwingPipeline.InputMode.USE_HOLD) {
+                    state.holdActivation.press();
+                } else if (state.cooldown <= 0) {
                     fire(player, pipeline, stack, state);
                 }
             } else {
                 state.holding = false;
+                state.holdActivation.release();
                 if (pipeline.releaseMode == SwingPipeline.ReleaseMode.RESET) {
                     state.index = 0;
                     state.lastFired = -1;
@@ -80,10 +84,15 @@ public final class AutoSwingManager {
         SwingPipeline pipeline = autoSwingItem.getSwingPipeline(stack);
         if (pipeline.swingMode == SwingPipeline.SwingMode.AUTO_HOLD) {
             if (state.holding) {
-                if (state.cooldown <= 0) {
+                boolean inputReady = pipeline.inputMode != SwingPipeline.InputMode.USE_HOLD
+                        || state.holdActivation.tick()
+                        || state.holdActivation.isActivated();
+                if (inputReady && state.cooldown <= 0) {
                     fire(player, pipeline, stack, state);
                 } else {
-                    state.cooldown--;
+                    if (state.cooldown > 0) {
+                        state.cooldown--;
+                    }
                 }
             } else if (state.cooldown > 0) {
                 state.cooldown--;
@@ -107,6 +116,9 @@ public final class AutoSwingManager {
     }
 
     private static void fire(ServerPlayer player, SwingPipeline pipeline, ItemStack stack, State state) {
+        if (player.getCooldowns().isOnCooldown(stack.getItem())) {
+            return;
+        }
         if (state.waitingAttackCooldown) {
             if (player.getAttackStrengthScale(0.0F) < 1.0F) {
                 return;
@@ -136,6 +148,10 @@ public final class AutoSwingManager {
             state.cooldown = stage.cooldownTicks();
             state.waitingAttackCooldown = shouldWaitForFullAttackCooldown(pipeline, index);
             state.index = nextIndex(pipeline, index);
+            if (index == pipeline.stages.size() - 1 && pipeline.completionCooldownTicks > 0) {
+                player.getCooldowns().addCooldown(stack.getItem(), pipeline.completionCooldownTicks);
+                state.cooldown = 0;
+            }
         }
     }
 
@@ -183,5 +199,6 @@ public final class AutoSwingManager {
         private int idle;
         private int lastFired = -1;
         private boolean waitingAttackCooldown;
+        private final HoldActivationGate holdActivation = new HoldActivationGate(USE_HOLD_ACTIVATION_TICKS);
     }
 }

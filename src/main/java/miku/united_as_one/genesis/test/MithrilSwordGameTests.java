@@ -1,22 +1,26 @@
 package miku.united_as_one.genesis.test;
 
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.item.weapon.MithrilSword;
-import miku.united_as_one.genesis.util.SlashColors;
+import miku.united_as_one.genesis.item.weapon.Laevatain;
+import miku.united_as_one.genesis.combat.autoswing.SwingPipeline;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 
 public class MithrilSwordGameTests {
     @GameTest(template = "empty", batch = Genesis.MOD_ID)
-    public static void mithrilSwordFinalComboSettings(GameTestHelper helper) {
-        helper.assertTrue(MithrilSword.slashColor() == SlashColors.MITHRIL_LIGHT_BLUE,
-                "Mithril sword effect color must stay light blue.");
-        helper.assertTrue(MithrilSword.finalPrimaryDamageMultiplier() == 1.5F,
-                "Mithril sword final primary slash must use 1.5x damage.");
-        helper.assertTrue(MithrilSword.finalSecondaryDamageMultiplier() == 1.2F,
-                "Mithril sword final secondary slash must use 1.2x damage.");
-        helper.assertTrue(MithrilSword.aoeRadius() == 1.75F,
-                "Mithril sword final combo AOE radius must be halved.");
+    public static void laevatainFinalComboSettings(GameTestHelper helper) {
+        helper.assertTrue(Laevatain.finalPrimaryDamageMultiplier() == 1.5F,
+                "Laevatain final primary slash must use 1.5x damage.");
+        helper.assertTrue(Laevatain.finalSecondaryDamageMultiplier() == 1.2F,
+                "Laevatain final secondary slash must use 1.2x damage.");
+        helper.assertTrue(Laevatain.aoeRadius() == 1.75F,
+                "Laevatain final combo AOE radius must be 1.75 blocks.");
+        helper.assertTrue(Laevatain.swingPipeline().inputMode == SwingPipeline.InputMode.USE_HOLD,
+                "Laevatain combo must be driven by holding use.");
+        helper.assertTrue(Laevatain.swingPipeline().completionCooldownTicks == 60,
+                "Laevatain combo must apply a 60 tick completion cooldown.");
+        helper.assertTrue(Laevatain.swingPipeline().endMode == SwingPipeline.EndMode.STOP,
+                "Laevatain combo must stop after one sequence until use is released.");
         helper.succeed();
     }
 }

@@ -11,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public final class AutoSwingClientEvents {
@@ -27,7 +28,7 @@ public final class AutoSwingClientEvents {
         boolean down = minecraft.player != null
                 && minecraft.screen == null
                 && isAutoHoldItem(minecraft.player.getMainHandItem())
-                && minecraft.options.keyAttack.isDown();
+                && isConfiguredInputDown(minecraft.player.getMainHandItem(), minecraft);
         if (down != wasDown) {
             wasDown = down;
             GenesisNetwork.CHANNEL.sendToServer(new AutoSwingInputPacket(down));
@@ -73,9 +74,18 @@ public final class AutoSwingClientEvents {
         }
     }
 
+    public static void onAttackEntity(AttackEntityEvent event) {
+        if (event.getEntity().level().isClientSide && isAutoAttacking()) {
+            event.setCanceled(true);
+        }
+    }
+
     public static boolean isAutoAttacking() {
         Minecraft minecraft = Minecraft.getInstance();
-        return wasDown && minecraft.player != null && isAutoHoldItem(minecraft.player.getMainHandItem());
+        return minecraft.player != null
+                && minecraft.screen == null
+                && isAutoHoldItem(minecraft.player.getMainHandItem())
+                && isConfiguredInputDown(minecraft.player.getMainHandItem(), minecraft);
     }
 
     private static boolean isAutoHoldItem(ItemStack stack) {
@@ -84,5 +94,15 @@ public final class AutoSwingClientEvents {
             return false;
         }
         return autoSwingItem.getSwingPipeline(stack).swingMode == SwingPipeline.SwingMode.AUTO_HOLD;
+    }
+
+    private static boolean isConfiguredInputDown(ItemStack stack, Minecraft minecraft) {
+        if (!(stack.getItem() instanceof IAutoSwingItem autoSwingItem)) {
+            return false;
+        }
+        return switch (autoSwingItem.getSwingPipeline(stack).inputMode) {
+            case ATTACK_HOLD -> minecraft.options.keyAttack.isDown();
+            case USE_HOLD -> minecraft.options.keyUse.isDown();
+        };
     }
 }

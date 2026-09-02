@@ -6,6 +6,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import miku.bai_ze_li.genesis.api.render.shader.GenesisRenderType;
 import miku.bai_ze_li.genesis.api.render.shader.GenesisShaders;
+import miku.united_as_one.genesis.client.render.cosmic.CosmicBakedModel;
 import miku.united_as_one.genesis.client.render.special.SceneCopyTarget;
 import miku.united_as_one.genesis.combat.meleeproj.MeleeProjBase;
 import net.minecraft.client.Minecraft;
@@ -27,6 +28,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.core.Direction;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -120,6 +122,15 @@ public class MeleeProjBaseRenderer extends EntityRenderer<MeleeProjBase> {
         Minecraft minecraft = Minecraft.getInstance();
         ItemRenderer itemRenderer = minecraft.getItemRenderer();
         var model = itemRenderer.getModel(stack, level, null, seed);
+
+        // Cosmic models intentionally expose no baked quads: their base and effect layers must
+        // pass through ItemRendererMixin, including the shader-pack compatibility path.
+        if (model instanceof CosmicBakedModel) {
+            poseStack.translate(0.5F, 0.5F, 0.5F);
+            itemRenderer.render(stack, ItemDisplayContext.NONE, false, poseStack, bufferSource,
+                    0xF000F0, OverlayTexture.NO_OVERLAY, model);
+            return;
+        }
 
         VertexConsumer consumer = bufferSource.getBuffer(Sheets.translucentItemSheet());
         Pose pose = poseStack.last();

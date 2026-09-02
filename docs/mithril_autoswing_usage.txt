@@ -1,4 +1,4 @@
-秘银剑自动按住连段系统说明
+暮光破法者右键连段与秘银剑命中剑气说明
 
 当前接入范围
 - 自动按住连段系统在主项目：miku.united_as_one.genesis.combat.autoswing
@@ -6,12 +6,12 @@
 - 剑气贴图、颜色贴图、melee_trail shader 和 RenderType 在 Genesis Lib。
 - 主项目只引用 Genesis Lib 的 API 和资源，不在主项目资源目录里放这套特效资源。
 
-秘银剑当前效果
-- 按住攻击键会自动循环 Overlord 风格连段。
+暮光破法者当前效果
+- 按住右键会执行 Overlord 风格连段，完整一套后进入 60 tick 冷却。
 - 连段由服务端驱动，客户端只发送按键状态。
-- 秘银剑每段会生成 MeleeProjBase 自定义攻击动画实体。
+- 暮光破法者每段会生成 MeleeProjBase 自定义攻击动画实体。
 - 攻击动画会隐藏玩家手持物，并由 MeleeProjBase 渲染武器模型和剑气轨迹。
-- MeleeProjBase 命中时会调用秘银剑命中逻辑。
+- MeleeProjBase 命中时会调用暮光破法者命中逻辑。
 - 第 1 到第 4 次命中只造成伤害并累计命中次数。
 - 第 5 次命中触发脚下环特效和 AOE。
 - 第 5 次才回蓝，回蓝量为这次直接命中伤害加 AOE 实际伤害总和的 150%。
@@ -19,7 +19,7 @@
 旧版命中剑气状态
 - SpawnSlashPacket、SlashEffectAPI、MithrilMeleeSlashEntity、MithrilMeleeSlashRenderer 仍保留。
 - InvulnerabilityHandler 仍可用 SpawnSlashPacket 给其他逻辑生成旧版命中剑气。
-- 秘银剑已经取消旧版命中剑气触发，改用 MeleeProjBase 自定义攻击动画。
+- 秘银剑已经移除 MeleeProjBase 自定义攻击，恢复老项目的原版近战命中剑气。
 
 给其他武器接自动连段
 1. 武器类 implements IAutoSwingItem。

@@ -8,6 +8,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class SwingPipeline {
     public final List<SwingStage> stages;
+    public final InputMode inputMode;
     public final SwingMode swingMode;
     public final AdvanceMode advanceMode;
     public final ReleaseMode releaseMode;
@@ -17,9 +18,11 @@ public class SwingPipeline {
     public final int comboResetTicks;
     public final boolean avoidRepeat;
     public final boolean waitFullAttackCooldownAfterCombo;
+    public final int completionCooldownTicks;
 
     private SwingPipeline(Builder builder) {
         this.stages = List.copyOf(builder.stages);
+        this.inputMode = builder.inputMode;
         this.swingMode = builder.swingMode;
         this.advanceMode = builder.advanceMode;
         this.releaseMode = builder.releaseMode;
@@ -29,6 +32,7 @@ public class SwingPipeline {
         this.comboResetTicks = builder.comboResetTicks;
         this.avoidRepeat = builder.avoidRepeat;
         this.waitFullAttackCooldownAfterCombo = builder.waitFullAttackCooldownAfterCombo;
+        this.completionCooldownTicks = builder.completionCooldownTicks;
     }
 
     public static Builder builder() {
@@ -38,6 +42,11 @@ public class SwingPipeline {
     public enum SwingMode {
         AUTO_HOLD,
         MANUAL_CLICK
+    }
+
+    public enum InputMode {
+        ATTACK_HOLD,
+        USE_HOLD
     }
 
     public enum AdvanceMode {
@@ -66,6 +75,7 @@ public class SwingPipeline {
 
     public static class Builder {
         private final List<SwingStage> stages = new ArrayList<>();
+        private InputMode inputMode = InputMode.ATTACK_HOLD;
         private SwingMode swingMode = SwingMode.AUTO_HOLD;
         private AdvanceMode advanceMode = AdvanceMode.SEQUENTIAL;
         private ReleaseMode releaseMode = ReleaseMode.RESET;
@@ -75,6 +85,12 @@ public class SwingPipeline {
         private int comboResetTicks;
         private boolean avoidRepeat;
         private boolean waitFullAttackCooldownAfterCombo;
+        private int completionCooldownTicks;
+
+        public Builder input(InputMode inputMode) {
+            this.inputMode = inputMode;
+            return this;
+        }
 
         public Builder mode(SwingMode mode) {
             this.swingMode = mode;
@@ -114,6 +130,11 @@ public class SwingPipeline {
 
         public Builder waitFullAttackCooldownAfterCombo(boolean wait) {
             this.waitFullAttackCooldownAfterCombo = wait;
+            return this;
+        }
+
+        public Builder completionCooldown(int ticks) {
+            this.completionCooldownTicks = Math.max(0, ticks);
             return this;
         }
 

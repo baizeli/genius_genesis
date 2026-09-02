@@ -31,6 +31,7 @@ import miku.united_as_one.genesis.item.tool.VioletHoe;
 import miku.united_as_one.genesis.item.tool.VioletPickaxe;
 import miku.united_as_one.genesis.item.tool.VioletShovel;
 import miku.united_as_one.genesis.item.weapon.MithrilSword;
+import miku.united_as_one.genesis.item.weapon.Laevatain;
 import miku.united_as_one.genesis.item.spell.CelestialSourceSpellBook;
 import miku.united_as_one.genesis.item.spell.CelestialSourceManuscriptItem;
 import miku.united_as_one.genesis.item.spell.CelestialSourceStaff;
@@ -110,7 +111,9 @@ public final class ItemRegistry {
     // 星尘，旧语言文件暂无条目
     public static final ItemEntry<Item> STELLAR_DUST = noModel("stellar_dust", Item::new, new Item.Properties(), CreativeTabRegistry.GENIUS_GENESIS_MATERIAL);
 
-    public static final ItemEntry<SwordItem> LAEVATAIN = sword("laevatain", GenesisTiers.DIVINE_METAL, 3, -2.4F);
+    public static final ItemEntry<Laevatain> LAEVATAIN = item("laevatain",
+            properties -> new Laevatain(GenesisTiers.DIVINE_METAL, 3, -2.4F, properties),
+            epicProps(), CreativeTabRegistry.GENIUS_GENESIS_EQUIPMENT);
     // 冈格尼尔
     public static final ItemEntry<SwordItem> GUNGNIR = sword("gungnir", GenesisTiers.LEGENDARY, 2, -1.9F);
     public static final ItemEntry<MithrilSword> MITHRIL_SWORD = mithrilSword();

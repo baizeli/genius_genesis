@@ -66,6 +66,7 @@ public final class ClientSetup {
         MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onEntityInteract);
         MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onEntityInteractSpecific);
         MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onLeftClickBlock);
+        MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onAttackEntity);
         MinecraftForge.EVENT_BUS.addListener(PlayerShadowRenderer::onClientLoggingOut);
         MinecraftForge.EVENT_BUS.addListener(PlayerShadowRenderer::onPlayerRenderPost);
     }
