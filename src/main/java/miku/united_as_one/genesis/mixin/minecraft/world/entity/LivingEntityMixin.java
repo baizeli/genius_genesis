@@ -1,7 +1,7 @@
 package miku.united_as_one.genesis.mixin.minecraft.world.entity;
 
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.spell.chaos.ReversePlagueSpell;
+import miku.united_as_one.genesis.content.spell.chaos.ReversePlagueSpell;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;

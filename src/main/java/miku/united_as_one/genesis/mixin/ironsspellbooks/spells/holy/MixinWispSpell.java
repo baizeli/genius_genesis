@@ -3,7 +3,7 @@ package miku.united_as_one.genesis.mixin.ironsspellbooks.spells.holy;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import io.redspace.ironsspellbooks.spells.holy.WispSpell;
 import miku.united_as_one.genesis.compat.curios.GenesisCurios;
-import miku.united_as_one.genesis.item.curios.RunePlusItem;
+import miku.united_as_one.genesis.content.item.curios.RunePlusItem;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.Nullable;

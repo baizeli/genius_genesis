@@ -3,7 +3,7 @@ package miku.united_as_one.genesis.mixin.ironsspellbooks.spells.ice;
 import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
 import io.redspace.ironsspellbooks.entity.spells.ice_block.IceBlockProjectile;
 import miku.united_as_one.genesis.compat.curios.GenesisCurios;
-import miku.united_as_one.genesis.item.curios.RunePlusItem;
+import miku.united_as_one.genesis.content.item.curios.RunePlusItem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;

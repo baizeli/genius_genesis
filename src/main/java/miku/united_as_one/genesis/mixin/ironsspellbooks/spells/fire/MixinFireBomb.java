@@ -4,7 +4,7 @@ import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
 import io.redspace.ironsspellbooks.entity.spells.magma_ball.FireBomb;
 import io.redspace.ironsspellbooks.entity.spells.magma_ball.FireField;
 import miku.united_as_one.genesis.compat.curios.GenesisCurios;
-import miku.united_as_one.genesis.item.curios.RunePlusItem;
+import miku.united_as_one.genesis.content.item.curios.RunePlusItem;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;

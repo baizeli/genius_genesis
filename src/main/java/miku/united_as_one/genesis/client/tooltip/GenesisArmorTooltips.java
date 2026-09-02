@@ -1,7 +1,7 @@
 package miku.united_as_one.genesis.client.tooltip;
 
-import miku.united_as_one.genesis.item.GenesisArmorMaterials;
-import miku.united_as_one.genesis.item.armor.GenesisArmorPiece;
+import miku.united_as_one.genesis.content.item.GenesisArmorMaterials;
+import miku.united_as_one.genesis.content.item.armor.GenesisArmorPiece;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;

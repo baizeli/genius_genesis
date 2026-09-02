@@ -1,7 +1,7 @@
 package miku.united_as_one.genesis.client.render.entity.spell;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import miku.united_as_one.genesis.entity.effect.MeleeDamageTextEntity;
+import miku.united_as_one.genesis.content.entity.effect.MeleeDamageTextEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;

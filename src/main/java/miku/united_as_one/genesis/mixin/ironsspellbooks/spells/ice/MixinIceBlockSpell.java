@@ -5,7 +5,7 @@ import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.entity.spells.ice_block.IceBlockProjectile;
 import io.redspace.ironsspellbooks.spells.ice.IceBlockSpell;
 import miku.united_as_one.genesis.compat.curios.GenesisCurios;
-import miku.united_as_one.genesis.item.curios.RunePlusItem;
+import miku.united_as_one.genesis.content.item.curios.RunePlusItem;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;

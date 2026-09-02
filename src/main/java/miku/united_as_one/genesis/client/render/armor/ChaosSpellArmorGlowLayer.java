@@ -3,7 +3,7 @@ package miku.united_as_one.genesis.client.render.armor;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.item.armor.ChaosSpellArmorItem;
+import miku.united_as_one.genesis.content.item.armor.ChaosSpellArmorItem;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.LightTexture;

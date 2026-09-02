@@ -11,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public final class AutoSwingManager {
+    private static final int USE_HOLD_ACTIVATION_TICKS = 3;
     private static final RandomSource RANDOM = RandomSource.create();
     private static final Map<UUID, State> STATES = new HashMap<>();
 
@@ -41,11 +42,14 @@ public final class AutoSwingManager {
                 if (player.isUsingItem()) {
                     player.stopUsingItem();
                 }
-                if (state.cooldown <= 0) {
+                if (pipeline.inputMode == SwingPipeline.InputMode.USE_HOLD) {
+                    state.holdActivation.press();
+                } else if (state.cooldown <= 0) {
                     fire(player, pipeline, stack, state);
                 }
             } else {
                 state.holding = false;
+                state.holdActivation.release();
                 if (pipeline.releaseMode == SwingPipeline.ReleaseMode.RESET) {
                     state.index = 0;
                     state.lastFired = -1;
@@ -78,10 +82,12 @@ public final class AutoSwingManager {
         }
 
         SwingPipeline pipeline = autoSwingItem.getSwingPipeline(stack);
-        state.comboStartCooldown.tick();
         if (pipeline.swingMode == SwingPipeline.SwingMode.AUTO_HOLD) {
             if (state.holding) {
-                if (state.cooldown <= 0) {
+                boolean inputReady = pipeline.inputMode != SwingPipeline.InputMode.USE_HOLD
+                        || state.holdActivation.tick()
+                        || state.holdActivation.isActivated();
+                if (inputReady && state.cooldown <= 0) {
                     fire(player, pipeline, stack, state);
                 } else {
                     if (state.cooldown > 0) {
@@ -110,11 +116,7 @@ public final class AutoSwingManager {
     }
 
     private static void fire(ServerPlayer player, SwingPipeline pipeline, ItemStack stack, State state) {
-        boolean continuingStartedSequence = pipeline.startCooldownTicks > 0
-                && pipeline.advanceMode == SwingPipeline.AdvanceMode.SEQUENTIAL
-                && state.index > 0
-                && state.index < pipeline.stages.size();
-        if (player.getCooldowns().isOnCooldown(stack.getItem()) && !continuingStartedSequence) {
+        if (player.getCooldowns().isOnCooldown(stack.getItem())) {
             return;
         }
         if (state.waitingAttackCooldown) {
@@ -135,19 +137,9 @@ public final class AutoSwingManager {
         }
 
         SwingPipeline.SwingStage stage = pipeline.stages.get(index);
-        boolean startsSequence = pipeline.advanceMode == SwingPipeline.AdvanceMode.SEQUENTIAL && index == 0;
-        if (startsSequence) {
-            if (player.getCooldowns().isOnCooldown(stack.getItem())
-                    || !state.comboStartCooldown.tryStart(pipeline.startCooldownTicks)) {
-                return;
-            }
-        }
         if (player.level() instanceof ServerLevel serverLevel) {
             stage.action().perform(player, serverLevel, stack, index);
             player.swing(InteractionHand.MAIN_HAND, true);
-        }
-        if (startsSequence && pipeline.startCooldownTicks > 0) {
-            player.getCooldowns().addCooldown(stack.getItem(), pipeline.startCooldownTicks);
         }
         state.lastFired = index;
         if (pipeline.advanceMode == SwingPipeline.AdvanceMode.RANDOM) {
@@ -207,6 +199,6 @@ public final class AutoSwingManager {
         private int idle;
         private int lastFired = -1;
         private boolean waitingAttackCooldown;
-        private final ComboStartCooldown comboStartCooldown = new ComboStartCooldown();
+        private final HoldActivationGate holdActivation = new HoldActivationGate(USE_HOLD_ACTIVATION_TICKS);
     }
 }

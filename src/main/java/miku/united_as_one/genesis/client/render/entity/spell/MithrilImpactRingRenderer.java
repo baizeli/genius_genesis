@@ -2,7 +2,7 @@ package miku.united_as_one.genesis.client.render.entity.spell;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import miku.bai_ze_li.genesis.api.render.effect.MithrilImpactRingEffect;
-import miku.united_as_one.genesis.entity.effect.MithrilImpactRingEntity;
+import miku.united_as_one.genesis.content.entity.effect.MithrilImpactRingEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;

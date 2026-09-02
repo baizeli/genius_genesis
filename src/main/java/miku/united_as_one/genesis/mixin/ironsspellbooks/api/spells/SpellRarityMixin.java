@@ -1,8 +1,8 @@
 package miku.united_as_one.genesis.mixin.ironsspellbooks.api.spells;
 
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
-import miku.united_as_one.genesis.spell.InnateRarity;
-import miku.united_as_one.genesis.spell.DevSpellRarityFallback;
+import miku.united_as_one.genesis.content.spell.InnateRarity;
+import miku.united_as_one.genesis.content.spell.DevSpellRarityFallback;
 import net.minecraft.ChatFormatting;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

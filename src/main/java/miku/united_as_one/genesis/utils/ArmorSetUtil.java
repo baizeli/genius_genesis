@@ -1,7 +1,7 @@
 package miku.united_as_one.genesis.utils;
 
-import miku.united_as_one.genesis.item.GenesisArmorMaterials;
-import miku.united_as_one.genesis.item.armor.GenesisArmorPiece;
+import miku.united_as_one.genesis.content.item.GenesisArmorMaterials;
+import miku.united_as_one.genesis.content.item.armor.GenesisArmorPiece;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;

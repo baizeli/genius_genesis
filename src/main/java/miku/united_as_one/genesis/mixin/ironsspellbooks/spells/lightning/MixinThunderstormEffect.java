@@ -4,7 +4,7 @@ import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.effect.ThunderstormEffect;
 import io.redspace.ironsspellbooks.entity.spells.LightningStrike;
 import miku.united_as_one.genesis.compat.curios.GenesisCurios;
-import miku.united_as_one.genesis.item.curios.RunePlusItem;
+import miku.united_as_one.genesis.content.item.curios.RunePlusItem;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

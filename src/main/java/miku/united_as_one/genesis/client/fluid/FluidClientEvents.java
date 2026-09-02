@@ -1,7 +1,7 @@
 package miku.united_as_one.genesis.client.fluid;
 
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.fluid.FluidRegistry;
+import miku.united_as_one.genesis.content.fluid.FluidRegistry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.Level;

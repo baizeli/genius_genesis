@@ -3,7 +3,7 @@ package miku.united_as_one.genesis.mixin.ironsspellbooks.gui.scroll_forge;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import io.redspace.ironsspellbooks.gui.scroll_forge.ScrollForgeMenu;
 import io.redspace.ironsspellbooks.item.InkItem;
-import miku.united_as_one.genesis.spell.SpellRarityLevelResolver;
+import miku.united_as_one.genesis.content.spell.SpellRarityLevelResolver;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;

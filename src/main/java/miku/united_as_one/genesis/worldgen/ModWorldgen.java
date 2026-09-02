@@ -2,7 +2,7 @@ package miku.united_as_one.genesis.worldgen;
 
 import com.mojang.datafixers.util.Pair;
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.fluid.FluidRegistry;
+import miku.united_as_one.genesis.content.fluid.FluidRegistry;
 import miku.united_as_one.genesis.registries.BlockRegistry;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;

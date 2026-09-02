@@ -5,7 +5,7 @@ import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.item.armor.UpgradeOrbType;
 import miku.united_as_one.genesis.registries.ItemRegistry;
 import miku.united_as_one.genesis.registries.SpellAttributesRegistry;
-import miku.united_as_one.genesis.spell.UpgradeOrbTypes;
+import miku.united_as_one.genesis.content.spell.UpgradeOrbTypes;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.ai.attributes.Attribute;

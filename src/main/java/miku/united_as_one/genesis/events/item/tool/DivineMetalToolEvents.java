@@ -1,9 +1,9 @@
 package miku.united_as_one.genesis.events.item.tool;
 
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.item.tool.DivineMetalHoe;
-import miku.united_as_one.genesis.item.tool.DivineMetalPickaxe;
-import miku.united_as_one.genesis.item.tool.DivineMetalShovel;
+import miku.united_as_one.genesis.content.item.tool.DivineMetalHoe;
+import miku.united_as_one.genesis.content.item.tool.DivineMetalPickaxe;
+import miku.united_as_one.genesis.content.item.tool.DivineMetalShovel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;

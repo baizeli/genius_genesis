@@ -1,9 +1,9 @@
 package miku.united_as_one.genesis.events.item.tool;
 
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.item.tool.VioletAxe;
-import miku.united_as_one.genesis.item.tool.VioletPickaxe;
-import miku.united_as_one.genesis.item.tool.VioletShovel;
+import miku.united_as_one.genesis.content.item.tool.VioletAxe;
+import miku.united_as_one.genesis.content.item.tool.VioletPickaxe;
+import miku.united_as_one.genesis.content.item.tool.VioletShovel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;

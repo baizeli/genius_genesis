@@ -11,7 +11,7 @@ import miku.bai_ze_li.genesis.api.render.shader.GenesisShaders;
 import miku.bai_ze_li.genesis.api.text.GenesisColor;
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.client.TrailRender;
-import miku.united_as_one.genesis.entity.spell.celestial_source.MeteorProjectileEntity;
+import miku.united_as_one.genesis.content.entity.spell.celestial_source.MeteorProjectileEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

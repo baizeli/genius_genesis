@@ -1,7 +1,7 @@
 package miku.united_as_one.genesis.client.render.armor;
 
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.item.armor.GenesisGeoArmorItem;
+import miku.united_as_one.genesis.content.item.armor.GenesisGeoArmorItem;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 

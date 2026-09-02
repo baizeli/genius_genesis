@@ -3,7 +3,7 @@ package miku.united_as_one.genesis.client.render.entity.spell;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import miku.bai_ze_li.genesis.api.render.shader.GenesisRenderType;
-import miku.united_as_one.genesis.entity.spell.celestial_source.MeteorShockwaveEntity;
+import miku.united_as_one.genesis.content.entity.spell.celestial_source.MeteorShockwaveEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;

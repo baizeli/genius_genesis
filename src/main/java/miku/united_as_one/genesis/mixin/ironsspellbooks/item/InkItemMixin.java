@@ -3,7 +3,7 @@ package miku.united_as_one.genesis.mixin.ironsspellbooks.item;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
 import io.redspace.ironsspellbooks.item.InkItem;
 import miku.united_as_one.genesis.registries.ItemRegistry;
-import miku.united_as_one.genesis.spell.InnateRarity;
+import miku.united_as_one.genesis.content.spell.InnateRarity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

@@ -2,11 +2,11 @@ package miku.united_as_one.genesis.registries;
 
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.spell.chaos.*;
-import miku.united_as_one.genesis.spell.celestial_source.IFlySpell;
-import miku.united_as_one.genesis.spell.celestial_source.MeteorSpell;
-import miku.united_as_one.genesis.spell.eldritch.SilentAbyssalRealmSpell;
-import miku.united_as_one.genesis.spell.thunder.DeathLaserSpell;
+import miku.united_as_one.genesis.content.spell.chaos.*;
+import miku.united_as_one.genesis.content.spell.celestial_source.IFlySpell;
+import miku.united_as_one.genesis.content.spell.celestial_source.MeteorSpell;
+import miku.united_as_one.genesis.content.spell.eldritch.SilentAbyssalRealmSpell;
+import miku.united_as_one.genesis.content.spell.thunder.DeathLaserSpell;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;

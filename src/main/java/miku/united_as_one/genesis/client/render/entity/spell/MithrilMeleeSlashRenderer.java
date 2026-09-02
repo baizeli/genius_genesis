@@ -3,7 +3,7 @@ package miku.united_as_one.genesis.client.render.entity.spell;
 import com.mojang.blaze3d.vertex.PoseStack;
 import miku.bai_ze_li.genesis.api.render.effect.MithrilMeleeSlashEffect;
 import miku.united_as_one.genesis.client.TrailRender;
-import miku.united_as_one.genesis.entity.effect.MithrilMeleeSlashEntity;
+import miku.united_as_one.genesis.content.entity.effect.MithrilMeleeSlashEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;

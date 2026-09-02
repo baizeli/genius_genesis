@@ -2,7 +2,7 @@ package miku.united_as_one.genesis.data.save;
 
 import com.google.gson.*;
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.spell.chaos.ReversePlagueSpell;
+import miku.united_as_one.genesis.content.spell.chaos.ReversePlagueSpell;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.storage.LevelResource;
 

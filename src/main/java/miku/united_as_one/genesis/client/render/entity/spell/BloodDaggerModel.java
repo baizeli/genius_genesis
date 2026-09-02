@@ -3,7 +3,7 @@ package miku.united_as_one.genesis.client.render.entity.spell;
 import io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.AbstractSpellCastingMob;
 import io.redspace.ironsspellbooks.render.RenderHelper;
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.entity.spell.blood_boss.blood_dagger.BloodDaggerEntity;
+import miku.united_as_one.genesis.content.entity.spell.blood_boss.blood_dagger.BloodDaggerEntity;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;

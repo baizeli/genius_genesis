@@ -2,7 +2,7 @@ package miku.united_as_one.genesis.client.render.entity.spell;
 
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.client.render.entity.laser.AbstractLaserRenderer;
-import miku.united_as_one.genesis.entity.spell.thunder.DeathLaserEntity;
+import miku.united_as_one.genesis.content.entity.spell.thunder.DeathLaserEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;

@@ -2,7 +2,7 @@ package miku.united_as_one.genesis.client.render.armor;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import miku.united_as_one.genesis.item.armor.GenesisGeoArmorItem;
+import miku.united_as_one.genesis.content.item.armor.GenesisGeoArmorItem;
 import miku.united_as_one.genesis.registries.ItemRegistry;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;

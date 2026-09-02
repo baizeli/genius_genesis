@@ -2,7 +2,7 @@ package miku.united_as_one.genesis.registries;
 
 import com.tterrag.registrate.util.entry.BlockEntry;
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.block.util.SimpleBlockSet;
+import miku.united_as_one.genesis.content.block.util.SimpleBlockSet;
 import miku.united_as_one.genesis.workbench.arcane.ArcaneWorkbenchBlock;
 import miku.united_as_one.genesis.workbench.arcane_cauldron.ArcaneCauldronBlock;
 import miku.united_as_one.genesis.worldgen.SourceTreeGrower;

@@ -3,7 +3,7 @@ package miku.united_as_one.genesis.combat.meleeproj;
 import io.redspace.ironsspellbooks.api.util.CameraShakeData;
 import io.redspace.ironsspellbooks.api.util.CameraShakeManager;
 import java.util.List;
-import miku.united_as_one.genesis.entity.effect.MeleeDamageTextEntity;
+import miku.united_as_one.genesis.content.entity.effect.MeleeDamageTextEntity;
 import miku.united_as_one.genesis.registries.EntityRegistry;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
