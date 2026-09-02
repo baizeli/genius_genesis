@@ -3,6 +3,7 @@ package miku.united_as_one.genesis.mixin.ironsspellbooks.gui.scroll_forge;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import io.redspace.ironsspellbooks.gui.scroll_forge.ScrollForgeMenu;
 import io.redspace.ironsspellbooks.item.InkItem;
+import miku.united_as_one.genesis.spell.SpellRarityLevelResolver;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;
@@ -21,7 +22,7 @@ public abstract class ScrollForgeMenuInnateMixin {
     @Inject(method = "setupResultSlot", at = @At("HEAD"), cancellable = true)
     private void genesis$rejectInnateInkForNonInnateSpells(AbstractSpell spell, CallbackInfo ci) {
         if (inkSlot.getItem().getItem() instanceof InkItem ink
-                && genesis$findExactLevel(spell, ink) < 1) {
+                && SpellRarityLevelResolver.findFirstExactLevel(spell, ink.getRarity()) < 1) {
             resultSlot.set(ItemStack.EMPTY);
             ci.cancel();
         }
@@ -36,14 +37,7 @@ public abstract class ScrollForgeMenuInnateMixin {
     )
     private int genesis$useExactInkRarityLevel(AbstractSpell spell, io.redspace.ironsspellbooks.api.spells.SpellRarity ignored) {
         return inkSlot.getItem().getItem() instanceof InkItem ink
-                ? genesis$findExactLevel(spell, ink)
+                ? SpellRarityLevelResolver.findFirstExactLevel(spell, ink.getRarity())
                 : 0;
-    }
-
-    private static int genesis$findExactLevel(AbstractSpell spell, InkItem ink) {
-        for (int level = spell.getMinLevel(); level <= spell.getMaxLevel(); level++) {
-            if (spell.getRarity(level) == ink.getRarity()) return level;
-        }
-        return -1;
     }
 }

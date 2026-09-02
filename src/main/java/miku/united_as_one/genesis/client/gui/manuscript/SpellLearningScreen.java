@@ -15,6 +15,7 @@ import io.redspace.ironsspellbooks.player.ClientMagicData;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import io.redspace.ironsspellbooks.render.RenderHelper;
 import miku.united_as_one.genesis.Genesis;
+import miku.united_as_one.genesis.client.render.ScrollTooltipBackgroundRenderer;
 import miku.united_as_one.genesis.network.GenesisNetwork;
 import miku.united_as_one.genesis.network.packet.LearnSpellPacket;
 import net.minecraft.ChatFormatting;
@@ -74,6 +75,8 @@ public abstract class SpellLearningScreen extends Screen {
 
     protected abstract Component getRequiredItemName();
 
+    protected abstract SpellLearningBackground getLearningBackground();
+
     @Override
     protected void init() {
         this.playerData = this.minecraft == null ? null : ClientMagicData.getSyncedSpellData(this.minecraft.player);
@@ -110,7 +113,7 @@ public abstract class SpellLearningScreen extends Screen {
     public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
         super.render(graphics, mouseX, mouseY, partialTick);
         graphics.fillGradient(0, 0, this.width, this.height, -1072689136, -804253680);
-        drawBackdrop(graphics, this.leftPos + WINDOW_INSIDE_X, this.topPos + WINDOW_INSIDE_Y);
+        drawLearningBackground(graphics);
 
         LocalPlayer player = Minecraft.getInstance().player;
         if (player == null) {
@@ -265,6 +268,20 @@ public abstract class SpellLearningScreen extends Screen {
                 .color(0, 0, 0, color);
         quad.build(graphics, RenderType.endPortal());
         quad.build(graphics, RenderType.guiOverlay());
+    }
+
+    protected void drawLearningBackground(GuiGraphics graphics) {
+        int left = this.leftPos + WINDOW_INSIDE_X;
+        int top = this.topPos + WINDOW_INSIDE_Y;
+        if (!ScrollTooltipBackgroundRenderer.isAvailable()) {
+            drawBackdrop(graphics, left, top);
+            return;
+        }
+
+        ScrollTooltipBackgroundRenderer.render(
+                graphics.pose(), graphics.bufferSource(), WINDOW_INSIDE_WIDTH, WINDOW_INSIDE_HEIGHT,
+                left + WINDOW_INSIDE_WIDTH / 2.0D, top + WINDOW_INSIDE_HEIGHT / 2.0D,
+                15728880, getLearningBackground().cosmicType());
     }
 
     protected static Vector4f lerpColor(Vector4f a, Vector4f b, float delta) {

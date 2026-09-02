@@ -52,4 +52,9 @@ public class ChaosSpellLearningScreen extends SpellLearningScreen {
     protected Component getRequiredItemName() {
         return Component.translatable("item." + Genesis.MOD_ID + ".chaos_manuscript");
     }
+
+    @Override
+    protected SpellLearningBackground getLearningBackground() {
+        return SpellLearningBackground.CHAOS;
+    }
 }

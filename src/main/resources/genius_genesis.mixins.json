@@ -9,6 +9,7 @@
     "ironsspellbooks.gui.scroll_forge.ScrollForgeMenuInnateMixin",
     "ironsspellbooks.api.spells.SpellRarityMixin",
     "ironsspellbooks.item.InkItemMixin",
+    "ironsspellbooks.jei.ScrollForgeRecipeMakerMixin",
     "ironsspellbooks.spells.ender.MixinComet",
     "ironsspellbooks.spells.ender.MixinStarfallSpell",
     "ironsspellbooks.spells.fire.MixinFireBomb",

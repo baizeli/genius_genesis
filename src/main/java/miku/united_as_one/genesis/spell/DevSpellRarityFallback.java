@@ -7,7 +7,6 @@ import sun.misc.Unsafe;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
-/** Installs the extra enum value at SpellRarity class initialization time when no early transformer supplied it. */
 public final class DevSpellRarityFallback {
     private static volatile boolean attempted;
 

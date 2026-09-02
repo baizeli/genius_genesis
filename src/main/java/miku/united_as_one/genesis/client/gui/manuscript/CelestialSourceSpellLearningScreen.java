@@ -55,4 +55,9 @@ public class CelestialSourceSpellLearningScreen extends SpellLearningScreen {
     protected Component getRequiredItemName() {
         return Component.translatable("item." + Genesis.MOD_ID + ".celestial_source_manuscript");
     }
+
+    @Override
+    protected SpellLearningBackground getLearningBackground() {
+        return SpellLearningBackground.CELESTIAL_SOURCE;
+    }
 }
