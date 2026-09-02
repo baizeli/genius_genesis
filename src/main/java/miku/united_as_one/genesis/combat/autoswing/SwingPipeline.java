@@ -19,6 +19,7 @@ public class SwingPipeline {
     public final boolean avoidRepeat;
     public final boolean waitFullAttackCooldownAfterCombo;
     public final int completionCooldownTicks;
+    public final int startCooldownTicks;
 
     private SwingPipeline(Builder builder) {
         this.stages = List.copyOf(builder.stages);
@@ -33,6 +34,7 @@ public class SwingPipeline {
         this.avoidRepeat = builder.avoidRepeat;
         this.waitFullAttackCooldownAfterCombo = builder.waitFullAttackCooldownAfterCombo;
         this.completionCooldownTicks = builder.completionCooldownTicks;
+        this.startCooldownTicks = builder.startCooldownTicks;
     }
 
     public static Builder builder() {
@@ -86,6 +88,7 @@ public class SwingPipeline {
         private boolean avoidRepeat;
         private boolean waitFullAttackCooldownAfterCombo;
         private int completionCooldownTicks;
+        private int startCooldownTicks;
 
         public Builder input(InputMode inputMode) {
             this.inputMode = inputMode;
@@ -135,6 +138,11 @@ public class SwingPipeline {
 
         public Builder completionCooldown(int ticks) {
             this.completionCooldownTicks = Math.max(0, ticks);
+            return this;
+        }
+
+        public Builder startCooldown(int ticks) {
+            this.startCooldownTicks = Math.max(0, ticks);
             return this;
         }
 

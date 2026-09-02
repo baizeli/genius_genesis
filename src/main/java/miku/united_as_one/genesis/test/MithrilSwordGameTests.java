@@ -17,8 +17,8 @@ public class MithrilSwordGameTests {
                 "Laevatain final combo AOE radius must be 1.75 blocks.");
         helper.assertTrue(Laevatain.swingPipeline().inputMode == SwingPipeline.InputMode.USE_HOLD,
                 "Laevatain combo must be driven by holding use.");
-        helper.assertTrue(Laevatain.swingPipeline().completionCooldownTicks == 60,
-                "Laevatain combo must apply a 60 tick completion cooldown.");
+        helper.assertTrue(Laevatain.swingPipeline().startCooldownTicks == 70,
+                "Laevatain combo must start a 70 tick cooldown on its first attack.");
         helper.assertTrue(Laevatain.swingPipeline().endMode == SwingPipeline.EndMode.STOP,
                 "Laevatain combo must stop after one sequence until use is released.");
         helper.succeed();

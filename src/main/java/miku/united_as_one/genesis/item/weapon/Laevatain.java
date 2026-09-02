@@ -40,7 +40,7 @@ public class Laevatain extends SwordItem implements IAutoSwingItem, IMeleeProjLi
             .advance(SwingPipeline.AdvanceMode.SEQUENTIAL)
             .release(SwingPipeline.ReleaseMode.RESET)
             .end(SwingPipeline.EndMode.STOP)
-            .completionCooldown(60)
+            .startCooldown(70)
             .stage(2, Laevatain::swingA)
             .stage(5, Laevatain::swingB)
             .stage(2, Laevatain::swingA)
