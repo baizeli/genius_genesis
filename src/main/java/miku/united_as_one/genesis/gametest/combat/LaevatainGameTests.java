@@ -1,12 +1,12 @@
-package miku.united_as_one.genesis.test;
+package miku.united_as_one.genesis.gametest.combat;
 
 import miku.united_as_one.genesis.Genesis;
-import miku.united_as_one.genesis.content.item.weapon.Laevatain;
 import miku.united_as_one.genesis.combat.autoswing.SwingPipeline;
+import miku.united_as_one.genesis.content.item.weapon.Laevatain;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 
-public class MithrilSwordGameTests {
+public class LaevatainGameTests {
     @GameTest(template = "empty", batch = Genesis.MOD_ID)
     public static void laevatainFinalComboSettings(GameTestHelper helper) {
         helper.assertTrue(Laevatain.finalPrimaryDamageMultiplier() == 1.5F,

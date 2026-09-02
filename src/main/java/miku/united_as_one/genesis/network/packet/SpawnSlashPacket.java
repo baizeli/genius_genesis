@@ -2,7 +2,7 @@ package miku.united_as_one.genesis.network.packet;
 
 import java.util.function.Supplier;
 import miku.united_as_one.genesis.client.network.ClientPacketHandlers;
-import miku.united_as_one.genesis.util.SlashColors;
+import miku.united_as_one.genesis.utils.SlashColors;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
