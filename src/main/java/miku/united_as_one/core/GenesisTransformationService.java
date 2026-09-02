@@ -1,4 +1,4 @@
-package miku.united_as_one.genesis.core;
+package miku.united_as_one.core;
 
 import cpw.mods.modlauncher.api.IEnvironment;
 import cpw.mods.modlauncher.api.ITransformationService;

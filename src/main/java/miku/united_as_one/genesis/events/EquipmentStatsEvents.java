@@ -2,6 +2,7 @@ package miku.united_as_one.genesis.events;
 
 import miku.bai_ze_li.genesis.api.equipment.EquipmentStatsManager;
 import miku.united_as_one.genesis.Genesis;
+import miku.united_as_one.genesis.compat.curios.GenesisCurios;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.OnDatapackSyncEvent;
@@ -21,6 +22,7 @@ public final class EquipmentStatsEvents {
     public static void syncEquipmentStats(OnDatapackSyncEvent event) {
         EquipmentStatsManager.rebuildFromConfig();
         EquipmentStatsManager.refreshPlayers(event.getPlayers());
+        event.getPlayers().forEach(GenesisCurios::refreshConfiguredAttributes);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -34,13 +36,14 @@ public final class EquipmentStatsEvents {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void modifyCurioAttributes(CurioAttributeModifierEvent event) {
-        if (!EquipmentStatsManager.controlsCurio(event.getItemStack())) {
+        if (!EquipmentStatsManager.controlsAccessory(event.getItemStack())) {
             return;
         }
         for (Attribute attribute : new HashSet<>(event.getOriginalModifiers().keySet())) {
             event.removeAttribute(attribute);
         }
-        EquipmentStatsManager.buildCurioModifiers(event.getItemStack(), event.getSlotContext())
+        EquipmentStatsManager.buildAccessoryModifiers(event.getItemStack(), GenesisCurios.slotKey(
+                        event.getSlotContext().identifier(), event.getSlotContext().index()))
                 .forEach(event::addModifier);
     }
 }

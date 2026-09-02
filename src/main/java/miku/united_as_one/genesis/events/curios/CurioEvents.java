@@ -9,7 +9,7 @@ import io.redspace.ironsspellbooks.entity.spells.devour_jaw.DevourJaw;
 import io.redspace.ironsspellbooks.network.SyncManaPacket;
 import io.redspace.ironsspellbooks.setup.PacketDistributor;
 import io.redspace.ironsspellbooks.spells.blood.DevourSpell;
-import miku.bai_ze_li.genesis.api.curios.ModCurios;
+import miku.united_as_one.genesis.compat.curios.GenesisCurios;
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.item.curios.EternalRing;
 import miku.united_as_one.genesis.item.curios.RunePlusItem;
@@ -29,9 +29,12 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import top.theillusivec4.curios.api.event.CurioChangeEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,16 +51,31 @@ public final class CurioEvents {
     }
 
     @SubscribeEvent
+    public static void onCurioChanged(CurioChangeEvent event) {
+        GenesisCurios.invalidate(event.getEntity());
+    }
+
+    @SubscribeEvent
+    public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+        GenesisCurios.invalidate(event.getEntity());
+    }
+
+    @SubscribeEvent
+    public static void onLevelUnload(LevelEvent.Unload event) {
+        GenesisCurios.clear();
+    }
+
+    @SubscribeEvent
     public static void onSpellCast(SpellOnCastEvent event) {
         Player player = event.getEntity();
-        if (ModCurios.hasCurios(player, EternalRing::test)) {
+        if (GenesisCurios.has(player, EternalRing::test)) {
             event.setSpellLevel(event.getSpellLevel() + 1);
         }
-        if (ModCurios.hasCurios(player, RunePlusItem::isNature)
+        if (GenesisCurios.has(player, RunePlusItem::isNature)
                 && SpellRegistry.ACID_ORB_SPELL.get().getSpellId().equals(event.getSpellId())) {
             event.setManaCost(Mth.ceil((float) event.getManaCost() / 2.0F));
         }
-        if (ModCurios.hasCurios(player, RunePlusItem::isBlood)
+        if (GenesisCurios.has(player, RunePlusItem::isBlood)
                 && SpellRegistry.BLOOD_STEP_SPELL.get().getSpellId().equals(event.getSpellId())) {
             BLOOD_STEP_USED.put(player.getUUID(), event.getSpellLevel());
         }
@@ -67,7 +85,7 @@ public final class CurioEvents {
     public static void onLivingAttack(LivingAttackEvent event) {
         LivingEntity target = event.getEntity();
         DamageSource source = event.getSource();
-        if (ModCurios.hasCurios(target, EternalRing::test)
+        if (GenesisCurios.has(target, EternalRing::test)
                 && (source.is(DamageTypeTags.IS_LIGHTNING)
                 || source.is(DamageTypeTags.IS_FREEZING)
                 || source.is(DamageTypeTags.IS_FIRE))) {
@@ -76,7 +94,7 @@ public final class CurioEvents {
         }
 
         if (source.getEntity() instanceof ServerPlayer player
-                && ModCurios.hasCurios(player, RunePlusItem::isBlood)
+                && GenesisCurios.has(player, RunePlusItem::isBlood)
                 && source.getDirectEntity() instanceof BloodSlashProjectile) {
             MagicData data = MagicData.getPlayerMagicData(player);
             AttributeInstance maxMana = player.getAttribute(AttributeRegistry.MAX_MANA.get());
@@ -103,7 +121,7 @@ public final class CurioEvents {
     @SubscribeEvent
     public static void onEffectApplicable(MobEffectEvent.Applicable event) {
         LivingEntity entity = event.getEntity();
-        if (ModCurios.hasCurios(entity, EternalRing::test) && EternalRing.immuneEffect(event.getEffectInstance())) {
+        if (GenesisCurios.has(entity, EternalRing::test) && EternalRing.immuneEffect(event.getEffectInstance())) {
             event.setResult(Event.Result.DENY);
         }
     }
@@ -111,7 +129,7 @@ public final class CurioEvents {
     @SubscribeEvent
     public static void onEffectAdded(MobEffectEvent.Added event) {
         LivingEntity entity = event.getEntity();
-        if (ModCurios.hasCurios(entity, EternalRing::test) && EternalRing.immuneEffect(event.getEffectInstance())) {
+        if (GenesisCurios.has(entity, EternalRing::test) && EternalRing.immuneEffect(event.getEffectInstance())) {
             entity.removeEffect(event.getEffectInstance().getEffect());
         }
     }
@@ -119,7 +137,7 @@ public final class CurioEvents {
     @SubscribeEvent
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
         LivingEntity entity = event.getEntity();
-        if (ModCurios.hasCurios(entity, EternalRing::test)) {
+        if (entity instanceof Player && GenesisCurios.has(entity, EternalRing::test)) {
             EternalRing.clearElementalState(entity);
         }
     }
@@ -137,7 +155,7 @@ public final class CurioEvents {
             ));
         }
 
-        if (event.getSource().getEntity() instanceof Player player && ModCurios.hasCurios(player, stack -> stack.is(ItemRegistry.LAO_WANG_237.get()))) {
+        if (event.getSource().getEntity() instanceof Player player && GenesisCurios.has(player, stack -> stack.is(ItemRegistry.LAO_WANG_237.get()))) {
             event.getDrops().add(new ItemEntity(
                     entity.level(),
                     entity.getX(),

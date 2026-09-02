@@ -1,7 +1,7 @@
 package miku.united_as_one.genesis.mixin.ironsspellbooks.spells.nature;
 
 import io.redspace.ironsspellbooks.spells.nature.AcidOrbSpell;
-import miku.bai_ze_li.genesis.api.curios.ModCurios;
+import miku.united_as_one.genesis.compat.curios.GenesisCurios;
 import miku.united_as_one.genesis.item.curios.RunePlusItem;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinAcidOrbSpell {
     @Inject(method = "getRadius", at = @At("RETURN"), cancellable = true)
     private void getRadius(int spellLevel, LivingEntity caster, CallbackInfoReturnable<Float> cir) {
-        if (ModCurios.hasCurios(caster, RunePlusItem::isNature)) {
+        if (GenesisCurios.has(caster, RunePlusItem::isNature)) {
             cir.setReturnValue(cir.getReturnValue() * 1.5F);
         }
     }

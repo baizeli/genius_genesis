@@ -3,7 +3,7 @@ package miku.united_as_one.genesis.mixin.ironsspellbooks.spells.lightning;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.effect.ThunderstormEffect;
 import io.redspace.ironsspellbooks.entity.spells.LightningStrike;
-import miku.bai_ze_li.genesis.api.curios.ModCurios;
+import miku.united_as_one.genesis.compat.curios.GenesisCurios;
 import miku.united_as_one.genesis.item.curios.RunePlusItem;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MixinThunderstormEffect {
     @Inject(method = "applyEffectTick", at = @At("HEAD"), cancellable = true, remap = true)
     private void geniusGenesis$quickRuneStorm(LivingEntity entity, int amplifier, CallbackInfo ci) {
-        if (!ModCurios.hasCurios(entity, RunePlusItem::isLightning)) {
+        if (!GenesisCurios.has(entity, RunePlusItem::isLightning)) {
             return;
         }
 

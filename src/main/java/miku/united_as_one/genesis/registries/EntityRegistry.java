@@ -1,6 +1,7 @@
 package miku.united_as_one.genesis.registries;
 
 import miku.united_as_one.genesis.Genesis;
+import miku.united_as_one.genesis.combat.protectedhealth.ProtectedZombieDummy;
 import miku.united_as_one.genesis.combat.meleeproj.MeleeProjBase;
 import miku.united_as_one.genesis.entity.spell.blood_boss.BloodBossFireEruptionAoe;
 import miku.united_as_one.genesis.entity.spell.blood_boss.blood_dagger.BloodDaggerEntity;
@@ -58,6 +59,11 @@ public final class EntityRegistry {
     // 雷霆
     public static final RegistryObject<EntityType<DeathLaserEntity>> DEATH_LASER =
             fastMisc("death_laser", DeathLaserEntity::new, 0.5f, 0.5f, 64);
+
+    public static final RegistryObject<EntityType<ProtectedZombieDummy>> PROTECTED_ZOMBIE_DUMMY =
+            ENTITY_TYPES.register("protected_zombie_dummy", () -> EntityType.Builder
+                    .of(ProtectedZombieDummy::new, MobCategory.MONSTER).sized(0.6F, 1.95F)
+                    .clientTrackingRange(10).updateInterval(3).build("protected_zombie_dummy"));
 
     private EntityRegistry() {
     }

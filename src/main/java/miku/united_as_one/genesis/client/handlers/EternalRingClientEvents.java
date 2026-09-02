@@ -1,6 +1,6 @@
 package miku.united_as_one.genesis.client.handlers;
 
-import miku.bai_ze_li.genesis.api.curios.ModCurios;
+import miku.united_as_one.genesis.compat.curios.GenesisCurios;
 import miku.united_as_one.genesis.Genesis;
 import miku.united_as_one.genesis.item.curios.EternalRing;
 import net.minecraft.client.Minecraft;
@@ -19,9 +19,9 @@ public final class EternalRingClientEvents {
     @SubscribeEvent
     public static void onRenderGuiOverlay(RenderGuiOverlayEvent.Pre event) {
         LocalPlayer player = Minecraft.getInstance().player;
-        if (player != null
-                && ModCurios.hasCurios(player, EternalRing::test)
-                && event.getOverlay().id().equals(VanillaGuiOverlay.FROSTBITE.id())) {
+        if (event.getOverlay().id().equals(VanillaGuiOverlay.FROSTBITE.id())
+                && player != null
+                && GenesisCurios.has(player, EternalRing::test)) {
             event.setCanceled(true);
         }
     }

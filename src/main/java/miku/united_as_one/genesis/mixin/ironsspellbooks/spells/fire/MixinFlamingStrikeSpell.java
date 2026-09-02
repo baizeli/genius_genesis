@@ -10,7 +10,7 @@ import io.redspace.ironsspellbooks.particle.FlameStrikeParticleOptions;
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
 import io.redspace.ironsspellbooks.spells.fire.FlamingStrikeSpell;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
-import miku.bai_ze_li.genesis.api.curios.ModCurios;
+import miku.united_as_one.genesis.compat.curios.GenesisCurios;
 import miku.united_as_one.genesis.item.curios.RunePlusItem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -36,7 +36,7 @@ public abstract class MixinFlamingStrikeSpell extends AbstractSpell {
     @Inject(method = "getEffectiveCastTime", at = @At("HEAD"), cancellable = true)
     private void geniusGenesis$instantFireRuneStrike(int spellLevel, @Nullable LivingEntity entity,
                                                      CallbackInfoReturnable<Integer> cir) {
-        if (entity != null && ModCurios.hasCurios(entity, RunePlusItem::isFire)) {
+        if (entity != null && GenesisCurios.has(entity, RunePlusItem::isFire)) {
             cir.setReturnValue(0);
         }
     }
@@ -44,7 +44,7 @@ public abstract class MixinFlamingStrikeSpell extends AbstractSpell {
     @Inject(method = "onCast", at = @At("HEAD"), cancellable = true)
     private void geniusGenesis$fireRuneShadowStrike(Level level, int spellLevel, LivingEntity entity,
                                                     CastSource castSource, MagicData playerMagicData, CallbackInfo ci) {
-        if (!ModCurios.hasCurios(entity, RunePlusItem::isFire)) {
+        if (!GenesisCurios.has(entity, RunePlusItem::isFire)) {
             return;
         }
 

@@ -3,7 +3,7 @@ package miku.united_as_one.genesis.mixin.ironsspellbooks.spells.fire;
 import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
 import io.redspace.ironsspellbooks.entity.spells.magma_ball.FireBomb;
 import io.redspace.ironsspellbooks.entity.spells.magma_ball.FireField;
-import miku.bai_ze_li.genesis.api.curios.ModCurios;
+import miku.united_as_one.genesis.compat.curios.GenesisCurios;
 import miku.united_as_one.genesis.item.curios.RunePlusItem;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -30,7 +30,7 @@ public abstract class MixinFireBomb extends AbstractMagicProjectile {
     )
     private void createFireField(Vec3 location, CallbackInfo ci, FireField fire) {
         Entity owner = getOwner();
-        if (owner instanceof LivingEntity entity && ModCurios.hasCurios(entity, RunePlusItem::isFire)) {
+        if (owner instanceof LivingEntity entity && GenesisCurios.has(entity, RunePlusItem::isFire)) {
             fire.setDuration(fire.getDuration() * 2);
         }
     }

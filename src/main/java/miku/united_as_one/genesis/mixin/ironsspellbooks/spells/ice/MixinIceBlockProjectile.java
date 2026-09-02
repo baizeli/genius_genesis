@@ -2,7 +2,7 @@ package miku.united_as_one.genesis.mixin.ironsspellbooks.spells.ice;
 
 import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
 import io.redspace.ironsspellbooks.entity.spells.ice_block.IceBlockProjectile;
-import miku.bai_ze_li.genesis.api.curios.ModCurios;
+import miku.united_as_one.genesis.compat.curios.GenesisCurios;
 import miku.united_as_one.genesis.item.curios.RunePlusItem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -33,7 +33,7 @@ public abstract class MixinIceBlockProjectile extends AbstractMagicProjectile {
     )
     private void handleFalling(CallbackInfo ci) {
         Entity owner = getOwner();
-        if (owner instanceof LivingEntity entity && ModCurios.hasCurios(entity, RunePlusItem::isIce)) {
+        if (owner instanceof LivingEntity entity && GenesisCurios.has(entity, RunePlusItem::isIce)) {
             handleFalling();
         }
     }
@@ -46,7 +46,7 @@ public abstract class MixinIceBlockProjectile extends AbstractMagicProjectile {
         Entity owner = getOwner();
         if (owner instanceof LivingEntity entity
                 && target instanceof LivingEntity targetLivingEntity
-                && ModCurios.hasCurios(entity, RunePlusItem::isIce)) {
+                && GenesisCurios.has(entity, RunePlusItem::isIce)) {
             targetLivingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 8 * 20, 4));
         }
     }

@@ -16,7 +16,7 @@ import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import io.redspace.ironsspellbooks.particle.ZapParticleOption;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
 import miku.united_as_one.genesis.Genesis;
-import miku.bai_ze_li.genesis.api.curios.ModCurios;
+import miku.united_as_one.genesis.compat.curios.GenesisCurios;
 import miku.united_as_one.genesis.item.curios.RunePlusItem;
 import miku.united_as_one.genesis.item.weapon.bow.ThunderLongBow;
 import net.minecraft.core.BlockPos;
@@ -76,7 +76,7 @@ public final class BowProjectileEvents {
         if (lanceProjectile.getPersistentData().getBoolean(ThunderLongBow.PROJECTILE_MARKER)) {
             summonShockwave(lanceProjectile.level(), 4.0F, lanceProjectile.getDamage(), target, player, lanceProjectile);
         }
-        if (ModCurios.hasCurios(player, RunePlusItem::isLightning)) {
+        if (GenesisCurios.has(player, RunePlusItem::isLightning)) {
             summonShockwave(lanceProjectile.level(), 4.0F, lanceProjectile.getDamage() * 0.75F, target, player, lanceProjectile);
         }
     }
@@ -90,7 +90,7 @@ public final class BowProjectileEvents {
             return;
         }
         Entity target = impactTarget(event, magicArrow);
-        if (!(target instanceof LivingEntity) || !ModCurios.hasCurios(player, RunePlusItem::isEnder)) {
+        if (!(target instanceof LivingEntity) || !GenesisCurios.has(player, RunePlusItem::isEnder)) {
             return;
         }
 

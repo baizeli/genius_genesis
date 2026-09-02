@@ -464,5 +464,6 @@
   "genius_genesis.category.server.combat_main": "",
   "genius_genesis.galaxy_scroll.book_name": "§bGalaxy Scroll",
   "genius_genesis.galaxy_scroll.landing_text": "",
-  "genius_genesis.summoned_pig_name": "laowang237"
+  "genius_genesis.summoned_pig_name": "laowang237",
+  "entity.genius_genesis.protected_zombie_dummy": "Protected Zombie Dummy"
 }

@@ -468,5 +468,6 @@
   "genius_genesis.category.server.combat_main": "§f战斗设置",
   "genius_genesis.galaxy_scroll.book_name": "星河绘卷",
   "genius_genesis.galaxy_scroll.landing_text": "一本记录铁魔法创世附属内容的星河手记。",
-  "genius_genesis.summoned_pig_name": "laowang237"
+  "genius_genesis.summoned_pig_name": "laowang237",
+  "entity.genius_genesis.protected_zombie_dummy": "受保护僵尸木桩"
 }

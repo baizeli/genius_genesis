@@ -2,7 +2,7 @@ package miku.united_as_one.genesis.mixin.ironsspellbooks.spells.holy;
 
 import io.redspace.ironsspellbooks.entity.spells.wisp.WispEntity;
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
-import miku.bai_ze_li.genesis.api.curios.ModCurios;
+import miku.united_as_one.genesis.compat.curios.GenesisCurios;
 import miku.united_as_one.genesis.item.curios.RunePlusItem;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -31,7 +31,7 @@ public class MixinWispEntity {
     )
     private void onTick(CallbackInfo ci, LivingEntity target) {
         Entity owner = this.cachedOwner;
-        if (owner instanceof LivingEntity entity && ModCurios.hasCurios(entity, RunePlusItem::isHoly)) {
+        if (owner instanceof LivingEntity entity && GenesisCurios.has(entity, RunePlusItem::isHoly)) {
             float distance = target.distanceTo(owner);
             target.addEffect(new MobEffectInstance(MobEffectRegistry.GUIDING_BOLT.get(), Mth.ceil(distance * 20.0F)));
         }

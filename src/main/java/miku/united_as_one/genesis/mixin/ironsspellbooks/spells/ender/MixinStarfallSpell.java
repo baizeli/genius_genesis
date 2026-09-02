@@ -2,7 +2,7 @@ package miku.united_as_one.genesis.mixin.ironsspellbooks.spells.ender;
 
 import io.redspace.ironsspellbooks.entity.spells.comet.Comet;
 import io.redspace.ironsspellbooks.spells.ender.StarfallSpell;
-import miku.bai_ze_li.genesis.api.curios.ModCurios;
+import miku.united_as_one.genesis.compat.curios.GenesisCurios;
 import miku.united_as_one.genesis.item.curios.RunePlusItem;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
@@ -22,14 +22,14 @@ public class MixinStarfallSpell {
             locals = LocalCapture.CAPTURE_FAILHARD
     )
     private void cometEnhanced(Level world, int spellLevel, LivingEntity entity, Vec3 spawn, Vec3 trajectory, CallbackInfo ci, Comet fireball) {
-        if (ModCurios.hasCurios(entity, RunePlusItem::isEnder)) {
+        if (GenesisCurios.has(entity, RunePlusItem::isEnder)) {
             fireball.setExplosionRadius(fireball.getExplosionRadius() * 4.0F);
         }
     }
 
     @Inject(method = "getDamage", at = @At("RETURN"), cancellable = true)
     private void getDamage(int spellLevel, LivingEntity caster, CallbackInfoReturnable<Float> cir) {
-        if (ModCurios.hasCurios(caster, RunePlusItem::isEnder)) {
+        if (GenesisCurios.has(caster, RunePlusItem::isEnder)) {
             cir.setReturnValue(cir.getReturnValue() * 2.0F);
         }
     }

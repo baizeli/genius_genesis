@@ -4,7 +4,7 @@ import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.entity.spells.ice_block.IceBlockProjectile;
 import io.redspace.ironsspellbooks.spells.ice.IceBlockSpell;
-import miku.bai_ze_li.genesis.api.curios.ModCurios;
+import miku.united_as_one.genesis.compat.curios.GenesisCurios;
 import miku.united_as_one.genesis.item.curios.RunePlusItem;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
@@ -24,7 +24,7 @@ public class MixinIceBlockSpell {
     )
     private void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData,
                         CallbackInfo ci, Vec3 spawn, LivingEntity target, int spawnHeight, IceBlockProjectile iceBlock) {
-        if (ModCurios.hasCurios(entity, RunePlusItem::isIce)) {
+        if (GenesisCurios.has(entity, RunePlusItem::isIce)) {
             iceBlock.setAirTime(0);
         }
     }
