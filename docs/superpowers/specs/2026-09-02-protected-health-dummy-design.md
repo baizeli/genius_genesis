@@ -1,117 +1,119 @@
-# Protected Health Dummy Design
+# 受保护生命木桩设计
 
-## Goal
+## 目标
 
-Add a self-contained protected-health subsystem and a test zombie dummy with 800 maximum health. The subsystem must match Astralrail Cube's defensive model closely: reverse-counted authoritative health stored as an encrypted string, guarded access, custom alive/death decisions, and no Java agent. Direct modification of `LivingEntity.DATA_HEALTH_ID` must not change authoritative health, while ordinary combat damage must still defeat the entity.
+新增一套独立的受保护生命系统，并注册一个最大生命为 800 的僵尸木桩实体。系统尽可能对齐 Astralrail Cube 的防御模型：反向计算的权威生命、加密字符串存储、受限读写入口和自定义存活/死亡判定，不使用 Java Agent。
 
-Entity removal is explicitly outside the protection boundary. Calls such as `remove`, `discard`, and `setRemoved` remain effective.
+直接修改 `LivingEntity.DATA_HEALTH_ID` 不得影响权威生命，但普通战斗伤害必须仍能正常击败该实体。
 
-## Package Boundary
+实体清除不在保护范围内，`remove`、`discard` 和 `setRemoved` 等操作保持有效。
 
-All protected-health implementation belongs under:
+## 包结构
+
+所有受保护生命实现统一放在：
 
 `miku.united_as_one.genesis.combat.protectedhealth`
 
-The package contains the cipher, access manager, Unsafe wrapper or adapter, protected entity base behavior, and the zombie dummy. Existing registry and client setup classes only receive the minimal registration hooks required for the new entity.
+该包包含加解密器、访问管理器、Unsafe 封装或适配层、受保护实体的基础行为和僵尸木桩。现有注册表与客户端初始化类只增加注册新实体必需的最少接入代码。
 
-## Health Representation
+## 生命表示
 
-Authoritative health is a reverse-counted value:
+权威生命使用反向计算：
 
-- Spawn value: `-800.0F`.
-- Damage: add final accepted damage to the value.
-- Healing: subtract healing, clamped to `-800.0F`.
-- Alive: authoritative value is less than zero.
-- Dead or dying: authoritative value is greater than or equal to zero.
-- Remaining health: negate the authoritative value and clamp to `[0, 800]`.
+- 出生值：`-800.0F`。
+- 受伤：将最终接受的伤害加到当前值。
+- 治疗：从当前值减去治疗量，最低限制为 `-800.0F`。
+- 存活：权威值小于零。
+- 死亡或正在死亡：权威值大于等于零。
+- 剩余生命：对权威值取反，并限制在 `[0, 800]` 内。
 
-The authoritative value is converted to a string, transformed by a local cipher modeled on Astralrail Cube's `SeraCipher`, and stored in a dedicated `SynchedEntityData<String>` entry. Neither the data accessor name nor entity NBT uses a semantic health key.
+权威值转换为字符串后，使用参考 Astralrail Cube `SeraCipher` 的本地加密器转换，最终存放到专用的 `SynchedEntityData<String>` 条目中。数据访问器名称和实体 NBT 都不使用具有生命语义的键名。
 
-The actual health value is not written to entity NBT. Loading or re-adding the entity initializes authoritative health to full, matching the reference entity's behavior. Auxiliary state may be persisted only if it does not reveal or reconstruct current authoritative health.
+真实生命不写入实体 NBT。实体加载或重新加入世界时，权威生命重新初始化为满值，与参考实体的行为保持一致。只允许持久化不会暴露或还原当前权威生命的辅助状态。
 
-## Access Protection
+## 访问保护
 
-A manager modeled on Astralrail Cube's `MonsterManager` owns authoritative reads and writes. It uses:
+由一个参考 Astralrail Cube `MonsterManager` 的管理器统一管理权威生命读写。管理器使用：
 
-- a runtime-generated hidden nestmate;
-- cached `MethodHandle` entry points;
-- `StackWalker` caller validation;
-- package and class-loader validation;
-- the project's cached `sun.misc.Unsafe` wrapper for low-level field/access operations where needed.
+- 运行时生成的隐藏嵌套类；
+- 缓存的 `MethodHandle` 入口；
+- `StackWalker` 调用者检查；
+- 包名和类加载器验证；
+- 项目自身缓存的 `sun.misc.Unsafe` 封装，用于必要的底层字段或访问操作。
 
-No `Instrumentation`, self-attach, embedded agent JAR, or runtime retransformation is used.
+不使用 `Instrumentation`、JVM 自附加、内置 Agent JAR 或运行时重转换。
 
-The protection is intended to resist ordinary API calls, reflection-based discovery, and direct vanilla health writes. It is not claimed to be absolute security against arbitrary code executing inside the same JVM.
+该防护用于抵御常规 API 调用、普通反射探测和直接修改原版生命的操作，不宣称能绝对抵抗同一 JVM 内任意执行的恶意字节码。
 
-## Vanilla Health Mirror
+## 原版生命镜像
 
-`LivingEntity.DATA_HEALTH_ID` is a non-authoritative mirror. It is always derived from authoritative remaining-health percentage:
+`LivingEntity.DATA_HEALTH_ID` 只是非权威镜像，始终由权威剩余生命的百分比推导：
 
 `mirror = mirrorMaximum * remainingHealth / 800`
 
-The synchronization direction is exclusively authoritative-to-mirror. A direct write to `DATA_HEALTH_ID` never heals, damages, or kills the dummy.
+同步方向只允许从权威生命到镜像生命。直接写入 `DATA_HEALTH_ID` 不会治疗、伤害或击杀木桩。
 
-If authoritative health is 400 and an external caller writes mirror health to zero, the next server correction restores the mirror to 50 percent. After one additional point of accepted damage, authoritative health becomes 399 and the mirror becomes the corresponding 399/800 projection. It does not return to full health.
+如果权威剩余生命为 400，外部调用者把镜像生命写为零，服务端下次校正时应将镜像恢复为 50%。此后再接受 1 点伤害，权威剩余生命变为 399，镜像恢复为 `399/800` 对应的值，而不是回满。
 
-Mirror correction occurs during the protected entity's server tick and after accepted damage or healing. Client synchronization uses the normal dirty `SynchedEntityData` mechanism.
+镜像校正在受保护实体的服务端 tick 中以及成功伤害或治疗后执行。客户端同步使用原版 `SynchedEntityData` 脏标记机制。
 
-## Damage and Healing
+## 伤害与治疗
 
-The dummy overrides the damage path rather than allowing vanilla `setHealth` to become authoritative.
+木桩重写伤害路径，不允许原版 `setHealth` 成为权威生命来源。
 
-Damage behavior:
+伤害流程：
 
-1. Reject damage when normal Forge/Minecraft rules say the hit is invalid or during the configured invulnerability interval.
-2. Obtain the accepted/final damage consistently with the entity's chosen armor and resistance behavior.
-3. Add the accepted damage to reverse authoritative health.
-4. Update the vanilla mirror and hurt feedback.
-5. When the authoritative value reaches zero, authorize and invoke the normal death sequence exactly once.
+1. 在原版/Forge 规则认定伤害无效，或实体仍处于设定的无敌间隔时拒绝伤害。
+2. 按实体选定的护甲与抗性行为获得最终接受的伤害。
+3. 将最终伤害加到反向权威生命。
+4. 更新原版生命镜像并播放受伤反馈。
+5. 当权威值到达零时，只授权并进入一次原版死亡流程。
 
-Direct `setHealth`, `DATA_HEALTH_ID` writes, `kill`, or generic vanilla death checks cannot make the entity die while authoritative health remains below zero.
+权威生命仍小于零时，直接调用 `setHealth`、写入 `DATA_HEALTH_ID`、调用 `kill` 或触发常规原版死亡判定，都不得使实体死亡。
 
-Healing changes only authoritative reverse health and then regenerates the mirror. It cannot exceed 800 remaining health.
+治疗只修改反向权威生命，然后重新生成镜像，剩余生命不得超过 800。
 
-## Death Behavior
+## 死亡行为
 
-The entity remains alive while reverse health is below zero. At zero or above it transitions to the normal dying path, allowing standard death animation, death event handling, and removal. A small internal guard prevents duplicate death entry.
+反向权威生命小于零时，实体保持存活。当数值达到零或更大时，转入正常死亡阶段，允许原版死亡动画、死亡事件和实体移除流程执行。使用小型内部状态标记防止重复进入死亡流程。
 
-No removal defense is implemented. External removal can delete the entity regardless of authoritative health, as explicitly requested.
+不实现实体清除防御。无论权威生命如何，外部清除仍可删除实体。
 
-## Test Entity
+## 测试实体
 
-Register `protected_zombie_dummy` as a monster entity that subclasses the vanilla zombie and uses the vanilla zombie renderer/model. Its protected maximum health is fixed at 800.
+注册名为 `protected_zombie_dummy` 的怪物实体。该实体继承原版僵尸，使用原版僵尸模型与渲染器，权威最大生命固定为 800。
 
-The dummy retains zombie-compatible hurt, sound, animation, and death behavior so ordinary weapons and spells can exercise the real combat path. AI behavior will be reduced enough for repeatable testing while preserving the zombie entity contract.
+木桩保留与僵尸兼容的受伤、声音、动画和死亡行为，使普通武器和法术能验证真实战斗路径。在保留僵尸实体契约的前提下，适当降低 AI 活动度，以便稳定重复测试。
 
-The entity receives a summon egg or an equivalent existing-project registration path so it can be spawned reliably in development and production tests.
+为该实体注册生成蛋，或使用项目现有的等价注册路径，以便在开发和正式环境中稳定生成木桩。
 
-## ASM and Mixin Scope
+## ASM 与 Mixin 范围
 
-Because the protected target is owned by this project, no universal transformer or agent is required. The first phase uses explicit overrides and the project's existing Mixin/ModLauncher facilities only where vanilla final or inherited behavior cannot be safely redirected.
+受保护目标由本项目自行实现，因此不需要通用转换器或 Agent。第一阶段优先使用明确的方法重写；只在无法安全重定向的原版 final 或继承行为上，使用项目现有的 Mixin/ModLauncher 设施。
 
-Any ASM transformer must target a fixed known class and must not scan or rewrite every `LivingEntity` subclass. Mixin and ASM must not both wrap the same method return path.
+任何 ASM 转换器都必须面向固定且已知的类，不得扫描或改写所有 `LivingEntity` 子类。Mixin 与 ASM 不得同时包装同一个方法返回路径。
 
-## Verification
+## 验证
 
-Automated or deterministic development checks cover:
+自动化或可确定重复的开发测试应覆盖：
 
-- spawn state is 800 remaining authoritative health;
-- ordinary damage reduces authoritative and mirror health proportionally;
-- cumulative 800 accepted damage enters normal death;
-- direct `DATA_HEALTH_ID = 0` does not change authoritative health or alive state;
-- a zeroed mirror is restored to the current authoritative percentage, not full health;
-- direct mirror over-healing does not heal authoritative health;
-- healing changes authoritative health and mirror together without exceeding 800;
-- save/load does not expose current authoritative health in entity NBT and reinitializes full health;
-- normal removal remains effective;
-- dedicated server startup does not load client renderer classes.
+- 出生时权威剩余生命为 800；
+- 普通伤害按比例减少权威生命和镜像生命；
+- 累计接受 800 点伤害后进入正常死亡；
+- 直接将 `DATA_HEALTH_ID` 设为 0 不改变权威生命和存活状态；
+- 归零的镜像恢复为当前权威生命百分比，而不是满值；
+- 直接把镜像写高不会治疗权威生命；
+- 治疗同时更新权威生命与镜像，且不超过 800；
+- 存档/读档不在实体 NBT 中暴露当前权威生命，并在重新加载时初始化为满血；
+- 正常实体清除仍然有效；
+- 专用服务端启动时不会加载客户端渲染类。
 
-Manual verification includes spawning the dummy, reducing it to approximately half health, forcing `DATA_HEALTH_ID` to zero, hitting it once, and confirming that the mirror returns to slightly below half rather than full.
+手动验证流程：生成木桩，将其打到约一半真实生命，强制将 `DATA_HEALTH_ID` 写为零，再攻击一次，确认镜像恢复为略低于一半，而不是回满。
 
-## Non-Goals
+## 非目标
 
-- No universal force-health tool in this phase.
-- No Java agent or self-attachment.
-- No protection against entity removal or world lifecycle cleanup.
-- No promise of security against arbitrary hostile bytecode in the same JVM.
-- No plaintext or directly parseable authoritative health in entity NBT.
+- 第一阶段不实现通用强制改血工具。
+- 不使用 Java Agent 或 JVM 自附加。
+- 不防御实体清除和世界生命周期清理。
+- 不承诺能抵抗同一 JVM 内任意恶意字节码。
+- 实体 NBT 中不出现明文或可直接解析的权威生命。
