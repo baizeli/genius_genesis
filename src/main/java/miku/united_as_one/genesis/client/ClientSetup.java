@@ -8,6 +8,7 @@ import io.redspace.ironsspellbooks.api.spells.ISpellContainer;
 import io.redspace.ironsspellbooks.api.spells.SchoolType;
 import io.redspace.ironsspellbooks.item.Scroll;
 import miku.united_as_one.genesis.client.render.cosmic.CosmicModelLoader;
+import miku.united_as_one.genesis.client.spellhud.SpellCardHudClientEvents;
 import miku.united_as_one.genesis.client.render.block.ArcaneCauldronRenderer;
 import miku.united_as_one.genesis.client.render.WingLayer;
 import miku.united_as_one.genesis.client.render.armor.ChaosSpellArmorGlowLayer;
@@ -60,6 +61,10 @@ public final class ClientSetup {
         modBus.addListener(ClientSetup::registerEntityRenderers);
         modBus.addListener(ClientSetup::addPlayerLayers);
         modBus.addListener(ClientSetup::registerParticleProviders);
+        modBus.addListener(SpellCardHudClientEvents::registerKeyMapping);
+        modBus.addListener(SpellCardHudClientEvents::registerOverlay);
+        MinecraftForge.EVENT_BUS.addListener(SpellCardHudClientEvents::onClientTick);
+        MinecraftForge.EVENT_BUS.addListener(SpellCardHudClientEvents::onLoggingOut);
         MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onClientTick);
         MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onRenderHand);
         MinecraftForge.EVENT_BUS.addListener(AutoSwingClientEvents::onRightClickItem);
@@ -135,6 +140,7 @@ public final class ClientSetup {
         event.registerEntityRenderer(EntityRegistry.METEOR_PROJECTILE.get(), MeteorProjectileRenderer::new);
         event.registerEntityRenderer(EntityRegistry.METEOR_STAR.get(), MeteorStarRenderer::new);
         event.registerEntityRenderer(EntityRegistry.METEOR_SHOCKWAVE.get(), MeteorShockwaveRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.DEATH_LASER.get(), DeathLaserRenderer::new);
 
         event.registerEntityRenderer(EntityRegistry.MITHRIL_IMPACT_RING.get(), MithrilImpactRingRenderer::new);
         event.registerEntityRenderer(EntityRegistry.MITHRIL_MELEE_SLASH.get(), MithrilMeleeSlashRenderer::new);
